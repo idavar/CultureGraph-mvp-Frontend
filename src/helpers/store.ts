@@ -4,13 +4,19 @@ import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
 const persistConfig = {
   key: 'root',
   storage: storage,
   whitelist: ['login']
 }
 const persistedReducer = persistReducer(persistConfig, reducers)
-const composeEnhancers = (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
+const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose || compose;
 
 const middlewares = [thunk]
 

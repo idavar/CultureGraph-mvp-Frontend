@@ -10,13 +10,7 @@ import { createBrowserHistory } from 'history';
 import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
-<BrowserRouter>
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            <App />
-        </PersistGate>
-    </Provider>
-</BrowserRouter>,
+<App />,
 document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
