@@ -2,9 +2,19 @@ import React from 'react';
 
 class Header extends React.Component {
 	render() {
-		return (<header>
-            <a>Home</a><a>Signup</a><a>Login</a>
-            </header>)
+		return (
+		<div>
+			<header>&nbsp;</header>
+			<div className="menu"> 
+				<a href="javascript:void(0);">Culture Graph</a> 
+				<a href="javascript:void(0);">Culture Calendar</a>
+				<div className="menu-log"> 
+					<a href="javascript:void(0);">SIGNUP</a>
+					<a href="javascript:void(0);">LOGIN</a> 
+				</div>
+			</div>
+		</div>
+		)
 	}
 }
 
