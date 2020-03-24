@@ -1,12 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import CultureCalendar from './components/calendar/CultureCalendar';
-const phq = require('predicthq');
-const client = new phq.Client({access_token: 'Acc3sS-t0keN'});
-console.log('client', client);
 
 function App() {
   return (
