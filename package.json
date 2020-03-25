@@ -20,6 +20,7 @@
     "@types/redux-form": "^8.2.3",
     "@types/redux-persist": "^4.3.1",
     "@types/redux-thunk": "^2.1.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "predicthq": "^0.2.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
@@ -31,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "tslint -c tslint.json src/**/*.{ts,tsx} --fix --format verbose"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -50,6 +52,10 @@
   },
   "devDependencies": {
     "node-sass": "^4.13.1",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "tslint": "^6.1.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.2.0",
+    "tslint-react": "^4.2.0"
   }
 }

@@ -6,17 +6,17 @@ import Footer from './components/common/Footer';
 import CultureCalendar from './components/calendar/CultureCalendar';
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <div className="body_sec"> 
-        <section id="Content"> 
-          <CultureCalendar /> 
-        </section> 
-      </div>
-      <Footer />
-    </div>
-  );
+	return (
+		<div className='App'>
+			<Header />
+			<div className='body_sec'>
+				<section id='Content'>
+					<CultureCalendar />
+				</section>
+			</div>
+			<Footer />
+		</div>
+	);
 }
 
 export default App;
