@@ -5,6 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 
 import '../../styles/main.scss';
 import { apiReq } from '../../helpers';
+import Common from '../../constant/common';
 
 interface EventAppState {
 calendarWeekends: boolean;
@@ -34,21 +35,23 @@ searchEvents = () => {
 }
 
 render() {
+	const calendarOptions = {
+			eventLimit: Common.three,
+			header: {
+				right: 'prev,next today',
+				center: 'title',
+				left: 'dayGridWeek,dayGridMonth'
+			},
+			defaultView: 'dayGridWeek',
+			plugins: [ dayGridPlugin ],
+			ref: this.calendarComponentRef,
+			weekends: this.state.calendarWeekends,
+			events: this.state.calendarEvents
+		};
 	return (
 		<div className='calander-app'>
 		<div className='calander-app-calendar'>
-			<FullCalendar
-			defaultView='dayGridMonth'
-			header={{
-				left: 'prev,next today',
-				center: 'title',
-				right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-			}}
-			plugins={[ dayGridPlugin ]}
-			ref={ this.calendarComponentRef }
-			weekends={ this.state.calendarWeekends }
-			events={ this.state.calendarEvents }
-			/>
+			<FullCalendar {...calendarOptions} />
 		</div>
 		</div>
 	);
