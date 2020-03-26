@@ -3,11 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store, persistor } from './helpers/store';
-import { createBrowserHistory } from 'history';
-import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
 <App />,
