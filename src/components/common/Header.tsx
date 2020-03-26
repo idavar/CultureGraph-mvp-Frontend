@@ -6,13 +6,13 @@ class Header extends React.Component {
 		<div>
 			<header>&nbsp;</header>
 			<div className='menu'>
-				<a href='javascript:void(0);'>Culture Graph</a>
-				<a href='javascript:void(0);'>Culture Calendar</a>
-				<a href='javascript:void(0);'>How it works</a>
-				<a href='javascript:void(0);'>Our Mission</a>
+				<a href='/culture-graph'>Culture Graph</a>
+				<a href='/culture-calendar'>Culture Calendar</a>
+				<a href='/no-page'>How it works</a>
+				<a href='/no-page'>Our Mission</a>
 				<div className='menu-log'>
-					<a href='javascript:void(0);'>SIGNUP</a>
-					<a href='javascript:void(0);'>LOGIN</a>
+					<a href='/no-page'>SIGNUP</a>
+					<a href='/no-page'>LOGIN</a>
 				</div>
 			</div>
 		</div>
