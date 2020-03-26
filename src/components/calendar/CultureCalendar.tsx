@@ -29,7 +29,10 @@ componentWillMount() {
 }
 
 searchEvents = () => {
-	apiReq.predicthqSearchEvent({}).then((res: any) => {
+	const options = {
+		query: 'active.gt=2020-03-01&active.lte=2020-04-30&offset=10&state=active'
+	};
+	apiReq.predicthqSearchEvent({}, options).then((res: any) => {
 		this.setState({calendarEvents: res['results']});
 	}).catch(err => {});
 }
