@@ -30,7 +30,8 @@ componentWillMount() {
 
 searchEvents = () => {
 	const options = {
-		query: 'active.gt=2020-03-01&active.lte=2020-04-30&offset=10&state=active'
+		query: `?active.gt=2020-03/-01&active.lte=2020-04-30&state=${Common.phqState}
+		&offset=${Common.phqOffset}`
 	};
 	apiReq.predicthqSearchEvent({}, options).then((res: any) => {
 		this.setState({calendarEvents: res['results']});
