@@ -28,13 +28,17 @@ componentWillMount() {
 	this.searchEvents();
 }
 
-searchEvents = () => {
-	const options = {
-		query: `?active.gt=2020-03/-01&active.lte=2020-04-30&state=${Common.phqState}
-		&offset=${Common.phqOffset}`
-	};
+searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) => {
+	if (!options.next) {
+		this.setState({ calendarEvents: [] });
+		options['query'] = `?active.gt=2020-03-01&active.lte=2020-04-30&state=${Common.phqState}`;
+	}
 	apiReq.predicthqSearchEvent({}, options).then((res: any) => {
-		this.setState({calendarEvents: res['results']});
+		this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
+		if (res.next) {
+			options.next = res.next;
+			this.searchEvents(options);
+		}
 	}).catch(err => {});
 }
 

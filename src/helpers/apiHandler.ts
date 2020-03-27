@@ -56,11 +56,15 @@ export const predicthqApiCall = async (data = {}, options?: any) => {
 		return new Promise((resolve, reject) => {
 				const axiosObj = getPredicthqObj(data);
 				const params = options['params'];
-				if (params && params.length) {
+				if (options.next) {
+					axiosObj['url'] = options.next;
+				} else {
+					if (params && params.length) {
 						axiosObj['url'] = `${axiosObj['url']}/${params.join('/')}`;
-				}
-				if (options.query) {
-						axiosObj['url'] = `${axiosObj['url']}${options.query}`;
+					}
+					if (options.query) {
+							axiosObj['url'] = `${axiosObj['url']}${options.query}`;
+					}
 				}
 				return axios(axiosObj)
 						.then((res: any) => {
