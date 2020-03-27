@@ -10,6 +10,8 @@ import Common from '../../constant/common';
 interface EventAppState {
 calendarWeekends: boolean;
 calendarEvents: EventInput[];
+currentStart?: string;
+currentEnd?: string;
 }
 
 class CultureCalendar extends React.Component<{}, EventAppState> {
@@ -20,48 +22,55 @@ constructor(props: {}) {
 	super(props);
 	this.state = {
 		calendarWeekends: true,
-		calendarEvents: []
+		calendarEvents: [],
+		currentStart: '',
+		currentEnd: ''
 	};
 }
 
 componentWillMount() {}
 
 componentDidMount() {
-	this.searchEvents();
+	if (this.calendarComponentRef.current) {
+		this.setState({ currentStart: this.calendarComponentRef.current['calendar'].view.currentStart.toLocaleDateString() });
+		this.setState({ currentEnd: this.calendarComponentRef.current['calendar'].view.currentEnd.toLocaleDateString() });
+		this.searchEvents();
+	}
 }
 
 searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) => {
-	if (this.calendarComponentRef.current) {
-		const currentStart = this.calendarComponentRef.current['calendar'].view.currentStart.toLocaleDateString();
-		const currentEnd = this.calendarComponentRef.current['calendar'].view.currentEnd.toLocaleDateString();
-		if (!options.next) {
-			this.setState({ calendarEvents: [] });
-			options['query'] = `?active.gt=${currentStart}&active.lte=${currentEnd}&state=${Common.phqState}`;
-		}
-		apiReq.predicthqSearchEvent({}, options).then((res: any) => {
-			this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
-			if (res.next) {
-				options.next = res.next;
-				this.searchEvents(options);
-			}
-		}).catch(err => {});
+	if (!options.next) {
+		this.setState({ calendarEvents: [] });
+		options['query'] = `?active.gt=${this.state.currentStart}&active.lte=${this.state.currentEnd}&state=${Common.phqState}`;
 	}
+	apiReq.predicthqSearchEvent({}, options).then((res: any) => {
+		this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
+		if (res.next) {
+			options.next = res.next;
+			this.searchEvents(options);
+		}
+	}).catch(err => {});
 }
 
 render() {
 	const calendarOptions = {
-			eventLimit: Common.three,
-			header: {
-				right: 'prev,next today',
-				center: 'title',
-				left: 'dayGridWeek,dayGridMonth'
-			},
-			defaultView: 'dayGridWeek',
-			plugins: [ dayGridPlugin ],
-			ref: this.calendarComponentRef,
-			weekends: this.state.calendarWeekends,
-			events: this.state.calendarEvents
-		};
+		eventLimit: Common.three,
+		header: {
+			right: 'prev,next today',
+			center: 'title',
+			left: 'dayGridWeek,dayGridMonth'
+		},
+		defaultView: 'dayGridWeek',
+		plugins: [ dayGridPlugin ],
+		ref: this.calendarComponentRef,
+		weekends: this.state.calendarWeekends,
+		events: this.state.calendarEvents,
+		datesRender: (data: {view: {currentEnd: Date, currentStart: Date}}) => {
+			this.setState({ currentStart: data['view'].currentStart.toLocaleDateString() });
+			this.setState({ currentEnd: data['view'].currentEnd.toLocaleDateString() });
+			this.searchEvents();
+		}
+	};
 	return (
 		<div className='calander-app'>
 		<div className='calander-app-calendar'>
