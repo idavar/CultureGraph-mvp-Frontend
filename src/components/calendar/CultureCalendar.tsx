@@ -24,22 +24,28 @@ constructor(props: {}) {
 	};
 }
 
-componentWillMount() {
+componentWillMount() {}
+
+componentDidMount() {
 	this.searchEvents();
 }
 
 searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) => {
-	if (!options.next) {
-		this.setState({ calendarEvents: [] });
-		options['query'] = `?active.gt=2020-03-01&active.lte=2020-04-30&state=${Common.phqState}`;
-	}
-	apiReq.predicthqSearchEvent({}, options).then((res: any) => {
-		this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
-		if (res.next) {
-			options.next = res.next;
-			this.searchEvents(options);
+	if (this.calendarComponentRef.current) {
+		const currentStart = this.calendarComponentRef.current['calendar'].view.currentStart.toLocaleDateString();
+		const currentEnd = this.calendarComponentRef.current['calendar'].view.currentEnd.toLocaleDateString();
+		if (!options.next) {
+			this.setState({ calendarEvents: [] });
+			options['query'] = `?active.gt=${currentStart}&active.lte=${currentEnd}&state=${Common.phqState}`;
 		}
-	}).catch(err => {});
+		apiReq.predicthqSearchEvent({}, options).then((res: any) => {
+			this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
+			if (res.next) {
+				options.next = res.next;
+				this.searchEvents(options);
+			}
+		}).catch(err => {});
+	}
 }
 
 render() {
