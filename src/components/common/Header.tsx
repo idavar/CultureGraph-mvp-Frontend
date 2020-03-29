@@ -11,8 +11,8 @@ class Header extends React.Component {
 				<a href='/no-page'>How it works</a>
 				<a href='/no-page'>Our Mission</a>
 				<div className='menu-log'>
-					<a href='/no-page'>SIGNUP</a>
-					<a href='/no-page'>LOGIN</a>
+					<a href='/signup'>SIGNUP</a>
+					<a href='/login'>LOGIN</a>
 				</div>
 			</div>
 		</div>
