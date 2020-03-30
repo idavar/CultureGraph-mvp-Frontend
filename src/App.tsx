@@ -12,6 +12,7 @@ import PageNotFound from './components/common/pageNotFound';
 import CultureCalendar from './components/calendar/CultureCalendar';
 import Auth from './containers/Auth/Auth';
 import Signup from './containers/Signup/Signup';
+import ManageUsers from './containers/Admin/Users/ManageUsers';
 import authReducer from './store/reducers/auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -36,6 +37,9 @@ function App() {
 								<Route path='/no-page' exact component={PageNotFound}></Route>
 								<Route path='/' exact component={CultureCalendar}></Route>
 								<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
+								<Route path='/admin/login' exact component={Auth}></Route>
+								<Route path='/admin/manage-users' exact component={ManageUsers}></Route>
+								<Route path='*' component={PageNotFound} />
 							</section>
 						</div>
 						<Footer />
