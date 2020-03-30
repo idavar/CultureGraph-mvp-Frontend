@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -26,19 +26,21 @@ function App() {
 	return (
 		<Provider store={store}>
 			<BrowserRouter>
-				<div className='App'>
-					<Header />
-					<div className='body_sec'>
-						<section id='Content'>
-							<Route path='/login' exact component={Auth}></Route>
-							<Route path='/signup' exact component={Signup}></Route>
-							<Route path='/no-page' exact component={PageNotFound}></Route>
-							<Route path='/' exact component={CultureCalendar}></Route>
-							<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
-						</section>
+				<Switch>
+					<div className='App'>
+						<Header />
+						<div className='body_sec'>
+							<section id='Content'>
+								<Route path='/login' exact component={Auth}></Route>
+								<Route path='/signup' exact component={Signup}></Route>
+								<Route path='/no-page' exact component={PageNotFound}></Route>
+								<Route path='/' exact component={CultureCalendar}></Route>
+								<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
+							</section>
+						</div>
+						<Footer />
 					</div>
-					<Footer />
-				</div>
+				</Switch>
 			</BrowserRouter>
 		</Provider>
 	);

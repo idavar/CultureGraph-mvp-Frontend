@@ -20,6 +20,7 @@
     "@types/redux-form": "^8.2.3",
     "@types/redux-persist": "^4.3.1",
     "@types/redux-thunk": "^2.1.0",
+    "dotenv": "^8.2.0",
     "eslint-plugin-prettier": "^3.1.2",
     "predicthq": "^0.2.1",
     "react": "^16.13.0",
