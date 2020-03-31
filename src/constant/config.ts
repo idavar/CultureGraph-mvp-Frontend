@@ -1,4 +1,3 @@
-console.log(process.env);
 const ConfigData = {
 		phq: {
 				accessToken: '1L20H4u91D4Cgj9INgfWqvhbfi8hSf07bOfoLONO',
