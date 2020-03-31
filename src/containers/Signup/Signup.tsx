@@ -3,27 +3,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
-import { validateRef } from '../../helpers';
+import { apiReq, validateRef } from '../../helpers';
+import { ValidationMessage } from '../../constant/error';
 
 
 class Signup extends Component {
 		state: any = {
 				controls: {
-						last_name: {
-								elementType: 'input',
-								elementConfig: {
-										type: 'text',
-										placeholder: 'Last Name'
-								},
-								value: '',
-								validation: {
-										required: true
-								},
-								valid: false,
-								touched: false
-						},
-						first_name: {
+					first_name: {
 								elementType: 'input',
 								elementConfig: {
 										type: 'text',
@@ -31,10 +18,29 @@ class Signup extends Component {
 								},
 								value: '',
 								validation: {
-										required: true
+										required: true,
+										maxLength: 50
 								},
 								valid: false,
-								touched: false
+								touched: false,
+								validationMsg: '',
+								messages: ValidationMessage.first_name
+						},
+					last_name: {
+								elementType: 'input',
+								elementConfig: {
+										type: 'text',
+										placeholder: 'Last Name'
+								},
+								value: '',
+								validation: {
+										required: true,
+										maxLength: 50
+								},
+								valid: false,
+								touched: false,
+								validationMsg: '',
+								messages: ValidationMessage.last_name
 						},
 						email: {
 								elementType: 'input',
@@ -45,10 +51,13 @@ class Signup extends Component {
 								value: '',
 								validation: {
 										required: true,
-										isEmail: true
+										isEmail: true,
+										maxLength: 150
 								},
 								valid: false,
-								touched: false
+								touched: false,
+								validationMsg: '',
+								messages: ValidationMessage.email
 						},
 						company: {
 								elementType: 'input',
@@ -58,10 +67,13 @@ class Signup extends Component {
 								},
 								value: '',
 								validation: {
-										required: true
+										required: true,
+										maxLength: 250
 								},
 								valid: false,
-								touched: false
+								touched: false,
+								validationMsg: '',
+								messages: ValidationMessage.email
 						},
 						password: {
 								elementType: 'input',
@@ -72,10 +84,14 @@ class Signup extends Component {
 								value: '',
 								validation: {
 										required: true,
-										minLength: 6
+										minLength: 6,
+										maxLength: 16,
+										isPassword: true
 								},
 								valid: false,
-								touched: false
+								touched: false,
+								validationMsg: '',
+								messages: ValidationMessage.password
 						},
 						confirm_password: {
 								elementType: 'input',
@@ -86,31 +102,42 @@ class Signup extends Component {
 								value: '',
 								validation: {
 										required: true,
-										minLength: 6
+										minLength: 6,
+										maxLength: 16,
+										isConfirmPassword: true
 								},
 								valid: false,
-								touched: false
+								touched: false,
+								validationMsg: '',
+								messages: ValidationMessage.confirm_password
 						}
-				},
-				isSignup: true
+				}
 		};
 
-		inputChangedHandler = ( event: any, controlName: any ) => {
+		inputChangedHandler = ( event: any, controlName: string ) => {
+				const validationData: {isValid: boolean, validationMsg: string}
+				= validateRef.checkValidite( event.target.value, this.state.controls[controlName].validation,
+					this.state.controls[controlName].messages );
 				const updatedControls = {
 						...this.state.controls,
 						[controlName]: {
 								...this.state.controls[controlName],
 								value: event.target.value,
-								valid: validateRef.checkValidite( event.target.value, this.state.controls[controlName].validation ),
-								touched: true
+								valid: validationData.isValid,
+								touched: true,
+								validationMsg: validationData.validationMsg
 						}
 				};
 				this.setState( { controls: updatedControls } );
 		}
 
-		submitHandler = ( event: any ) => {
+
+		submitHandler = ( event: {preventDefault: Function}) => {
 				event.preventDefault();
 				console.log(this.state.controls);
+				apiReq.signUp(this.state.controls).then(response => {
+						console.log(response);
+				}).catch(err => {});
 		}
 
 		render() {
@@ -133,6 +160,7 @@ class Signup extends Component {
 								invalid={!formElement.config.valid}
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
+								validationMsg={formElement.config.validationMsg}
 								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
 				) );
 
@@ -140,7 +168,7 @@ class Signup extends Component {
 						<div className=''>
 								<form onSubmit={this.submitHandler}>
 										{form}
-										<Button btnType='Success'>SUBMIT</Button>
+										<button>SUBMIT</button>
 								</form>
 						</div>
 				);

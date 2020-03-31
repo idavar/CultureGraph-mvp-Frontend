@@ -5,7 +5,10 @@ const ConfigData = {
 		},
 		apiUrl: `${process.env.REACT_APP_API_RUL}${process.env.REACT_APP_API_VERSION}`,
 		apiName: {
-			login: 'auth/login/'
+			login: 'auth/login/',
+			signup: 'auth/signup/',
+			logout: 'auth/logout/',
+			emailVerify: 'account/email-verify/',
 		}
 	};
 

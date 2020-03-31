@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
 import * as actions from '../../store/actions/index';
 import { validateRef } from '../../helpers';
+import { ValidationMessage } from '../../constant/error';
 
 interface AuthState {
 		controls: any;
@@ -31,7 +31,9 @@ class Auth extends React.Component<Props, AuthState> {
 												isEmail: true
 										},
 										valid: false,
-										touched: false
+										touched: false,
+										validationMsg: '',
+										messages: ValidationMessage.email
 								},
 								password: {
 										elementType: 'input',
@@ -45,20 +47,25 @@ class Auth extends React.Component<Props, AuthState> {
 												minLength: 6
 										},
 										valid: false,
-										touched: false
+										touched: false,
+										validationMsg: '',
+										messages: ValidationMessage.password
 								}
 						}
 				};
 		}
 
-		inputChangedHandler = ( event: any, controlName: any ) => {
+		inputChangedHandler = ( event: any, controlName: string ) => {
+				const validationData: {isValid: boolean, validationMsg: string}	= validateRef.checkValidite( event.target.value, this.state.controls[controlName].validation,
+					this.state.controls[controlName].messages );
 				const updatedControls = {
 						...this.state.controls,
 						[controlName]: {
 								...this.state.controls[controlName],
 								value: event.target.value,
-								valid: validateRef.checkValidite( event.target.value, this.state.controls[controlName].validation ),
-								touched: true
+								valid: validationData.isValid,
+								touched: true,
+								validationMsg: validationData.validationMsg
 						}
 				};
 				this.setState( { controls: updatedControls } );
@@ -89,6 +96,7 @@ class Auth extends React.Component<Props, AuthState> {
 								invalid={!formElement.config.valid}
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
+								validationMsg={formElement.config.validationMsg}
 								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
 				) );
 
@@ -96,7 +104,7 @@ class Auth extends React.Component<Props, AuthState> {
 						<div className=''>
 								<form onSubmit={this.submitHandler}>
 										{form}
-										<Button btnType='Success'>SUBMIT</Button>
+										<button>SUBMIT</button>
 								</form>
 						</div>
 				);

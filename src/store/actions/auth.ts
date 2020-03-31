@@ -2,7 +2,6 @@ import { Dispatch } from 'redux';
 
 import * as actionTypes from './actionTypes';
 import { apiReq } from '../../helpers';
-import ConfigData from '../../constant/config';
 
 export const authStart = () => {
 		return {
@@ -46,7 +45,7 @@ export const auth = (email: string, password: string) => {
 						email: email,
 						password: password
 				};
-				apiReq.signIn(`${ConfigData.apiUrl}${ConfigData.apiName.login}`, authData)
+				apiReq.signIn(authData)
 						.then(response => {
 								console.log(response);
 								dispatch(authSuccess(response.data.idToken, response.data.localId));
