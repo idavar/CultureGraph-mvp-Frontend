@@ -41,7 +41,6 @@ function App() {
 								<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
 								<Route path='/admin/login' exact component={Auth}></Route>
 								<Route path='/admin/manage-users' exact component={ManageUsers}></Route>
-								<Route path='*' component={PageNotFound} />
 							</section>
 						</div>
 						<Footer />
