@@ -15,6 +15,7 @@ import Auth from './containers/Auth/Auth';
 import Signup from './containers/Signup/Signup';
 import ManageUsers from './containers/Admin/Users/ManageUsers';
 import authReducer from './store/reducers/auth';
+import HTML from './containers/html';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
@@ -33,6 +34,7 @@ function App() {
 						<Header />
 						<div className='body_sec'>
 							<section id='Content'>
+								<Route path='/html' exact component={HTML}></Route>
 								<Route path='/login' exact component={Auth}></Route>
 								<Route path='/hash_code' exact component={EmailVerify}></Route>
 								<Route path='/signup' exact component={Signup}></Route>
