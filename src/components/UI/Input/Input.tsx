@@ -2,22 +2,29 @@ import React from 'react';
 
 const input = ( props: any ) => {
 		let inputElement = null;
-		let errorMessage = null;
+		let errorMessage = <span className='field-error'>&nbsp;</span>;
+		let showPassword = null;
 
 		if (props.invalid && props.shouldValidate && props.touched) {
-				errorMessage = props.validationMsg ? <div>{props.validationMsg}</div> : '';
+				errorMessage = <span className='field-error'>{props.validationMsg ? props.validationMsg : ''}</span>;
+		}
+
+		if (props.elementConfig.type === 'password') {
+			showPassword = <span className='show-action'>Show</span>;
 		}
 
 		switch ( props.elementType ) {
 				case ( 'input' ):
 						inputElement = <input
 								{...props.elementConfig}
+								className='form-control'
 								value={props.value}
 								onChange={props.changed} />;
 						break;
 				case ( 'textarea' ):
 						inputElement = <textarea
 								{...props.elementConfig}
+								className='form-control'
 								value={props.value}
 								onChange={props.changed} />;
 						break;
@@ -42,11 +49,14 @@ const input = ( props: any ) => {
 		}
 
 		return (
-				<div className=''>
-						<label className=''>{props.label}</label>
-						{inputElement}
-						{errorMessage}
+			<div className='form-group'>
+				<div className='field-group'>
+				{inputElement}
+				<label>{props.elementConfig.placeholder}</label>
+				{showPassword}
 				</div>
+				{errorMessage}
+			</div>
 		);
 
 };

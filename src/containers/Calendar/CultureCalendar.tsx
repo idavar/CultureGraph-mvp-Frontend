@@ -6,7 +6,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 
-import '../../styles/main.scss';
+import '../../assets/styles/main.scss';
 import { apiReq } from '../../helpers';
 import Common from '../../constant/common';
 

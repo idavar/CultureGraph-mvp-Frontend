@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import '../../assets/styles/style.scss';
+
 import Input from '../../components/UI/Input/Input';
 import * as actions from '../../store/actions/index';
 import { validateRef } from '../../helpers';
@@ -23,7 +25,7 @@ class Auth extends React.Component<Props, AuthState> {
 										elementType: 'input',
 										elementConfig: {
 												type: 'email',
-												placeholder: 'Mail Address'
+												placeholder: 'Email'
 										},
 										value: '',
 										validation: {
@@ -101,12 +103,40 @@ class Auth extends React.Component<Props, AuthState> {
 				) );
 
 				return (
-						<div className=''>
-								<form onSubmit={this.submitHandler}>
-										{form}
-										<button>SUBMIT</button>
-								</form>
+					<div className='user-wrapper'>
+						<div className='user-banner'>
+							<a href='/'>
+								<img className='logo' src='/assets/images/logo.png' alt='Brand Logo' />
+							</a>
+							<img src='/assets/images/signup-banner.png' alt='Sign Up Banner' />
+							<h1>We use machine learning to identify and segment consumer audiences in real-time.
+							</h1>
 						</div>
+						<div className='user-form'>
+							<div className='user-form-inner'>
+							{/*  page close icon start here */}
+							<span className='close-icon'>
+								<a href='/signup'><img src='/assets/images/close.png' alt='Close Icon' /></a>
+							</span>
+							{/*  page close icon end here */}
+							<h2>Sign In</h2>
+							<h3>Welcome back! Please login to your account.</h3>
+							</div>
+							<form onSubmit={this.submitHandler}>
+								{form}
+								{/*  Forgot Password Start here --> */}
+								<div className='form-group'>
+									<a href='/' className='forgot-password-link'>Forgot Password?</a>
+								</div>
+								{/* Forgot Password end here */}
+
+								<div className='form-group'>
+									<button type='button' className='btn btn-primary btn-block'>Sign In</button>
+								</div>
+							</form>
+							<span className='account-status'>Don’t have an account yet? <a href='/signup'>Sign up</a></span>
+						</div>
+					</div>
 				);
 		}
 }
