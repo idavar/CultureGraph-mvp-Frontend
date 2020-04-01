@@ -7,3 +7,5 @@ export const signIn = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}
 
 export const signUp = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.signup}`, data);
 
+export const emailVerify = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.emailVerify}`, data);
+

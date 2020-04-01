@@ -1,14 +1,23 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import Input from '../../components/UI/Input/Input';
 import { apiReq, validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
+import { User } from '../../interface/User';
+import { History } from 'history';
 
+interface State {
+	controls: any;
+}
 
-class Signup extends Component {
-		state: any = {
+interface Props {
+	history: History;
+}
+
+class Signup extends React.Component<Props> {
+		state: State = {
 				controls: {
 					first_name: {
 								elementType: 'input',
@@ -134,9 +143,15 @@ class Signup extends Component {
 
 		submitHandler = ( event: {preventDefault: Function}) => {
 				event.preventDefault();
-				console.log(this.state.controls);
-				apiReq.signUp(this.state.controls).then(response => {
-						console.log(response);
+				const userData: User = {
+					first_name: this.state.controls.first_name.value,
+					last_name: this.state.controls.last_name.value,
+					email: this.state.controls.email.value,
+					company: this.state.controls.company.value,
+					password: this.state.controls.password.value
+				};
+				apiReq.signUp(userData).then(response => {
+						this.props.history.push('/login');
 				}).catch(err => {});
 		}
 
