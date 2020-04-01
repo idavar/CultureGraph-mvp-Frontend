@@ -2,6 +2,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import '../../assets/styles/style.scss';
+
 import Input from '../../components/UI/Input/Input';
 import { apiReq, validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
@@ -55,7 +57,7 @@ class Signup extends React.Component<Props> {
 								elementType: 'input',
 								elementConfig: {
 										type: 'email',
-										placeholder: 'Mail Address'
+										placeholder: 'Email Id'
 								},
 								value: '',
 								validation: {
@@ -180,12 +182,34 @@ class Signup extends React.Component<Props> {
 				) );
 
 				return (
-						<div className=''>
+					<div className='user-wrapper'>
+					<div className='user-banner'>
+						<a href='/'>
+							<img className='logo' src='/assets/images/logo.png' alt='Brand Logo' />
+						</a>
+						<img src='/assets/images/signup-banner.png' alt='Sign Up Banner' />
+						<h1>We use machine learning to identify and segment consumer audiences in real-time.
+						</h1>
+					</div>
+					<div className='user-form'>
+						<div className='user-form-inner'>
+						{/*  page close icon start here */}
+						<span className='close-icon'>
+							<a href='/signup'><img src='/assets/images/close.png' alt='Close Icon' /></a>
+						</span>
+						{/*  page close icon end here */}
+						<h2>Sign Up</h2>
+						<h3>Welcome ! Please register your account.</h3>
+						</div>
 								<form onSubmit={this.submitHandler}>
 										{form}
-										<button>SUBMIT</button>
+										<div className='form-group'>
+											<button type='button' className='btn btn-primary btn-block'>Sign Up</button>
+										</div>
 								</form>
+								<span className='account-status'>Already have an account yet? <a href='/signin'>Sign In</a></span>
 						</div>
+					</div>
 				);
 		}
 }
