@@ -6,11 +6,9 @@ import thunk from 'redux-thunk';
 
 import logo from './logo.svg';
 import './App.scss';
-import Header from './components/common/Header';
-import Footer from './components/common/Footer';
 import PageNotFound from './components/common/pageNotFound';
 import EmailVerify from './components/common/EmailVerify';
-import CultureCalendar from './components/calendar/CultureCalendar';
+import CultureCalendar from './containers/Calendar/CultureCalendar';
 import Auth from './containers/Auth/Auth';
 import Signup from './containers/Signup/Signup';
 import ManageUsers from './containers/Admin/Users/ManageUsers';
@@ -31,9 +29,6 @@ function App() {
 			<BrowserRouter>
 				<Switch>
 					<div className='App'>
-						<Header />
-						<div className='body_sec'>
-							<section id='Content'>
 								<Route path='/html' exact component={HTML}></Route>
 								<Route path='/login' exact component={Auth}></Route>
 								<Route path='/hash_code' exact component={EmailVerify}></Route>
@@ -44,9 +39,6 @@ function App() {
 								<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
 								<Route path='/admin/login' exact component={Auth}></Route>
 								<Route path='/admin/manage-users' exact component={ManageUsers}></Route>
-							</section>
-						</div>
-						<Footer />
 					</div>
 				</Switch>
 			</BrowserRouter>

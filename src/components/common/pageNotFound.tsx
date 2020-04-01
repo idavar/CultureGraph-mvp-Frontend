@@ -1,10 +1,19 @@
 import React from 'react';
 
+import Header from './Header';
+import Footer from './Footer';
+
 class PageNotFound extends React.Component {
 	render() {
-		return (<div className='page-not-found'>
-			Under construction.
-			</div>);
+		return (
+			<div>
+				<Header />
+				<div className='page-not-found'>
+					Under construction.
+				</div>
+				<Footer />
+			</div>
+			);
 	}
 }
 
