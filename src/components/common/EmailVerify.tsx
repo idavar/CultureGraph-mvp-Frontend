@@ -1,4 +1,8 @@
 import React from 'react';
+
+import Header from './Header';
+import Footer from './Footer';
+
 import { apiReq } from '../../helpers';
 import { Messages } from '../../constant/messages';
 import Common from '../../constant/common';
@@ -43,9 +47,15 @@ class EmailVerify extends React.Component<Props, StateInterface> {
 	}
 
 	render() {
-		return (<div>
-			{this.state.message}
-			</div>);
+		return (
+		<div>
+			<Header />
+			<div>
+				{this.state.message}
+			</div>
+			<Footer />
+		</div>
+		);
 	}
 }
 
