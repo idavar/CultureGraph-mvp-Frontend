@@ -58,7 +58,7 @@ class Auth extends React.Component<Props, AuthState> {
 		}
 
 		inputChangedHandler = ( event: any, controlName: string ) => {
-				const validationData: {isValid: boolean, validationMsg: string}	= validateRef.checkValidite( event.target.value, this.state.controls[controlName].validation,
+				const validationData: {isValid: boolean, validationMsg?: string}	= validateRef.checkValidite( event.target.value, this.state.controls[controlName].validation,
 					this.state.controls[controlName].messages );
 				const updatedControls = {
 						...this.state.controls,
@@ -131,7 +131,7 @@ class Auth extends React.Component<Props, AuthState> {
 								{/* Forgot Password end here */}
 
 								<div className='form-group'>
-									<button type='button' className='btn btn-primary btn-block'>Sign In</button>
+									<button type='submit' className='btn btn-primary btn-block'>Sign In</button>
 								</div>
 							</form>
 							<span className='account-status'>Don’t have an account yet? <a href='/signup'>Sign up</a></span>

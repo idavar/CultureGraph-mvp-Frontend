@@ -2,7 +2,7 @@ import React from 'react';
 
 const input = ( props: any ) => {
 		let inputElement = null;
-		let errorMessage = null;
+		let errorMessage = <span className='field-error'>&nbsp;</span>;
 		let showPassword = null;
 
 		if (props.invalid && props.shouldValidate && props.touched) {

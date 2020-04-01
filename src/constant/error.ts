@@ -23,11 +23,14 @@ export const ValidationMessage = {
 	password: {
 		required: `Password is required.`,
 		maxLength: `Password max length can not greater than 16 characters.`,
-		minLength: 'Password max length can not less than 6 characters.'
+		minLength: 'Password max length can not less than 6 characters.',
+		isPassword: 'Enter a valid password.'
 	},
 	confirm_password: {
 		required: `Confirm Password is required.`,
 		maxLength: `Confirm Password max length can not greater than 16 characters.`,
-		minLength: 'Password max length can not less than 6 characters.'
+		minLength: 'Password max length can not less than 6 characters.',
+		isConfirmPassword: 'Enter a valid confirm password.',
+		passwordNotMatch: 'Password and confirm password does not match.'
 	}
 };

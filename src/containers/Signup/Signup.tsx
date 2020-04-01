@@ -1,14 +1,15 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { History } from 'history';
 
 import '../../assets/styles/style.scss';
 
 import Input from '../../components/UI/Input/Input';
+import Common from '../../constant/common';
 import { apiReq, validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
 import { User } from '../../interface/User';
-import { History } from 'history';
 
 interface State {
 	controls: any;
@@ -17,6 +18,13 @@ interface State {
 interface Props {
 	history: History;
 }
+
+interface ValidationObject {
+	isValid: boolean;
+	validationMsg?: string;
+}
+
+const confirmPassword = 'confirm_password';
 
 class Signup extends React.Component<Props> {
 		state: State = {
@@ -126,22 +134,32 @@ class Signup extends React.Component<Props> {
 		};
 
 		inputChangedHandler = ( event: any, controlName: string ) => {
-				const validationData: {isValid: boolean, validationMsg: string}
-				= validateRef.checkValidite( event.target.value, this.state.controls[controlName].validation,
-					this.state.controls[controlName].messages );
-				const updatedControls = {
-						...this.state.controls,
-						[controlName]: {
-								...this.state.controls[controlName],
-								value: event.target.value,
-								valid: validationData.isValid,
-								touched: true,
-								validationMsg: validationData.validationMsg
-						}
-				};
-				this.setState( { controls: updatedControls } );
+				const rulesData = this.state.controls[controlName].validation;
+				const value = event.target.value;
+				const messages = this.state.controls[controlName].messages;
+				const validationData: ValidationObject = validateRef.checkValidite( value, rulesData, messages );
+				this.updateFormControls(validationData, controlName, value);
+				if (validationData.isValid && (rulesData.isPassword || rulesData.isConfirmPassword)) {
+					setTimeout(() => {
+						validateRef.matchConfirmPassword(validationData, rulesData, this.state.controls);
+						this.updateFormControls(validationData, confirmPassword, this.state.controls[confirmPassword].value);
+					}, Common.zero);
+				}
 		}
 
+		updateFormControls = (validationData: ValidationObject, controlName: string, value: string) => {
+			const updatedControls = {
+				...this.state.controls,
+				[controlName]: {
+						...this.state.controls[controlName],
+						valid: validationData.isValid,
+						touched: true,
+						validationMsg: validationData.validationMsg,
+						value
+				}
+			};
+			this.setState( { controls: updatedControls } );
+		}
 
 		submitHandler = ( event: {preventDefault: Function}) => {
 				event.preventDefault();
@@ -153,7 +171,9 @@ class Signup extends React.Component<Props> {
 					password: this.state.controls.password.value
 				};
 				apiReq.signUp(userData).then(response => {
+					if (response.status === Common.status.success || response.status === Common.status.processed) {
 						this.props.history.push('/login');
+					}
 				}).catch(err => {});
 		}
 
@@ -204,7 +224,7 @@ class Signup extends React.Component<Props> {
 								<form onSubmit={this.submitHandler}>
 										{form}
 										<div className='form-group'>
-											<button type='button' className='btn btn-primary btn-block'>Sign Up</button>
+											<button type='submit' className='btn btn-primary btn-block'>Sign Up</button>
 										</div>
 								</form>
 								<span className='account-status'>Already have an account yet? <a href='/login'>Sign In</a></span>
