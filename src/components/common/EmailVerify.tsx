@@ -20,17 +20,27 @@ class EmailVerify extends React.Component<Props, StateInterface> {
 				};
 				const params = new URLSearchParams(this.props.location.search);
 				if (params.get('token')) {
-					apiReq.emailVerify({email_hash_code: params.get('token')}).then(response => {
-						if (response.status === Common.status.success) {
-							this.setState({message: Messages.success.emailverify});
-						} else {
-							this.setState({message: Messages.error.emailverify});
-						}
-					}).catch(err => {
-						this.setState({message: Messages.error.emailverify});
-					});
+					this.emailVerify(params.get('token'));
 				}
-		}
+	}
+
+	emailVerify (email_hash_code: string | null) {
+		apiReq.emailVerify({ email_hash_code }).then(response => {
+			if (response.status === Common.status.success || response.status === Common.status.processed) {
+				this.setState({message: response.data.detail});
+			} else {
+				this.setState({message: response.data.detail});
+			}
+		}).catch(err => {
+			const resData = err.response.data;
+			if (resData.detail) {
+				this.setState({message: resData.detail});
+			 } else {
+				const message = resData['error']['email_hash_code'][Common.zero] || Messages.error.somethingWrong;
+				this.setState({ message });
+			}
+		});
+	}
 
 	render() {
 		return (<div>

@@ -1,8 +1,6 @@
 export const Messages = {
-		success: {
-				emailverify: 'You have successfully verified the email address.'
-		},
+		success: {},
 		error: {
-				emailverify: 'Link has been expired.'
+				somethingWrong: 'Something went wrong please try again.'
 		}
 };
