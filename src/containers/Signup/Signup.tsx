@@ -207,7 +207,7 @@ class Signup extends React.Component<Props> {
 											<button type='button' className='btn btn-primary btn-block'>Sign Up</button>
 										</div>
 								</form>
-								<span className='account-status'>Already have an account yet? <a href='/signin'>Sign In</a></span>
+								<span className='account-status'>Already have an account yet? <a href='/login'>Sign In</a></span>
 						</div>
 					</div>
 				);
