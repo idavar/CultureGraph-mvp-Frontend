@@ -151,7 +151,6 @@ class Signup extends React.Component<Props> {
 					password: this.state.controls.password.value
 				};
 				apiReq.signUp(userData).then(response => {
-						console.log(response);
 						this.props.history.push('/login');
 				}).catch(err => {});
 		}

@@ -4,14 +4,14 @@ import ConfigData from '../constant/config';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 axios.interceptors.request.use(request => {
-    return request;
+		return request;
 }, error => {
-    return Promise.reject(error);
+		return Promise.reject(error);
 });
 axios.interceptors.response.use(response => {
-    return response;
+		return response;
 }, error => {
-    return Promise.reject(error);
+		return Promise.reject(error);
 });
 
 export const apiPost = (url: string, data: object) => axios.post(url, data);
