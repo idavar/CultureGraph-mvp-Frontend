@@ -12,6 +12,10 @@ const Common = {
 		toastConfig : {
 			autoClose: 5000,
 			draggable: false,
+		},
+		group: {
+			admin: 1,
+			researcher: 2
 		}
 };
 

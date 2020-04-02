@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import '../../assets/styles/style.scss';
 
@@ -7,12 +8,19 @@ import Input from '../../components/UI/Input/Input';
 import * as actions from '../../store/actions/index';
 import { validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
+import Common from '../../constant/common';
+import { User } from '../../interface/User';
 
 interface AuthState {
 		controls: any;
 }
 
 interface Props {
+		isAuthenticated: boolean;
+		authRedirectPath?: string;
+		isAdmin: boolean;
+		error: object | undefined;
+		loading: boolean | undefined;
 		onAuth: (email: string, password: string) => void;
 }
 
@@ -102,8 +110,13 @@ class Auth extends React.Component<Props, AuthState> {
 								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
 				) );
 
+				let authRedirect = null;
+				if (this.props.isAuthenticated && this.props.authRedirectPath) {
+					authRedirect = <Redirect to={this.props.authRedirectPath}/>;
+				}
 				return (
 					<div className='user-wrapper'>
+						{authRedirect}
 						<div className='user-banner'>
 							<a href='/'>
 								<img className='logo' src='/assets/images/logo.png' alt='Brand Logo' />
@@ -141,10 +154,13 @@ class Auth extends React.Component<Props, AuthState> {
 		}
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: {auth: User}) => {
 		return {
 				loading: state.auth.loading,
-				error: state.auth.error
+				error: state.auth.error,
+				isAuthenticated: !!state.auth.token,
+				isAdmin: state.auth.group === Common.group.admin,
+						authRedirectPath: state.auth.authRedirectPath
 		};
 };
 
