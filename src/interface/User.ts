@@ -6,4 +6,8 @@ export interface User {
 		company?: string;
 		password?: string;
 		token?: string;
+		group?: number;
+		error?: object;
+		loading?: boolean;
+		type?: string;
 }

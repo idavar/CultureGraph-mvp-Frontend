@@ -237,7 +237,7 @@ class Signup extends React.Component<Props> {
 						</span>
 						{/*  page close icon end here */}
 						<h2>Sign Up</h2>
-						<h3>Welcome ! Please register your account.</h3>
+						<h3>Welcome back! Please login to your account.</h3>
 						</div>
 								<form onSubmit={this.submitHandler}>
 										{form}

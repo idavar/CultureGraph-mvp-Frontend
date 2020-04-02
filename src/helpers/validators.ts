@@ -85,4 +85,4 @@ export const getObjectFirstKeyValue = (error: any) => {
 		val = error[Object.keys(error)[Common.zero]][Common.zero];
 	}
 	return val;
-}
+};

@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 
 import * as actionTypes from './actionTypes';
 import { apiReq } from '../../helpers';
+import { User } from '../../interface/User';
 
 export const authStart = () => {
 		return {
@@ -9,11 +10,13 @@ export const authStart = () => {
 		};
 };
 
-export const authSuccess = (token: string, userId: string) => {
+export const authSuccess = (data: User) => {
 		return {
 				type: actionTypes.AUTH_SUCCESS,
-				idToken: token,
-				userId: userId
+				token: data.token,
+				id: data.id,
+				email: data.email,
+				group: data.group,
 		};
 };
 
@@ -47,11 +50,35 @@ export const auth = (email: string, password: string) => {
 				};
 				apiReq.signIn(authData)
 						.then(response => {
-								console.log(response);
-								dispatch(authSuccess(response.data.idToken, response.data.localId));
+								localStorage.setItem('user', JSON.stringify(response.data));
+								dispatch(authSuccess(response.data));
 						})
 						.catch(err => {
-								dispatch(authFail(err.response.data.error));
+								if (err.response.data.detail) {
+									dispatch(authFail(err.response.data.detail));
+								} else {
+									dispatch(authFail(err.response.data.error));
+								}
 						});
 		};
 };
+
+
+export const setAuthRedirectPath = (path: string) => {
+		return {
+				type: actionTypes.SET_AUTH_REDIRECT_PATH,
+				path: path
+		};
+};
+
+export const authCheckState = () => {
+		return (dispatch: any) => {
+				const user = JSON.parse(localStorage.getItem('user') || '{}');
+				if (!Object.keys(user).length) {
+						dispatch(logout());
+				} else {
+						dispatch(authSuccess(user));
+				}
+		};
+};
+
