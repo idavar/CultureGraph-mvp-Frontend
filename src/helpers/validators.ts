@@ -1,5 +1,6 @@
 import { InputRule } from '../interface/InputRule';
 import { ValidationMessage } from '../constant/error';
+import Common from '../constant/common';
 interface ErrorMessage {
 	required: string;
 	maxLength: string;
@@ -78,3 +79,10 @@ const setErrorMessage = (validationData: ValidationObject, msg: string, isValid:
 	}
 };
 
+export const getObjectFirstKeyValue = (error: any) => {
+	let val = '';
+	if (Object.keys(error).length) {
+		val = error[Object.keys(error)[Common.zero]][Common.zero];
+	}
+	return val;
+}

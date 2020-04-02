@@ -6,6 +6,7 @@ import { History } from 'history';
 import '../../assets/styles/style.scss';
 
 import Input from '../../components/UI/Input/Input';
+import { ToastSuccess, ToastError } from '../../components/Alert/Toast';
 import Common from '../../constant/common';
 import { apiReq, validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
@@ -13,6 +14,8 @@ import { User } from '../../interface/User';
 
 interface State {
 	controls: any;
+	successMessage: string;
+	errorMessage: string;
 }
 
 interface Props {
@@ -130,7 +133,9 @@ class Signup extends React.Component<Props> {
 								validationMsg: '',
 								messages: ValidationMessage.confirm_password
 						}
-				}
+				},
+				successMessage: '',
+				errorMessage: '',
 		};
 
 		inputChangedHandler = ( event: any, controlName: string ) => {
@@ -172,9 +177,22 @@ class Signup extends React.Component<Props> {
 				};
 				apiReq.signUp(userData).then(response => {
 					if (response.status === Common.status.success || response.status === Common.status.processed) {
+						ToastSuccess({msg: response.data.detail});
 						this.props.history.push('/login');
+					} else {
+						let msg = response.data.detail;
+						if (!msg)  {
+							msg = validateRef.getObjectFirstKeyValue(response.data.error);
+						}
+						ToastError({msg});
 					}
-				}).catch(err => {});
+				}).catch(err => {
+					let msg = err.response.data.detail;
+					if (!msg)  {
+						msg = validateRef.getObjectFirstKeyValue(err.response.data.error);
+					}
+					ToastError({msg});
+				});
 		}
 
 		render() {
