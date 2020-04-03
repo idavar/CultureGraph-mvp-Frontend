@@ -1,6 +1,6 @@
 
 export interface HeaderProps {
-    isAuthenticated: boolean;
+		isAuthenticated: boolean;
 	isAdmin: boolean;
 	full_name: string | undefined;
 	onLogout: () => void;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { User } from '../../interface/User';
 import { HeaderProps } from '../../interface/HeaderProps';
-import Common from '../../constant/common';
+import { setDataRef } from '../../helpers';
 import * as actions from '../../store/actions/index';
 
 class Header extends React.Component<HeaderProps> {
@@ -36,11 +36,7 @@ class Header extends React.Component<HeaderProps> {
 }
 
 function mapStateToProps(state: {auth: User}) {
-	return {
-			isAuthenticated: !!state.auth.token,
-			isAdmin: state.auth.group === Common.group.admin,
-			full_name: state.auth.full_name
-	};
+	return setDataRef.setAuthDataObject(state);
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
