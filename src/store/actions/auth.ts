@@ -1,8 +1,10 @@
 import { Dispatch } from 'redux';
 
+import { ToastError } from '../../components/Alert/Toast';
 import * as actionTypes from './actionTypes';
-import { apiReq } from '../../helpers';
+import { apiReq, validateRef } from '../../helpers';
 import { User } from '../../interface/User';
+import { Error } from '../../interface/Error';
 
 export const authStart = () => {
 		return {
@@ -34,6 +36,16 @@ export const logout = () => {
 		};
 };
 
+const handleError = (err: Error) => {
+	if (err) {
+		let msg = err['detail'];
+		if (!msg)  {
+			msg = validateRef.getObjectFirstKeyValue(err['error']);
+		}
+		ToastError({msg});
+	}
+};
+
 export const auth = (email: string, password: string) => {
 		return (dispatch: Dispatch) => {
 				dispatch(authStart());
@@ -48,11 +60,8 @@ export const auth = (email: string, password: string) => {
 						})
 						.catch(err => {
 							if (err.response && err.response.data) {
-								if (err.response.data.detail) {
-									dispatch(authFail(err.response.data.detail));
-								} else {
-									dispatch(authFail(err.response.data.error));
-								}
+								handleError(err.response.data);
+								dispatch(authFail(err.response.data));
 							}
 						});
 		};

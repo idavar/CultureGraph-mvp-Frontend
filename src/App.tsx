@@ -37,10 +37,10 @@ class App extends Component<Props> {
 					<Route path='/html' exact component={HTML}></Route>
 					<Route path='/hash_code' exact component={EmailVerify}></Route>
 					<Route path='/no-page' exact component={PageNotFound}></Route>
-					<Route path='/culture-graph' exact component={PageNotFound}></Route>
 					<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
 					<Route path='/login' exact component={Auth}></Route>
 					<Route path='/signup' exact component={Signup}></Route>
+					<Route path='/' exact component={Signup}></Route>
 					<Redirect from='*' to='/signup' />
 				</Switch>
 			);
@@ -58,7 +58,6 @@ class App extends Component<Props> {
 						<Route path='/html' exact component={HTML}></Route>
 						<Route path='/hash_code' exact component={EmailVerify}></Route>
 						<Route path='/no-page' exact component={PageNotFound}></Route>
-						<Route path='/culture-graph' exact component={PageNotFound}></Route>
 						<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
 						<Route path='/' exact component={CultureCalendar}></Route>
 						<Redirect from='*' to='/' />

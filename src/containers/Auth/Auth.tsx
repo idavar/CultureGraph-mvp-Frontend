@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import '../../assets/styles/style.scss';
 
@@ -10,16 +10,18 @@ import { validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
 import Common from '../../constant/common';
 import { User } from '../../interface/User';
+import { Error } from '../../interface/Error';
 
 interface AuthState {
 		controls: any;
+		isValidForm: boolean;
 }
 
 interface Props {
 		isAuthenticated: boolean;
 		authRedirectPath?: string;
 		isAdmin: boolean;
-		error: object | undefined;
+		error: Error | null | undefined;
 		loading: boolean | undefined;
 		onAuth: (email: string, password: string) => void;
 }
@@ -61,7 +63,8 @@ class Auth extends React.Component<Props, AuthState> {
 										validationMsg: '',
 										messages: ValidationMessage.password
 								}
-						}
+						},
+						isValidForm: false
 				};
 		}
 
@@ -86,6 +89,14 @@ class Auth extends React.Component<Props, AuthState> {
 				this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
 		}
 
+		checkFormValid(): void {
+			for (const key in this.state.controls) {
+				if (this.state.controls[key]) {
+					this.setState({isValidForm: this.state.controls[key].valid});
+				}
+			}
+		}
+
 		render() {
 				const formElementsArray = [];
 				for (const key in this.state.controls) {
@@ -107,7 +118,8 @@ class Auth extends React.Component<Props, AuthState> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
+								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
+								onBlur={() => this.checkFormValid()}/>
 				) );
 
 				let authRedirect = null;
@@ -139,12 +151,12 @@ class Auth extends React.Component<Props, AuthState> {
 								{form}
 								{/*  Forgot Password Start here --> */}
 								<div className='form-group'>
-									<a href='/' className='forgot-password-link'>Forgot Password?</a>
+									<Link to='#' className='forgot-password-link'>Forgot Password?</Link>
 								</div>
 								{/* Forgot Password end here */}
 
 								<div className='form-group'>
-									<button type='submit' className='btn btn-primary btn-block'>Sign In</button>
+									<button disabled={this.props.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Sign In</button>
 								</div>
 							</form>
 							<span className='account-status'>Don’t have an account yet? <a href='/signup'>Sign up</a></span>

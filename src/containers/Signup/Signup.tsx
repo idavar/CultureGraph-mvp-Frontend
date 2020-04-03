@@ -16,6 +16,8 @@ interface State {
 	controls: any;
 	successMessage: string;
 	errorMessage: string;
+	isValidForm: boolean;
+	loading: boolean;
 }
 
 interface Props {
@@ -136,6 +138,8 @@ class Signup extends React.Component<Props> {
 				},
 				successMessage: '',
 				errorMessage: '',
+				isValidForm: false,
+				loading: false
 		};
 
 		inputChangedHandler = ( event: any, controlName: string ) => {
@@ -168,6 +172,7 @@ class Signup extends React.Component<Props> {
 
 		submitHandler = ( event: {preventDefault: Function}) => {
 				event.preventDefault();
+				this.setState({loading: true});
 				const userData: User = {
 					first_name: this.state.controls.first_name.value,
 					last_name: this.state.controls.last_name.value,
@@ -176,6 +181,7 @@ class Signup extends React.Component<Props> {
 					password: this.state.controls.password.value
 				};
 				apiReq.signUp(userData).then(response => {
+					this.setState({loading: false});
 					if (response.status === Common.status.success || response.status === Common.status.processed) {
 						ToastSuccess({msg: response.data.detail});
 						this.props.history.push('/login');
@@ -187,12 +193,21 @@ class Signup extends React.Component<Props> {
 						ToastError({msg});
 					}
 				}).catch(err => {
+					this.setState({loading: false});
 					let msg = err.response.data.detail;
 					if (!msg)  {
 						msg = validateRef.getObjectFirstKeyValue(err.response.data.error);
 					}
 					ToastError({msg});
 				});
+		}
+
+		checkFormValid(): void {
+			for (const key in this.state.controls) {
+				if (this.state.controls[key]) {
+					this.setState({isValidForm: this.state.controls[key].valid});
+				}
+			}
 		}
 
 		render() {
@@ -216,7 +231,8 @@ class Signup extends React.Component<Props> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
+								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
+								onBlur={() => this.checkFormValid()} />
 				) );
 
 				return (
@@ -242,7 +258,7 @@ class Signup extends React.Component<Props> {
 								<form onSubmit={this.submitHandler}>
 										{form}
 										<div className='form-group'>
-											<button type='submit' className='btn btn-primary btn-block'>Sign Up</button>
+											<button disabled={this.state.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Sign Up</button>
 										</div>
 								</form>
 								<span className='account-status'>Already have an account yet? <a href='/login'>Sign In</a></span>

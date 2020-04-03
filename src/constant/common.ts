@@ -10,7 +10,7 @@ const Common = {
 		zero: 0,
 		alertTimeout: 3000,
 		toastConfig : {
-			autoClose: 5000,
+			autoClose: 2000,
 			draggable: false,
 		},
 		group: {

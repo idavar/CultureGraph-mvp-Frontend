@@ -6,7 +6,7 @@ const initialState: User = {
 		token: '',
 		id: 0,
 		group: 0,
-		error: {},
+		error: null,
 		loading: false,
 		authRedirectPath: '/'
 };

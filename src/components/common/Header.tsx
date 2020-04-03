@@ -15,7 +15,7 @@ interface Props {
 class Header extends React.Component<Props> {
 	render() {
 		let headarLink = <div className='menu-log'>
-							<a href='/signup'>SIGNUP</a>
+							<a href='/signup'>Become a researcher</a>
 							<a href='/login'>LOGIN</a>
 						</div>;
 		if (this.props.isAuthenticated) {
@@ -28,10 +28,10 @@ class Header extends React.Component<Props> {
 		<div>
 			<header>&nbsp;</header>
 			<div className='menu'>
-				<a href='/culture-graph'>Culture Graph</a>
+				<Link to='#'>Culture Graph</Link>
 				<a href='/culture-calendar'>Culture Calendar</a>
-				<a href='/no-page'>How it works</a>
-				<a href='/no-page'>Our Mission</a>
+				<Link to='#'>How it works</Link>
+				<Link to='#'>Our Mission</Link>
 				{headarLink}
 			</div>
 		</div>

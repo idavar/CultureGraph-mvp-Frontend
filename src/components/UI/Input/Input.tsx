@@ -19,7 +19,8 @@ const input = ( props: any ) => {
 								{...props.elementConfig}
 								className='form-control'
 								value={props.value}
-								onChange={props.changed} />;
+								onChange={props.changed}
+								onBlur={props.onBlur}/>;
 						break;
 				case ( 'textarea' ):
 						inputElement = <textarea
