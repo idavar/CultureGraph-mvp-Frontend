@@ -3,17 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { User } from '../../interface/User';
+import { HeaderProps } from '../../interface/HeaderProps';
 import Common from '../../constant/common';
 import * as actions from '../../store/actions/index';
 
-interface Props {
-	isAuthenticated: boolean;
-	isAdmin: boolean;
-	full_name: string | undefined;
-	onLogout: () => void;
-}
-
-class Header extends React.Component<Props> {
+class Header extends React.Component<HeaderProps> {
 	render() {
 		let headarLink = <div className='menu-log'>
 							<a href='/signup'>Become a researcher</a>
