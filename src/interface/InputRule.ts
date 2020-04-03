@@ -5,4 +5,6 @@ export interface InputRule {
 		maxLength: number;
 		isEmail: boolean;
 		isNumeric: boolean;
+		isPassword: boolean;
+		isConfirmPassword: boolean;
 }

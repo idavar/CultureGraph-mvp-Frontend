@@ -8,6 +8,15 @@ const Common = {
 			methodNotAllowed: 405,
 		},
 		zero: 0,
+		alertTimeout: 3000,
+		toastConfig : {
+			autoClose: 2000,
+			draggable: false,
+		},
+		group: {
+			admin: 1,
+			researcher: 2
+		}
 };
 
 export default Common;

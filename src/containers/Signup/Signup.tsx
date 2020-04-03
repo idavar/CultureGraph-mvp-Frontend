@@ -1,20 +1,35 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { History } from 'history';
+
+import '../../assets/styles/style.scss';
 
 import Input from '../../components/UI/Input/Input';
+import { ToastSuccess, ToastError } from '../../components/Alert/Toast';
+import Common from '../../constant/common';
 import { apiReq, validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
 import { User } from '../../interface/User';
-import { History } from 'history';
 
 interface State {
 	controls: any;
+	successMessage: string;
+	errorMessage: string;
+	isValidForm: boolean;
+	loading: boolean;
 }
 
 interface Props {
 	history: History;
 }
+
+interface ValidationObject {
+	isValid: boolean;
+	validationMsg?: string;
+}
+
+const confirmPassword = 'confirm_password';
 
 class Signup extends React.Component<Props> {
 		state: State = {
@@ -55,7 +70,7 @@ class Signup extends React.Component<Props> {
 								elementType: 'input',
 								elementConfig: {
 										type: 'email',
-										placeholder: 'Mail Address'
+										placeholder: 'Email Id'
 								},
 								value: '',
 								validation: {
@@ -120,29 +135,44 @@ class Signup extends React.Component<Props> {
 								validationMsg: '',
 								messages: ValidationMessage.confirm_password
 						}
-				}
+				},
+				successMessage: '',
+				errorMessage: '',
+				isValidForm: false,
+				loading: false
 		};
 
 		inputChangedHandler = ( event: any, controlName: string ) => {
-				const validationData: {isValid: boolean, validationMsg: string}
-				= validateRef.checkValidite( event.target.value, this.state.controls[controlName].validation,
-					this.state.controls[controlName].messages );
-				const updatedControls = {
-						...this.state.controls,
-						[controlName]: {
-								...this.state.controls[controlName],
-								value: event.target.value,
-								valid: validationData.isValid,
-								touched: true,
-								validationMsg: validationData.validationMsg
-						}
-				};
-				this.setState( { controls: updatedControls } );
+				const rulesData = this.state.controls[controlName].validation;
+				const value = event.target.value;
+				const messages = this.state.controls[controlName].messages;
+				const validationData: ValidationObject = validateRef.checkValidite( value, rulesData, messages );
+				this.updateFormControls(validationData, controlName, value);
+				if (validationData.isValid && (rulesData.isPassword || rulesData.isConfirmPassword)) {
+					setTimeout(() => {
+						validateRef.matchConfirmPassword(validationData, rulesData, this.state.controls);
+						this.updateFormControls(validationData, confirmPassword, this.state.controls[confirmPassword].value);
+					}, Common.zero);
+				}
 		}
 
+		updateFormControls = (validationData: ValidationObject, controlName: string, value: string) => {
+			const updatedControls = {
+				...this.state.controls,
+				[controlName]: {
+						...this.state.controls[controlName],
+						valid: validationData.isValid,
+						touched: true,
+						validationMsg: validationData.validationMsg,
+						value
+				}
+			};
+			this.setState( { controls: updatedControls } );
+		}
 
 		submitHandler = ( event: {preventDefault: Function}) => {
 				event.preventDefault();
+				this.setState({loading: true});
 				const userData: User = {
 					first_name: this.state.controls.first_name.value,
 					last_name: this.state.controls.last_name.value,
@@ -151,8 +181,33 @@ class Signup extends React.Component<Props> {
 					password: this.state.controls.password.value
 				};
 				apiReq.signUp(userData).then(response => {
+					this.setState({loading: false});
+					if (response.status === Common.status.success || response.status === Common.status.processed) {
+						ToastSuccess({msg: response.data.detail});
 						this.props.history.push('/login');
-				}).catch(err => {});
+					} else {
+						let msg = response.data.detail;
+						if (!msg)  {
+							msg = validateRef.getObjectFirstKeyValue(response.data.error);
+						}
+						ToastError({msg});
+					}
+				}).catch(err => {
+					this.setState({loading: false});
+					let msg = err.response.data.detail;
+					if (!msg)  {
+						msg = validateRef.getObjectFirstKeyValue(err.response.data.error);
+					}
+					ToastError({msg});
+				});
+		}
+
+		checkFormValid(): void {
+			for (const key in this.state.controls) {
+				if (this.state.controls[key]) {
+					this.setState({isValidForm: this.state.controls[key].valid});
+				}
+			}
 		}
 
 		render() {
@@ -176,16 +231,39 @@ class Signup extends React.Component<Props> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
+								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
+								onBlur={() => this.checkFormValid()} />
 				) );
 
 				return (
-						<div className=''>
+					<div className='user-wrapper'>
+					<div className='user-banner'>
+						<a href='/'>
+							<img className='logo' src='/assets/images/logo.png' alt='Brand Logo' />
+						</a>
+						<img src='/assets/images/signup-banner.png' alt='Sign Up Banner' />
+						<h1>We use machine learning to identify and segment consumer audiences in real-time.
+						</h1>
+					</div>
+					<div className='user-form'>
+						<div className='user-form-inner'>
+						{/*  page close icon start here */}
+						<span className='close-icon'>
+							<a href='/signup'><img src='/assets/images/close.png' alt='Close Icon' /></a>
+						</span>
+						{/*  page close icon end here */}
+						<h2>Sign Up</h2>
+						<h3>Welcome back! Please login to your account.</h3>
+						</div>
 								<form onSubmit={this.submitHandler}>
 										{form}
-										<button>SUBMIT</button>
+										<div className='form-group'>
+											<button disabled={this.state.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Sign Up</button>
+										</div>
 								</form>
+								<span className='account-status'>Already have an account yet? <a href='/login'>Sign In</a></span>
 						</div>
+					</div>
 				);
 		}
 }

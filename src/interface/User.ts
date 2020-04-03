@@ -1,3 +1,4 @@
+import { Error } from './Error';
 export interface User {
 		id?: number;
 		first_name?: string;
@@ -6,4 +7,10 @@ export interface User {
 		company?: string;
 		password?: string;
 		token?: string;
+		group?: number;
+		error?: Error | null;
+		loading?: boolean;
+		type?: string;
+		path?: string;
+		authRedirectPath?: string;
 }
