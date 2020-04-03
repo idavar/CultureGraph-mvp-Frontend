@@ -138,6 +138,7 @@ class Signup extends React.Component<Props> {
 						this.updateFormControls(validationData, confirmPassword, this.state.controls[confirmPassword].value);
 					}, Common.zero);
 				}
+				this.checkFormValid();
 		}
 
 		updateFormControls = (validationData: ValidationObject, controlName: string, value: string) => {
@@ -187,11 +188,16 @@ class Signup extends React.Component<Props> {
 		}
 
 		checkFormValid(): void {
-			for (const key in this.state.controls) {
-				if (this.state.controls[key]) {
-					this.setState({isValidForm: this.state.controls[key].valid});
+			setTimeout(() => {
+				this.setState({isValidForm: true});
+				for (const key in this.state.controls) {
+					if (this.state.controls[key]) {
+						if (!this.state.controls[key].valid) {
+							this.setState({isValidForm: this.state.controls[key].valid});
+						}
+					}
 				}
-			}
+			}, Common.zero);
 		}
 
 		render() {
@@ -215,8 +221,7 @@ class Signup extends React.Component<Props> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
-								onBlur={() => this.checkFormValid()} />
+								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
 				) );
 
 				return (

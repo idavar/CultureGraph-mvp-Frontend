@@ -82,6 +82,9 @@ class Auth extends React.Component<Props, AuthState> {
 						}
 				};
 				this.setState( { controls: updatedControls } );
+				setTimeout(() => {
+					this.checkFormValid();
+				}, Common.zero);
 		}
 
 		submitHandler = (event: any) => {
@@ -90,9 +93,12 @@ class Auth extends React.Component<Props, AuthState> {
 		}
 
 		checkFormValid(): void {
+			this.setState({isValidForm: true});
 			for (const key in this.state.controls) {
 				if (this.state.controls[key]) {
-					this.setState({isValidForm: this.state.controls[key].valid});
+					if (!this.state.controls[key].valid) {
+						this.setState({isValidForm: this.state.controls[key].valid});
+					}
 				}
 			}
 		}
@@ -118,8 +124,7 @@ class Auth extends React.Component<Props, AuthState> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
-								onBlur={() => this.checkFormValid()}/>
+								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
 				) );
 
 				let authRedirect = null;
