@@ -82,6 +82,9 @@ class Auth extends React.Component<Props, AuthState> {
 						}
 				};
 				this.setState( { controls: updatedControls } );
+				setTimeout(() => {
+					this.checkFormValid();
+				}, Common.zero);
 		}
 
 		submitHandler = (event: any) => {
@@ -90,9 +93,12 @@ class Auth extends React.Component<Props, AuthState> {
 		}
 
 		checkFormValid(): void {
+			this.setState({isValidForm: true});
 			for (const key in this.state.controls) {
 				if (this.state.controls[key]) {
-					this.setState({isValidForm: this.state.controls[key].valid});
+					if (!this.state.controls[key].valid) {
+						this.setState({isValidForm: this.state.controls[key].valid});
+					}
 				}
 			}
 		}
@@ -118,8 +124,7 @@ class Auth extends React.Component<Props, AuthState> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
-								onBlur={() => this.checkFormValid()}/>
+								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
 				) );
 
 				let authRedirect = null;
@@ -146,7 +151,6 @@ class Auth extends React.Component<Props, AuthState> {
 							{/*  page close icon end here */}
 							<h2>Sign In</h2>
 							<h3>Welcome back! Please login to your account.</h3>
-							</div>
 							<form onSubmit={this.submitHandler}>
 								{form}
 								{/*  Forgot Password Start here --> */}
@@ -159,6 +163,7 @@ class Auth extends React.Component<Props, AuthState> {
 									<button disabled={this.props.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Sign In</button>
 								</div>
 							</form>
+							</div>
 							<span className='account-status'>Don’t have an account yet? <a href='/signup'>Sign up</a></span>
 						</div>
 					</div>

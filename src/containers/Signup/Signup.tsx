@@ -38,7 +38,7 @@ class Signup extends React.Component<Props> {
 								elementType: 'input',
 								elementConfig: {
 										type: 'text',
-										placeholder: 'First Name'
+										placeholder: 'Name'
 								},
 								value: '',
 								validation: {
@@ -50,21 +50,21 @@ class Signup extends React.Component<Props> {
 								validationMsg: '',
 								messages: ValidationMessage.first_name
 						},
-					last_name: {
+						company: {
 								elementType: 'input',
 								elementConfig: {
 										type: 'text',
-										placeholder: 'Last Name'
+										placeholder: 'Company Name'
 								},
 								value: '',
 								validation: {
 										required: true,
-										maxLength: 50
+										maxLength: 250
 								},
 								valid: false,
 								touched: false,
 								validationMsg: '',
-								messages: ValidationMessage.last_name
+								messages: ValidationMessage.email
 						},
 						email: {
 								elementType: 'input',
@@ -77,22 +77,6 @@ class Signup extends React.Component<Props> {
 										required: true,
 										isEmail: true,
 										maxLength: 150
-								},
-								valid: false,
-								touched: false,
-								validationMsg: '',
-								messages: ValidationMessage.email
-						},
-						company: {
-								elementType: 'input',
-								elementConfig: {
-										type: 'text',
-										placeholder: 'Company Name'
-								},
-								value: '',
-								validation: {
-										required: true,
-										maxLength: 250
 								},
 								valid: false,
 								touched: false,
@@ -154,6 +138,7 @@ class Signup extends React.Component<Props> {
 						this.updateFormControls(validationData, confirmPassword, this.state.controls[confirmPassword].value);
 					}, Common.zero);
 				}
+				this.checkFormValid();
 		}
 
 		updateFormControls = (validationData: ValidationObject, controlName: string, value: string) => {
@@ -175,7 +160,7 @@ class Signup extends React.Component<Props> {
 				this.setState({loading: true});
 				const userData: User = {
 					first_name: this.state.controls.first_name.value,
-					last_name: this.state.controls.last_name.value,
+					last_name: '',
 					email: this.state.controls.email.value,
 					company: this.state.controls.company.value,
 					password: this.state.controls.password.value
@@ -203,11 +188,16 @@ class Signup extends React.Component<Props> {
 		}
 
 		checkFormValid(): void {
-			for (const key in this.state.controls) {
-				if (this.state.controls[key]) {
-					this.setState({isValidForm: this.state.controls[key].valid});
+			setTimeout(() => {
+				this.setState({isValidForm: true});
+				for (const key in this.state.controls) {
+					if (this.state.controls[key]) {
+						if (!this.state.controls[key].valid) {
+							this.setState({isValidForm: this.state.controls[key].valid});
+						}
+					}
 				}
-			}
+			}, Common.zero);
 		}
 
 		render() {
@@ -231,8 +221,7 @@ class Signup extends React.Component<Props> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
-								onBlur={() => this.checkFormValid()} />
+								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
 				) );
 
 				return (
@@ -254,13 +243,13 @@ class Signup extends React.Component<Props> {
 						{/*  page close icon end here */}
 						<h2>Sign Up</h2>
 						<h3>Welcome back! Please login to your account.</h3>
-						</div>
 								<form onSubmit={this.submitHandler}>
 										{form}
 										<div className='form-group'>
 											<button disabled={this.state.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Sign Up</button>
 										</div>
 								</form>
+						</div>
 								<span className='account-status'>Already have an account yet? <a href='/login'>Sign In</a></span>
 						</div>
 					</div>

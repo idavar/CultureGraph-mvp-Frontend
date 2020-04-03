@@ -3,16 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { User } from '../../interface/User';
-import Common from '../../constant/common';
+import { HeaderProps } from '../../interface/HeaderProps';
+import { setDataRef } from '../../helpers';
 import * as actions from '../../store/actions/index';
 
-interface Props {
-	isAuthenticated: boolean;
-	isAdmin: boolean;
-	onLogout: () => void;
-}
-
-class AdminHeader extends React.Component<Props> {
+class AdminHeader extends React.Component<HeaderProps> {
 	render() {
 		return (
 		<div>
@@ -21,6 +16,7 @@ class AdminHeader extends React.Component<Props> {
 				<a href='/'>Manage Users</a>
 				<a href='/'>Manage Request</a>
 				<div className='menu-log'>
+					<Link to='#'>{this.props.full_name}</Link>
 					<Link to='#'>Change Password</Link>
 					<Link to='#' onClick={this.props.onLogout}>Logout</Link>
 				</div>
@@ -30,10 +26,7 @@ class AdminHeader extends React.Component<Props> {
 	}
 }
 function mapStateToProps(state: {auth: User}) {
-	return {
-			isAuthenticated: !!state.auth.token,
-			isAdmin: state.auth.group === Common.group.admin
-	};
+	return setDataRef.setAuthDataObject(state);
 }
 
 const mapDispatchToProps = (dispatch: Function) => {

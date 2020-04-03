@@ -17,6 +17,7 @@ export const authSuccess = (data: User) => {
 				type: actionTypes.AUTH_SUCCESS,
 				token: data.token,
 				id: data.id,
+				full_name: data.full_name,
 				email: data.email,
 				group: data.group,
 		};

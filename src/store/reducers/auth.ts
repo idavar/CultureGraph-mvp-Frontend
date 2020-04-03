@@ -5,6 +5,7 @@ const initialState: User = {
 		email: '',
 		token: '',
 		id: 0,
+		full_name: '',
 		group: 0,
 		error: null,
 		loading: false,
@@ -20,6 +21,7 @@ const authSuccess = (state: User, action: User) => {
 				token: action.token,
 				id: action.id,
 				email: action.email,
+				full_name: action.full_name,
 				group: action.group,
 				error: null,
 				loading: false

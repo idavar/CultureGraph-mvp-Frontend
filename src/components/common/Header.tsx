@@ -3,16 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { User } from '../../interface/User';
-import Common from '../../constant/common';
+import { HeaderProps } from '../../interface/HeaderProps';
+import { setDataRef } from '../../helpers';
 import * as actions from '../../store/actions/index';
 
-interface Props {
-	isAuthenticated: boolean;
-	isAdmin: boolean;
-	onLogout: () => void;
-}
-
-class Header extends React.Component<Props> {
+class Header extends React.Component<HeaderProps> {
 	render() {
 		let headarLink = <div className='menu-log'>
 							<a href='/signup'>Become a researcher</a>
@@ -20,6 +15,7 @@ class Header extends React.Component<Props> {
 						</div>;
 		if (this.props.isAuthenticated) {
 			headarLink = <div className='menu-log'>
+							<Link to='#'>{this.props.full_name}</Link>
 							<Link to='#'>Change Password</Link>
 							<Link to='#' onClick={this.props.onLogout}>Logout</Link>
 						</div>;
@@ -40,10 +36,7 @@ class Header extends React.Component<Props> {
 }
 
 function mapStateToProps(state: {auth: User}) {
-	return {
-			isAuthenticated: !!state.auth.token,
-			isAdmin: state.auth.group === Common.group.admin
-	};
+	return setDataRef.setAuthDataObject(state);
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
