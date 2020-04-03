@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+interface MutableRefObject<T> {
+				current: T;
+}
+const Input = ( props: any ) => {
+		const typeText = 'test';
+		const typePassword = 'password';
+		const inputEleRef: MutableRefObject<{type: string}> = useRef({type: typePassword});
+		const [isHide, showHide] = useState(true);
+		const togglePassword = () => {
+			inputEleRef.current.type = !isHide ? typePassword : typeText;
+			showHide(!isHide);
+		};
 
-const input = ( props: any ) => {
 		let inputElement = null;
 		let errorMessage = null;
 		let showPassword = null;
@@ -10,7 +21,7 @@ const input = ( props: any ) => {
 		}
 
 		if (props.elementConfig.type === 'password') {
-			showPassword = <span className='show-action'>Show</span>;
+			showPassword = <span className='show-action' onClick={togglePassword}>{isHide ? 'Show' : 'Hide'}</span>;
 		}
 
 		switch ( props.elementType ) {
@@ -20,7 +31,8 @@ const input = ( props: any ) => {
 								className='form-control'
 								value={props.value}
 								onChange={props.changed}
-								onBlur={props.onBlur}/>;
+								onBlur={props.onBlur}
+								ref={inputEleRef} />;
 						break;
 				case ( 'textarea' ):
 						inputElement = <textarea
@@ -62,4 +74,4 @@ const input = ( props: any ) => {
 
 };
 
-export default input;
+export default Input;
