@@ -38,7 +38,7 @@ class Signup extends React.Component<Props> {
 								elementType: 'input',
 								elementConfig: {
 										type: 'text',
-										placeholder: 'First Name'
+										placeholder: 'Name'
 								},
 								value: '',
 								validation: {
@@ -50,21 +50,21 @@ class Signup extends React.Component<Props> {
 								validationMsg: '',
 								messages: ValidationMessage.first_name
 						},
-					last_name: {
+						company: {
 								elementType: 'input',
 								elementConfig: {
 										type: 'text',
-										placeholder: 'Last Name'
+										placeholder: 'Company Name'
 								},
 								value: '',
 								validation: {
 										required: true,
-										maxLength: 50
+										maxLength: 250
 								},
 								valid: false,
 								touched: false,
 								validationMsg: '',
-								messages: ValidationMessage.last_name
+								messages: ValidationMessage.email
 						},
 						email: {
 								elementType: 'input',
@@ -77,22 +77,6 @@ class Signup extends React.Component<Props> {
 										required: true,
 										isEmail: true,
 										maxLength: 150
-								},
-								valid: false,
-								touched: false,
-								validationMsg: '',
-								messages: ValidationMessage.email
-						},
-						company: {
-								elementType: 'input',
-								elementConfig: {
-										type: 'text',
-										placeholder: 'Company Name'
-								},
-								value: '',
-								validation: {
-										required: true,
-										maxLength: 250
 								},
 								valid: false,
 								touched: false,
@@ -175,7 +159,7 @@ class Signup extends React.Component<Props> {
 				this.setState({loading: true});
 				const userData: User = {
 					first_name: this.state.controls.first_name.value,
-					last_name: this.state.controls.last_name.value,
+					last_name: '',
 					email: this.state.controls.email.value,
 					company: this.state.controls.company.value,
 					password: this.state.controls.password.value
