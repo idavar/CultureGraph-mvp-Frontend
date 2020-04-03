@@ -243,13 +243,13 @@ class Signup extends React.Component<Props> {
 						{/*  page close icon end here */}
 						<h2>Sign Up</h2>
 						<h3>Welcome back! Please login to your account.</h3>
-						</div>
 								<form onSubmit={this.submitHandler}>
 										{form}
 										<div className='form-group'>
 											<button disabled={this.state.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Sign Up</button>
 										</div>
 								</form>
+						</div>
 								<span className='account-status'>Already have an account yet? <a href='/login'>Sign In</a></span>
 						</div>
 					</div>

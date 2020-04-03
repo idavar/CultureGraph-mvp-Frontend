@@ -151,7 +151,6 @@ class Auth extends React.Component<Props, AuthState> {
 							{/*  page close icon end here */}
 							<h2>Sign In</h2>
 							<h3>Welcome back! Please login to your account.</h3>
-							</div>
 							<form onSubmit={this.submitHandler}>
 								{form}
 								{/*  Forgot Password Start here --> */}
@@ -164,6 +163,7 @@ class Auth extends React.Component<Props, AuthState> {
 									<button disabled={this.props.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Sign In</button>
 								</div>
 							</form>
+							</div>
 							<span className='account-status'>Don’t have an account yet? <a href='/signup'>Sign up</a></span>
 						</div>
 					</div>

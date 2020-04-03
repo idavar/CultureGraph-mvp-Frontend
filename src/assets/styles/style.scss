@@ -223,6 +223,7 @@ a:focus {
 
 .user-form .user-form-inner {
   width: 100%;
+  text-align: left;
 }
 
 .user-form .user-form-inner h2 {
@@ -352,6 +353,8 @@ a:focus {
   font-size: 13px;
   position: relative;
   top: 5px;
+  left: 0;
+  display: block;
 }
 
 .forgot-password-link {
