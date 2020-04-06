@@ -6,6 +6,7 @@ import { User } from '../../interface/User';
 import { HeaderProps } from '../../interface/HeaderProps';
 import { setDataRef } from '../../helpers';
 import * as actions from '../../store/actions/index';
+import Common from '../../constant/common';
 
 class AdminHeader extends React.Component<HeaderProps> {
 	render() {
@@ -14,7 +15,7 @@ class AdminHeader extends React.Component<HeaderProps> {
 			<header>&nbsp;</header>
 			<div className='menu'>
 				<a href='/'>Manage Users</a>
-				<a href='/'>Manage Request</a>
+				<a href={`/admin/manage-users?viewType=${Common.actionType.request}`}>Manage Request</a>
 				<div className='menu-log'>
 					<Link to='#'>{this.props.full_name}</Link>
 					<Link to='#'>Change Password</Link>

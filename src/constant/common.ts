@@ -16,6 +16,10 @@ const Common = {
 		group: {
 			admin: 1,
 			researcher: 2
+		},
+		actionType: {
+			request: 'request',
+			verified: 'Verified'
 		}
 };
 
