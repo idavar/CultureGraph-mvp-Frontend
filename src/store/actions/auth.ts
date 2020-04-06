@@ -2,10 +2,10 @@ import { Dispatch } from 'redux';
 
 import { ToastError } from '../../components/Alert/Toast';
 import * as actionTypes from './actionTypes';
+import * as session from './session';
 import { apiReq, validateRef } from '../../helpers';
 import { User } from '../../interface/User';
 import { Error } from '../../interface/Error';
-import Common from '../../constant/common';
 
 export const authStart = () => {
 		return {
@@ -69,10 +69,6 @@ export const auth = (email: string, password: string) => {
 		};
 };
 
-const getUserData = () => {
-	return JSON.parse(localStorage.getItem('user') || '{}');
-};
-
 export const setAuthRedirectPath = (path: string) => {
 		return {
 				type: actionTypes.SET_AUTH_REDIRECT_PATH,
@@ -84,7 +80,7 @@ export const setAuthRedirectPath = (path: string) => {
 
 export const authCheckState = () => {
 		return (dispatch: Function) => {
-				const user = getUserData();
+				const user = session.getUserData();
 				if (!Object.keys(user).length) {
 						dispatch(logout());
 				} else {
@@ -93,9 +89,5 @@ export const authCheckState = () => {
 		};
 };
 
-export const isAdminUser = () => {
-	const user = getUserData();
-	return user && user.group === Common.group.admin;
-};
 
 

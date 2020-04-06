@@ -9,3 +9,4 @@ export const signUp = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}
 
 export const emailVerify = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.emailVerify}`, data);
 
+export const adminUserSearch = (data: {query: string}) => apiHandler.apiGet(`${ConfigData.apiUrl}${ConfigData.apiName.adminUsers}${data.query}`, {});

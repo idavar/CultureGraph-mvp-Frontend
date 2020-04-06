@@ -1,5 +1,7 @@
 import axios from 'axios';
 import ConfigData from '../constant/config';
+import * as session from '../store/actions/session';
+const tokenValue = session.getToken();
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -15,6 +17,8 @@ axios.interceptors.response.use(response => {
 });
 
 export const apiPost = (url: string, data: object) => axios.post(url, data);
+
+export const apiGet = (url: string, data: object) => axios.get(url, { headers: { Authorization: `Bearer ${tokenValue}` }, ...data});
 
 export const predicthqApiCall = async (data = {}, options?: any) => {
 		return new Promise((resolve, reject) => {

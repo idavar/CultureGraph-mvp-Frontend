@@ -3,15 +3,29 @@ import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Pagination from 'react-bootstrap/Pagination';
+import { UserData } from '../../../interface/UserData';
+import Common from '../../../constant/common';
 
-class ApprovedUserList extends React.Component {
+interface UserListProps {
+	users: UserData[];
+	count: number;
+	page: number;
+	fetchUserList: any;
+}
+
+class ApprovedUserList extends React.Component<UserListProps> {
+	constructor(props: UserListProps) {
+		super(props);
+		this.state = {};
+		}
 	render() {
-				const active = 2;
+				const active = this.props.page;
 				const items = [];
-				for (let number = 1; number <= 5; number++) {
+				const totalPage = Math.ceil(this.props.count / Common.pageLimit);
+				for (let pn = Common.one; pn <= totalPage; pn++) {
 				items.push(
-				<Pagination.Item key={number} active={number === active}>
-						{number}
+				<Pagination.Item onClick={() => { this.props.fetchUserList({page: pn}); }} key={pn} active={pn === active}>
+						{pn}
 				</Pagination.Item>,
 				);
 				}
@@ -19,10 +33,10 @@ class ApprovedUserList extends React.Component {
 						<div>
 							<Pagination>{items}</Pagination>
 						</div>
-					);
+				);
 		return (<div>
 	<div className='list-header'>
-				<div className='list-left'><h1>Manage Users (120)</h1></div>
+				<div className='list-left'><h1>Manage Users ({this.props.count})</h1></div>
 				<div className='list-right'>
 				<Form>
 				<span>Sort Users</span>
@@ -52,21 +66,23 @@ class ApprovedUserList extends React.Component {
 			<th>User Status</th>
 		</tr>
 	</thead>
-	<tbody>
-		<tr>
-			<td>Table cell</td>
-			<td>Table cell</td>
-			<td>Table cell</td>
-			<td>Table cell</td>
-			<td><Form>
-								<Form.Check
-										type='switch'
-										id='custom-switch'
-										label='Active'
-								/>
-						</Form>
-				</td>
-		</tr>
+	<tbody>{
+	this.props.users.map((doc, index) => (<tr key={index}>
+			<td>{doc.first_name}</td>
+			<td>{doc.email}</td>
+			<td>{doc.company}</td>
+			<td>{doc.created_at}</td>
+			<td>
+				<Form>
+					<Form.Check
+							type='switch'
+							id='custom-switch'
+							label='Active'
+					/>
+				</Form>
+			</td>
+		</tr>))
+		}
 	</tbody>
 </Table>
 {paginationBasic}

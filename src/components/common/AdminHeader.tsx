@@ -6,9 +6,10 @@ import { User } from '../../interface/User';
 import { HeaderProps } from '../../interface/HeaderProps';
 import { setDataRef } from '../../helpers';
 import * as actions from '../../store/actions/index';
+import * as session from '../../store/actions/session';
 import Common from '../../constant/common';
 
-class AdminHeader extends React.Component<(HeaderProps)> {
+class AdminHeader extends React.Component<HeaderProps> {
 	constructor(props: HeaderProps) {
 		super(props);
 		this.state = {
@@ -17,7 +18,7 @@ class AdminHeader extends React.Component<(HeaderProps)> {
 	}
 
 	render() {
-		if (!actions.isAdminUser()) {
+		if (!session.isAdminUser()) {
 			return <Redirect to='/login' />;
 		}
 		return (

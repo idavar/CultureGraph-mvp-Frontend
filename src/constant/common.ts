@@ -8,6 +8,7 @@ const Common = {
 			methodNotAllowed: 405,
 		},
 		zero: 0,
+		one: 1,
 		alertTimeout: 3000,
 		toastConfig : {
 			autoClose: 2000,
@@ -20,7 +21,8 @@ const Common = {
 		actionType: {
 			request: 'request',
 			verified: 'verified'
-		}
+		},
+		pageLimit: 10,
 };
 
 export default Common;
