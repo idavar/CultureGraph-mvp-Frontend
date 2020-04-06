@@ -55,7 +55,7 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 	render() {
 		let userListView = <ApprovedUserList users={this.state.users} count={this.state.count} page={this.state.page} fetchUserList={this.fetchUserList} />;
 		if (this.state.viewType === Common.actionType.request) {
-			userListView = <UserRequestList />;
+			userListView = <UserRequestList users={this.state.users} count={this.state.count} page={this.state.page} fetchUserList={this.fetchUserList} />;
 		}
 		return (
 		<div>

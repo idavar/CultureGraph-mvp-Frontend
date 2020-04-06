@@ -4,14 +4,9 @@ import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Pagination from 'react-bootstrap/Pagination';
 import { UserData } from '../../../interface/UserData';
+import { UserListProps } from '../../../interface/UserListProps';
 import Common from '../../../constant/common';
 
-interface UserListProps {
-	users: UserData[];
-	count: number;
-	page: number;
-	fetchUserList: any;
-}
 
 class ApprovedUserList extends React.Component<UserListProps> {
 	constructor(props: UserListProps) {
@@ -67,7 +62,7 @@ class ApprovedUserList extends React.Component<UserListProps> {
 		</tr>
 	</thead>
 	<tbody>{
-	this.props.users.map((doc, index) => (<tr key={index}>
+	this.props.users.map((doc: UserData, index: number) => (<tr key={index}>
 			<td>{doc.first_name}</td>
 			<td>{doc.email}</td>
 			<td>{doc.company}</td>

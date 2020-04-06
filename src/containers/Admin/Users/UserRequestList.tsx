@@ -5,14 +5,17 @@ import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Pagination from 'react-bootstrap/Pagination';
 import ActionModal from './ActionModal';
+import { UserData } from '../../../interface/UserData';
+import { UserListProps } from '../../../interface/UserListProps';
+import Common from '../../../constant/common';
 
 interface RequestState {
 		isShow: boolean;
 }
 
-class UserRequestList extends React.Component<{}, RequestState> {
+class UserRequestList extends React.Component<UserListProps, RequestState> {
 		modalRef = React.createRef<ActionModal>();
-		constructor(props: {}) {
+		constructor(props: UserListProps) {
 		super(props);
 		this.state = {
 			isShow: true
@@ -26,26 +29,26 @@ class UserRequestList extends React.Component<{}, RequestState> {
 		}
 
 	render() {
-				const active = 2;
-				const items = [];
-				for (let number = 1; number <= 5; number++) {
-				items.push(
-				<Pagination.Item key={number} active={number === active}>
-						{number}
-				</Pagination.Item>,
-				);
-				}
-
-				const paginationBasic = (
-						<div>
-							<Pagination>{items}</Pagination>
-						</div>
-					);
+			const active = this.props.page;
+			const items = [];
+			const totalPage = Math.ceil(this.props.count / Common.pageLimit);
+			for (let page = Common.one; page <= totalPage; page++) {
+			items.push(
+			<Pagination.Item onClick={() => { this.props.fetchUserList({page: page}); }} key={page} active={page === active}>
+					{page}
+			</Pagination.Item>,
+			);
+			}
+			const paginationBasic = (
+					<div>
+						<Pagination>{items}</Pagination>
+					</div>
+			);
 
 		return (<div>
 			<ActionModal ref={this.modalRef} />
 <div className='list-header'>
-							<div className='list-left'><h1>Manage Request (120)</h1></div>
+							<div className='list-left'><h1>Manage Request ({this.props.count})</h1></div>
 							<div className='list-right'>
 									<Form>
 									<span>Sort Users</span>
@@ -76,17 +79,18 @@ class UserRequestList extends React.Component<{}, RequestState> {
 											<th>Actions</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>Table cell</td>
-								<td>Table cell</td>
-								<td>Table cell</td>
-								<td>Table cell</td>
-								<td>Table cell</td>
+						<tbody>{
+						this.props.users.map((doc: UserData, index: number) => (<tr key={index}>
+								<td>{doc.first_name}</td>
+								<td>{doc.email}</td>
+								<td>{doc.company}</td>
+								<td>{doc.created_at}</td>
+								<td>{doc.updated_at}</td>
 											<td>
 											<Button variant='danger'>Reject</Button>
 											<Button variant='primary' onClick={this.onAcceptReject}>Approve</Button></td>
-							</tr>
+							</tr>))
+						}
 						</tbody>
 					</Table>
 											{paginationBasic}
