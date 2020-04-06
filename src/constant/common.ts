@@ -19,7 +19,7 @@ const Common = {
 		},
 		actionType: {
 			request: 'request',
-			verified: 'Verified'
+			verified: 'verified'
 		}
 };
 

@@ -10,6 +10,7 @@ import CultureCalendar from './containers/Calendar/CultureCalendar';
 import Auth from './containers/Auth/Auth';
 import Signup from './containers/Signup/Signup';
 import ManageUsers from './containers/Admin/Users/ManageUsers';
+import Home from './containers/Home/Home';
 import * as actions from './store/actions/index';
 import { User } from './interface/User';
 import Common from './constant/common';
@@ -34,13 +35,14 @@ class App extends Component<Props> {
 		if ( !this.props.isAuthenticated ) {
 			publicRoute = (
 				<Switch>
+					<Route path='/admin/manage-users' exact component={ManageUsers}></Route>
 					<Route path='/html' exact component={HTML}></Route>
 					<Route path='/hash_code' exact component={EmailVerify}></Route>
 					<Route path='/no-page' exact component={PageNotFound}></Route>
 					<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
 					<Route path='/login' exact component={Auth}></Route>
 					<Route path='/signup' exact component={Signup}></Route>
-					<Route path='/' exact component={Signup}></Route>
+					<Route path='/' exact component={Home}></Route>
 					<Redirect from='*' to='/signup' />
 				</Switch>
 			);
@@ -59,7 +61,7 @@ class App extends Component<Props> {
 						<Route path='/hash_code' exact component={EmailVerify}></Route>
 						<Route path='/no-page' exact component={PageNotFound}></Route>
 						<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
-						<Route path='/' exact component={CultureCalendar}></Route>
+						<Route path='/' exact component={Home}></Route>
 						<Redirect from='*' to='/' />
 					</Switch>
 				);

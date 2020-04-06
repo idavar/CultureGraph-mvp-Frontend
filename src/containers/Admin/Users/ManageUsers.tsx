@@ -22,6 +22,10 @@ class ManageUsers extends React.Component<ManageUserProps, UserStateInterface> {
 		};
 	}
 
+	componentDidMount () {
+		this.getQueryParms();
+	}
+
 	getQueryParms() {
 		const params = new URLSearchParams(this.props.location.search);
 		if (params.get('viewType')) {

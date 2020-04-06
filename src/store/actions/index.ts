@@ -2,5 +2,6 @@ export {
 		auth,
 		logout,
 		setAuthRedirectPath,
-		authCheckState
+		authCheckState,
+		isAdminUser
 } from './auth';
