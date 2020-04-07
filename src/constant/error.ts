@@ -1,7 +1,7 @@
 export const ValidationMessage = {
 	first_name: {
-		required: `First name is required.`,
-		maxLength: `First name should be of maximum 150 characters.`,
+		required: `Name is required.`,
+		maxLength: `Name should be of maximum 150 characters.`,
 		minLength: ''
 	},
 	email: {
