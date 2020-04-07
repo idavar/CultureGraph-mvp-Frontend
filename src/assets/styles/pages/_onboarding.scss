@@ -1,0 +1,173 @@
+
+.user-wrapper {
+	background: $theme-color-light;
+	height: 100vh;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.user-banner {
+	width: 60%;
+	padding: 50px 120px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
+	.logo {
+		position: absolute;
+		top: 30px;
+		left: 8%;
+	}
+	h1 {
+		font-size: $font-40;
+		font-family: $source-bold;
+		color: $navy-blue;
+		font-weight: bold;
+		line-height: 1.2;
+		margin-top: 40px;
+		max-width: 636px;
+	}
+}
+
+.user-form {
+	width: 40%;
+	height: 100vh;
+	background: #fff;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	padding: 50px 100px;
+	overflow: auto;
+	position: relative;
+	.user-form-inner {
+    width: 100%;
+    text-align: left;
+		h2 {
+			font-size: $font-36;
+			font-family: $source-bold;
+			font-weight: bold;
+			color: $navy-blue;
+			margin-bottom: 20px;
+		}
+		h3 {
+			font-size: $font-16;
+			font-weight: normal;
+			color: $navy-blue;
+			opacity: 0.65;
+			margin-bottom: 30px;
+		}
+		.close-icon {
+			position: absolute;
+			top: 30px;
+			right: 100px;
+			cursor: pointer;
+		}
+	}
+	.account-status {
+		color: $light-purple;
+		font-family: $source-regular;
+		font-size: $font-18;
+		font-weight: normal;
+		position: fixed;
+		top: auto;
+		bottom: 0;
+		left: auto;
+		right: auto;
+		background: #fff;
+		width: 30%;
+		text-align: center;
+		padding: 18px 0;
+		a {
+			font-family: $source-semibold;
+			color: $light-blue;
+		}
+	}
+}
+
+.form-group {
+	position: relative;
+	margin-bottom: 20px;
+	label {
+		position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+		left: 15px;
+		font-size: $font-14;
+		color: $navy-blue-light;
+    font-family: $source-regular;
+    transition: 0.2s all ease-in-out;
+  }
+  
+
+}
+
+.form-control {
+	font-size: $font-16;
+	color: $navy-blue!important;
+	font-family: $source-regular;
+  border: 1.1px solid $light-gray;
+  border-radius: 5.6px;
+  height: 73px;
+  padding: 32px 60px 0 15px;
+  background: none;
+  position: relative;
+  z-index: 1;
+	&:focus {
+		outline: none;
+    box-shadow: none;
+    border-color:$light-gray;
+    z-index:inherit;
+    & + label{
+      top:25px;
+    }
+  }
+  
+  &::placeholder{
+   opacity:0;
+  }
+
+}
+
+.form-control:not(:placeholder-shown)  + label{
+  top:25px;
+}
+
+.field-group {
+position: relative;
+
+	.show-action {
+		font-family: $source-semibold;
+		color: $navy-blue;
+		font-size: $font-15;
+		font-weight: 600;
+		position: absolute;
+		right: 16px;
+		top: 55%;
+		cursor: pointer;
+	}
+}
+
+.field-error {
+	color: $red;
+	font-size: $font-13;
+	position: relative;
+  top: 5px;
+  left: 0;
+    display: block;
+}
+
+
+.forgot-password-link {
+	text-align: right;
+	display: block;
+	color: $light-purple;
+	font-size: $font-15;
+	font-family: $source-regular;
+	text-decoration: underline;
+	padding: 10px;
+	&:hover {
+		text-decoration: underline;
+	}
+}
