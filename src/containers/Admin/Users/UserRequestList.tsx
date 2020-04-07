@@ -14,17 +14,23 @@ interface RequestState {
 
 class UserRequestList extends React.Component<UserListProps, RequestState> {
 		modalRef = React.createRef<ActionModal>();
+		private status = `${Common.requestStatus.pending},${Common.requestStatus.rejected}`;
 		constructor(props: UserListProps) {
 		super(props);
 		this.state = {
 			isShow: true
 				};
+			this.submitSearch = this.submitSearch.bind(this);
 		}
 
 		onAcceptReject = (data: UserData, requestAction: string) => {
 				if (this.modalRef.current) {
 						this.modalRef.current.openModal(data, requestAction);
 				}
+		}
+
+		submitSearch = (e: Element) => {
+			console.log(e.target.value);
 		}
 
 	render() {
@@ -60,19 +66,20 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			<ActionModal ref={this.modalRef} />
 			<div className='custom-container'>
 			<div className='list-header'>
-		<h1>Manage Request {this.props.count ? `(${this.props.count})` : ''}</h1>
+			<h1>Manage Request {this.props.count ? `(${this.props.count})` : ''}</h1>
 				<Form>
 				<span className='sort-user-title'>Sort Request</span>
 				<div className='form-group'>
-					<select className='form-control sort-user'>
-						<option>All Request</option>
-						<option>Pending Request</option>
-						<option>Rejected Request</option>
+					<select className='form-control sort-user' name='status' onChange={this.submitSearch}>
+						<option value={this.status}>All Request</option>
+						<option value={Common.requestStatus.pending}>Pending Request</option>
+						<option value={Common.requestStatus.rejected}>Rejected Request</option>
 					</select>
 				</div>
 				<Form.Group controlId='searchUser'>
 				<Form.Label>Search Here</Form.Label>
-				<Form.Control type='text' className='search-user' placeholder='Search Here' />
+				<Form.Control type='text' className='search-user' placeholder='Search Here' name='query'
+				 onChange={this.submitSearch} />
 				<span className='search-icon'><img className='logo' src='/assets/images/search-icon.png' alt='Search Icon' /></span>
 				</Form.Group>
 				</Form>
