@@ -85,6 +85,8 @@
     background: $white;
     padding: 0;
     min-width: 187px;
+    right: 20px!important;
+    left: inherit!important;
     
     &:before{
       content: '';

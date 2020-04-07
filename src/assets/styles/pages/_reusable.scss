@@ -1,0 +1,76 @@
+
+.custom-container{
+	padding: 0 60px;
+}
+
+//buttons
+.btn{
+	height: 56px;
+	line-height: 56px;
+	padding: 0 20px;
+	font-size:$font-16;
+	font-family:  $source-regular;
+	text-transform: uppercase;
+	border-radius:5px;
+	border:0;
+
+	&:focus{
+		outline: none;
+		box-shadow:none;
+		
+	}
+
+	&.btn-primary{
+		background: $light-blue;
+	}
+}
+
+
+
+
+
+//custom radio box
+.custom-radio{
+	label{
+		margin-right: 30px;
+		font-size: $font-16;
+		font-family:  $source-regular;
+		color: rgba($color: $navy-blue, $alpha:0.7);
+		position: relative;
+		padding-left: 30px;
+		cursor: pointer;
+
+		input{
+			position: absolute;
+			opacity: 0;
+
+			&:checked + span{
+				&:before{
+					content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: $light-blue;
+    border-radius: 50px;
+    top: 0;
+		bottom: 0;
+		left: 0;
+    right: 0;
+    margin: auto;
+				}
+			}
+		}
+
+		span{
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			border: 1.5px solid rgba($color: $navy-blue, $alpha:0.4);
+			border-radius: 50px;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
+		}
+	}
+}
