@@ -43,7 +43,7 @@ class Signup extends React.Component<Props> {
 								value: '',
 								validation: {
 										required: true,
-										maxLength: 50
+										maxLength: Common.nameLength
 								},
 								valid: false,
 								touched: false,
@@ -59,12 +59,12 @@ class Signup extends React.Component<Props> {
 								value: '',
 								validation: {
 										required: true,
-										maxLength: 250
+										maxLength: Common.companyLength
 								},
 								valid: false,
 								touched: false,
 								validationMsg: '',
-								messages: ValidationMessage.email
+								messages: ValidationMessage.company
 						},
 						email: {
 								elementType: 'input',
@@ -76,7 +76,7 @@ class Signup extends React.Component<Props> {
 								validation: {
 										required: true,
 										isEmail: true,
-										maxLength: 150
+										maxLength: Common.emailLength
 								},
 								valid: false,
 								touched: false,
@@ -92,8 +92,8 @@ class Signup extends React.Component<Props> {
 								value: '',
 								validation: {
 										required: true,
-										minLength: 6,
-										maxLength: 16,
+										minLength: Common.minPassword,
+										maxLength: Common.maxPassword,
 										isPassword: true
 								},
 								valid: false,
@@ -110,8 +110,8 @@ class Signup extends React.Component<Props> {
 								value: '',
 								validation: {
 										required: true,
-										minLength: 6,
-										maxLength: 16,
+										minLength: Common.minPassword,
+										maxLength: Common.maxPassword,
 										isConfirmPassword: true
 								},
 								valid: false,
