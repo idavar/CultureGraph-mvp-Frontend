@@ -12,7 +12,7 @@ import {
 	DropdownMenu,
 	DropdownItem,
 	NavbarText
-  } from 'reactstrap';
+	} from 'reactstrap';
 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -48,7 +48,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 							<Link to='#' onClick={this.props.onLogout}>Logout</Link>
 						</div>;
 		}
-	  
+
 		return (
 			<div>
 			  <Navbar color='light' light expand='md'>
