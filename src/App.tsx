@@ -3,6 +3,7 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import PageNotFound from './components/common/pageNotFound';
 import EmailVerify from './components/common/EmailVerify';
@@ -34,6 +35,7 @@ class App extends Component<Props> {
 		if ( !this.props.isAuthenticated ) {
 			publicRoute = (
 				<Switch>
+									<Route path='/admin/manage-users' exact component={ManageUsers}></Route>
 					<Route path='/html' exact component={HTML}></Route>
 					<Route path='/hash_code' exact component={EmailVerify}></Route>
 					<Route path='/no-page' exact component={PageNotFound}></Route>
