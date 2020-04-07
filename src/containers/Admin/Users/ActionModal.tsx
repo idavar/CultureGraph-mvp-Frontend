@@ -14,6 +14,7 @@ interface ActionState {
 	loading: boolean;
 	data: Partial<UserData>;
 	text: string;
+	currentStatus: string;
 }
 
 interface RequestData {
@@ -23,6 +24,8 @@ interface RequestData {
 }
 
 class ActionModal extends React.Component<{}, ActionState> {
+		private rejected = `${Common.requestStatus.rejected}`;
+		private approved = `${Common.requestStatus.approved}`;
 		constructor(props: {}) {
 		super(props);
 		this.state = {
@@ -32,13 +35,19 @@ class ActionModal extends React.Component<{}, ActionState> {
 			requestAction: '',
 			data: {},
 			loading: false,
-			text: ''
+			text: '',
+			currentStatus: this.rejected,
 			};
 			this.textChange = this.textChange.bind(this);
+			this.onStatusChanged = this.onStatusChanged.bind(this);
 		}
 
 		textChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 			this.setState({text: e.target.value});
+		}
+
+		onStatusChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+			this.setState({currentStatus: e.target.value});
 		}
 
 		handleClose = (): void => this.setState({show: false});
@@ -138,11 +147,13 @@ class ActionModal extends React.Component<{}, ActionState> {
 											<p>Change Request Status</p>
 											<div className='custom-radio request-radio'>
 											<label className='radio-rejected'>
-												<input type='radio' name='request-status'></input> Rejected
+												<input checked={this.state.currentStatus === this.rejected} value={this.rejected} type='radio'
+												 name='rejected' onChange={this.onStatusChanged}></input> Rejected
 												<span></span>
 											</label>
 											<label className='radio-approve'>
-												<input type='radio' name='request-status'></input> Approve
+												<input checked={this.state.currentStatus === this.approved} value={this.approved} type='radio'
+												 name='approve' onChange={this.onStatusChanged}></input> Approve
 												<span></span>
 											</label>
 											</div>
@@ -152,7 +163,8 @@ class ActionModal extends React.Component<{}, ActionState> {
 											<Button className='btn-outline'  onClick={this.handleClose}>
 											Cancel
 											</Button>
-											<Button className='btn-action' disabled={this.state.loading} onClick={() => {this.acceptRequestRequest(Common.requestStatus.approved); }} >
+											<Button className='btn-action' disabled={this.state.loading || this.state.currentStatus === this.rejected}
+											onClick={() => {this.acceptRequestRequest(Common.requestStatus.approved); }} >
 											Save Request Status
 											</Button>
 										</Modal.Footer>
