@@ -70,18 +70,18 @@ class ApprovedUserList extends React.Component<UserListProps> {
 			<div className='toggle-switch'>
 			<label className='toggleSwitch'>
 			<input
-          type='checkbox'
-          className='toggle-switch-checkbox'
-        />
+					type='checkbox'
+					className='toggle-switch-checkbox'
+				/>
 					<span>
-            <span>Active</span>
-            <span>Block</span>
-        </span>
+						<span>Active</span>
+						<span>Block</span>
+				</span>
 				<a></a>
 	</label>
-       
-        
-      </div>
+
+
+			</div>
 						</Form>
 			</td>
 		</tr>))
