@@ -63,12 +63,13 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 		<h1>Manage Request {this.props.count ? `(${this.props.count})` : ''}</h1>
 				<Form>
 				<span className='sort-user-title'>Sort Request</span>
-				<div className='form-group'>
-					<select className='form-control sort-user'>
+				<div className='form-group  sort-user'>
+					<select className='form-control'>
 						<option>All Request</option>
 						<option>Pending Request</option>
 						<option>Rejected Request</option>
 					</select>
+					<img  src='/assets/images/caret-down-light.png' alt='Caret Icon' />
 				</div>
 				<Form.Group controlId='searchUser'>
 				<Form.Label>Search Here</Form.Label>

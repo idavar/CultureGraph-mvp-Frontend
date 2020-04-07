@@ -33,12 +33,13 @@ class ApprovedUserList extends React.Component<UserListProps> {
 		<h1>Manage Users {this.props.count ? `(${this.props.count})` : ''}</h1>
 				<Form>
 				<span className='sort-user-title'>Sort Users</span>
-				<div className='form-group'>
-					<select className='form-control sort-user'>
+				<div className='form-group sort-user'>
+					<select className='form-control'>
 						<option>All Users</option>
 						<option>Active Users</option>
 						<option>Block Users</option>
 					</select>
+					<img  src='/assets/images/caret-down-light.png' alt='Caret Icon' />
 				</div>
 				<Form.Group controlId='searchUser'>
 				<Form.Label>Search Here</Form.Label>
@@ -65,13 +66,23 @@ class ApprovedUserList extends React.Component<UserListProps> {
 			<td>{doc.company}</td>
 			<td>{doc.created_at}</td>
 			<td>
-				<Form>
-					<Form.Check
-							type='switch'
-							id='custom-switch'
-							label='Active'
-					/>
-				</Form>
+			<Form>
+			<div className='toggle-switch'>
+			<label className='toggleSwitch'>
+			<input
+          type='checkbox'
+          className='toggle-switch-checkbox'
+        />
+					<span>
+            <span>Active</span>
+            <span>Block</span>
+        </span>
+				<a></a>
+	</label>
+       
+        
+      </div>
+						</Form>
 			</td>
 		</tr>))
 		}
