@@ -29,7 +29,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 				}
 		}
 
-		submitSearch = (e: Element) => {
+		submitSearch = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 			console.log(e.target.value);
 		}
 
