@@ -18,6 +18,8 @@ axios.interceptors.response.use(response => {
 
 export const apiPost = (url: string, data: object) => axios.post(url, data);
 
+export const apiPatch = (url: string, data: object) => axios.patch(url, data, { headers: { Authorization: `Bearer ${tokenValue}` }});
+
 export const apiGet = (url: string, data: object) => axios.get(url, { headers: { Authorization: `Bearer ${tokenValue}` }, ...data});
 
 export const predicthqApiCall = async (data = {}, options?: any) => {

@@ -9,7 +9,8 @@ const ConfigData = {
 			signup: 'auth/signup/',
 			logout: 'auth/logout/',
 			emailVerify: 'account/email-verify/',
-			adminUsers: '/admin/users/'
+			adminUsers: 'admin/users/',
+			changeStatus: 'admin/users/change-status/'
 		}
 	};
 
