@@ -43,7 +43,7 @@ class Signup extends React.Component<Props> {
 								value: '',
 								validation: {
 										required: true,
-										maxLength: 50
+										maxLength: 150
 								},
 								valid: false,
 								touched: false,
@@ -64,7 +64,7 @@ class Signup extends React.Component<Props> {
 								valid: false,
 								touched: false,
 								validationMsg: '',
-								messages: ValidationMessage.email
+								messages: ValidationMessage.company
 						},
 						email: {
 								elementType: 'input',
