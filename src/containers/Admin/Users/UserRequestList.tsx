@@ -22,9 +22,9 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 				};
 		}
 
-		onAcceptReject = () => {
+		onAcceptReject = (data: UserData, requestAction: string) => {
 				if (this.modalRef.current) {
-						this.modalRef.current.openModal();
+						this.modalRef.current.openModal(data, requestAction);
 				}
 		}
 
@@ -44,6 +44,18 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 						<Pagination>{items}</Pagination>
 					</div>
 			);
+
+			const AcceptReject = (props: {data: UserData}) => {
+				let acceptRejectButton = null;
+				if (props.data.status === Common.requestStatus.pending) {
+					acceptRejectButton = (<span><Button variant='danger' onClick={() => { this.onAcceptReject(props.data, Common.requestAction.reject); }}>Reject</Button>
+				<Button variant='primary' onClick={() => { this.onAcceptReject(props.data, Common.requestAction.accept); }}>Approve</Button></span>);
+				} else if (props.data.status === Common.requestStatus.rejected) {
+					acceptRejectButton = (<span><Button variant='danger'>Rejected</Button>
+				<Button variant='primary' onClick={() => { this.onAcceptReject(props.data, Common.requestAction.edit); }}>Edit Status</Button></span>);
+				}
+				return acceptRejectButton;
+			};
 
 		return (<div>
 			<ActionModal ref={this.modalRef} />
@@ -86,9 +98,9 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 								<td>{doc.company}</td>
 								<td>{doc.created_at}</td>
 								<td>{doc.updated_at}</td>
-											<td>
-											<Button variant='danger'>Reject</Button>
-											<Button variant='primary' onClick={this.onAcceptReject}>Approve</Button></td>
+								<td>
+								<AcceptReject data={doc}/>
+								</td>
 							</tr>))
 						}
 						</tbody>

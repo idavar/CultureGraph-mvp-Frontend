@@ -7,6 +7,7 @@ export interface UserData {
 		company?: string;
 		token?: string;
 		group?: number;
+		status: number;
 		created_at: string;
 		updated_at: string;
 }

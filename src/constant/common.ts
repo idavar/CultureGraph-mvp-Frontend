@@ -23,6 +23,26 @@ const Common = {
 			verified: 'verified'
 		},
 		pageLimit: 10,
+		requestStatus: {
+			pending: 1,
+			approved: 2,
+			rejected: 3
+		},
+		requestAction: {
+			accept: 'accept',
+			reject: 'reject',
+			edit: 'edit'
+		},
+		requestTitle: {
+			accept: 'Accept Request',
+			reject: 'Reject Request',
+			edit: 'Change Request Status'
+		},
+		requestConfirmMsg: {
+			accept: 'Are you sure you want to accept this request?',
+			reject: 'Are you sure you want to reject this request?',
+			edit: 'Are you sure you want to change this request status?'
+		}
 };
 
 export default Common;

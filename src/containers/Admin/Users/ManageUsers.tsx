@@ -14,6 +14,7 @@ interface ManageUserProps {
 
 
 class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
+	private viewType: string | null = Common.actionType.verified;
 	constructor(props: ManageUserProps) {
 		super(props);
 		this.state = {
@@ -31,13 +32,18 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 	getQueryParms() {
 		const params = new URLSearchParams(this.props.location.search);
 		if (params.get('viewType')) {
-			this.setState({viewType: params.get('viewType')});
+			this.viewType = params.get('viewType');
+			this.setState({viewType: this.viewType});
 		}
 		this.fetchUserList();
 	}
 
 	setSearchData = (option: {page: number}) => {
-		const searchData = `?page=${option.page}`;
+		let status = `${Common.requestStatus.approved}`;
+		if (this.viewType === Common.actionType.request) {
+			status = `${Common.requestStatus.pending},${Common.requestStatus.rejected}`;
+		}
+		const searchData = `?page=${option.page}&status=${status}`;
 		return searchData;
 	}
 
