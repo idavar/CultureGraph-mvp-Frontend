@@ -13,6 +13,13 @@ interface ActionState {
 	requestAction: string;
 	loading: boolean;
 	data: Partial<UserData>;
+	text: string;
+}
+
+interface RequestData {
+	status: number;
+	is_active: boolean;
+	text?: string;
 }
 
 class ActionModal extends React.Component<{}, ActionState> {
@@ -24,13 +31,20 @@ class ActionModal extends React.Component<{}, ActionState> {
 			altMessage: '',
 			requestAction: '',
 			data: {},
-			loading: false
+			loading: false,
+			text: ''
 			};
+			this.textChange = this.textChange.bind(this);
+		}
+
+		textChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+			this.setState({text: e.target.value});
 		}
 
 		handleClose = (): void => this.setState({show: false});
 
 		openModal = (data: UserData, requestAction: string): void => {
+			this.setState({text: ''});
 			this.setState({requestAction});
 			this.setState({data});
 			if (Common.requestAction.accept === requestAction) {
@@ -51,7 +65,11 @@ class ActionModal extends React.Component<{}, ActionState> {
 				return;
 			}
 			this.setState({loading: true});
-			apiReq.changeStatus(this.state.data.id, {status, is_active: true, text: 'test'}).then(response => {
+			const reqData: RequestData = {status, is_active: true};
+			if (this.state.text) {
+				reqData.text = this.state.text;
+			}
+			apiReq.changeStatus(this.state.data.id, reqData).then(response => {
 				this.setState({loading: false});
 				if (response.status === Common.status.processed) {
 					ToastSuccess({msg: response.data.detail});
@@ -96,11 +114,11 @@ class ActionModal extends React.Component<{}, ActionState> {
 								</Modal.Header>
 								<Modal.Body>
 									<form>
-										<textarea placeholder='Add Comment' className='reject-comment' ></textarea>
+										<textarea maxLength={Common.rejectReasonLength} placeholder='Add Comment' className='reject-comment' onChange={this.textChange} ></textarea>
 									</form>
 									</Modal.Body>
 								<Modal.Footer>
-									<Button className='btn-outline' onClick={() => {this.acceptRequestRequest(Common.requestStatus.rejected); }} disabled={this.state.loading}>
+									<Button className='btn-outline' disabled={this.state.loading || !this.state.text} onClick={() => {this.acceptRequestRequest(Common.requestStatus.rejected); }} >
 										Reject Request
 									</Button>
 									<Button className='btn-action' onClick={this.handleClose}>
