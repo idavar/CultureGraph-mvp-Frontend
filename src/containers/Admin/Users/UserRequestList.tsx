@@ -2,7 +2,6 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Pagination from 'react-bootstrap/Pagination';
 import ActionModal from './ActionModal';
 import { UserData } from '../../../interface/UserData';
@@ -59,28 +58,27 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 
 		return (<div>
 			<ActionModal ref={this.modalRef} />
-<div className='list-header'>
-							<div className='list-left'><h1>Manage Request ({this.props.count})</h1></div>
-							<div className='list-right'>
-									<Form>
-									<span>Sort Users</span>
-									<Dropdown>
-											<Dropdown.Toggle id='dropdown-basic'>
-													All Request
-											</Dropdown.Toggle>
-											<Dropdown.Menu>
-													<Dropdown.Item href='#'>Pending Request</Dropdown.Item>
-													<Dropdown.Item href='#'>Rejected Request</Dropdown.Item>
-											</Dropdown.Menu>
-											</Dropdown>
-									<Form.Group controlId='searchUser'>
-									<Form.Label>Search Here</Form.Label>
-									<Form.Control type='text' placeholder='Search Here' />
-									</Form.Group>
-									</Form>
-									</div>
-							</div>
-						<Table responsive>
+			<div className='custom-container'>
+			<div className='list-header'>
+		<h1>Manage Request {this.props.count ? `(${this.props.count})` : ''}</h1>
+				<Form>
+				<span className='sort-user-title'>Sort Request</span>
+				<div className='form-group'>
+					<select className='form-control sort-user'>
+						<option>All Request</option>
+						<option>Pending Request</option>
+						<option>Rejected Request</option>
+					</select>
+				</div>
+				<Form.Group controlId='searchUser'>
+				<Form.Label>Search Here</Form.Label>
+				<Form.Control type='text' className='search-user' placeholder='Search Here' />
+				<span className='search-icon'><img className='logo' src='/assets/images/search-icon.png' alt='Search Icon' /></span>
+				</Form.Group>
+				</Form>
+		</div>
+
+		<Table responsive className='listing-table'>
 						<thead>
 							<tr>
 								<th>User Name</th>
@@ -105,7 +103,10 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 						}
 						</tbody>
 					</Table>
-											{paginationBasic}
+			<div className='pagination-block'>
+				{paginationBasic}
+			</div>
+			</div>
 				</div>);
 	}
 }
