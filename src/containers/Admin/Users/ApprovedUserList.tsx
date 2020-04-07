@@ -1,12 +1,10 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Pagination from 'react-bootstrap/Pagination';
 import { UserData } from '../../../interface/UserData';
 import { UserListProps } from '../../../interface/UserListProps';
 import Common from '../../../constant/common';
-
 
 class ApprovedUserList extends React.Component<UserListProps> {
 	constructor(props: UserListProps) {
@@ -30,28 +28,27 @@ class ApprovedUserList extends React.Component<UserListProps> {
 						</div>
 				);
 		return (<div>
-	<div className='list-header'>
-				<div className='list-left'><h1>Manage Users ({this.props.count})</h1></div>
-				<div className='list-right'>
+			<div className='custom-container'>
+			<div className='list-header'>
+		<h1>Manage Users {this.props.count ? `(${this.props.count})` : ''}</h1>
 				<Form>
-				<span>Sort Users</span>
-				<Dropdown>
-						<Dropdown.Toggle id='dropdown-basic'>
-								All Users
-						</Dropdown.Toggle>
-						<Dropdown.Menu>
-								<Dropdown.Item href='#'>Active Users</Dropdown.Item>
-								<Dropdown.Item href='#'>Block Users</Dropdown.Item>
-						</Dropdown.Menu>
-						</Dropdown>
+				<span className='sort-user-title'>Sort Users</span>
+				<div className='form-group'>
+					<select className='form-control sort-user'>
+						<option>All Users</option>
+						<option>Active Users</option>
+						<option>Block Users</option>
+					</select>
+				</div>
 				<Form.Group controlId='searchUser'>
 				<Form.Label>Search Here</Form.Label>
-				<Form.Control type='text' placeholder='Search Here' />
+				<Form.Control type='text' className='search-user' placeholder='Search Here' />
+				<span className='search-icon'><img className='logo' src='/assets/images/search-icon.png' alt='Search Icon' /></span>
 				</Form.Group>
 				</Form>
-				</div>
 		</div>
-	<Table responsive>
+
+		<Table responsive className='listing-table'>
 	<thead>
 		<tr>
 			<th>User Name</th>
@@ -80,7 +77,10 @@ class ApprovedUserList extends React.Component<UserListProps> {
 		}
 	</tbody>
 </Table>
+<div className='pagination-block'>
 {paginationBasic}
+</div>
+			</div>
 				</div>);
 	}
 }
