@@ -155,6 +155,17 @@ class Signup extends React.Component<Props> {
 			this.setState( { controls: updatedControls } );
 		}
 
+		removeSignupValidation = (controlName: string) => {
+			const updatedControls = {
+				...this.state.controls,
+				[controlName]: {
+						...this.state.controls[controlName],
+						touched: false
+				}
+			};
+			this.setState( { controls: updatedControls } );
+		}
+
 		submitHandler = ( event: {preventDefault: Function}) => {
 				event.preventDefault();
 				this.setState({loading: true});
@@ -221,7 +232,8 @@ class Signup extends React.Component<Props> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
+								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
+								removeValidation= {() => this.removeSignupValidation(formElement.id)} />
 				) );
 
 				return (

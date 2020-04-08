@@ -19,7 +19,6 @@ interface ActionState {
 
 interface RequestData {
 	status: number;
-	is_active: boolean;
 	text?: string;
 }
 
@@ -74,7 +73,7 @@ class ActionModal extends React.Component<{}, ActionState> {
 				return;
 			}
 			this.setState({loading: true});
-			const reqData: RequestData = {status, is_active: true};
+			const reqData: RequestData = {status};
 			if (this.state.text) {
 				reqData.text = this.state.text;
 			}

@@ -87,6 +87,16 @@ class Auth extends React.Component<Props, AuthState> {
 				}, Common.zero);
 		}
 
+		removeLoginValidation = (controlName: string) => {
+			this.setState( { controls: {
+				...this.state.controls,
+				[controlName]: {
+						...this.state.controls[controlName],
+						touched: false
+				}
+			} } );
+		}
+
 		submitHandler = (event: any) => {
 				event.preventDefault();
 				this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
@@ -124,7 +134,8 @@ class Auth extends React.Component<Props, AuthState> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
+								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
+								removeValidation= {() => this.removeLoginValidation(formElement.id)} />
 				) );
 
 				let authRedirect = null;
