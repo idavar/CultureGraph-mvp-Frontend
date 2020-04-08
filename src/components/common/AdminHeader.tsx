@@ -29,8 +29,8 @@ class AdminHeader extends React.Component<HeaderProps> {
 							<img className='logo' src='/assets/images/brand-logo.png' alt='Brand Logo' />
 				</div>
 				<div className='main-menu'>
-					<a href='/admin/manage-users' className='active'>Manage Users</a>
-					<a href={`/admin/manage-users?viewType=${Common.actionType.request}`}>Manage Request</a>
+					<a href='/admin/manage-users' className={this.props.viewType === Common.actionType.verified ? 'active' : ''}>Manage Users</a>
+					<a className={this.props.viewType === Common.actionType.request ? 'active' : ''} href={`/admin/manage-users?viewType=${Common.actionType.request}`}>Manage Request</a>
 				</div>
 
 				<div className='user-dropdown'>
