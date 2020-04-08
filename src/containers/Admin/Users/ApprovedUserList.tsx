@@ -12,7 +12,7 @@ class ApprovedUserList extends React.Component<UserListProps> {
 		this.state = {};
 		}
 	render() {
-				const active = this.props.page;
+				const active = this.props.queryData.page;
 				const items = [];
 				const totalPage = Math.ceil(this.props.count / Common.pageLimit);
 				for (let pn = Common.one; pn <= totalPage; pn++) {
@@ -59,7 +59,7 @@ class ApprovedUserList extends React.Component<UserListProps> {
 			<th>User Status</th>
 		</tr>
 	</thead>
-	<tbody>{
+	<tbody>{!this.props.users.length ? <tr key={Common.zero}><td colSpan={6}>No user record found!</td></tr> :
 	this.props.users.map((doc: UserData, index: number) => (<tr key={index}>
 			<td>{doc.first_name}</td>
 			<td>{doc.email}</td>
@@ -77,7 +77,6 @@ class ApprovedUserList extends React.Component<UserListProps> {
 						<span>Active</span>
 						<span>Block</span>
 				</span>
-				<a></a>
 	</label>
 
 

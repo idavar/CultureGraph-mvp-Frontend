@@ -34,7 +34,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 		}
 
 	render() {
-			const active = this.props.page;
+			const active = this.props.queryData.page;
 			const items = [];
 			const totalPage = Math.ceil(this.props.count / Common.pageLimit);
 			for (let page = Common.one; page <= totalPage; page++) {
@@ -97,7 +97,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 											<th>Actions</th>
 							</tr>
 						</thead>
-						<tbody>{
+						<tbody>{!this.props.users.length ? <tr key={Common.zero}><td colSpan={6}>No user request data found!</td></tr> :
 						this.props.users.map((doc: UserData, index: number) => (<tr key={index}>
 								<td>{doc.first_name}</td>
 								<td>{doc.email}</td>
