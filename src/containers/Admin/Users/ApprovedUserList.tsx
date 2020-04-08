@@ -5,8 +5,10 @@ import Pagination from 'react-bootstrap/Pagination';
 import { UserData } from '../../../interface/UserData';
 import { UserListProps } from '../../../interface/UserListProps';
 import Common from '../../../constant/common';
+import { SearchQuery } from './../../../interface/SearchQuery';
 
 class ApprovedUserList extends React.Component<UserListProps> {
+	public queryData: SearchQuery = Common.defaultQueryData;
 	constructor(props: UserListProps) {
 		super(props);
 		this.state = {};
@@ -34,16 +36,17 @@ class ApprovedUserList extends React.Component<UserListProps> {
 				<Form>
 				<span className='sort-user-title'>Sort Users</span>
 				<div className='form-group sort-user'>
-					<select className='form-control'>
-						<option>All Users</option>
-						<option>Active Users</option>
-						<option>Block Users</option>
+					<select className='form-control' value={this.props.queryData.is_active ? this.props.queryData.is_active : ''}>
+						<option value=''>All Users</option>
+						<option value='True'>Active Users</option>
+						<option value='False'>Block Users</option>
 					</select>
 					<img  src='/assets/images/caret-down-light.png' alt='Caret Icon' />
 				</div>
 				<Form.Group controlId='searchUser'>
 				<Form.Label>Search Here</Form.Label>
-				<Form.Control type='text' className='search-user' placeholder='Search Here' />
+				<Form.Control type='text' className='search-user' placeholder='Search Here'
+				 value={this.props.queryData.search ? this.props.queryData.search : ''} name='search'/>
 				<span className='search-icon'><img className='logo' src='/assets/images/search-icon.png' alt='Search Icon' /></span>
 				</Form.Group>
 				</Form>

@@ -1,6 +1,7 @@
 export interface SearchQuery {
+	viewType: string | null;
 	page: number;
-    next?: string | null;
+		next?: string | null;
 	previous?: string | null;
 	search?: string | null;
 	status?: string | null;

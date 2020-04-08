@@ -1,4 +1,5 @@
 import React from 'react';
+import { History } from 'history';
 import AdminHeader from '../../../components/common/AdminHeader';
 import ApprovedUserList from './ApprovedUserList';
 import UserRequestList from './UserRequestList';
@@ -11,20 +12,13 @@ interface ManageUserProps {
 	location: {
 			search: string;
 	};
+	history: History;
 }
 
 
 class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 	private viewType: string | null = Common.actionType.verified;
-	public queryData: SearchQuery = {
-		page: Common.one,
-		next: null,
-		previous: null,
-		search: null,
-		status: null,
-		is_active: null,
-		ordering: null
-	};
+	public queryData: SearchQuery = Common.defaultQueryData;
 	constructor(props: ManageUserProps) {
 		super(props);
 		this.state = {
@@ -45,6 +39,7 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 			this.setState({viewType: this.viewType});
 		}
 
+		this.queryData.viewType = this.viewType;
 		this.queryData.search = this.setQueryText(params);
 		this.queryData.page = Number(this.setQueryPage(params));
 		this.queryData.status = this.setQueryStatus(params);
@@ -74,7 +69,6 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 	}
 
 	setSearchData = () => {
-		console.log(this.queryData);
 		let status = `${Common.requestStatus.approved}`;
 		if (this.viewType === Common.actionType.request) {
 			status = `${Common.requestStatus.pending},${Common.requestStatus.rejected}`;
@@ -98,8 +92,10 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 		return searchData;
 	}
 
-	fetchUserList = () => {
-		const query = this.setSearchData();
+	fetchUserList = (query?: string) => {
+		if (!query) {
+			query = this.setSearchData();
+		}
 		apiReq.adminUserSearch({query}).then(result => {
 			if (result.status === Common.status.processed) {
 				this.setState({count: result.data.count});
@@ -110,10 +106,10 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 
 	render() {
 		let userListView = <ApprovedUserList users={this.state.users} count={this.state.count}
-		 fetchUserList={this.fetchUserList} queryData={this.queryData} />;
+		 fetchUserList={this.fetchUserList} queryData={this.queryData} history={this.props.history} />;
 		if (this.state.viewType === Common.actionType.request) {
 			userListView = <UserRequestList users={this.state.users} count={this.state.count}
-			 fetchUserList={this.fetchUserList} queryData={this.queryData} />;
+			 fetchUserList={this.fetchUserList} queryData={this.queryData} history={this.props.history} />;
 		}
 		return (
 		<div>

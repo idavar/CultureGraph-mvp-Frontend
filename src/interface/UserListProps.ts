@@ -1,3 +1,4 @@
+import { History } from 'history';
 import { UserData } from './UserData';
 import { SearchQuery } from './SearchQuery';
 
@@ -6,4 +7,5 @@ export interface UserListProps {
 	count: number;
 	fetchUserList: Function;
 	queryData: SearchQuery;
+	history: History;
 }
