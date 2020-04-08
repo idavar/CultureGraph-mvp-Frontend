@@ -5,6 +5,9 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	@media (max-width:767px){
+		flex-wrap: wrap;
+	}
 }
 
 .user-banner {
@@ -14,19 +17,48 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-start;
+	@media (max-width:767px){
+		width:100%;
+		padding:0;
+	}
+
+	img{
+		@media (max-width:767px){
+			width:238px;
+			height:201px;
+			margin: 20px auto;
+		}
+	}
 	.logo {
 		position: absolute;
 		top: 30px;
 		left: 8%;
+		width: inherit;
+		height: inherit;
+		@media (max-width:767px){
+			display: none;
+		}
 	}
 	h1 {
-		font-size: $font-40;
+		font-size: $font-36;
 		font-family: $source-bold;
 		color: $navy-blue;
 		font-weight: bold;
+		letter-spacing: 0.38px;
+		text-align: left;
 		line-height: 1.2;
 		margin-top: 40px;
 		max-width: 636px;
+
+		@media (max-width:767px){
+			display: none;
+		}
+	}
+
+	.signup-banner{
+		@media (max-width:767px){
+			display: none;
+		}
 	}
 }
 
@@ -41,6 +73,11 @@
 	padding: 50px 100px;
 	overflow: auto;
 	position: relative;
+	@media (max-width:767px){
+		width: 100%;
+		padding:30px 20px;
+		align-items: flex-start;
+	}
 	.user-form-inner {
     width: 100%;
     text-align: left;
@@ -49,7 +86,7 @@
 			font-family: $source-bold;
 			font-weight: bold;
 			color: $navy-blue;
-			margin-bottom: 20px;
+			margin-bottom: 10px;
 		}
 		h3 {
 			font-size: $font-16;
@@ -57,12 +94,27 @@
 			color: $navy-blue;
 			opacity: 0.65;
 			margin-bottom: 30px;
+			@media (max-width:767px){
+				font-size: $font-13;
+			}
 		}
 		.close-icon {
 			position: absolute;
 			top: 30px;
 			right: 100px;
 			cursor: pointer;
+			@media (max-width:767px){
+				display: none;
+			}
+		}
+
+		.form-group{
+			button{
+				@media (max-width:767px){
+					max-width:250px;
+					margin: 0 auto 70px auto;
+				}
+			}
 		}
 	}
 	.account-status {
@@ -79,6 +131,13 @@
 		width: 30%;
 		text-align: center;
 		padding: 18px 0;
+		@media (max-width:767px){
+			width:100%;
+			z-index: 1;
+			height: 80px;
+			
+			
+		}
 		a {
 			font-family: $source-semibold;
 			color: $light-blue;
@@ -89,12 +148,20 @@
 .form-group {
 	position: relative;
 	margin-bottom: 20px;
+
+	&.field-outline-error{
+
+		.form-control{
+			border-color:$red;
+		}
+
+	}
 	label {
 		position: absolute;
     top: 50%;
     transform: translateY(-50%);
 		left: 15px;
-		font-size: $font-14;
+		font-size: $font-15;
 		color: $navy-blue-light;
     font-family: $source-regular;
     transition: 0.2s all ease-in-out;
@@ -136,6 +203,14 @@
 
 .field-group {
 position: relative;
+ .close-data{
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 9;
+	cursor: pointer;
+ }
 
 	.show-action {
 		font-family: $source-semibold;
@@ -152,7 +227,8 @@ position: relative;
 
 .field-error {
 	color: $red;
-	font-size: $font-13;
+	font-size: $font-12;
+	font-family: $source-regular;
 	position: relative;
   top: 5px;
   left: 0;
@@ -172,3 +248,8 @@ position: relative;
 		text-decoration: underline;
 	}
 }
+
+.ui-hide {
+	display: none;
+}
+

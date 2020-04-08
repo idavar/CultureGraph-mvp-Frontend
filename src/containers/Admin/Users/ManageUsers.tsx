@@ -65,7 +65,7 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 		}
 		return (
 		<div>
-			<AdminHeader />
+			<AdminHeader viewType={this.state.viewType} />
 			<div className='user-list'>
 				{userListView}
 			</div>

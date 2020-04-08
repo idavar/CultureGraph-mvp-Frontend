@@ -15,11 +15,11 @@ interface ActionState {
 	data: Partial<UserData>;
 	text: string;
 	currentStatus: string;
+	reject_reason: string;
 }
 
 interface RequestData {
 	status: number;
-	is_active: boolean;
 	text?: string;
 }
 
@@ -37,6 +37,7 @@ class ActionModal extends React.Component<{}, ActionState> {
 			loading: false,
 			text: '',
 			currentStatus: this.rejected,
+			reject_reason: ''
 			};
 			this.textChange = this.textChange.bind(this);
 			this.onStatusChanged = this.onStatusChanged.bind(this);
@@ -56,6 +57,8 @@ class ActionModal extends React.Component<{}, ActionState> {
 			this.setState({text: ''});
 			this.setState({requestAction});
 			this.setState({data});
+			const reject_reason = (data.reject_reason && data.reject_reason.description) ? data.reject_reason.description : '';
+			this.setState({reject_reason});
 			if (Common.requestAction.accept === requestAction) {
 				this.setState({title: Common.requestTitle.accept});
 				this.setState({altMessage: Common.requestConfirmMsg.accept});
@@ -74,7 +77,7 @@ class ActionModal extends React.Component<{}, ActionState> {
 				return;
 			}
 			this.setState({loading: true});
-			const reqData: RequestData = {status, is_active: true};
+			const reqData: RequestData = {status};
 			if (this.state.text) {
 				reqData.text = this.state.text;
 			}
@@ -142,7 +145,7 @@ class ActionModal extends React.Component<{}, ActionState> {
 										</Modal.Header>
 										<Modal.Body>
 										<p>Reason for rejecting request</p>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+											<p>{this.state.reject_reason}</p>
 											<div className=''>
 											<p>Change Request Status</p>
 											<div className='custom-radio request-radio'>

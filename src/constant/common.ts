@@ -7,7 +7,7 @@ const Common = {
 		companyLength: 250,
 		minPassword: 6,
 		maxPassword: 16,
-		rejectReasonLength: 500,
+		rejectReasonLength: 200,
 		status: {
 			processed: 200,
 			success: 201,

@@ -87,6 +87,16 @@ class Auth extends React.Component<Props, AuthState> {
 				}, Common.zero);
 		}
 
+		removeLoginValidation = (controlName: string) => {
+			this.setState( { controls: {
+				...this.state.controls,
+				[controlName]: {
+						...this.state.controls[controlName],
+						touched: false
+				}
+			} } );
+		}
+
 		submitHandler = (event: any) => {
 				event.preventDefault();
 				this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
@@ -124,7 +134,8 @@ class Auth extends React.Component<Props, AuthState> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )} />
+								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
+								removeValidation= {() => this.removeLoginValidation(formElement.id)} />
 				) );
 
 				let authRedirect = null;
@@ -139,7 +150,7 @@ class Auth extends React.Component<Props, AuthState> {
 								<img className='logo' src='/assets/images/logo.png' alt='Brand Logo' />
 							</a>
 							<img src='/assets/images/signup-banner.png' alt='Sign Up Banner' />
-							<h1>We use machine learning to identify and segment consumer audiences in real-time.
+							<h1>At IVOW AI, our mission is to make data culturally relevant. IVOW stands for Intelligent Voices of Wisdom.
 							</h1>
 						</div>
 						<div className='user-form'>
