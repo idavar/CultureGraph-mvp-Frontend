@@ -1,18 +1,13 @@
 export const ValidationMessage = {
 	first_name: {
-		required: `First name is required.`,
-		maxLength: `First name max length can not greater than 50 characters.`,
-		minLength: ''
-	},
-	last_name: {
-		required: `Last name is required.`,
-		maxLength: `Last name max length can not greater than 50 characters.`,
+		required: `Name is required.`,
+		maxLength: `Name should be of maximum 150 characters.`,
 		minLength: ''
 	},
 	email: {
 		required: `Email address is required.`,
 				isEmail: `Enter a valid email address.`,
-				maxLength: `First name max length can not greater than 150 characters.`,
+				maxLength: `Email should be of maximum 150 characters.`,
 		minLength: ''
 	},
 	company: {
@@ -22,14 +17,14 @@ export const ValidationMessage = {
 	},
 	password: {
 		required: `Password is required.`,
-		maxLength: `Password max length can not greater than 16 characters.`,
-		minLength: 'Password max length can not less than 6 characters.',
+		maxLength: `Password should be of maximum 16 characters.`,
+		minLength: 'Password should be of minimum 6 characters.',
 		isPassword: 'Enter a valid password.'
 	},
 	confirm_password: {
 		required: `Confirm Password is required.`,
-		maxLength: `Confirm Password max length can not greater than 16 characters.`,
-		minLength: 'Password max length can not less than 6 characters.',
+		maxLength: `Confirm Password should be of maximum 16 characters.`,
+		minLength: 'Password should be of minimum 6 characters.',
 		isConfirmPassword: 'Enter a valid confirm password.',
 		passwordNotMatch: 'Password and confirm password does not match.'
 	}
