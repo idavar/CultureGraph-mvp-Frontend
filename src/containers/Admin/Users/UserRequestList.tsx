@@ -44,6 +44,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			const status = e.target.value;
 			this.setState({status});
 			this.queryData.status = status;
+			this.queryData.page = Common.one;
 			this.submitSearch();
 		}
 
@@ -51,6 +52,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			const search = e.target.value;
 			this.setState({search});
 			this.queryData.search = search;
+			this.queryData.page = Common.one;
 		}
 
 		onPageClick = (page: number) => {
@@ -59,6 +61,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 		}
 
 		onEnter = (e: any) => {
+			this.queryData.page = Common.one;
 			if (e.key === 'Enter') {
 				this.submitSearch();
 			}
@@ -117,10 +120,10 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			<div className='custom-container'>
 			<div className='list-header'>
 			<h1>Manage Request {this.props.count ? `(${this.props.count})` : ''}</h1>
-				<Form>
+				<Form onSubmit={(e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); }}>
 				<span className='sort-user-title'>Sort Request</span>
 				<div className='form-group  sort-user'>
-					<select className='form-control' name='status' value={this.props.queryData.status ? this.props.queryData.status : ''} onChange={this.sortUser}>
+					<select className='form-control' name='status' value={this.state.status} onChange={this.sortUser}>
 						<option value={this.status}>All Request</option>
 						<option value={Common.requestStatus.pending} >Pending Request</option>
 						<option value={Common.requestStatus.rejected} >Rejected Request</option>

@@ -100,8 +100,14 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 			if (result.status === Common.status.processed) {
 				this.setState({count: result.data.count});
 				this.setState({users: result.data.results});
+			} else {
+				this.setState({count: Common.zero});
+				this.setState({users: []});
 			}
-		}).catch(err => {});
+		}).catch(err => {
+			this.setState({count: Common.zero});
+			this.setState({users: []});
+		});
 	}
 
 	render() {
