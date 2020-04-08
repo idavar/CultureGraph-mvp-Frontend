@@ -1,0 +1,128 @@
+.banner-section{
+  background: $off-white;
+  position: relative;
+  &:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width:145px;
+    height:850px;
+    background: url(../../images/banner-path.png) no-repeat;
+    z-index: 1;
+  }
+  .banner-content{
+    text-align: left; 
+    padding :261px 0 200px 0;
+
+    h1{
+      font-size: $font-65;
+      font-family: $source-bold;
+      color: $theme-blue;
+      font-weight:bold;
+      position: relative;
+      margin-bottom: 15px;
+
+      &:before{
+        content: '';
+        position: absolute;
+        top:-27px;
+        left: 0;
+        width:50px;
+        height:5px;
+        background:  $theme-blue;
+      }
+    }
+
+    h2{
+      font-size: $font-50;
+      font-family:  $source-regular;
+      color: $navy-blue;
+    }
+
+    p{
+      font-family:  $source-regular;
+      font-size:$font-21;
+      color: $navy-blue-light1;
+      line-height: 1.43;
+      max-width: 420px;
+    }
+  }
+
+  .banner-search{
+    display: flex;
+    align-items: center;
+    margin: 50px 0 34px 0;
+
+    input{
+      width:340px;
+      height:60px;
+      line-height: 60px;
+      background: $white;
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+      border-top: 0;
+      border-bottom: 0;
+      border-left: 3px solid $theme-blue;
+      border-right: 0;
+      padding:5px 13px;
+      font-size: $font-16;
+        font-family:  $source-regular;
+        color: $navy-blue-light1;
+
+        &:focus{
+          outline: 0;
+        }
+
+      &::placeholder{
+        font-size: $font-13;
+        font-family:  $source-regular;
+        color: $navy-blue-light1;
+      }
+    }
+
+    button{
+      width:70px;
+      height:60px;
+      background:  $theme-blue;
+      border: 0;
+
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+
+  .banner-image{
+    position: absolute;
+    right: 0;
+    top:90px;
+  }
+
+  .safty-note{
+    display: block;
+    font-size: $font-16;
+    font-family:  $source-regular;
+    color: $navy-blue;
+    padding-left: 35px;
+    position: relative;
+
+    &:before{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width:24px;
+      height:29px;
+      background: url(../../images/sheild-icon.png) no-repeat;
+      background-size:24px;
+    }
+
+    a{
+     color:  $theme-blue; 
+     &:hover{
+       text-decoration: none;
+     }
+    }
+  }
+}
