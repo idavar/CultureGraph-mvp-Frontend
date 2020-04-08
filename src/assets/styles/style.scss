@@ -3,35 +3,13 @@
  */
 /**************************** TYPOGRAPHY *********************************/
 @import 'variables';
+@import 'pages/reusable.scss';
 @import 'pages/onboarding';
 @import 'pages/admin-header';
 @import 'pages/admin-user-list';
+@import 'pages/modal.scss';
 
 
 body{
 	background:$theme-color-light;
-}
-
-.custom-container{
-	padding: 0 60px;
-}
-.btn{
-	height: 56px;
-	line-height: 56px;
-	padding: 0 20px;
-	font-size:$font-16;
-	font-family:  $source-regular;
-	text-transform: uppercase;
-	border-radius:5px;
-	border:0;
-
-	&:focus{
-		outline: none;
-		box-shadow:none;
-		
-	}
-
-	&.btn-primary{
-		background: $light-blue;
-	}
 }
