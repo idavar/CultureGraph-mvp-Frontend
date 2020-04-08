@@ -62,9 +62,10 @@ const Input = ( props: any ) => {
 		}
 
 		return (
-			<div className='form-group'>
+			<div className='form-group field-outline-error'>
 				<div className='field-group'>
-				{inputElement}
+					<span className='close-data'><img src='/assets/images/icon-close.png' alt='Close Icon' /></span>
+					{inputElement}
 				<label>{props.elementConfig.placeholder}</label>
 				{showPassword}
 				</div>
