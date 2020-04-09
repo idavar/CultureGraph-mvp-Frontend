@@ -109,7 +109,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 					acceptRejectButton = (<span><Button variant='danger' onClick={() => { this.onAcceptReject(props.data, Common.requestAction.reject); }}>Reject</Button>
 				<Button variant='primary' onClick={() => { this.onAcceptReject(props.data, Common.requestAction.accept); }}>Approve</Button></span>);
 				} else if (props.data.status === Common.requestStatus.rejected) {
-					acceptRejectButton = (<span><Button variant='danger'>Rejected</Button>
+					acceptRejectButton = (<span><Button className='reject-disable' variant='danger'>Rejected</Button>
 				<Button variant='primary' onClick={() => { this.onAcceptReject(props.data, Common.requestAction.edit); }}>Edit Status</Button></span>);
 				}
 				return acceptRejectButton;

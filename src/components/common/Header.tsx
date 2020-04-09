@@ -88,11 +88,10 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					</UncontrolledDropdown>
 				  </Nav>
 
-					{this.props.isAuthenticated ?
 					<Nav className='navbar-right' navbar>
 					<UncontrolledDropdown nav inNavbar>
-						{/* <div>
-					  <DropdownToggle nav className='caret'>
+					{ this.props.isAuthenticated ?
+						<div><DropdownToggle nav className='caret'>
 					  {this.props.full_name}
 					  </DropdownToggle>
 					  <DropdownMenu right>
@@ -103,16 +102,14 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 							Sign Out
 						</Link>
 					  </DropdownMenu>
-						</div> */}
+						</div> :
 						<div className='header-signup-section'>
-							<a href='/'>Become a researcher</a>
-							<a href='/' className='signin-btn'>Sign In</a>
+							<a href='/signup'>Become a researcher</a>
+							<a href='/login' className='signin-btn'>Sign In</a>
 						</div>
+						}
 					</UncontrolledDropdown>
 				  </Nav>
-					:
-					<div><a href='/signup'>Become a researcher</a><a href='/login'>Login</a></div>
-					}
 				</Collapse>
 			  </Navbar>
 				</div>
