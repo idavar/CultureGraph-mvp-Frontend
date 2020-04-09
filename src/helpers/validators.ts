@@ -81,7 +81,7 @@ const setErrorMessage = (validationData: ValidationObject, msg: string, isValid:
 
 export const getObjectFirstKeyValue = (error: any) => {
 	let val = '';
-	if (Object.keys(error).length) {
+	if (error && Object.keys(error).length) {
 		val = error[Object.keys(error)[Common.zero]][Common.zero];
 	}
 	return val;

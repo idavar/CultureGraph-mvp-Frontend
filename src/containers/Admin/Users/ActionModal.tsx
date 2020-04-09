@@ -23,9 +23,22 @@ interface RequestData {
 	text?: string;
 }
 
+interface OtherOptions {
+	submitSearch: Function | null;
+	onPageClick: Function | null;
+	totalCount: number;
+	page: number;
+}
+
 class ActionModal extends React.Component<{}, ActionState> {
 		private rejected = `${Common.requestStatus.rejected}`;
 		private approved = `${Common.requestStatus.approved}`;
+		private otherOptions: OtherOptions = {
+			submitSearch: null,
+			onPageClick: null,
+			page: Common.one,
+			totalCount: Common.zero
+		};
 		constructor(props: {}) {
 		super(props);
 		this.state = {
@@ -53,7 +66,8 @@ class ActionModal extends React.Component<{}, ActionState> {
 
 		handleClose = (): void => this.setState({show: false});
 
-		openModal = (data: UserData, requestAction: string): void => {
+		openModal = (data: UserData, requestAction: string, otherOptions: OtherOptions): void => {
+			this.otherOptions = otherOptions;
 			this.setState({text: ''});
 			this.setState({requestAction});
 			this.setState({data});
@@ -84,6 +98,7 @@ class ActionModal extends React.Component<{}, ActionState> {
 			apiReq.changeStatus(this.state.data.id, reqData).then(response => {
 				this.setState({loading: false});
 				if (response.status === Common.status.processed) {
+					this.refreshPageData(status);
 					ToastSuccess({msg: response.data.detail});
 					this.handleClose();
 				} else {
@@ -94,13 +109,31 @@ class ActionModal extends React.Component<{}, ActionState> {
 					ToastError({msg});
 				}
 			}).catch(err => {
-				this.setState({loading: false});
-				let msg = err.response.data.detail;
-				if (!msg)  {
-					msg = validateRef.getObjectFirstKeyValue(err.response.data.error);
-				}
-				ToastError({msg});
+				try {
+					this.setState({loading: false});
+					let msg = err.response.data.detail;
+					if (!msg)  {
+						msg = validateRef.getObjectFirstKeyValue(err.response.data.error);
+					}
+					ToastError({msg});
+				  } catch (err) {}
 			});
+		}
+
+		refreshPageData (status: number) {
+			if (!this.otherOptions.submitSearch || !this.otherOptions.onPageClick) {
+				return;
+			}
+			if (status === Common.requestStatus.rejected) {
+				this.otherOptions.submitSearch();
+			} else {
+				const pageModulo =  this.otherOptions.totalCount % Common.pageLimit;
+				if (pageModulo === Common.one) {
+					this.otherOptions.onPageClick(this.otherOptions.page - Common.one);
+				} else {
+					this.otherOptions.submitSearch();
+				}
+			}
 		}
 
 		render() {

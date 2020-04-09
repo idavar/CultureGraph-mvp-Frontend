@@ -41,7 +41,13 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 
 		onAcceptReject = (data: UserData, requestAction: string) => {
 				if (this.modalRef.current) {
-						this.modalRef.current.openModal(data, requestAction);
+						const otherOption = {
+							submitSearch: this.submitSearch,
+							onPageClick: this.onPageClick,
+							page: this.queryData.page,
+							totalCount: this.props.count
+						};
+						this.modalRef.current.openModal(data, requestAction, otherOption);
 				}
 		}
 
