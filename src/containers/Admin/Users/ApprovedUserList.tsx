@@ -88,7 +88,11 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 				}
 				const paginationBasic = (
 						<div>
-							<Pagination>{items}</Pagination>
+							<Pagination>
+							{(totalPage > Common.one) ? <Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> : ''}
+								{items}
+							{(totalPage > Common.one) ? <Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> : '' }
+							</Pagination>
 						</div>
 				);
 		return (<div>
@@ -154,7 +158,7 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 	</tbody>
 </Table>
 <div className='pagination-block'>
-{paginationBasic}
+	{paginationBasic}
 </div>
 			</div>
 				</div>);

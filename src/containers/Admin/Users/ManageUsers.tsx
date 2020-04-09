@@ -26,6 +26,8 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 			users: [],
 			count: Common.zero,
 			loading: false,
+			next: null,
+			previous: null,
 		};
 	}
 
@@ -103,6 +105,8 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 			if (result.status === Common.status.processed) {
 				this.setState({count: result.data.count});
 				this.setState({users: result.data.results});
+				this.setState({next: result.data.next});
+				this.setState({previous: result.data.previous});
 			} else {
 				this.setState({count: Common.zero});
 				this.setState({users: []});
@@ -117,11 +121,11 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 	render() {
 		let userListView = <ApprovedUserList users={this.state.users} count={this.state.count}
 		 fetchUserList={this.fetchUserList} queryData={this.queryData} history={this.props.history}
-		 loading={this.state.loading}/>;
+		 loading={this.state.loading} next={this.state.next} previous={this.state.previous} />;
 		if (this.state.viewType === Common.actionType.request) {
 			userListView = <UserRequestList users={this.state.users} count={this.state.count}
-			 fetchUserList={this.fetchUserList} queryData={this.queryData} history={this.props.history} 
-			 loading={this.state.loading} />;
+			 fetchUserList={this.fetchUserList} queryData={this.queryData} history={this.props.history}
+			 loading={this.state.loading} next={this.state.next} previous={this.state.previous} />;
 		}
 		return (
 		<div>

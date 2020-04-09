@@ -67,7 +67,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					<NavItem>
 					  <NavLink href='#'>Culture Calendar</NavLink>
 					</NavItem>
-		
+
 					<UncontrolledDropdown nav inNavbar>
 					  <DropdownToggle nav className='caret'>
 						About IVOW
@@ -76,14 +76,14 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 						<a href='/'>
 						Culture-IQ by IVOW
 						</a>
-					
+
 						<a href='/'>
 						How it Works
 						</a>
 						<a href='/'>
 						Our Mission
 						</a>
-			
+
 					  </DropdownMenu>
 					</UncontrolledDropdown>
 				  </Nav>
@@ -113,7 +113,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 				</Collapse>
 			  </Navbar>
 				</div>
-			  
+
 			</div>
 		  );
 	}
