@@ -72,6 +72,8 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			let searchQuery = `?viewType=${this.queryData.viewType}`;
 			if (this.queryData.status) {
 				searchQuery = `${searchQuery}&status=${this.queryData.status}`;
+			} else {
+				searchQuery = `${searchQuery}&status=${this.status}`;
 			}
 			if (this.queryData.page) {
 				searchQuery = `${searchQuery}&page=${this.queryData.page}`;
@@ -99,7 +101,11 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			}
 			const paginationBasic = (
 					<div>
-						<Pagination>{items}</Pagination>
+						<Pagination>
+							{(totalPage > Common.one) ? <Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> : ''}
+							{items}
+							{(totalPage > Common.one) ? <Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> : ''}
+						</Pagination>
 					</div>
 			);
 

@@ -69,7 +69,7 @@ class Home extends React.Component {
 										</div>
 									</div>
 								</div>
-							
+
 								</div>
 							</div>
 
@@ -202,7 +202,7 @@ class Home extends React.Component {
 									<span>Our <br></br>Mission</span>
 									<h3>Our <br></br>Mission</h3>
 								</div>
-							
+
 								</div>
 								<p>At IVOW AI, our mission is to make data culturally relevant.</p>
 								<p>IVOW stands for Intelligent Voices of Wisdom.</p>
@@ -215,10 +215,10 @@ class Home extends React.Component {
 										<div className='our-mission-img'>
 										<img src='/assets/images/mission.png' alt='Mission' />
 										</div>
-										
+
 										</div>
 									</div>
-							
+
 								</div>
 							</div>
 
@@ -256,8 +256,8 @@ class Home extends React.Component {
 
 
 							</div>
-				
-					
+
+
 
 
 						<Footer />
