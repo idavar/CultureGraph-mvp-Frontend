@@ -157,7 +157,7 @@ class Auth extends React.Component<Props, AuthState> {
 							<div className='user-form-inner'>
 							{/*  page close icon start here */}
 							<span className='close-icon'>
-								<a href='/signup'><img src='/assets/images/close.png' alt='Close Icon' /></a>
+								<a href='/'><img src='/assets/images/close.png' alt='Close Icon' /></a>
 							</span>
 							{/*  page close icon end here */}
 							<h2>Sign In</h2>

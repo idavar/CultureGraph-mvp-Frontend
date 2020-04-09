@@ -9,4 +9,6 @@ export interface UserListProps {
 	queryData: SearchQuery;
 	history: History;
 	loading: boolean;
+	next: string | null;
+	previous: string | null;
 }

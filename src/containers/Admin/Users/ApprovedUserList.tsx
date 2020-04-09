@@ -88,7 +88,11 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 				}
 				const paginationBasic = (
 						<div>
-							<Pagination>{items}</Pagination>
+							<Pagination>
+							{(totalPage > Common.one) ? <Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> : ''}
+								{items}
+							{(totalPage > Common.one) ? <Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> : '' }
+							</Pagination>
 						</div>
 				);
 		return (<div>
@@ -117,10 +121,10 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 		<Table responsive className='listing-table'>
 	<thead>
 		<tr>
-			<th>User Name</th>
+			<th>User Name <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 			<th>Email Id</th>
-			<th>Company Name</th>
-			<th>Added On</th>
+			<th>Company Name <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+			<th>Added On <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 			<th>User Status</th>
 		</tr>
 	</thead>
@@ -142,6 +146,7 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 						<span>Active</span>
 						<span>Block</span>
 				</span>
+				<a></a>
 	</label>
 
 
@@ -153,7 +158,7 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 	</tbody>
 </Table>
 <div className='pagination-block'>
-{paginationBasic}
+	{paginationBasic}
 </div>
 			</div>
 				</div>);

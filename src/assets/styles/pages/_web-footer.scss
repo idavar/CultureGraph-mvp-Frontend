@@ -1,0 +1,27 @@
+
+footer{
+  padding: 20px 0 30px 0;
+  background: $navy-blue2;
+
+  .social-links{
+    margin-bottom: 20px;
+    a{
+      margin: 0 10px;
+    }
+  }
+
+  p{
+    font-size: $font-16;
+    font-family:  $source-regular;
+    color: $off-white;
+    text-transform: uppercase;
+    margin: 0;
+
+    a{
+      font-family:  $source-bold;
+      color: $off-white;
+      border-bottom: 1px solid;
+      margin-left: 5px;
+    }
+  }
+}

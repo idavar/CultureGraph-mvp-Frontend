@@ -72,6 +72,8 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			let searchQuery = `?viewType=${this.queryData.viewType}`;
 			if (this.queryData.status) {
 				searchQuery = `${searchQuery}&status=${this.queryData.status}`;
+			} else {
+				searchQuery = `${searchQuery}&status=${this.status}`;
 			}
 			if (this.queryData.page) {
 				searchQuery = `${searchQuery}&page=${this.queryData.page}`;
@@ -99,7 +101,11 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			}
 			const paginationBasic = (
 					<div>
-						<Pagination>{items}</Pagination>
+						<Pagination>
+							{(totalPage > Common.one) ? <Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> : ''}
+							{items}
+							{(totalPage > Common.one) ? <Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> : ''}
+						</Pagination>
 					</div>
 			);
 
@@ -109,7 +115,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 					acceptRejectButton = (<span><Button variant='danger' onClick={() => { this.onAcceptReject(props.data, Common.requestAction.reject); }}>Reject</Button>
 				<Button variant='primary' onClick={() => { this.onAcceptReject(props.data, Common.requestAction.accept); }}>Approve</Button></span>);
 				} else if (props.data.status === Common.requestStatus.rejected) {
-					acceptRejectButton = (<span><Button variant='danger'>Rejected</Button>
+					acceptRejectButton = (<span><Button className='reject-disable' variant='danger'>Rejected</Button>
 				<Button variant='primary' onClick={() => { this.onAcceptReject(props.data, Common.requestAction.edit); }}>Edit Status</Button></span>);
 				}
 				return acceptRejectButton;
@@ -142,12 +148,12 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 		<Table responsive className='listing-table'>
 						<thead>
 							<tr>
-								<th>User Name</th>
-								<th>Email Id</th>
-								<th>Company Name</th>
-								<th>Requested on</th>
-								<th>Updated on</th>
-											<th>Actions</th>
+								<th>User Name <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+								<th>Email Id </th>
+								<th>Company Name <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+								<th>Requested on <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+								<th>Updated on <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+								<th>Actions </th>
 							</tr>
 						</thead>
 						<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td colSpan={6}>No user request data found!</td></tr> :

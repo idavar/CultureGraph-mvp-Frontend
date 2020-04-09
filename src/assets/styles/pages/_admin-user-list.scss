@@ -103,6 +103,14 @@ tbody{
     border: 0!important;
     padding: 20px 20px 40px 20px;
     vertical-align: top!important;
+    white-space: nowrap;
+
+    span{
+      &.sorting{
+        margin-left: 10px;
+        cursor: pointer;
+      }
+    }
   }
 
   td{
@@ -147,6 +155,14 @@ tbody{
   }
 
   .btn{
+    font-family:  $source-semibold;
+    padding: 0;
+    min-width:100px;
+
+    &.reject-disable{
+      border: 0!important;
+      pointer-events: none;
+    }
 
     &.btn-danger{
       background: transparent;
@@ -337,6 +353,10 @@ tbody{
   color: #fff;
       left:100%;
       margin-left: 0
+    }
+
+    .table-responsive{
+      min-height:500px;
     }
 
 
