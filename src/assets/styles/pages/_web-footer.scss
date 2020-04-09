@@ -7,6 +7,7 @@ footer{
     margin-bottom: 20px;
     a{
       margin: 0 10px;
+   
     }
   }
 
@@ -20,6 +21,7 @@ footer{
     a{
       font-family:  $source-bold;
       color: $off-white;
+      font-weight: normal;
       border-bottom: 1px solid;
       margin-left: 5px;
     }

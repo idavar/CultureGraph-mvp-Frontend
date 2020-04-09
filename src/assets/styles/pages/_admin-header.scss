@@ -9,7 +9,7 @@
     a{
       font-size: $font-16;
       color:$light-black1;
-      font-family: $font-regular;
+      font-family: $source-regular;
       letter-spacing: 0.57px;
       padding: 24px 0;
       margin: 0 40px;
@@ -19,7 +19,6 @@
       &.active{
         color: $light-blue;
         font-family:  $source-bold;
-        font-weight: bold;
 
         &:before{
           content: '';

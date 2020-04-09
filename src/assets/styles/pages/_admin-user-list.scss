@@ -7,7 +7,6 @@
   h1{
     font-size: $font-26;
     font-family:  $source-bold;
-    font-weight: bold;
     color: $navy-blue;
   }
 
@@ -99,7 +98,7 @@ tbody{
     opacity: 0.5;
     font-size: $font-15;
     font-family:  $source-semibold;
-    font-weight: 600;
+    font-weight: normal;
     border: 0!important;
     padding: 20px 20px 40px 20px;
     vertical-align: top!important;
@@ -218,8 +217,15 @@ tbody{
 
     .page-item{
       margin: 0 5px;
-      border: 1px solid rgba($color:$navy-blue, $alpha: 0.2);
+      border: 0;
       border-radius: 5px;
+
+  
+        .page-link{
+          border:2px solid $light-gray3;
+          border-radius:5px;
+        
+      }
       .page-link{
         font-family:  $source-semibold;
         font-size: $font-14;
@@ -227,9 +233,10 @@ tbody{
         color: $navy-blue;
         opacity: 0.8;
         padding: 8px 12px;
+        border-radius:5px;
 
         &:hover{
-          color: #fff;
+          color: $white;
           border-color: $light-blue1;
           background: $light-blue1;
         }
@@ -243,9 +250,44 @@ tbody{
       span{
         &.page-link{
           display: block;
-          color: #fff;
+          color: $white;
           border-color: $light-blue1;
-          background: $light-blue1;
+          background-color: $light-blue1;
+        }
+      }
+    }
+
+    .panination-prev{
+      .page-item{
+        &.disabled{
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+        .page-link{
+          border: 0;
+          background-color: inherit;
+          font-size:0;
+          background: url(../../images/pagination-prev.png) no-repeat;
+          background-position: center center;
+          height: 23px;
+          display: inline-block;
+        }
+      }
+    }
+    .panination-next{
+      .page-item{
+        &.disabled{
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+        .page-link{
+          border: 0;
+          background-color: inherit;
+          font-size:0;
+          background: url(../../images/pagination-next.png) no-repeat;
+          background-position: center center;
+          height: 23px;
+          display: inline-block;
         }
       }
     }
