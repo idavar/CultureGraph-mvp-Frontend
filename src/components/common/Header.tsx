@@ -91,6 +91,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					{this.props.isAuthenticated ?
 					<Nav className='navbar-right' navbar>
 					<UncontrolledDropdown nav inNavbar>
+						{/* <div>
 					  <DropdownToggle nav className='caret'>
 					  {this.props.full_name}
 					  </DropdownToggle>
@@ -102,6 +103,11 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 							Sign Out
 						</Link>
 					  </DropdownMenu>
+						</div> */}
+						<div className='header-signup-section'>
+							<a href='/'>Become a researcher</a>
+							<a href='/' className='signin-btn'>Sign In</a>
+						</div>
 					</UncontrolledDropdown>
 				  </Nav>
 					:

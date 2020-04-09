@@ -142,6 +142,7 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 						<span>Active</span>
 						<span>Block</span>
 				</span>
+				<a></a>
 	</label>
 
 
