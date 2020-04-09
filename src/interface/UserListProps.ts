@@ -8,4 +8,5 @@ export interface UserListProps {
 	fetchUserList: Function;
 	queryData: SearchQuery;
 	history: History;
+	loading: boolean;
 }

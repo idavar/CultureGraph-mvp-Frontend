@@ -150,7 +150,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 											<th>Actions</th>
 							</tr>
 						</thead>
-						<tbody>{!this.props.users.length ? <tr key={Common.zero}><td colSpan={6}>No user request data found!</td></tr> :
+						<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td colSpan={6}>No user request data found!</td></tr> :
 						this.props.users.map((doc: UserData, index: number) => (<tr key={index}>
 								<td>{doc.first_name}</td>
 								<td>{doc.email}</td>

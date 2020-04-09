@@ -25,6 +25,7 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 			viewType: Common.actionType.verified,
 			users: [],
 			count: Common.zero,
+			loading: false,
 		};
 	}
 
@@ -96,7 +97,9 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 		if (!query) {
 			query = this.setSearchData();
 		}
+		this.setState({loading: true});
 		apiReq.adminUserSearch({query}).then(result => {
+			this.setState({loading: false});
 			if (result.status === Common.status.processed) {
 				this.setState({count: result.data.count});
 				this.setState({users: result.data.results});
@@ -105,6 +108,7 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 				this.setState({users: []});
 			}
 		}).catch(err => {
+			this.setState({loading: false});
 			this.setState({count: Common.zero});
 			this.setState({users: []});
 		});
@@ -112,10 +116,12 @@ class ManageUsers extends React.Component<ManageUserProps, ManageUserState> {
 
 	render() {
 		let userListView = <ApprovedUserList users={this.state.users} count={this.state.count}
-		 fetchUserList={this.fetchUserList} queryData={this.queryData} history={this.props.history} />;
+		 fetchUserList={this.fetchUserList} queryData={this.queryData} history={this.props.history}
+		 loading={this.state.loading}/>;
 		if (this.state.viewType === Common.actionType.request) {
 			userListView = <UserRequestList users={this.state.users} count={this.state.count}
-			 fetchUserList={this.fetchUserList} queryData={this.queryData} history={this.props.history} />;
+			 fetchUserList={this.fetchUserList} queryData={this.queryData} history={this.props.history} 
+			 loading={this.state.loading} />;
 		}
 		return (
 		<div>
