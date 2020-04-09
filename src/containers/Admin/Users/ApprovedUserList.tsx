@@ -121,10 +121,10 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 		<Table responsive className='listing-table'>
 	<thead>
 		<tr>
-			<th>User Name</th>
+			<th>User Name <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 			<th>Email Id</th>
-			<th>Company Name</th>
-			<th>Added On</th>
+			<th>Company Name <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+			<th>Added On <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 			<th>User Status</th>
 		</tr>
 	</thead>
