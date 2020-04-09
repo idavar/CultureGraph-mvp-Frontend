@@ -5,19 +5,83 @@ import Pagination from 'react-bootstrap/Pagination';
 import { UserData } from '../../../interface/UserData';
 import { UserListProps } from '../../../interface/UserListProps';
 import Common from '../../../constant/common';
+import { SearchQuery } from './../../../interface/SearchQuery';
 
-class ApprovedUserList extends React.Component<UserListProps> {
+
+interface ApprovedUserState {
+	search: string;
+	is_active: string;
+}
+
+class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState> {
+	public queryData: SearchQuery = Common.defaultQueryData;
 	constructor(props: UserListProps) {
 		super(props);
-		this.state = {};
+		this.state = {
+			search: '',
+			is_active: ''
+		};
+		this.submitSearch = this.submitSearch.bind(this);
+	}
+
+	componentDidMount () {
+		setTimeout(() => {
+			this.setState({search: this.queryData.search ? this.queryData.search : ''});
+			this.setState({is_active: this.queryData.is_active ? this.queryData.is_active : ''});
+		}, Common.zero);
+	}
+
+	sortUser = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const is_active = e.target.value;
+		this.setState({is_active});
+		this.queryData.is_active = is_active;
+		this.queryData.page = Common.one;
+		this.submitSearch();
+	}
+
+	enterText = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const search = e.target.value;
+		this.setState({search});
+		this.queryData.search = search;
+		this.queryData.page = Common.one;
+	}
+
+	onPageClick = (page: number) => {
+		this.queryData.page = page;
+		this.submitSearch();
+	}
+
+	onEnter = (e: any) => {
+		if (e.key === 'Enter') {
+			this.submitSearch();
 		}
+		this.queryData.page = Common.one;
+		return;
+	}
+
+	submitSearch = () => {
+		const searchUrl = `/admin/manage-users/`;
+		let searchQuery = `?page=${this.queryData.page}&status=${Common.requestStatus.approved}`;
+		if (this.queryData.is_active) {
+			searchQuery = `${searchQuery}&is_active=${this.queryData.is_active}`;
+		}
+		if (this.queryData.search) {
+			searchQuery = `${searchQuery}&search=${this.queryData.search}`;
+		}
+		if (this.queryData.ordering) {
+			searchQuery = `${searchQuery}&ordering=${this.queryData.ordering}`;
+		}
+		this.props.fetchUserList(searchQuery);
+		this.props.history.push(`${searchUrl}${searchQuery}`);
+	}
+
 	render() {
-				const active = this.props.page;
+				const active = this.props.queryData.page;
 				const items = [];
 				const totalPage = Math.ceil(this.props.count / Common.pageLimit);
 				for (let pn = Common.one; pn <= totalPage; pn++) {
 				items.push(
-				<Pagination.Item onClick={() => { this.props.fetchUserList({page: pn}); }} key={pn} active={pn === active}>
+				<Pagination.Item onClick={() => { this.onPageClick(pn); }} key={pn} active={pn === active}>
 						{pn}
 				</Pagination.Item>,
 				);
@@ -31,20 +95,21 @@ class ApprovedUserList extends React.Component<UserListProps> {
 			<div className='custom-container'>
 			<div className='list-header'>
 		<h1>Manage Users {this.props.count ? `(${this.props.count})` : ''}</h1>
-				<Form>
+				<Form onSubmit={(e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); }}>
 				<span className='sort-user-title'>Sort Users</span>
 				<div className='form-group sort-user'>
-					<select className='form-control'>
-						<option>All Users</option>
-						<option>Active Users</option>
-						<option>Block Users</option>
+					<select className='form-control' name='is_active' value={this.state.is_active} onChange={this.sortUser}>
+						<option value=''>All Users</option>
+						<option value='True'>Active Users</option>
+						<option value='False'>Block Users</option>
 					</select>
 					<img  src='/assets/images/caret-down-light.png' alt='Caret Icon' />
 				</div>
 				<Form.Group controlId='searchUser'>
 				<Form.Label>Search Here</Form.Label>
-				<Form.Control type='text' className='search-user' placeholder='Search Here' />
-				<span className='search-icon'><img className='logo' src='/assets/images/search-icon.png' alt='Search Icon' /></span>
+				<Form.Control type='text' className='search-user' placeholder='Search Here'
+				 value={this.state.search} onChange={this.enterText} onKeyDown={this.onEnter} name='search'/>
+				<span className='search-icon' onClick={this.submitSearch}><img className='logo' src='/assets/images/search-icon.png' alt='Search Icon' /></span>
 				</Form.Group>
 				</Form>
 		</div>
@@ -59,7 +124,7 @@ class ApprovedUserList extends React.Component<UserListProps> {
 			<th>User Status</th>
 		</tr>
 	</thead>
-	<tbody>{
+	<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td colSpan={6}>No user record found!</td></tr> :
 	this.props.users.map((doc: UserData, index: number) => (<tr key={index}>
 			<td>{doc.first_name}</td>
 			<td>{doc.email}</td>
@@ -77,7 +142,6 @@ class ApprovedUserList extends React.Component<UserListProps> {
 						<span>Active</span>
 						<span>Block</span>
 				</span>
-				<a></a>
 	</label>
 
 

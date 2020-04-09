@@ -4,4 +4,5 @@ export interface HeaderProps {
 		isAdmin: boolean;
 		full_name: string | undefined;
 		onLogout: () => void;
+		viewType?: string | null;
 }

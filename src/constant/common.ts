@@ -7,7 +7,7 @@ const Common = {
 		companyLength: 250,
 		minPassword: 6,
 		maxPassword: 16,
-		rejectReasonLength: 500,
+		rejectReasonLength: 200,
 		status: {
 			processed: 200,
 			success: 201,
@@ -39,6 +39,16 @@ const Common = {
 			accept: 'accept',
 			reject: 'reject',
 			edit: 'edit'
+		},
+		defaultQueryData: {
+			viewType: '',
+			page: 1,
+			next: null,
+			previous: null,
+			search: null,
+			status: null,
+			is_active: null,
+			ordering: null
 		},
 		requestTitle: {
 			accept: 'Accept Request',
