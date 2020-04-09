@@ -14,4 +14,5 @@ export interface UserData {
 		status: number;
 		created_at: string;
 		updated_at: string;
+		request_updated_at: string;
 }

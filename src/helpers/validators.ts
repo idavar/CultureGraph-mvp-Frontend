@@ -46,6 +46,7 @@ export const checkValidite = (value: string, rules: InputRule, messages: ErrorMe
 		}
 
 		if ( rules.isEmail ) {
+				value = value ? value.toLocaleLowerCase() : value;
 				const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 				validationData.isValid = pattern.test( value ) && validationData.isValid;
 				setErrorMessage(validationData, messages.isEmail, validationData.isValid);

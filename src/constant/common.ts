@@ -18,6 +18,7 @@ const Common = {
 		zero: 0,
 		one: 1,
 		alertTimeout: 3000,
+		na: 'NA',
 		toastConfig : {
 			autoClose: 2000,
 			draggable: false,
