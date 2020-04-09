@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'react-moment';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Pagination from 'react-bootstrap/Pagination';
@@ -142,7 +143,11 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 			<td>{doc.first_name}</td>
 			<td>{doc.email}</td>
 			<td>{doc.company}</td>
-			<td>{doc.created_at}</td>
+			<td>
+					<Moment format={`${Common.dateFormat}`}>
+							{doc.created_at}
+					</Moment>
+			</td>
 			<td>
 			<Form>
 			<div className='toggle-switch'>
