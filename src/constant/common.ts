@@ -5,7 +5,7 @@ const Common = {
 		nameLength: 150,
 		emailLength: 150,
 		companyLength: 250,
-		minPassword: 6,
+		minPassword: 8,
 		maxPassword: 16,
 		rejectReasonLength: 200,
 		dateFormat: 'MMM DD, YYYY',
