@@ -15,6 +15,9 @@ interface ApprovedUserState {
 
 class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState> {
 	public queryData: SearchQuery = Common.defaultQueryData;
+	public firstName = 'first_name';
+	public createdAt = 'created_at';
+	public company = 'company';
 	constructor(props: UserListProps) {
 		super(props);
 		this.state = {
@@ -57,6 +60,11 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 		}
 		this.queryData.page = Common.one;
 		return;
+	}
+
+	onOrderChange = (order: string) => {
+		this.queryData.ordering = order;
+		this.submitSearch();
 	}
 
 	submitSearch = () => {
@@ -121,10 +129,11 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 		<Table responsive className='listing-table'>
 	<thead>
 		<tr>
-			<th>User Name <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+			<th>User Name <span className='sorting'	onClick={() => {this.onOrderChange((this.queryData.ordering === this.firstName) ? `-${this.firstName}` : this.firstName); }} >
+				<img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 			<th>Email Id</th>
-			<th>Company Name <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
-			<th>Added On <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+			<th>Company Name <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.company) ? `-${this.company}` : this.company); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+			<th>Added On <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.createdAt) ? `-${this.createdAt}` : this.createdAt); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 			<th>User Status</th>
 		</tr>
 	</thead>
