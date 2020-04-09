@@ -142,12 +142,12 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 		<Table responsive className='listing-table'>
 						<thead>
 							<tr>
-								<th>User Name</th>
-								<th>Email Id</th>
-								<th>Company Name</th>
-								<th>Requested on</th>
-								<th>Updated on</th>
-											<th>Actions</th>
+								<th>User Name <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+								<th>Email Id </th>
+								<th>Company Name <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+								<th>Requested on <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+								<th>Updated on <span className='sorting'><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+								<th>Actions </th>
 							</tr>
 						</thead>
 						<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td colSpan={6}>No user request data found!</td></tr> :

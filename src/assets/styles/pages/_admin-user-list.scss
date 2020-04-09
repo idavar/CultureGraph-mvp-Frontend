@@ -103,6 +103,14 @@ tbody{
     border: 0!important;
     padding: 20px 20px 40px 20px;
     vertical-align: top!important;
+    white-space: nowrap;
+
+    span{
+      &.sorting{
+        margin-left: 10px;
+        cursor: pointer;
+      }
+    }
   }
 
   td{
