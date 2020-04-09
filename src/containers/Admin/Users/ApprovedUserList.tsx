@@ -99,9 +99,9 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 				const paginationBasic = (
 						<div>
 							<Pagination>
-							{(totalPage > Common.one) ? <Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> : ''}
+							{(totalPage > Common.one) ? <small className='panination-prev'><Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> </small>: ''}
 								{items}
-							{(totalPage > Common.one) ? <Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> : '' }
+							{(totalPage > Common.one) ? <small className='panination-next'><Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> </small>: '' }
 							</Pagination>
 						</div>
 				);
@@ -140,7 +140,7 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 			<th>User Status</th>
 		</tr>
 	</thead>
-	<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td colSpan={6}>No user record found!</td></tr> :
+	<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td className='no-record-found' colSpan={6}>No user record found!</td></tr> :
 	this.props.users.map((doc: UserData, index: number) => (<tr key={index}>
 			<td>{doc.first_name}</td>
 			<td>{doc.email}</td>
