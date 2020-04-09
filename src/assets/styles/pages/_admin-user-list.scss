@@ -105,6 +105,11 @@ tbody{
     vertical-align: top!important;
     white-space: nowrap;
 
+    &.width-200{
+      width:200px;
+      text-align: center;
+    }
+
     span{
       &.sorting{
         margin-left: 10px;
