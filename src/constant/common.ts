@@ -40,6 +40,16 @@ const Common = {
 			reject: 'reject',
 			edit: 'edit'
 		},
+		defaultQueryData: {
+			viewType: '',
+			page: 1,
+			next: null,
+			previous: null,
+			search: null,
+			status: null,
+			is_active: null,
+			ordering: null
+		},
 		requestTitle: {
 			accept: 'Accept Request',
 			reject: 'Reject Request',

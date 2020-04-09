@@ -7,20 +7,31 @@ import ActionModal from './ActionModal';
 import { UserData } from '../../../interface/UserData';
 import { UserListProps } from '../../../interface/UserListProps';
 import Common from '../../../constant/common';
+import { SearchQuery } from './../../../interface/SearchQuery';
 
 interface RequestState {
 		isShow: boolean;
+		search: string;
+		status: string;
 }
 
 class UserRequestList extends React.Component<UserListProps, RequestState> {
+	public queryData: SearchQuery = Common.defaultQueryData;
 		modalRef = React.createRef<ActionModal>();
 		private status = `${Common.requestStatus.pending},${Common.requestStatus.rejected}`;
 		constructor(props: UserListProps) {
 		super(props);
 		this.state = {
-			isShow: true
-				};
+			isShow: true,
+			search: '',
+			status: ''
+			};
 			this.submitSearch = this.submitSearch.bind(this);
+		}
+
+		componentDidMount () {
+			this.setState({search: this.queryData.search ? this.queryData.search : ''});
+			this.setState({status: this.queryData.status ? this.queryData.status : ''});
 		}
 
 		onAcceptReject = (data: UserData, requestAction: string) => {
@@ -29,17 +40,59 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 				}
 		}
 
-		submitSearch = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-			console.log(e.target.value);
+		sortUser = (e: React.ChangeEvent<HTMLSelectElement>) => {
+			const status = e.target.value;
+			this.setState({status});
+			this.queryData.status = status;
+			this.queryData.page = Common.one;
+			this.submitSearch();
+		}
+
+		enterText = (e: React.ChangeEvent<HTMLInputElement>) => {
+			const search = e.target.value;
+			this.setState({search});
+			this.queryData.search = search;
+			this.queryData.page = Common.one;
+		}
+
+		onPageClick = (page: number) => {
+			this.queryData.page = page;
+			this.submitSearch();
+		}
+
+		onEnter = (e: any) => {
+			this.queryData.page = Common.one;
+			if (e.key === 'Enter') {
+				this.submitSearch();
+			}
+		}
+
+		submitSearch = () => {
+			const searchUrl = `/admin/manage-users/`;
+			let searchQuery = `?viewType=${this.queryData.viewType}`;
+			if (this.queryData.status) {
+				searchQuery = `${searchQuery}&status=${this.queryData.status}`;
+			}
+			if (this.queryData.page) {
+				searchQuery = `${searchQuery}&page=${this.queryData.page}`;
+			}
+			if (this.queryData.search) {
+				searchQuery = `${searchQuery}&search=${this.queryData.search}`;
+			}
+			if (this.queryData.ordering) {
+				searchQuery = `${searchQuery}&ordering=${this.queryData.ordering}`;
+			}
+			this.props.fetchUserList(searchQuery);
+			this.props.history.push(`${searchUrl}${searchQuery}`);
 		}
 
 	render() {
-			const active = this.props.page;
+			const active = this.props.queryData.page;
 			const items = [];
 			const totalPage = Math.ceil(this.props.count / Common.pageLimit);
 			for (let page = Common.one; page <= totalPage; page++) {
 			items.push(
-			<Pagination.Item onClick={() => { this.props.fetchUserList({page: page}); }} key={page} active={page === active}>
+			<Pagination.Item onClick={() => { this.onPageClick(page); }} key={page} active={page === active}>
 					{page}
 			</Pagination.Item>,
 			);
@@ -67,21 +120,21 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			<div className='custom-container'>
 			<div className='list-header'>
 			<h1>Manage Request {this.props.count ? `(${this.props.count})` : ''}</h1>
-				<Form>
+				<Form onSubmit={(e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); }}>
 				<span className='sort-user-title'>Sort Request</span>
 				<div className='form-group  sort-user'>
-					<select className='form-control' name='status' onChange={this.submitSearch}>
+					<select className='form-control' name='status' value={this.state.status} onChange={this.sortUser}>
 						<option value={this.status}>All Request</option>
-						<option value={Common.requestStatus.pending}>Pending Request</option>
-						<option value={Common.requestStatus.rejected}>Rejected Request</option>
+						<option value={Common.requestStatus.pending} >Pending Request</option>
+						<option value={Common.requestStatus.rejected} >Rejected Request</option>
 					</select>
 					<img  src='/assets/images/caret-down-light.png' alt='Caret Icon' />
 				</div>
 				<Form.Group controlId='searchUser'>
 				<Form.Label>Search Here</Form.Label>
-				<Form.Control type='text' className='search-user' placeholder='Search Here' name='query'
-				 onChange={this.submitSearch} />
-				<span className='search-icon'><img className='logo' src='/assets/images/search-icon.png' alt='Search Icon' /></span>
+				<Form.Control type='text' className='search-user' placeholder='Search Here' name='search'
+				 onChange={this.enterText} onKeyDown={this.onEnter} value={this.state.search} />
+				<span className='search-icon' onClick={this.submitSearch}><img className='logo' src='/assets/images/search-icon.png' alt='Search Icon' /></span>
 				</Form.Group>
 				</Form>
 		</div>
@@ -97,7 +150,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 											<th>Actions</th>
 							</tr>
 						</thead>
-						<tbody>{
+						<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td colSpan={6}>No user request data found!</td></tr> :
 						this.props.users.map((doc: UserData, index: number) => (<tr key={index}>
 								<td>{doc.first_name}</td>
 								<td>{doc.email}</td>
