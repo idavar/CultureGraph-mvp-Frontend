@@ -25,7 +25,7 @@ const Input = ( props: any ) => {
 		}
 
 		if (props.elementConfig.type === 'password') {
-			showPassword = <span className='show-action' onClick={togglePassword}>{isHide ? 'Show' : 'Hide'}</span>;
+			showPassword = <span className={props.value ? `show-action` : `ui-hide`} onClick={togglePassword}>{isHide ? 'Show' : 'Hide'}</span>;
 		}
 
 		switch ( props.elementType ) {
