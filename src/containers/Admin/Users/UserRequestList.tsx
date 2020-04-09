@@ -163,7 +163,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 								<th>Company Name <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.company) ? `-${this.company}` : this.company); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 								<th>Requested on <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.createdAt) ? `-${this.createdAt}` : this.createdAt); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 								<th>Updated on <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.updatedAt) ? `-${this.updatedAt}` : this.updatedAt); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
-								<th>Actions </th>
+								<th className='width-200'>Actions </th>
 							</tr>
 						</thead>
 						<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td colSpan={6}>No user request data found!</td></tr> :
