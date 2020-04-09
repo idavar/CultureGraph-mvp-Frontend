@@ -264,6 +264,29 @@
 .explore-section{
   background: $off-white;
   padding-bottom:40px;
+  position: relative;
+
+  &:before{
+    content: '';
+    position: absolute;
+    top:60%;
+    left: 0;
+    width:148px;
+    height:206px;
+    background: url(../../images/dotted-pattern.png) no-repeat;
+
+  }
+
+  &:after{
+    content: '';
+    position: absolute;
+    top:35%;
+    right: 0;
+    width:148px;
+    height:206px;
+    background: url(../../images/dotted-pattern.png) no-repeat;
+
+  }
 
   .row{
     margin-top: 20px!important;
