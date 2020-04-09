@@ -108,6 +108,89 @@ class Home extends React.Component {
 							</div>
 
 
+							<div className='culture-map-section'>
+
+								<div className='container'>
+								<div className='watermark-title-section'>
+								<div className='watermark-title'>
+									<span>Culture Map</span>
+									<h3>Culture Map</h3>
+								</div>
+								<p>Click on dot to explore results in more detail</p>
+								</div>
+								<img src='/assets/images/map.png' alt='Map' />
+								</div>
+
+							</div>
+
+							<div className='how-it-work-section'>
+
+<div className='container'>
+<div className='watermark-title-section'>
+<div className='watermark-title'>
+	<span>How It Works</span>
+	<h3>How It Works</h3>
+</div>
+<p>We take commonly-overlooked data from cultural and subcultural psychographics: food, music, arts, sports, holidays, and festivals. Then we use machine learning to identify and segment consumer audiences in real-time, allowing you to refine and direct your message to the most relevant customers.</p>
+</div>
+
+<div className='work-graph'>
+									<div className='work-graph-row'>
+									<div className='img-block text-right'>
+									<img src='/assets/images/work1.png' alt='graph1' />
+									</div>
+									
+									<div className='graph-no'>
+										<span> <small>01</small></span>
+									</div>
+								
+
+									<div className='content-block text-left'>
+										<p>IVOW's CultureGraph helps you <br></br>identify, analyze, and serve key new <br></br>customer segments using public data.</p>
+									</div>
+								
+							</div>
+							<div className='work-graph-row'>
+								
+
+							<div className='content-block text-right'>
+										<p>IVOW's CultureGraph provides brands with cultural factors in support of corporate <br></br>decision-making processes.</p>
+									</div>
+									
+									<div className='graph-no'>
+										<span> <small>02</small></span>
+									</div>
+								
+
+
+									<div className='img-block text-left'>
+									<img src='/assets/images/work2.png' alt='graph1' />
+									</div>
+								
+							</div>
+
+							<div className='work-graph-row'>
+									<div className='img-block text-right'>
+									<img src='/assets/images/work3.png' alt='graph1' />
+									</div>
+									
+									<div className='graph-no'>
+										<span> <small>03</small></span>
+									</div>
+								
+
+									<div className='content-block text-left'>
+										<p>IVOW's CultureGraph informs<br></br> culturally-directed content strategy development.</p>
+									</div>
+								
+							</div>
+							</div>
+
+</div>
+
+</div>
+
+
 							<div className='our-mission-section'>
 								<div className='container'>
 
@@ -138,6 +221,39 @@ class Home extends React.Component {
 
 								</div>
 							</div>
+
+							<div className='our-client-section'>
+
+<div className='container'>
+<div className='watermark-title-section'>
+<div className='watermark-title'>
+	<span>Clients</span>
+	<h3>Clients</h3>
+</div>
+</div>
+
+<div className='client-wrap'>
+	<div className='client'>
+	<img src='/assets/images/client1.png' alt='Client 1' />
+	</div>
+	<div className='client'>
+	<img src='/assets/images/client2.png' alt='Client 2' />
+	</div>
+	<div className='client'>
+	<img src='/assets/images/client3.png' alt='Client 3' />
+	</div>
+	<div className='client'>
+	<img src='/assets/images/client4.png' alt='Client 4' />
+	</div>
+	<div className='client'>
+	<img src='/assets/images/client5.png' alt='Client 5' />
+	</div>
+	
+</div>
+</div>
+
+</div>
+
 
 							</div>
 
