@@ -17,6 +17,7 @@ interface ApprovedUserState {
 class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState> {
 	public queryData: SearchQuery = Common.defaultQueryData;
 	public firstName = 'first_name';
+	public email = 'email'
 	public createdAt = 'created_at';
 	public company = 'company';
 	constructor(props: UserListProps) {
@@ -98,9 +99,9 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 				const paginationBasic = (
 						<div>
 							<Pagination>
-							{(totalPage > Common.one) ? <Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> : ''}
+							{(totalPage > Common.one) ? <small className='panination-prev'><Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> </small>: ''}
 								{items}
-							{(totalPage > Common.one) ? <Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> : '' }
+							{(totalPage > Common.one) ? <small className='panination-next'><Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> </small>: '' }
 							</Pagination>
 						</div>
 				);
@@ -132,13 +133,14 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 		<tr>
 			<th>User Name <span className='sorting'	onClick={() => {this.onOrderChange((this.queryData.ordering === this.firstName) ? `-${this.firstName}` : this.firstName); }} >
 				<img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
-			<th>Email Id</th>
+			<th>Email Id <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.email) ? `-${this.email}` : this.email); }}>
+				<img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 			<th>Company Name <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.company) ? `-${this.company}` : this.company); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 			<th>Added On <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.createdAt) ? `-${this.createdAt}` : this.createdAt); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 			<th>User Status</th>
 		</tr>
 	</thead>
-	<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td colSpan={6}>No user record found!</td></tr> :
+	<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td className='no-record-found' colSpan={6}>No user record found!</td></tr> :
 	this.props.users.map((doc: UserData, index: number) => (<tr key={index}>
 			<td>{doc.first_name}</td>
 			<td>{doc.email}</td>

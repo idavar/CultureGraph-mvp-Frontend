@@ -37,7 +37,6 @@ class App extends Component<Props> {
 				<Switch>
 					<Route path='/admin/manage-users' exact component={ManageUsers}></Route>
 					<Route path='/html' exact component={HTML}></Route>
-					<Route path='/hash_code' exact component={EmailVerify}></Route>
 					<Route path='/no-page' exact component={PageNotFound}></Route>
 					<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
 					<Route path='/login' exact component={Auth}></Route>
@@ -58,7 +57,6 @@ class App extends Component<Props> {
 				privateRoute = (
 					<Switch>
 						<Route path='/html' exact component={HTML}></Route>
-						<Route path='/hash_code' exact component={EmailVerify}></Route>
 						<Route path='/no-page' exact component={PageNotFound}></Route>
 						<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
 						<Route path='/' exact component={Home}></Route>
@@ -69,6 +67,7 @@ class App extends Component<Props> {
 		}
 		const routes = (
 			<Switch>
+				<Route path='/hash_code' exact component={EmailVerify}></Route>
 				{privateRoute}
 				{publicRoute}
 				{adminRoute}

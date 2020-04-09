@@ -21,7 +21,6 @@
       font-size: $font-65;
       font-family: $source-bold;
       color: $theme-blue;
-      font-weight:bold;
       position: relative;
       margin-bottom: 15px;
 
@@ -179,14 +178,12 @@
     font-size:$font-90;
     color:$light-blue2;
     font-family:  $source-bold;
-    font-weight: bold;
   }
 
   h3{
     font-size:$font-40;
     color: $navy-blue;
     font-family:  $source-bold;
-    font-weight: bold;
     position: absolute;
     top: 57%;
     bottom: 0;
@@ -468,7 +465,6 @@ margin:50px 0;
         font-family:  $source-bold;
         color:$light-blue;
         font-size: $font-34;
-        font-weight: bold;
       }
     }
   }

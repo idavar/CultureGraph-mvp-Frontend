@@ -43,7 +43,6 @@
 		font-size: $font-36;
 		font-family: $source-bold;
 		color: $navy-blue;
-		font-weight: bold;
 		letter-spacing: 0.38px;
 		text-align: left;
 		line-height: 1.2;
@@ -84,7 +83,6 @@
 		h2 {
 			font-size: $font-36;
 			font-family: $source-bold;
-			font-weight: bold;
 			color: $navy-blue;
 			margin-bottom: 10px;
 		}
@@ -214,9 +212,9 @@ position: relative;
 
 	.show-action {
 		font-family: $source-semibold;
+		font-weight: normal;
 		color: $navy-blue;
 		font-size: $font-15;
-		font-weight: 600;
 		position: absolute;
 		z-index: 1;
 		right: 16px;
