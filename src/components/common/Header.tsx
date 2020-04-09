@@ -58,14 +58,14 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 				<Collapse isOpen={this.state.isOpen} navbar>
 				  <Nav className='mr-auto' navbar>
 					<NavItem>
-					  <NavLink href='/'>Trending Keywords</NavLink>
+					  <NavLink href='#'>Trending Keywords</NavLink>
 					</NavItem>
 					<NavItem>
-					  <NavLink href='/'>Culture Map</NavLink>
+					  <NavLink href='#'>Culture Map</NavLink>
 					</NavItem>
 
 					<NavItem>
-					  <NavLink href='/culture-calendar'>Culture Calendar</NavLink>
+					  <NavLink href='#'>Culture Calendar</NavLink>
 					</NavItem>
 		
 					<UncontrolledDropdown nav inNavbar>
@@ -88,23 +88,25 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					</UncontrolledDropdown>
 				  </Nav>
 
+					{this.props.isAuthenticated ?
 					<Nav className='navbar-right' navbar>
-					
 					<UncontrolledDropdown nav inNavbar>
 					  <DropdownToggle nav className='caret'>
-						Andrew
+					  {this.props.full_name}
 					  </DropdownToggle>
 					  <DropdownMenu right>
-						<a href='/'>
+						<Link to='#'>
 							Change Password
-						</a>
-				<a href='/'>
+						</Link>
+						<Link to='#' onClick={this.props.onLogout}>
 							Sign Out
-						</a>
-					
+						</Link>
 					  </DropdownMenu>
 					</UncontrolledDropdown>
 				  </Nav>
+					:
+					<div><a href='/signup'>Become a researcher</a><a href='/login'>Login</a></div>
+					}
 				</Collapse>
 			  </Navbar>
 				</div>
