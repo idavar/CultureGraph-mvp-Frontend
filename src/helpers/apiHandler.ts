@@ -5,7 +5,6 @@ import * as actions from '../store/actions/index';
 import ConfigData from '../constant/config';
 import * as session from '../store/actions/session';
 import Common from '../constant/common';
-import { Messages } from '../constant/messages';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -18,9 +17,7 @@ const {dispatch} = store; // direct access to redux store.
 axios.interceptors.response.use(response => {
 		return response;
 }, error => {
-		if (!error.respone) {
-			ToastError({msg: Messages.error.somethingWrong});
-		} else if (error.response.status === Common.status.authentication) {
+		if (error.response.status === Common.status.authentication) {
 			ToastError({msg: error.response.data.detail});
 			dispatch(actions.logout() as never);
 		} else {
