@@ -8,7 +8,7 @@ padding: 10px 0;
     background: none!important;
 
     .navbar-collapse{
-      margin-left: 150px;
+      margin-left: 130px;
     }
 
     .navbar-nav{
@@ -17,7 +17,7 @@ padding: 10px 0;
           font-size: $font-16;
           font-family:  $source-regular;
           color: $navy-blue;
-          padding:0 10px;
+          padding:9px 10px;
 
         }
       }
@@ -87,25 +87,46 @@ padding: 10px 0;
       }
     }
   }
-}
+  .caret{
+    position: relative;
+    &:after{
+      content:'';
+      position: absolute;
+      top: 10px;
+      right: -11px;
+      width:13px;
+      height:19px;
+      background: url(../../images/caret-down.png);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 13px;
+    }
+  }
+
+  
+.header-signup-section{
+
+  a{
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  .signin-btn{
+    background: $theme-blue;
+    color: $white!important;
+    padding: 9px 22px!important;
+    margin-left: 15px;
+    border-radius:5px;
 
 
-
-.caret{
-  position: relative;
-  &:after{
-    content:'';
-    position: absolute;
-    top: 2px;
-    right: -11px;
-    width:13px;
-    height:19px;
-    background: url(../../images/caret-down.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 13px;
   }
 }
+
+
+}
+
+
+
 
 
 

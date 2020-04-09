@@ -91,6 +91,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					<Nav className='navbar-right' navbar>
 					
 					<UncontrolledDropdown nav inNavbar>
+						{/* <div>
 					  <DropdownToggle nav className='caret'>
 						Andrew
 					  </DropdownToggle>
@@ -103,6 +104,11 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 						</a>
 					
 					  </DropdownMenu>
+						</div> */}
+						<div className='header-signup-section'>
+							<a href='/'>Become a researcher</a>
+							<a href='/' className='signin-btn'>Sign In</a>
+						</div>
 					</UncontrolledDropdown>
 				  </Nav>
 				</Collapse>

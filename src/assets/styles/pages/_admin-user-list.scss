@@ -147,6 +147,14 @@ tbody{
   }
 
   .btn{
+    font-family:  $source-semibold;
+    padding: 0;
+    min-width:100px;
+
+    &.reject-disable{
+      border: 0!important;
+      pointer-events: none;
+    }
 
     &.btn-danger{
       background: transparent;
@@ -337,6 +345,10 @@ tbody{
   color: #fff;
       left:100%;
       margin-left: 0
+    }
+
+    .table-responsive{
+      min-height:500px;
     }
 
 
