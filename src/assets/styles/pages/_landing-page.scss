@@ -14,6 +14,8 @@
   .banner-content{
     text-align: left; 
     padding :261px 0 200px 0;
+    position: relative;
+    z-index: 1;
 
     h1{
       font-size: $font-65;
@@ -96,6 +98,17 @@
     position: absolute;
     right: 0;
     top:90px;
+    
+
+    img{
+      @media (min-width:1100px) and (max-width:1200px){
+        max-width:570px;
+      }
+
+      @media (min-width:1200px) and (max-width:1300px){
+        max-width:690px;
+      }
+    }
   }
 
   .safty-note{
@@ -120,9 +133,255 @@
 
     a{
      color:  $theme-blue; 
+     position: relative;
+     &:after{
+      content: '';
+      position: absolute;
+      left: inherit;
+      right: -20px;
+      top: 50%;
+      margin-top: 2px;
+      transform: translateY(-50%);
+      width:17px;
+      height:11px;
+      background: url(../../images/caret-down-blue.png) no-repeat;
+     }
      &:hover{
        text-decoration: none;
      }
     }
   }
 }
+.watermark-title-section {
+  padding: 80px 0 30px 0;
+  p{
+    font-size: $font-19;
+    font-family:  $font-regular;
+    color: $navy-blue-light1;
+    max-width: 900px;
+    margin: auto;
+
+  }
+
+  h4{
+    font-size:$font-36;
+    color:$navy-blue;
+    font-family:$source-bold; 
+    margin-bottom: 30px;
+  }
+}
+
+.watermark-title{
+
+  position: relative;
+  span{
+    display: block;
+    font-size:$font-90;
+    color:$light-blue2;
+    font-family:  $source-bold;
+    font-weight: bold;
+  }
+
+  h3{
+    font-size:$font-40;
+    color: $navy-blue;
+    font-family:  $source-bold;
+    font-weight: bold;
+    position: absolute;
+    top: 57%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    transform: translateY(-50%);
+
+    &:before{
+      content: '';
+      position: absolute;
+      top:-150px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width:50px;
+      height:5px;
+      background:  $theme-blue;
+    }
+  }
+
+
+}
+
+
+
+.culture-graph-section{
+  padding-bottom: 50px;
+  .row{
+    margin-top: 100px;
+  }
+
+  .culture-block{
+    background: $white;
+    border-radius: 9px;
+    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.14);
+    padding: 40px 20px;
+    margin: 50px 0;
+
+    @media (min-width:992px) and (max-width:1199px){
+      min-height: 332px;
+    }
+
+    img{
+      max-width: 100%;
+    }
+
+    h4{
+      font-size:$font-16;
+      color:$navy-blue;
+      font-family:  $source-bold;
+      margin-bottom: 20px;
+
+    }
+    p{
+      font-size: $font-14;
+      font-family:  $font-regular;
+      color: $navy-blue-light1;
+      line-height: 1.78;
+      max-width: 300px;
+      margin: auto;
+    }
+
+    img{
+      position: relative;
+      top: -100px;
+      margin-bottom: -70px;
+  
+    }
+  }
+}
+
+
+.explore-section{
+  background: $off-white;
+  padding-bottom:40px;
+
+  .row{
+    margin-top: 20px!important;
+  }
+
+  .explore-graph{
+text-align:left ;
+  }
+
+  .explore-detail{
+    text-align: right;
+    a{ font-size:$font-16;
+      color:$white;
+      font-family:$source-bold;
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 212px;
+      height:58px;
+      margin:15px;
+      padding: 10px;
+      background: #000;
+      border-left: 7px solid #ccc;
+
+      @media (min-width:992px) and (max-width:1199px){
+        margin: 6px;
+      }
+
+      &.holi{
+        border-color: $aqua-forest;
+        background: rgba($color: $aqua-forest, $alpha: 0.8);
+      }
+      &.herring{
+        border-color: $tiber;
+        background: rgba($color: $tiber, $alpha: 0.8);
+      }
+      &.hogmanay{
+        border-color: $lochinvar;
+        background: rgba($color: $lochinvar, $alpha: 0.8);
+      }
+      &.donauinselfest{
+        border-color:  $turquoise-blue;
+        background: rgba($color:  $turquoise-blue, $alpha: 0.8);
+      }
+      &.carnevale{
+        border-color: $matisse;
+        background: rgba($color: $matisse, $alpha: 0.8);
+      }
+      &.primavera{
+        border-color: $wine-berry;
+        background: rgba($color:  $wine-berry, $alpha: 0.8);
+      }
+      &.let-it-roll{
+        border-color: $minsk;
+        background: rgba($color:  $minsk, $alpha: 0.8);
+      }
+      &.soccer{
+        border-color: $blue-bayoux;
+        background: rgba($color: $blue-bayoux, $alpha: 0.8);
+      }
+      &.becon{
+        border-color:  $old-gold;
+        background: rgba($color:  $old-gold, $alpha: 0.8);
+      }
+      &.tabletennis{
+        border-color: $tuscany;
+        background: rgba($color:  $tuscany, $alpha: 0.8);
+      }
+
+      &:hover{
+        text-decoration: none;
+        opacity: 0.8;
+      }
+
+    }
+
+  
+  }
+}
+
+
+.our-mission-section{
+  padding-top:35px;
+  .watermark-title-section{
+    text-align: left;
+
+    .watermark-title{
+      span{
+        line-height: 0.8;
+      }
+
+      h3{
+        top: 40%;
+        line-height: 1.5;
+
+        &::before{
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .our-mission-content{
+    text-align: left;
+    p{
+      font-size: $font-19;
+      font-family: $source-regular;
+      color:$light-purple;
+      line-height: 1.78;
+    
+    }
+  }
+
+  .our-mission-img{
+    padding: 80px 0;
+  }
+}
+
+
+
+

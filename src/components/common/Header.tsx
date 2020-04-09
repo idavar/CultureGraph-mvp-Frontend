@@ -50,32 +50,65 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 		}
 
 		return (
-			<div>
-			  <Navbar color='light' light expand='md'>
-				<NavbarBrand href='/'>Culture Graph</NavbarBrand>
+			<div className='web-header'>
+				<div className='container'>
+				<Navbar color='light' light expand='md'>
+				<NavbarBrand href='/'>	<img className='logo' src='/assets/images/brand-logo.png' alt='Brand Logo' /></NavbarBrand>
 				<NavbarToggler onClick={this.toggle} />
 				<Collapse isOpen={this.state.isOpen} navbar>
 				  <Nav className='mr-auto' navbar>
 					<NavItem>
-					  <NavLink href='/culture-calendar'>Culture Calendar</NavLink>
+					  <NavLink href='/'>Trending Keywords</NavLink>
 					</NavItem>
 					<NavItem>
-					  <NavLink href='/'>How it works</NavLink>
+					  <NavLink href='/'>Culture Map</NavLink>
 					</NavItem>
+
+					<NavItem>
+					  <NavLink href='/culture-calendar'>Culture Calendar</NavLink>
+					</NavItem>
+		
 					<UncontrolledDropdown nav inNavbar>
-					  <DropdownToggle nav caret>
+					  <DropdownToggle nav className='caret'>
 						About IVOW
 					  </DropdownToggle>
 					  <DropdownMenu right>
-						<DropdownItem>
-							Our Mission
-						</DropdownItem>
+						<a href='/'>
+						Culture-IQ by IVOW
+						</a>
+					
+						<a href='/'>
+						How it Works
+						</a>
+						<a href='/'>
+						Our Mission
+						</a>
+			
 					  </DropdownMenu>
 					</UncontrolledDropdown>
 				  </Nav>
-				<NavbarText>{headarLink}</NavbarText>
+
+					<Nav className='navbar-right' navbar>
+					
+					<UncontrolledDropdown nav inNavbar>
+					  <DropdownToggle nav className='caret'>
+						Andrew
+					  </DropdownToggle>
+					  <DropdownMenu right>
+						<a href='/'>
+							Change Password
+						</a>
+				<a href='/'>
+							Sign Out
+						</a>
+					
+					  </DropdownMenu>
+					</UncontrolledDropdown>
+				  </Nav>
 				</Collapse>
 			  </Navbar>
+				</div>
+			  
 			</div>
 		  );
 	}

@@ -1,0 +1,111 @@
+.web-header{
+position: absolute;
+top:0;
+z-index: 12;
+width: 100%;
+padding: 10px 0;
+  .navbar{
+    background: none!important;
+
+    .navbar-collapse{
+      margin-left: 150px;
+    }
+
+    .navbar-nav{
+      li{
+        a{
+          font-size: $font-16;
+          font-family:  $source-regular;
+          color: $navy-blue;
+          padding:0 10px;
+
+        }
+      }
+
+     
+    }
+
+    .dropdown-menu{
+      border-radius: 10px;
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.13);
+      background: $white;
+      padding: 0;
+      min-width: 187px;
+      right: -35px!important;
+      left: inherit!important;
+      margin-top: 15px;
+      
+      &:before{
+        content: '';
+        position: absolute;
+        border-left: 6px solid transparent;
+        border-top: 6px solid #fff;
+        border-right: 6px solid #fff;
+        border-bottom: 6px solid transparent;
+        right: 20px;
+        top: -5px;
+        transform: rotate(-44deg);
+        box-shadow: 2px -2px 1px rgb(232, 232, 232);
+      }
+      
+      a{
+        font-size:$font-15!important;
+        font-family:$source-regular;
+        color: $navy-blue;
+        opacity: 0.8;
+        border-bottom: 0 solid rgba($color: $light-gray1, $alpha: 0.1);
+        position: relative;
+        display: block;
+        padding: 20px!important;
+
+        &:hover{
+          text-decoration: none;
+        }
+  
+        &:after{
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 100%;
+          bottom: 0;
+          right:0;
+          margin: auto;
+          width: 80%;
+          height: 1px;
+          background: rgba($color: $light-gray1, $alpha: 0.1);
+        }
+  
+        &:last-child{
+          &::after{
+            display: none;
+          }
+        }
+  
+        &:hover{
+          background: none;
+        }
+      }
+    }
+  }
+}
+
+
+
+.caret{
+  position: relative;
+  &:after{
+    content:'';
+    position: absolute;
+    top: 2px;
+    right: -11px;
+    width:13px;
+    height:19px;
+    background: url(../../images/caret-down.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 13px;
+  }
+}
+
+
+

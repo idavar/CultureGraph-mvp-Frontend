@@ -2,10 +2,17 @@ const Common = {
 		three: 4,
 		phqOffset: 1000,
 		phqState: 'active',
+		nameLength: 150,
+		emailLength: 150,
+		companyLength: 250,
+		minPassword: 6,
+		maxPassword: 16,
+		rejectReasonLength: 500,
 		status: {
 			processed: 200,
 			success: 201,
 			methodNotAllowed: 405,
+			authentication: 401
 		},
 		zero: 0,
 		one: 1,
