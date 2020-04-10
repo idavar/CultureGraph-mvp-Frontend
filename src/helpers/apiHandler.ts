@@ -23,6 +23,7 @@ axios.interceptors.response.use(response => {
 		} else {
 			return Promise.reject(error);
 		}
+		return;
 });
 
 export const apiPost = (url: string, data: object) => axios.post(url, data);
