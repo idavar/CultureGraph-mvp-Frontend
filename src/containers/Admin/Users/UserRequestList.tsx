@@ -20,7 +20,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 	public queryData: SearchQuery = Common.defaultQueryData;
 		public firstName = 'first_name';
 		public createdAt = 'created_at';
-		public updatedAt = 'updated_at';
+		public updatedAt = 'request_updated_at';
 		public company = 'company';
 		public email = 'email';
 		modalRef = React.createRef<ActionModal>();
