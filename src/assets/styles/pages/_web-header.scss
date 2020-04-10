@@ -33,7 +33,7 @@ padding: 10px 0;
       min-width: 187px;
       right: -35px!important;
       left: auto!important;
-      margin-top: 15px;
+      margin-top: 0;
       
       &:before{
         content: '';
@@ -130,3 +130,6 @@ padding: 10px 0;
 
 
 
+// .dropdown:hover .dropdown-menu {
+//   display: block;
+// }

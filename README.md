@@ -1,8 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Install project on local system
 
-In the project directory, you can run:
+1. Take clone
+2. Go to project folder - Run - npm install
+3. Create .env file in project root folder and add below development api url -
+
+REACT_APP_API_RUL=https://ivow-dev-backend.kiwi-internal.com
+REACT_APP_API_VERSION=/api/v1/
+
+4. In the project directory, you can run:
 
 ### `yarn start`
 

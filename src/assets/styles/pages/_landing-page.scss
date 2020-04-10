@@ -176,7 +176,7 @@
   span{
     display: block;
     font-size:$font-90;
-    color:$light-blue2;
+    color:$watermar-blue;
     font-family:  $source-bold;
   }
 
@@ -214,6 +214,7 @@
 .culture-graph-section{
   padding-bottom: 50px;
   background: $theme-color-light;
+
   .row{
     margin-top: 40px;
   }
@@ -272,7 +273,6 @@
     width:148px;
     height:206px;
     background: url(../../images/dotted-pattern.png) no-repeat;
-
   }
 
   &:after{
@@ -284,6 +284,13 @@
     height:206px;
     background: url(../../images/dotted-pattern.png) no-repeat;
 
+  }
+
+
+  .watermark-title{
+    span{
+      color:$watermar-white;
+    }
   }
 
   .row{
@@ -425,6 +432,13 @@ img{
       max-width:inherit;
     }
   }
+  
+
+  .watermark-title{
+    span{
+      color:$watermar-white;
+    }
+  }
 
 
 .work-graph{
@@ -516,6 +530,12 @@ margin:50px 0;
   align-items: center;
   justify-content: center;
   margin-bottom:30px;
+    }
+  }
+
+  .watermark-title{
+    span{
+      color:$watermar-white;
     }
   }
 }
