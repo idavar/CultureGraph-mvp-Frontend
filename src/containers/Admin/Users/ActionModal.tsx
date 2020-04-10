@@ -116,7 +116,7 @@ class ActionModal extends React.Component<{}, ActionState> {
 						msg = validateRef.getObjectFirstKeyValue(err.response.data.error);
 					}
 					ToastError({msg});
-				  } catch (err) {}
+				} catch (err) {}
 			});
 		}
 
