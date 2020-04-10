@@ -61,7 +61,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					  <NavLink href='#'>Trending Keywords</NavLink>
 					</NavItem>
 					<NavItem>
-					  <NavLink href='#'>Culture Map</NavLink>
+					  <NavLink href='#culture-map'>Culture Map</NavLink>
 					</NavItem>
 
 					<NavItem>
@@ -73,17 +73,17 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 						About IVOW
 					  </DropdownToggle>
 					  <DropdownMenu right>
-						<a href='/'>
+						<a href='#culture-graph'>
 						CultureGraph by IVOW
 						</a>
 
-						<a href='/'>
+						<a href='#how-it-works'>
 						How It Works
 						</a>
-						<a href='/'>
+						<a href='#our-mission'>
 						Our Mission
 						</a>
-						<a href='/'>
+						<a href='#clients'>
 						Clients
 						</a>
 
