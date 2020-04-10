@@ -213,6 +213,7 @@
 
 .culture-graph-section{
   padding-bottom: 50px;
+  background: $theme-color-light;
   .row{
     margin-top: 40px;
   }
@@ -295,6 +296,8 @@ text-align:left ;
 
   .explore-detail{
     text-align: right;
+    position: relative;
+    z-index: 1;
     a{ font-size:$font-16;
       color:$white;
       font-family:$source-bold;
@@ -367,6 +370,7 @@ text-align:left ;
 
 .our-mission-section{
   padding-top:35px;
+  background: $theme-color-light;
   .watermark-title-section{
     text-align: left;
 
@@ -405,9 +409,9 @@ text-align:left ;
 
 
 .culture-map-section{
-  img{
-    max-width:100%;
-  }
+  background: $theme-color-light;
+
+ 
 }
 
 .how-it-work-section{
