@@ -131,7 +131,8 @@ class Home extends React.Component {
 	<span>How It Works</span>
 	<h3>How It Works</h3>
 </div>
-<p>We take commonly-overlooked data from cultural and subcultural psychographics: food, music, arts, sports, holidays, and festivals. Then we use machine learning to identify and segment consumer audiences in real-time, allowing you to refine and direct your message to the most relevant customers.</p>
+<p>We take commonly-overlooked data from cultural and subcultural psychographics: food, music, arts, sports, holidays, and festivals. 
+	Then we use machine learning to identify and segment consumer audiences in real-time, allowing you to refine and direct your message to the most relevant customers.</p>
 </div>
 
 <div className='work-graph'>
@@ -206,7 +207,8 @@ class Home extends React.Component {
 								</div>
 								<p>At IVOW AI, our mission is to make data culturally relevant.</p>
 								<p>IVOW stands for Intelligent Voices of Wisdom.</p>
-								<p>Everybody can get their hands on different types of data. What sets us apart is not the input data, it is what we do with it. Our CultureGraph platform represents the foremost advancement in artificial intelligence (AI) as applied to audience research. </p>
+								<p>Everybody can get their hands on different types of data. What sets us apart is not the input data, it is what we
+									do with it. Our CultureGraph platform represents the foremost advancement in artificial intelligence (AI) as applied to audience research. </p>
 										</div>
 
 										</div>

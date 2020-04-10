@@ -74,14 +74,17 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					  </DropdownToggle>
 					  <DropdownMenu right>
 						<a href='/'>
-						Culture-IQ by IVOW
+						CultureGraph by IVOW
 						</a>
 
 						<a href='/'>
-						How it Works
+						How It Works
 						</a>
 						<a href='/'>
 						Our Mission
+						</a>
+						<a href='/'>
+						Clients
 						</a>
 
 					  </DropdownMenu>

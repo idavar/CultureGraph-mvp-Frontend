@@ -17,7 +17,7 @@ interface ApprovedUserState {
 class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState> {
 	public queryData: SearchQuery = Common.defaultQueryData;
 	public firstName = 'first_name';
-	public email = 'email'
+	public email = 'email';
 	public createdAt = 'created_at';
 	public company = 'company';
 	constructor(props: UserListProps) {
@@ -99,9 +99,9 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 				const paginationBasic = (
 						<div>
 							<Pagination>
-							{(totalPage > Common.one) ? <small className='panination-prev'><Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> </small>: ''}
+							{(totalPage > Common.one) ? <small className='panination-prev'><Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> </small> : ''}
 								{items}
-							{(totalPage > Common.one) ? <small className='panination-next'><Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> </small>: '' }
+							{(totalPage > Common.one) ? <small className='panination-next'><Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> </small> : '' }
 							</Pagination>
 						</div>
 				);

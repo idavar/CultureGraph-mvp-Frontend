@@ -18,7 +18,8 @@
   .sort-user-title{
 
       font-size: $font-15;
-      color: $light-gray1;
+      font-family:  $source-regular;
+      color: rgba($color: $navy-blue, $alpha: 0.5);
   }
     .form-group{
       margin: 0 0 0 15px;
@@ -34,13 +35,14 @@
     -moz-appearance: none;
     -webkit-appearance: none;
     font-size: $font-15;
-     color: $light-gray1!important;
+    font-family:  $source-regular;
+     color:rgba($color: $navy-blue1, $alpha: 0.5)!important;
      border-radius: 5px!important;
 
     &::placeholder{
       opacity: 1;
       font-size: $font-15;
-      color: $light-gray1;
+      color:rgba($color: $navy-blue1, $alpha: 0.5)!important;
     }
   }
   .sort-user{
@@ -64,16 +66,17 @@
 
   .search-user{
     min-width: 270px;
-    padding-right:60px;
+    padding-right:50px;
   }
 
   .search-icon{
     position: absolute;
     top: 50%;
-    right: 20px;
+    right: 16px;
     z-index: 1;
     transform: translateY(-50%);
     cursor: pointer;
+
   }
   }
 }
