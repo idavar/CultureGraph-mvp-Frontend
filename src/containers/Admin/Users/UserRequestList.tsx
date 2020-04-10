@@ -22,6 +22,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 		public createdAt = 'created_at';
 		public updatedAt = 'updated_at';
 		public company = 'company';
+		public email = 'email';
 		modalRef = React.createRef<ActionModal>();
 		private status = `${Common.requestStatus.pending},${Common.requestStatus.rejected}`;
 		constructor(props: UserListProps) {
@@ -41,7 +42,13 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 
 		onAcceptReject = (data: UserData, requestAction: string) => {
 				if (this.modalRef.current) {
-						this.modalRef.current.openModal(data, requestAction);
+						const otherOption = {
+							submitSearch: this.submitSearch,
+							onPageClick: this.onPageClick,
+							page: this.queryData.page,
+							totalCount: this.props.count
+						};
+						this.modalRef.current.openModal(data, requestAction, otherOption);
 				}
 		}
 
@@ -159,7 +166,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 						<thead>
 							<tr>
 								<th>User Name <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.firstName) ? `-${this.firstName}` : this.firstName); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
-								<th>Email Id </th>
+								<th>Email Id <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.email) ? `-${this.email}` : this.email); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 								<th>Company Name <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.company) ? `-${this.company}` : this.company); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 								<th>Requested on <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.createdAt) ? `-${this.createdAt}` : this.createdAt); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 								<th>Updated on <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.updatedAt) ? `-${this.updatedAt}` : this.updatedAt); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
@@ -177,9 +184,10 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 									</Moment>
 								</td>
 								<td>
+									{ !doc.request_updated_at ? Common.na :
 									<Moment format={`${Common.dateFormat}`}>
-											{doc.updated_at}
-									</Moment>
+											{doc.request_updated_at}
+									</Moment>}
 								</td>
 								<td>
 								<AcceptReject data={doc}/>

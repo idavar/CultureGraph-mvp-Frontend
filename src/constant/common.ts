@@ -5,7 +5,7 @@ const Common = {
 		nameLength: 150,
 		emailLength: 150,
 		companyLength: 250,
-		minPassword: 6,
+		minPassword: 8,
 		maxPassword: 16,
 		rejectReasonLength: 200,
 		dateFormat: 'MMM DD, YYYY',
@@ -18,6 +18,7 @@ const Common = {
 		zero: 0,
 		one: 1,
 		alertTimeout: 3000,
+		na: 'NA',
 		toastConfig : {
 			autoClose: 2000,
 			draggable: false,

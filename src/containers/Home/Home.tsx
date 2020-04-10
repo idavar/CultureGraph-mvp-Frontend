@@ -147,50 +147,50 @@ class Home extends React.Component {
 									<div className='img-block text-right'>
 									<img src='/assets/images/work1.png' alt='graph1' />
 									</div>
-									
+
 									<div className='graph-no'>
 										<span> <small>01</small></span>
 									</div>
-								
+
 
 									<div className='content-block text-left'>
 										<p>IVOW's CultureGraph helps you <br></br>identify, analyze, and serve key new <br></br>customer segments using public data.</p>
 									</div>
-								
+
 							</div>
 							<div className='work-graph-row'>
-								
+
 
 							<div className='content-block text-right'>
 										<p>IVOW's CultureGraph provides brands with cultural factors in support of corporate <br></br>decision-making processes.</p>
 									</div>
-									
+
 									<div className='graph-no'>
 										<span> <small>02</small></span>
 									</div>
-								
+
 
 
 									<div className='img-block text-left'>
 									<img src='/assets/images/work2.png' alt='graph1' />
 									</div>
-								
+
 							</div>
 
 							<div className='work-graph-row'>
 									<div className='img-block text-right'>
 									<img src='/assets/images/work3.png' alt='graph1' />
 									</div>
-									
+
 									<div className='graph-no'>
 										<span> <small>03</small></span>
 									</div>
-								
+
 
 									<div className='content-block text-left'>
 										<p>IVOW's CultureGraph informs<br></br> culturally-directed content strategy development.</p>
 									</div>
-								
+
 							</div>
 							</div>
 
@@ -260,7 +260,7 @@ class Home extends React.Component {
 	<div className='client'>
 	<img src='/assets/images/client5.png' alt='Client 5' />
 	</div>
-	
+
 </div>
 </div>
 

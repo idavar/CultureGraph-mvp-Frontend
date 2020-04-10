@@ -46,6 +46,7 @@ export const checkValidite = (value: string, rules: InputRule, messages: ErrorMe
 		}
 
 		if ( rules.isEmail ) {
+				value = value ? value.toLocaleLowerCase() : value;
 				const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 				validationData.isValid = pattern.test( value ) && validationData.isValid;
 				setErrorMessage(validationData, messages.isEmail, validationData.isValid);
@@ -81,7 +82,7 @@ const setErrorMessage = (validationData: ValidationObject, msg: string, isValid:
 
 export const getObjectFirstKeyValue = (error: any) => {
 	let val = '';
-	if (Object.keys(error).length) {
+	if (error && Object.keys(error).length) {
 		val = error[Object.keys(error)[Common.zero]][Common.zero];
 	}
 	return val;
