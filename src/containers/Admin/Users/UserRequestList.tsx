@@ -119,9 +119,9 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			const paginationBasic = (
 					<div>
 						<Pagination>
-							{(totalPage > Common.one) ? <Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> : ''}
+							{(totalPage > Common.one) ?  <small className='panination-prev'><Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /></small> : ''}
 							{items}
-							{(totalPage > Common.one) ? <Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> : ''}
+							{(totalPage > Common.one) ? <small className='panination-next'><Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /></small> : ''}
 						</Pagination>
 					</div>
 			);
