@@ -31,8 +31,8 @@ interface OtherOptions {
 }
 
 class ActionModal extends React.Component<{}, ActionState> {
-		private rejected = `${Common.requestStatus.rejected}`;
-		private approved = `${Common.requestStatus.approved}`;
+		private readonly rejected = `${Common.requestStatus.rejected}`;
+		private readonly approved = `${Common.requestStatus.approved}`;
 		private otherOptions: OtherOptions = {
 			submitSearch: null,
 			onPageClick: null,

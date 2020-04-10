@@ -24,7 +24,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 		public company = 'company';
 		public email = 'email';
 		modalRef = React.createRef<ActionModal>();
-		private status = `${Common.requestStatus.pending},${Common.requestStatus.rejected}`;
+		private readonly status = `${Common.requestStatus.pending},${Common.requestStatus.rejected}`;
 		constructor(props: UserListProps) {
 		super(props);
 		this.state = {
@@ -173,7 +173,8 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 								<th className='width-200'>Actions </th>
 							</tr>
 						</thead>
-						<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td className='no-record-found' colSpan={6}>No user request data found!</td></tr> :
+						<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td className='no-record-found'
+						 colSpan={Common.requestColSpan}>No user request data found!</td></tr> :
 						this.props.users.map((doc: UserData, index: number) => (<tr key={index}>
 								<td>{doc.first_name}</td>
 								<td>{doc.email}</td>
