@@ -57,7 +57,6 @@ export const checkValidite = (value: string, rules: InputRule, messages: ErrorMe
 				validationData.isValid = pattern.test( value ) && validationData.isValid;
 				setErrorMessage(validationData, messages.isNumeric, validationData.isValid);
 		}
-		passwordValidation({value, rules, messages, validationData});
 		return validationData;
 };
 
@@ -68,10 +67,6 @@ export const matchConfirmPassword = (validationData: ValidationObject, rulesData
 		validationData.isValid = false;
 		validationData.validationMsg = ValidationMessage.confirm_password.passwordNotMatch;
 	}
-};
-
-const passwordValidation = (paramObj: { value: string, rules: InputRule, messages: ErrorMessage, validationData: ValidationObject }) => {
-	if (paramObj.rules.isPassword) {}
 };
 
 const setErrorMessage = (validationData: ValidationObject, msg: string, isValid: boolean): void => {
