@@ -33,6 +33,7 @@ class Home extends React.Component {
 								</div>
 
 								{/* CultureGraph section start here.. */}
+								<div id='culture-graph'>
 							<div className='culture-graph-section clearfix'>
 							<div className='container'>
 							<div className='watermark-title-section'>
@@ -40,7 +41,8 @@ class Home extends React.Component {
 									<span>CultureGraph by IVOW</span>
 									<h3>CultureGraph by IVOW</h3>
 								</div>
-								<p>CultureGraph gives brands, advertisers, and researchers a better understanding of culture, and better returns from interactions with customers, based on that understanding.</p>
+								<p>CultureGraph gives brands, advertisers, and researchers a better understanding of culture,
+									 and better returns from interactions with customers, based on that understanding.</p>
 								</div>
 
 								<div className='row'>
@@ -48,7 +50,8 @@ class Home extends React.Component {
 										<div className='culture-block'>
 										<img src='/assets/images/culturemap.png' alt='Culture Map' />
 											<h4>Culture Map</h4>
-											<p>A real-time map of contemporary cultures & subcultures across consumer audiences, identified and graphed by our AI using public data. </p>
+											<p>A real-time map of contemporary cultures & subcultures across consumer audiences, identified
+												 and graphed by our AI using public data. </p>
 										</div>
 									</div>
 
@@ -56,7 +59,8 @@ class Home extends React.Component {
 										<div className='culture-block'>
 										<img src='/assets/images/culture-calendar.png' alt='Culture calendar' />
 											<h4>Culture Calendar</h4>
-											<p>Uses Machine Learning in real-time to catalog global celebrations year-round and generate granular cultural and
+											<p>Uses Machine Learning in real-time to catalog global celebrations year-round and generate
+												 granular cultural and
  geographic context.  </p>
 										</div>
 									</div>
@@ -65,12 +69,14 @@ class Home extends React.Component {
 										<div className='culture-block'>
 										<img src='/assets/images/culture-analytics.png' alt='Culture Analytics' />
 											<h4>Culture Analytics</h4>
-											<p>Provides useful insights & analytics to help enterprises engage audiences and increase conversions and satisfaction ratings.</p>
+											<p>Provides useful insights & analytics to help enterprises engage audiences and increase conversions and
+												satisfaction ratings.</p>
 										</div>
 									</div>
 								</div>
 
 								</div>
+							</div>
 							</div>
 
 							<div className='explore-section'>
@@ -107,7 +113,7 @@ class Home extends React.Component {
 							</div>
 							</div>
 
-
+							<div id='culture-map'>
 							<div className='culture-map-section'>
 
 								<div className='container'>
@@ -122,7 +128,8 @@ class Home extends React.Component {
 								</div>
 
 							</div>
-
+							</div>
+				<div id='how-it-works'>
 							<div className='how-it-work-section'>
 
 <div className='container'>
@@ -190,7 +197,8 @@ class Home extends React.Component {
 </div>
 
 </div>
-
+</div>
+					<div id='our-mission'>
 
 							<div className='our-mission-section'>
 								<div className='container'>
@@ -223,7 +231,9 @@ class Home extends React.Component {
 
 								</div>
 							</div>
+							</div>
 
+							<div id='clients'>
 							<div className='our-client-section'>
 
 <div className='container'>
@@ -254,6 +264,7 @@ class Home extends React.Component {
 </div>
 </div>
 
+</div>
 </div>
 
 

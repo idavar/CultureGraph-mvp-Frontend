@@ -85,8 +85,10 @@
     background: $white;
     padding: 0;
     min-width: 187px;
-    right: 20px!important;
+    right: 0!important;
     left: auto!important;
+    transform: translate(0, 60px)!important;
+
     
     &:before{
       content: '';
