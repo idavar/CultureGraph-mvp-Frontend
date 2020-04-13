@@ -52,7 +52,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 		return (
 			<div className='web-header'>
 				<div className='container'>
-				<Navbar color='light' light expand='md'>
+				<Navbar color='light' light expand='lg'>
 				<NavbarBrand href='/'>	<img className='logo' src='/assets/images/brand-logo.png' alt='Brand Logo' /></NavbarBrand>
 				<NavbarToggler onClick={this.toggle} />
 				<Collapse isOpen={this.state.isOpen} navbar>
@@ -68,8 +68,8 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					  <NavLink href='#'>Culture Calendar</NavLink>
 					</NavItem>
 
-					<UncontrolledDropdown nav inNavbar>
-					  <DropdownToggle nav className='caret'>
+					<UncontrolledDropdown nav inNavbar >
+					  <DropdownToggle nav className=' m-dropdown caret'>
 						About IVOW
 					  </DropdownToggle>
 					  <DropdownMenu right>
@@ -94,7 +94,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					<Nav className='navbar-right' navbar>
 					<UncontrolledDropdown nav inNavbar>
 					{ this.props.isAuthenticated ?
-						<div><DropdownToggle nav className='caret'>
+						<div><DropdownToggle nav className=' m-dropdown caret'>
 					  {this.props.full_name}
 					  </DropdownToggle>
 					  <DropdownMenu right>
