@@ -18,7 +18,7 @@ class Home extends React.Component {
 												<p>A smart tool that provides real-time cultural insights to help you create more effective and efficient experiences for consumer audiences.</p>
 													<form>
 												<div className='banner-search'>
-												<input type='text' placeholder='Search here for culture, activities, events and more…'></input>
+												<input type='text' placeholder='Search here for festivals, food, music and more...'></input>
 													<button type='button'><img src='/assets/images/search-icon-white.png' alt='Search Icon' /></button>
 												</div>
 												</form>

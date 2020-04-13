@@ -135,12 +135,15 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 				<img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 			<th>Email Id <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.email) ? `-${this.email}` : this.email); }}>
 				<img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
-			<th>Company Name <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.company) ? `-${this.company}` : this.company); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
-			<th>Added On <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.createdAt) ? `-${this.createdAt}` : this.createdAt); }}><img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+			<th>Company Name <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.company) ? `-${this.company}` : this.company); }}>
+				<img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
+			<th>Added On <span className='sorting' onClick={() => {this.onOrderChange((this.queryData.ordering === this.createdAt) ? `-${this.createdAt}` : this.createdAt); }}>
+				<img  src='/assets/images/sorting-icon.png' alt='Sorting Icon' /></span></th>
 			<th>User Status</th>
 		</tr>
 	</thead>
-	<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td className='no-record-found' colSpan={6}>No user record found!</td></tr> :
+	<tbody>{(!this.props.users.length && !this.props.loading) ? <tr key={Common.zero}><td className='no-record-found'
+	 colSpan={Common.userColSpan}>No user record found!</td></tr> :
 	this.props.users.map((doc: UserData, index: number) => (<tr key={index}>
 			<td>{doc.first_name}</td>
 			<td>{doc.email}</td>
@@ -162,7 +165,6 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 						<span>Active</span>
 						<span>Block</span>
 				</span>
-				<a></a>
 	</label>
 
 

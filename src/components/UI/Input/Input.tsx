@@ -16,12 +16,10 @@ const Input = ( props: any ) => {
 		let errorMessage = null;
 		let showPassword = null;
 		let formGroupClass = 'form-group';
-		let hideElement = 'ui-hide';
 
 		if (props.invalid && props.shouldValidate && props.touched) {
 				errorMessage = <span className='field-error'>{props.validationMsg ? props.validationMsg : ''}</span>;
 				formGroupClass = `${formGroupClass} field-outline-error`;
-				hideElement = '';
 		}
 
 		if (props.elementConfig.type === 'password') {

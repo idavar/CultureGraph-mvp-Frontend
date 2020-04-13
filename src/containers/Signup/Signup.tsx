@@ -202,10 +202,8 @@ class Signup extends React.Component<Props> {
 			setTimeout(() => {
 				this.setState({isValidForm: true});
 				for (const key in this.state.controls) {
-					if (this.state.controls[key]) {
-						if (!this.state.controls[key].valid) {
+					if (this.state.controls[key] && !this.state.controls[key].valid) {
 							this.setState({isValidForm: this.state.controls[key].valid});
-						}
 					}
 				}
 			}, Common.zero);

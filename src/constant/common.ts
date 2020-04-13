@@ -9,6 +9,8 @@ const Common = {
 		maxPassword: 16,
 		rejectReasonLength: 200,
 		dateFormat: 'MMM DD, YYYY',
+		userColSpan:  6,
+		requestColSpan:  6,
 		status: {
 			processed: 200,
 			success: 201,
