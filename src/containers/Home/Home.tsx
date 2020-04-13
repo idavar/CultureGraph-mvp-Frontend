@@ -110,7 +110,7 @@ class Home extends React.Component {
 												<a href='/'  className='becon'>Becon Festival <small>12M</small></a>
 												<a href='/'  className='tabletennis'>Table Tennis<small>70k</small></a>
 												</div>
-										
+
 												{/* <div className='explore-note'>
 													<h4>Become a reseacher to view all trending keywords.</h4>
 													<p>Register yourself as researcher to get complete access to culture calendar.</p>

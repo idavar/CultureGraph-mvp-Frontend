@@ -15,6 +15,12 @@ export const ValidationMessage = {
 		maxLength: `Company name max length can not greater than 250 characters.`,
 		minLength: ''
 	},
+	old_password: {
+		required: `Old Password is required.`,
+		maxLength: `Old Password should be of maximum 16 characters.`,
+		minLength: 'Old Password should be of minimum 8 characters.',
+		isPassword: 'Enter a valid old password.'
+	},
 	password: {
 		required: `Password is required.`,
 		maxLength: `Password should be of maximum 16 characters.`,
