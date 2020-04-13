@@ -97,16 +97,26 @@ class Home extends React.Component {
 										</div>
 										<div className='col-md-6'>
 												<div className='explore-detail'>
-												<a href='#' className='holi' >Holi Festival <small>20M</small></a>
-												<a href='#'  className='herring'>Herring Festival <small>18M</small></a>
-												<a href='#' className='hogmanay'>Hogmanay <small>10M</small></a>
-												<a href='#'  className='donauinselfest'>Donauinselfest<small>9.1M</small></a>
-												<a href='#'  className='carnevale'>Carnevale <small>5M</small></a>
-												<a href='#'  className='primavera'>Primavera sound <small>4.1k</small></a>
-												<a href='#'  className='let-it-roll'>Let It Roll <small>90k</small></a>
-												<a href='#'  className='soccer'>Soccer <small>7.7M</small></a>
-												<a href='#'  className='becon'>Becon Festival <small>12M</small></a>
-												<a href='#'  className='tabletennis'>Table Tennis<small>70k</small></a>
+													<div className='explore-event'>
+												<a href='/' className='holi' >Holi Festival <small>20M</small></a>
+												<a href='/'  className='herring'>Herring Festival <small>18M</small></a>
+												<a href='/' className='hogmanay'>Hogmanay <small>10M</small></a>
+												<a href='/'  className='donauinselfest'>Donauinselfest<small>9.1M</small></a>
+												<a href='/'  className='carnevale'>Carnevale <small>5M</small></a>
+												<a href='/'  className='primavera'>Primavera sound <small>4.1k</small></a>
+												<a href='/'  className='let-it-roll'>Let It Roll <small>90k</small></a>
+												<a href='/'  className='soccer'>Soccer <small>7.7M</small></a>
+												<a href='/'  className='becon'>Becon Festival <small>12M</small></a>
+												<a href='/'  className='tabletennis'>Table Tennis<small>70k</small></a>
+												</div>
+										
+												{/* <div className='explore-note'>
+													<h4>Become a reseacher to view all trending keywords.</h4>
+													<p>Register yourself as researcher to get complete access to culture calendar.</p>
+													<a href='/' className='explore-register'>Register Now</a>
+												</div> */}
+
+
 												</div>
 										</div>
 									</div>
@@ -124,7 +134,39 @@ class Home extends React.Component {
 								</div>
 								<p>Click on dot to explore results in more detail</p>
 								</div>
-								<img src='/assets/images/map.png' alt='Map' />
+								{/* <img src='/assets/images/map.png' alt='Map' /> */}
+
+												<div className='buttons-section'>
+													<div className='buttons'>
+														<a href='/' >Culture Map</a>
+														<a href='/' className='active'>Culture Calendar</a>
+													</div>
+
+													<div className='event-indicator'>
+															<div><span><em className='ctg-holidya'></em> Holidays</span></div>
+															<div><span><em className='ctg-sport'></em> Sports</span></div>
+															<div><span><em className='ctg-festivals'></em> Festivals</span></div>
+															<div className='value-more'><span className='more'><em></em> 3 More</span>
+																<div>
+																<span><em className='ctg-holidya'></em> Holidays</span>
+																<span><em className='ctg-sport'></em> Sports</span>
+																<span><em className='ctg-festivals'></em> Festivals</span>
+																</div>
+															</div>
+													</div>
+												</div>
+
+												<div className='calendar-without-login'>
+												<img src='/assets/images/team.png' alt='Team Icon' />
+												<h4>Become a reseacher to access this calendar</h4>
+												<p>Register yourself as researcher to get complete access to culture calendar.</p>
+												<a href='/' className='explore-register'>Register Now</a>
+												</div>
+
+												<div className='home-calendar'>
+													{/* calendar code place here.. */}
+												</div>
+
 								</div>
 
 							</div>

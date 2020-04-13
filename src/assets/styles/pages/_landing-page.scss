@@ -230,10 +230,6 @@
       min-height: 332px;
     }
 
-    img{
-      max-width: 100%;
-    }
-
     h4{
       font-size:$font-16;
       color:$navy-blue;
@@ -254,9 +250,11 @@
       position: relative;
       top: -100px;
       margin-bottom: -70px;
+      max-width: 100%;
   
     }
   }
+
 }
 
 
@@ -302,74 +300,105 @@ text-align:left ;
   }
 
   .explore-detail{
-    text-align: right;
+    text-align: left;
     position: relative;
     z-index: 1;
-    a{ font-size:$font-16;
-      color:$white;
-      font-family:$source-bold;
-      display: inline-flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 212px;
-      height:58px;
-      margin:15px;
-      padding: 10px;
-      background: #000;
-      border-left: 7px solid #ccc;
 
-      @media (min-width:992px) and (max-width:1199px){
-        margin: 6px;
+    .explore-event{
+      a{ font-size:$font-16;
+        color:$white;
+        font-family:$source-bold;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 212px;
+        height:58px;
+        margin:15px;
+        padding: 10px;
+        background: #000;
+        border-left: 7px solid #ccc;
+  
+        @media (min-width:992px) and (max-width:1199px){
+          margin: 6px;
+        }
+  
+        &.holi{
+          border-color: $aqua-forest;
+          background: rgba($color: $aqua-forest, $alpha: 0.8);
+        }
+        &.herring{
+          border-color: $tiber;
+          background: rgba($color: $tiber, $alpha: 0.8);
+        }
+        &.hogmanay{
+          border-color: $lochinvar;
+          background: rgba($color: $lochinvar, $alpha: 0.8);
+        }
+        &.donauinselfest{
+          border-color:  $turquoise-blue;
+          background: rgba($color:  $turquoise-blue, $alpha: 0.8);
+        }
+        &.carnevale{
+          border-color: $matisse;
+          background: rgba($color: $matisse, $alpha: 0.8);
+        }
+        &.primavera{
+          border-color: $wine-berry;
+          background: rgba($color:  $wine-berry, $alpha: 0.8);
+        }
+        &.let-it-roll{
+          border-color: $minsk;
+          background: rgba($color:  $minsk, $alpha: 0.8);
+        }
+        &.soccer{
+          border-color: $blue-bayoux;
+          background: rgba($color: $blue-bayoux, $alpha: 0.8);
+        }
+        &.becon{
+          border-color:  $old-gold;
+          background: rgba($color:  $old-gold, $alpha: 0.8);
+        }
+        &.tabletennis{
+          border-color: $tuscany;
+          background: rgba($color:  $tuscany, $alpha: 0.8);
+        }
+  
+        &:hover{
+          text-decoration: none;
+          opacity: 0.8;
+        }
+  
       }
-
-      &.holi{
-        border-color: $aqua-forest;
-        background: rgba($color: $aqua-forest, $alpha: 0.8);
-      }
-      &.herring{
-        border-color: $tiber;
-        background: rgba($color: $tiber, $alpha: 0.8);
-      }
-      &.hogmanay{
-        border-color: $lochinvar;
-        background: rgba($color: $lochinvar, $alpha: 0.8);
-      }
-      &.donauinselfest{
-        border-color:  $turquoise-blue;
-        background: rgba($color:  $turquoise-blue, $alpha: 0.8);
-      }
-      &.carnevale{
-        border-color: $matisse;
-        background: rgba($color: $matisse, $alpha: 0.8);
-      }
-      &.primavera{
-        border-color: $wine-berry;
-        background: rgba($color:  $wine-berry, $alpha: 0.8);
-      }
-      &.let-it-roll{
-        border-color: $minsk;
-        background: rgba($color:  $minsk, $alpha: 0.8);
-      }
-      &.soccer{
-        border-color: $blue-bayoux;
-        background: rgba($color: $blue-bayoux, $alpha: 0.8);
-      }
-      &.becon{
-        border-color:  $old-gold;
-        background: rgba($color:  $old-gold, $alpha: 0.8);
-      }
-      &.tabletennis{
-        border-color: $tuscany;
-        background: rgba($color:  $tuscany, $alpha: 0.8);
-      }
-
-      &:hover{
-        text-decoration: none;
-        opacity: 0.8;
-      }
-
+  
     }
 
+    .explore-note{
+      text-align: left;
+      padding: 15px 20px;
+
+      h4{
+          font-family:  $font-regular;
+          font-size:$font-18;
+          color: $navy-blue3;
+          line-height: normal;
+          letter-spacing: 0.19px;
+          margin-bottom:10px;
+          max-width: 346px;
+
+      }
+      p{
+        font-family:  $font-regular;
+          font-size:$font-15;
+          color: $navy-blue-light1;
+          line-height: 1.73;
+          max-width: 445px;
+          
+      }
+
+    
+     
+    }
+    
   
   }
 }
@@ -417,9 +446,172 @@ text-align:left ;
 
 .culture-map-section{
   background: $theme-color-light;
-img{
-  margin-bottom: 70px;
+  padding-bottom: 50px;
 
+
+.buttons-section{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   margin: 0 0 45px 0;
+  .buttons{
+    background: $white;
+    border-radius: 33px;
+    max-width: 340px;
+    flex: none;
+    a{
+      font-size: $font-16;
+      font-family: $source-regular;
+      color:$navy-blue;
+      width:150px;
+      height:47px;
+      line-height: 47px;
+      display: inline-block;
+      border-radius: 33px;
+      margin: 10px;
+
+      &:hover{
+        text-decoration:none;
+      }
+
+      &.active{
+        font-family:  $source-semibold;
+        color: $white;
+        background: $theme-blue2;
+      }
+    }
+  }
+
+  .event-indicator{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div{
+      span{
+      font-size: $font-16;
+      font-family: $source-regular;
+      color:$navy-blue;
+      width:140px;
+      height: 50px;
+      background: $off-white3;
+      border: solid 1px rgba(39, 47, 86, 0.1);
+      border-radius:25px;
+      line-height: 50px;
+      margin: 0 8px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+     
+      em{
+        width: 35px;
+        height: 35px;
+        border-radius: 50px;
+        display: inline-block;
+        margin: 0 10px;
+        position: relative;
+
+        &:before{
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 50px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        }
+
+      }
+      }
+      
+      &.value-more{
+
+        span.more{
+          cursor: pointer;
+          &::after{
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            width:16px;
+            height:9px;
+            background: url(../../images/caret-light.png) no-repeat;
+          }
+
+          em{
+            opacity: 0;
+            width:15px;
+            height:15px;
+          }
+        }
+
+        div{
+          display: none;
+          position: absolute;
+
+          span{
+            margin: 8px;
+          }
+        }
+
+        &:hover{
+          & div{
+            display: block;
+          }
+        }
+        
+      }
+    }
+  }
+}
+
+.calendar-without-login{
+  background: rgba($color: $light-blue3, $alpha: 0.96);
+  padding:135px 0;
+  margin: 0;
+  h4{
+    font-size: $font-24;
+      font-family: $source-regular;
+      color:$navy-blue;
+      letter-spacing: 0.25px;
+      margin-bottom: 10px;
+  }
+  p{
+    font-size: $font-18;
+    font-family: $source-regular;
+    color: $light-purple;
+    line-height: 26px;
+    max-width:412px;
+    margin: auto;
+  }
+  
+  img{
+    margin-bottom: 25px;
+  }
+}
+
+
+.explore-register{
+  font-family:  $source-semibold;
+  font-size: $font-15;
+  color: $white;
+  background: $theme-blue1;
+  text-transform: uppercase;
+  width:209px;
+  height: 49px;
+  line-height: 49px;
+  display: inline-block;
+  text-align: center;
+  border-radius:5px;
+  margin-top: 40px;
+  &:hover{
+    text-decoration: none;
+  }
 }
  
 }
@@ -540,3 +732,28 @@ margin:50px 0;
   }
 }
 
+
+
+.ctg-holidya{
+  background: rgba($color:  $aqua-forest, $alpha: 0.5);
+  border: 1px solid $aqua-forest;
+  &:before{
+    background: $aqua-forest;
+  }
+}
+
+.ctg-sport{
+  background: rgba($color:  $matisse, $alpha: 0.5);
+  border: 1px solid $matisse;
+  &:before{
+    background: $matisse;
+  }
+}
+
+.ctg-festivals{
+  background: rgba($color:  $tiber, $alpha: 0.5);
+  border: 1px solid  $tiber;
+  &:before{
+    background:  $tiber;
+  }
+}
