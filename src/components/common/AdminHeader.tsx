@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
+import ChangePassword from '../../containers/ChangePassword/ChangePassword';
 import { User } from '../../interface/User';
 import { HeaderProps } from '../../interface/HeaderProps';
 import { setDataRef } from '../../helpers';
@@ -11,11 +12,18 @@ import Common from '../../constant/common';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 class AdminHeader extends React.Component<HeaderProps> {
+	changePassRef = React.createRef<ChangePassword>();
 	constructor(props: HeaderProps) {
 		super(props);
 		this.state = {
 			message: ''
 		};
+	}
+
+	changePassword = () => {
+		if (this.changePassRef.current) {
+			this.changePassRef.current.changePassword();
+		}
 	}
 
 	render() {
@@ -39,7 +47,7 @@ class AdminHeader extends React.Component<HeaderProps> {
 										{this.props.full_name} <span><img className='logo' src='/assets/images/caret-down.png' alt='Caret icon' /></span>
 									</Dropdown.Toggle>
 									<Dropdown.Menu>
-											<Dropdown.Item href='#'>Change Password</Dropdown.Item>
+											<Dropdown.Item href='#' onClick={this.changePassword}>Change Password</Dropdown.Item>
 							<Dropdown.Item onClick={this.props.onLogout}>Sign Out</Dropdown.Item>
 									</Dropdown.Menu>
 									</Dropdown>
@@ -48,6 +56,7 @@ class AdminHeader extends React.Component<HeaderProps> {
 
 
 			</div>
+			<ChangePassword ref={this.changePassRef} />
 		</div>
 		);
 	}

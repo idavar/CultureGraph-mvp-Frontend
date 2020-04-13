@@ -30,6 +30,8 @@ export const apiPost = (url: string, data: object) => axios.post(url, data);
 
 export const apiPatch = (url: string, data: object) => axios.patch(url, data, { headers: { Authorization: `Bearer ${session.getToken()}` }});
 
+export const apiSecurePost = (url: string, data: object) => axios.patch(url, data, { headers: { Authorization: `Bearer ${session.getToken()}` }});
+
 export const apiGet = (url: string, data: object) => axios.get(url, { headers: { Authorization: `Bearer ${session.getToken()}` }, ...data});
 
 export const predicthqApiCall = async (data = {}, options?: any) => {

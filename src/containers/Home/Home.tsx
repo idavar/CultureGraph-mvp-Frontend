@@ -138,7 +138,7 @@ class Home extends React.Component {
 	<span>How It Works</span>
 	<h3>How It Works</h3>
 </div>
-<p>We take commonly-overlooked data from cultural and subcultural psychographics: food, music, arts, sports, holidays, and festivals. 
+<p>We take commonly-overlooked data from cultural and subcultural psychographics: food, music, arts, sports, holidays, and festivals.
 	Then we use machine learning to identify and segment consumer audiences in real-time, allowing you to refine and direct your message to the most relevant customers.</p>
 </div>
 

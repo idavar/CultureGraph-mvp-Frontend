@@ -12,3 +12,5 @@ export const emailVerify = (data: object) => apiHandler.apiPost(`${ConfigData.ap
 export const adminUserSearch = (data: {query: string}) => apiHandler.apiGet(`${ConfigData.apiUrl}${ConfigData.apiName.adminUsers}${data.query}`, {});
 
 export const changeStatus = (id: number, data: object) => apiHandler.apiPatch(`${ConfigData.apiUrl}${ConfigData.apiName.changeStatus}${id}/`, data);
+
+export const changePassword = (data: object) => apiHandler.apiSecurePost(`${ConfigData.apiUrl}${ConfigData.apiName.signup}`, data);

@@ -1,3 +1,4 @@
+import { ToastError } from '../components/Alert/Toast';
 import { InputRule } from '../interface/InputRule';
 import { ValidationMessage } from '../constant/error';
 import Common from '../constant/common';
@@ -82,3 +83,17 @@ export const getObjectFirstKeyValue = (error: any) => {
 	}
 	return val;
 };
+
+export const displayErrorMessage = (response: { data: { detail: string, error: object}}) => {
+	let msg = response.data.detail;
+	if (!msg)  {
+		msg = getObjectFirstKeyValue(response.data.error);
+	}
+	ToastError({msg});
+};
+
+
+
+
+
+
