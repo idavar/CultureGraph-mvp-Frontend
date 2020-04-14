@@ -158,7 +158,7 @@ class Auth extends React.Component<Props, AuthState> {
 								{form}
 								{/*  Forgot Password Start here --> */}
 								<div className='form-group'>
-									<Link to='#' className='forgot-password-link'>Forgot Password?</Link>
+									<Link to='/forgot-password' className='forgot-password-link'>Forgot Password?</Link>
 								</div>
 								{/* Forgot Password end here */}
 

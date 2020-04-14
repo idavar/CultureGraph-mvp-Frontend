@@ -3,9 +3,6 @@ import FullCalendar from '@fullcalendar/react';
 import { EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
-import Header from '../../components/common/Header';
-import Footer from '../../components/common/Footer';
-
 import '../../assets/styles/main.scss';
 import { apiReq } from '../../helpers';
 import Common from '../../constant/common';
@@ -76,7 +73,7 @@ render() {
 	};
 	return (
 		<div>
-	
+
 					<section>
 						<div className='calander-app'>
 							<div className='calander-app-calendar'>
@@ -84,7 +81,7 @@ render() {
 							</div>
 						</div>
 					</section>
-		
+
 		</div>
 	);
 }

@@ -10,6 +10,7 @@ import Auth from './containers/Auth/Auth';
 import Signup from './containers/Signup/Signup';
 import ManageUsers from './containers/Admin/Users/ManageUsers';
 import Home from './containers/Home/Home';
+import ForgotPassword from './containers/ForgotPassword/ForgotPassword';
 import * as actions from './store/actions/index';
 import { User } from './interface/User';
 import Common from './constant/common';
@@ -39,6 +40,7 @@ class App extends Component<Props> {
 					<Route path='/no-page' exact component={PageNotFound}></Route>
 					<Route path='/login' exact component={Auth}></Route>
 					<Route path='/signup' exact component={Signup}></Route>
+					<Route path='/forgot-password' exact component={ForgotPassword}></Route>
 					<Route path='/' exact component={Home}></Route>
 					<Redirect from='*' to='/signup' />
 				</Switch>

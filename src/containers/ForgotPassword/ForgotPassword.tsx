@@ -1,36 +1,25 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { History } from 'history';
 
 import '../../assets/styles/style.scss';
 
 import Input from '../../components/UI/Input/Input';
 import OurMission from '../../components/common/OurMission';
-import { ToastSuccess, ToastError } from '../../components/Alert/Toast';
+import { ToastSuccess } from '../../components/Alert/Toast';
 import Common from '../../constant/common';
 import { apiReq, validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
-
-interface State {
-	controls: any;
-	successMessage: string;
-	errorMessage: string;
-	isValidForm: boolean;
-	loading: boolean;
-}
-
-interface Props {
-	history: History;
-}
+import { FormState } from '../../interface/FormState';
+import { Link } from 'react-router-dom';
 
 interface ValidationObject {
 	isValid: boolean;
 	validationMsg?: string;
 }
 
-class ForgotPassword extends React.Component<Props> {
-		state: State = {
+class ForgotPassword extends React.Component {
+		state: FormState = {
 				controls: {
 						email: {
 								elementType: 'input',
@@ -62,6 +51,7 @@ class ForgotPassword extends React.Component<Props> {
 				const messages = this.state.controls[controlName].messages;
 				const validationData: ValidationObject = validateRef.checkValidite( value, rulesData, messages );
 				this.resetFormControls(validationData, controlName, value);
+				this.checkForgotPasswordForm();
 		}
 
 		resetFormControls = (validationData: ValidationObject, controlName: string, value: string) => {
@@ -84,29 +74,26 @@ class ForgotPassword extends React.Component<Props> {
 				const userEmail = {
 					email: this.state.controls.email.value,
 				};
-				apiReq.signUp(userEmail).then(response => {
+				apiReq.forgotPassword(userEmail).then(response => {
 					this.setState({loading: false});
-					if (response.status === Common.status.success || response.status === Common.status.processed) {
-						ToastSuccess({msg: response.data.detail});
-						this.props.history.push('/login');
-					} else {
-						let msg = response.data.detail;
-						if (!msg)  {
-							msg = validateRef.getObjectFirstKeyValue(response.data.error);
+					if (response.status === Common.status.processed) {
+						if (this.state.successMessage) {
+							ToastSuccess({msg: this.state.successMessage});
+						} else {
+							this.setState({successMessage: response.data.detail});
 						}
-						ToastError({msg});
+					} else {
+						validateRef.displayErrorMessage(response);
 					}
 				}).catch(err => {
-					this.setState({loading: false});
-					let msg = err.response.data.detail;
-					if (!msg)  {
-						msg = validateRef.getObjectFirstKeyValue(err.response.data.error);
-					}
-					ToastError({msg});
+					try {
+						this.setState({loading: false});
+						validateRef.displayErrorMessage(err.response);
+					} catch (err) {}
 				});
 		}
 
-		checkFormValid(): void {
+		checkForgotPasswordForm(): void {
 			setTimeout(() => {
 				this.setState({isValidForm: true});
 				for (const key in this.state.controls) {
@@ -144,7 +131,22 @@ class ForgotPassword extends React.Component<Props> {
 				return (
 					<div className='user-wrapper'>
 					<OurMission />
-					<div className='user-form'>
+					 {
+					 this.state.successMessage ? <div className='user-form'>
+						<div className='user-form-inner'>
+							<span className='close-icon'>
+								<a href='/'><img src='/assets/images/close.png' alt='Close Icon' /></a>
+							</span>
+							<h2>Email sent successfully!</h2>
+							<h3>Don't worry, we will get you back in to your account shortly. Follow
+								the instructions we sent to your email.
+							</h3>
+							<div className='form-group'>
+							<button className='btn btn-primary' onClick={this.submitForm}>Resend Mail</button>
+							</div>
+						</div>
+						<span className='account-status'><Link to='/login'>Back to Sign in</Link></span>
+					</div> : <div className='user-form'>
 						<div className='user-form-inner'>
 						{/*  page close icon start here */}
 						<span className='close-icon'>
@@ -161,7 +163,8 @@ class ForgotPassword extends React.Component<Props> {
 								</form>
 						</div>
 								<span className='account-status'><a href='/login'>Back to Sign in</a></span>
-						</div>
+					</div>}
+
 					</div>
 				);
 		}

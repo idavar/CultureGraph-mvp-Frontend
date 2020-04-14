@@ -14,3 +14,5 @@ export const adminUserSearch = (data: {query: string}) => apiHandler.apiGet(`${C
 export const changeStatus = (id: number, data: object) => apiHandler.apiPatch(`${ConfigData.apiUrl}${ConfigData.apiName.changeStatus}${id}/`, data);
 
 export const changePassword = (data: object) => apiHandler.apiSecurePost(`${ConfigData.apiUrl}${ConfigData.apiName.changePassword}`, data);
+
+export const forgotPassword = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.forgotPassword}`, data);
