@@ -110,7 +110,7 @@ class Home extends React.Component {
 												<a href='/'  className='becon'>Becon Festival <small>12M</small></a>
 												<a href='/'  className='tabletennis'>Table Tennis<small>70k</small></a>
 												</div>
-
+										
 												{/* <div className='explore-note'>
 													<h4>Become a reseacher to view all trending keywords.</h4>
 													<p>Register yourself as researcher to get complete access to culture calendar.</p>
@@ -125,7 +125,7 @@ class Home extends React.Component {
 							</div>
 
 							<div id='culture-map'>
-							<Culture />
+					<Culture />
 							</div>
 				<div id='how-it-works'>
 							<div className='how-it-work-section'>
@@ -136,7 +136,7 @@ class Home extends React.Component {
 	<span>How It Works</span>
 	<h3>How It Works</h3>
 </div>
-<p>We take commonly-overlooked data from cultural and subcultural psychographics: food, music, arts, sports, holidays, and festivals.
+<p>We take commonly-overlooked data from cultural and subcultural psychographics: food, music, arts, sports, holidays, and festivals. 
 	Then we use machine learning to identify and segment consumer audiences in real-time, allowing you to refine and direct your message to the most relevant customers.</p>
 </div>
 
@@ -156,7 +156,7 @@ class Home extends React.Component {
 									</div>
 
 							</div>
-							<div className='work-graph-row'>
+							<div className='work-graph-row row-even'>
 
 
 							<div className='content-block text-right'>

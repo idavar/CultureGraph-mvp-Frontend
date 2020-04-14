@@ -20,6 +20,7 @@ import { User } from '../../interface/User';
 import { HeaderProps } from '../../interface/HeaderProps';
 import { setDataRef } from '../../helpers';
 import * as actions from '../../store/actions/index';
+import Common from '../../constant/common';
 interface HeaderState {
 	isOpen?: boolean;
 }
@@ -40,13 +41,24 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 
 	toggle = (): void => {
 		this.setState({isOpen: !this.state.isOpen});
+		this.addRemoveNavbarClass();
+	}
+
+	addRemoveNavbarClass = (): void => {
+		const classValue = 'navbar-toggler-icon1';
+		const navbarTogglerEle = document.getElementsByClassName('navbar-toggler-icon');
+		if (!this.state.isOpen) {
+			navbarTogglerEle[Common.zero].classList.add(classValue);
+		} else {
+			navbarTogglerEle[Common.zero].classList.remove(classValue);
+		}
 	}
 
 	render() {
 		return (
 			<div className='web-header'>
 				<div className='container'>
-				<Navbar color='light' light expand='md'>
+				<Navbar color='light' light expand='lg'>
 				<NavbarBrand href='/'>	<img className='logo' src='/assets/images/brand-logo.png' alt='Brand Logo' /></NavbarBrand>
 				<NavbarToggler onClick={this.toggle} />
 				<Collapse isOpen={this.state.isOpen} navbar>
@@ -62,8 +74,8 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					  <NavLink href='#'>Culture Calendar</NavLink>
 					</NavItem>
 
-					<UncontrolledDropdown nav inNavbar>
-					  <DropdownToggle nav className='caret'>
+					<UncontrolledDropdown nav inNavbar >
+					  <DropdownToggle nav className=' m-dropdown caret'>
 						About IVOW
 					  </DropdownToggle>
 					  <DropdownMenu right>
@@ -87,7 +99,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					<Nav className='navbar-right' navbar>
 					<UncontrolledDropdown nav inNavbar>
 					{ this.props.isAuthenticated ?
-						<div><DropdownToggle nav className='caret'>
+						<div><DropdownToggle nav className=' m-dropdown caret'>
 					  {this.props.full_name}
 					  </DropdownToggle>
 					  <DropdownMenu right>

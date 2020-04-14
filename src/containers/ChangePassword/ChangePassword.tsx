@@ -187,7 +187,7 @@ class ChangePassword extends React.Component<{}, ChangePasswordState> {
 				) );
 				return (
 				<div>
-				<Modal show={this.state.show} onHide={this.handleClose}>
+				<Modal show={this.state.show} onHide={this.handleClose} className='change-password'>
                 <Modal.Header closeButton>
 				<Modal.Title>Change Password</Modal.Title>
 					<span className='modal-subtitle'></span>

@@ -1,0 +1,104 @@
+.fc{
+
+.fc-toolbar{
+
+
+  div{
+    width:30%;
+  }
+  h2{
+    font-size:$font-16!important;
+    color: $navy-blue;
+    font-family:  $source-semibold;
+    display: inline-block;
+  }
+
+  .fc-center{
+    text-align: center;
+    button{
+      background: none;
+      border:0!important;
+      color: #3f9bc8;
+      opacity: 0.6;
+
+      &:focus{
+        background: none;
+        border: 0!important;
+        outline:none!important;
+        box-shadow:none!important;
+     
+      }
+    }
+  }
+  .fc-right{
+    text-align: center;
+  }
+
+  .fc-button-group{
+    button{
+       background: none;
+       border-color:$theme-blue3;
+       color: $black;
+       text-transform: capitalize;
+       font-size:$font-14;
+       font-family:  $source-regular;
+       padding:14px 36px;
+       border-radius: 5px;
+
+
+       &:first-child{
+         border-radius: 5px 0 0 5px;
+       }
+       &:last-child{
+        border-radius: 0 5px 5px 0;
+      }
+
+       &.fc-button-active{
+         background: $theme-blue2;
+         color:$white;
+         font-family:  $source-bold;
+       }
+
+       &:focus{
+         box-shadow:none;
+       }
+    }
+   
+  }
+}
+
+.fc-day-header{
+  height:60px!important;
+  vertical-align: middle!important;
+  background: #92bfdd;
+  text-transform: uppercase;
+  color: #000;
+  font-size:$font-14!important;
+  font-family:  $source-semibold;
+}
+
+td 
+{
+  background: #eaf2f8;
+  .fc-day-number{
+    color: #000;
+    font-size:$font-14;
+    font-family:  $source-regular;
+  }
+
+  &.fc-today{
+    background: #f0f9ff!important;
+    border-color: inherit!important;
+  }
+}
+
+
+.fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number{
+  padding: 20px;
+}
+
+.fc-content-skeleton{
+
+}
+
+}

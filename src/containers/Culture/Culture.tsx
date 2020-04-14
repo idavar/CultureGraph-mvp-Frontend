@@ -34,15 +34,15 @@ class Culture extends React.Component {
                             </div>
                         </div>
 
-                        <div className='calendar-without-login'>
+                        {/* <div className='calendar-without-login'>
                         <img src='/assets/images/team.png' alt='Team Icon' />
                         <h4>Become a reseacher to access this calendar</h4>
                         <p>Register yourself as researcher to get complete access to culture calendar.</p>
                             <a href='/register' className='explore-register'>Register Now</a>
-                        </div>
+                        </div> */}
 
                         <div className='home-calendar'>
-                            { /*<CultureCalendar />*/ }
+                           <CultureCalendar />
                         </div>
         </div>
 
