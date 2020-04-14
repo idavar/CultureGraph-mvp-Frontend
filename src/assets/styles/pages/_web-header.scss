@@ -10,7 +10,7 @@ padding: 10px 0;
 }
 
 .container{
-  @media (max-width:1199px){
+  @media (min-width:992px) and (max-width:1199px){
   max-width:1050px;
   }
 }
@@ -173,6 +173,14 @@ padding: 10px 0;
 .header-signup-section{
 
   a{
+
+    &:first-child{
+      @media (max-width:991px){
+        display: block!important;
+      }
+    }
+   
+    
     &:hover{
       text-decoration: none;
     }
