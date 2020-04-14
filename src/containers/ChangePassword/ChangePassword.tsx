@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import Input from '../../components/UI/Input/Input';
 import { ToastSuccess } from '../../components/Alert/Toast';
 import Common from '../../constant/common';
@@ -31,7 +32,7 @@ class ChangePassword extends React.Component<{}, ChangePasswordState> {
 								elementType: 'input',
 								elementConfig: {
 										type: 'password',
-										placeholder: 'Password'
+										placeholder: 'Enter Current Password'
 								},
 								value: '',
 								validation: {
@@ -49,7 +50,7 @@ class ChangePassword extends React.Component<{}, ChangePasswordState> {
 								elementType: 'input',
 								elementConfig: {
 										type: 'password',
-										placeholder: 'Password'
+										placeholder: 'Enter New Password'
 								},
 								value: '',
 								validation: {
@@ -67,7 +68,7 @@ class ChangePassword extends React.Component<{}, ChangePasswordState> {
 								elementType: 'input',
 								elementConfig: {
 										type: 'password',
-										placeholder: 'Confirm Password'
+										placeholder: 'Re-enter new password'
 								},
 								value: '',
 								validation: {
@@ -130,13 +131,15 @@ class ChangePassword extends React.Component<{}, ChangePasswordState> {
 			this.setState( { controls: updatedControls } );
 		}
 
-		handleClose = (): void => this.setState({show: false});
+		handleClose = (): void => {
+			this.setState({show: false});
+		}
 
 		changePassword = (): void => {
 			this.setState({show: true});
 		}
 
-        submitChangePassword = (event: {preventDefault: Function}) => {
+        submitChangePassword = (event: React.FormEvent<HTMLFormElement>) => {
 			event.preventDefault();
 			this.setState({loading: true});
 			const formData = {
@@ -186,19 +189,22 @@ class ChangePassword extends React.Component<{}, ChangePasswordState> {
 				<div>
 				<Modal show={this.state.show} onHide={this.handleClose}>
                 <Modal.Header closeButton>
-								<Modal.Title>Change Password</Modal.Title>
-								<span className='modal-subtitle'></span>
-								</Modal.Header>
-								<Modal.Body>
-									<form onSubmit={this.submitChangePassword}>
-											{form}
-											<div className='form-group'>
-												<button disabled={this.state.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Change Password</button>
-											</div>
-									</form>
-									</Modal.Body>
-								<Modal.Footer>
-								</Modal.Footer>
+				<Modal.Title>Change Password</Modal.Title>
+					<span className='modal-subtitle'></span>
+					</Modal.Header>
+					<form onSubmit={this.submitChangePassword}>
+						<Modal.Body>
+								{form}
+						</Modal.Body>
+						<Modal.Footer>
+						<Button className='btn-outline'  onClick={this.handleClose}>
+							Cancel
+						</Button>
+						<Button className='btn-action' disabled={this.state.loading || !this.state.isValidForm} type='submit' >
+							Save Changes
+						</Button>
+						</Modal.Footer>
+					</form>
 				</Modal>
 				</div>
 				);
