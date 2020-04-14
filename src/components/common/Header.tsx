@@ -20,6 +20,7 @@ import { User } from '../../interface/User';
 import { HeaderProps } from '../../interface/HeaderProps';
 import { setDataRef } from '../../helpers';
 import * as actions from '../../store/actions/index';
+import Common from '../../constant/common';
 interface HeaderState {
 	isOpen?: boolean;
 }
@@ -40,6 +41,17 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 
 	toggle = (): void => {
 		this.setState({isOpen: !this.state.isOpen});
+		this.addRemoveNavbarClass();
+	}
+
+	addRemoveNavbarClass = (): void => {
+		const classValue = 'navbar-toggler-icon1';
+		const navbarTogglerEle = document.getElementsByClassName('navbar-toggler-icon');
+		if (!this.state.isOpen) {
+			navbarTogglerEle[Common.zero].classList.add(classValue);
+		} else {
+			navbarTogglerEle[Common.zero].classList.remove(classValue);
+		}
 	}
 
 	render() {
