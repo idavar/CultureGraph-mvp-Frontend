@@ -10,8 +10,6 @@ import {
 	UncontrolledDropdown,
 	DropdownToggle,
 	DropdownMenu,
-	DropdownItem,
-	NavbarText
 	} from 'reactstrap';
 
 import { connect } from 'react-redux';
@@ -22,7 +20,7 @@ import { HeaderProps } from '../../interface/HeaderProps';
 import { setDataRef } from '../../helpers';
 import * as actions from '../../store/actions/index';
 interface HeaderState {
-	isOpen: boolean | undefined;
+	isOpen?: boolean;
 }
 class Header extends React.Component<HeaderProps, HeaderState> {
 	constructor(props: HeaderProps) {
@@ -37,18 +35,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 	}
 
 	render() {
-		let headarLink = <div className='menu-log'>
-							<a href='/signup'>Become a researcher</a>
-							<a href='/login'>LOGIN</a>
-						</div>;
-		if (this.props.isAuthenticated) {
-			headarLink = <div className='menu-log'>
-							<Link to='#'>{this.props.full_name}</Link>
-							<Link to='#'>Change Password</Link>
-							<Link to='#' onClick={this.props.onLogout}>Logout</Link>
-						</div>;
-		}
-
 		return (
 			<div className='web-header'>
 				<div className='container'>

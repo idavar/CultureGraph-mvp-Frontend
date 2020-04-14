@@ -2,6 +2,7 @@ import React from 'react';
 
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
+import Culture from '../Culture/Culture';
 
 class Home extends React.Component {
 	render() {
@@ -18,7 +19,7 @@ class Home extends React.Component {
 												<p>A smart tool that provides real-time cultural insights to help you create more effective and efficient experiences for consumer audiences.</p>
 													<form>
 												<div className='banner-search'>
-												<input type='text' placeholder='Search here for culture, activities, events and more…'></input>
+												<input type='text' placeholder='Search here for festivals, food, music and more...'></input>
 													<button type='button'><img src='/assets/images/search-icon-white.png' alt='Search Icon' /></button>
 												</div>
 												</form>
@@ -124,52 +125,7 @@ class Home extends React.Component {
 							</div>
 
 							<div id='culture-map'>
-							<div className='culture-map-section'>
-
-								<div className='container'>
-								<div className='watermark-title-section'>
-								<div className='watermark-title'>
-									<span>Culture Map</span>
-									<h3>Culture Map</h3>
-								</div>
-								<p>Click on dot to explore results in more detail</p>
-								</div>
-								{/* <img src='/assets/images/map.png' alt='Map' /> */}
-
-												<div className='buttons-section'>
-													<div className='buttons'>
-														<a href='/' >Culture Map</a>
-														<a href='/' className='active'>Culture Calendar</a>
-													</div>
-
-													<div className='event-indicator'>
-															<div><span><em className='ctg-holidya'></em> Holidays</span></div>
-															<div><span><em className='ctg-sport'></em> Sports</span></div>
-															<div><span><em className='ctg-festivals'></em> Festivals</span></div>
-															<div className='value-more'><span className='more'><em></em> 3 More</span>
-																<div>
-																<span><em className='ctg-holidya'></em> Holidays</span>
-																<span><em className='ctg-sport'></em> Sports</span>
-																<span><em className='ctg-festivals'></em> Festivals</span>
-																</div>
-															</div>
-													</div>
-												</div>
-
-												<div className='calendar-without-login'>
-												<img src='/assets/images/team.png' alt='Team Icon' />
-												<h4>Become a reseacher to access this calendar</h4>
-												<p>Register yourself as researcher to get complete access to culture calendar.</p>
-												<a href='/' className='explore-register'>Register Now</a>
-												</div>
-
-												<div className='home-calendar'>
-													{/* calendar code place here.. */}
-												</div>
-
-								</div>
-
-							</div>
+							<Culture />
 							</div>
 				<div id='how-it-works'>
 							<div className='how-it-work-section'>

@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import PageNotFound from './components/common/pageNotFound';
 import EmailVerify from './components/common/EmailVerify';
-import CultureCalendar from './containers/Calendar/CultureCalendar';
 import Auth from './containers/Auth/Auth';
 import Signup from './containers/Signup/Signup';
 import ManageUsers from './containers/Admin/Users/ManageUsers';
@@ -38,7 +37,6 @@ class App extends Component<Props> {
 					<Route path='/admin/manage-users' exact component={ManageUsers}></Route>
 					<Route path='/html' exact component={HTML}></Route>
 					<Route path='/no-page' exact component={PageNotFound}></Route>
-					<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
 					<Route path='/login' exact component={Auth}></Route>
 					<Route path='/signup' exact component={Signup}></Route>
 					<Route path='/' exact component={Home}></Route>
@@ -58,7 +56,6 @@ class App extends Component<Props> {
 					<Switch>
 						<Route path='/html' exact component={HTML}></Route>
 						<Route path='/no-page' exact component={PageNotFound}></Route>
-						<Route path='/culture-calendar' exact component={CultureCalendar}></Route>
 						<Route path='/' exact component={Home}></Route>
 						<Redirect from='*' to='/' />
 					</Switch>

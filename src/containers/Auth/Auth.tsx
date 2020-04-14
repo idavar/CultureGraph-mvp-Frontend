@@ -21,8 +21,8 @@ interface Props {
 		isAuthenticated: boolean;
 		authRedirectPath?: string;
 		isAdmin: boolean;
-		error: Error | null | undefined;
-		loading: boolean | undefined;
+		error?: Error | null;
+		loading?: boolean;
 		onAuth: (email: string, password: string) => void;
 }
 
@@ -105,10 +105,8 @@ class Auth extends React.Component<Props, AuthState> {
 		checkFormValid(): void {
 			this.setState({isValidForm: true});
 			for (const key in this.state.controls) {
-				if (this.state.controls[key]) {
-					if (!this.state.controls[key].valid) {
-						this.setState({isValidForm: this.state.controls[key].valid});
-					}
+				if (this.state.controls[key] && !this.state.controls[key].valid) {
+					this.setState({isValidForm: this.state.controls[key].valid});
 				}
 			}
 		}

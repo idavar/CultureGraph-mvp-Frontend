@@ -59,9 +59,9 @@ render() {
 	const calendarOptions = {
 		eventLimit: Common.three,
 		header: {
-			right: 'prev,next today',
-			center: 'title',
-			left: 'dayGridWeek,dayGridMonth'
+			left: 'today',
+			center: 'prev, title ,next',
+			right: 'dayGridWeek,dayGridMonth'
 		},
 		defaultView: 'dayGridWeek',
 		plugins: [ dayGridPlugin ],
@@ -76,7 +76,7 @@ render() {
 	};
 	return (
 		<div>
-			<Header />
+	
 					<section>
 						<div className='calander-app'>
 							<div className='calander-app-calendar'>
@@ -84,7 +84,7 @@ render() {
 							</div>
 						</div>
 					</section>
-			<Footer />
+		
 		</div>
 	);
 }

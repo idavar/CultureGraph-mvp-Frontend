@@ -1,0 +1,52 @@
+.fc-toolbar{
+  h2{
+    font-size:$font-16!important;
+    color: $navy-blue;
+    font-family:  $source-semibold;
+    display: inline-block;
+  }
+
+  .fc-center{
+    button{
+      background: none;
+      border:0!important;
+      color: #3f9bc8;
+
+      &:focus{
+        background: none;
+        border: 0!important;
+        outline:none!important;
+     
+      }
+    }
+  }
+}
+
+.fc-day-header{
+  height:60px!important;
+  vertical-align: middle!important;
+  background: #92bfdd;
+  text-transform: uppercase;
+  color: #000;
+  font-size:$font-14!important;
+  font-family:  $source-semibold;
+}
+
+td 
+{
+  background: #eaf2f8;
+  .fc-day-number{
+    color: #000;
+    font-size:$font-14;
+    font-family:  $source-regular;
+  }
+
+  &.fc-today{
+    background: #f0f9ff;
+  }
+}
+
+
+.fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number{
+  padding: 20px;
+}
