@@ -350,11 +350,11 @@ tbody{
   width: 100%;
   opacity: 0;
 }
-.toggleSwitch a {
+.toggleSwitch small {
   position: absolute;
   left: calc(100% - 35px);
   z-index: 4;
-  display: block;
+  display: inline-block;
   height: 34px;
   padding: 0;
   top:3px;
@@ -364,6 +364,7 @@ tbody{
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
+
 
 }
 .toggleSwitch > span span:first-of-type {
@@ -386,7 +387,7 @@ tbody{
   -moz-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
-.toggleSwitch input:checked ~ a {
+.toggleSwitch input:checked ~ small {
    border-color: #fff;
    left: 4px;
 

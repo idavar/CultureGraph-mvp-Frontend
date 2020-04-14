@@ -99,9 +99,11 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 				const paginationBasic = (
 						<div>
 							<Pagination>
-							{(totalPage > Common.one) ? <small className='panination-prev'><Pagination.Prev disabled={!this.props.previous} onClick={() => { this.onPageClick(active - 1); }} /> </small> : ''}
+							{(totalPage > Common.one) ? <small className='panination-prev'><Pagination.Prev disabled={!this.props.previous}
+							onClick={() => { this.onPageClick(active - 1); }} /> </small> : ''}
 								{items}
-							{(totalPage > Common.one) ? <small className='panination-next'><Pagination.Next disabled={!this.props.next} onClick={() => { this.onPageClick(active + 1); }} /> </small> : '' }
+							{(totalPage > Common.one) ? <small className='panination-next'><Pagination.Next disabled={!this.props.next}
+							onClick={() => { this.onPageClick(active + 1); }} /> </small> : '' }
 							</Pagination>
 						</div>
 				);
@@ -165,6 +167,7 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 						<span>Active</span>
 						<span>Block</span>
 				</span>
+			<small></small>
 	</label>
 
 
