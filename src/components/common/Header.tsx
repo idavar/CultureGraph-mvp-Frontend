@@ -15,6 +15,7 @@ import {
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import ChangePassword from '../../containers/ChangePassword/ChangePassword';
 import { User } from '../../interface/User';
 import { HeaderProps } from '../../interface/HeaderProps';
 import { setDataRef } from '../../helpers';
@@ -23,11 +24,18 @@ interface HeaderState {
 	isOpen?: boolean;
 }
 class Header extends React.Component<HeaderProps, HeaderState> {
+	updatePassRef = React.createRef<ChangePassword>();
 	constructor(props: HeaderProps) {
 		super(props);
 		this.state = {
 			isOpen: false
 		};
+	}
+
+	onChangePassword = () => {
+		if (this.updatePassRef.current) {
+			this.updatePassRef.current.changePassword();
+		}
 	}
 
 	toggle = (): void => {
@@ -72,7 +80,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 						<a href='#clients'>
 						Clients
 						</a>
-
 					  </DropdownMenu>
 					</UncontrolledDropdown>
 				  </Nav>
@@ -84,7 +91,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					  {this.props.full_name}
 					  </DropdownToggle>
 					  <DropdownMenu right>
-						<Link to='#'>
+						<Link to='#' onClick={this.onChangePassword}>
 							Change Password
 						</Link>
 						<Link to='#' onClick={this.props.onLogout}>
@@ -102,7 +109,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 				</Collapse>
 			  </Navbar>
 				</div>
-
+				<ChangePassword ref={this.updatePassRef} />
 			</div>
 		  );
 	}

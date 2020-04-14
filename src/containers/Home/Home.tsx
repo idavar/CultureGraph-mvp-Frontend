@@ -2,6 +2,7 @@ import React from 'react';
 
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
+import Culture from '../Culture/Culture';
 
 class Home extends React.Component {
 	render() {
@@ -97,16 +98,26 @@ class Home extends React.Component {
 										</div>
 										<div className='col-md-6'>
 												<div className='explore-detail'>
-												<a href='#' className='holi' >Holi Festival <small>20M</small></a>
-												<a href='#'  className='herring'>Herring Festival <small>18M</small></a>
-												<a href='#' className='hogmanay'>Hogmanay <small>10M</small></a>
-												<a href='#'  className='donauinselfest'>Donauinselfest<small>9.1M</small></a>
-												<a href='#'  className='carnevale'>Carnevale <small>5M</small></a>
-												<a href='#'  className='primavera'>Primavera sound <small>4.1k</small></a>
-												<a href='#'  className='let-it-roll'>Let It Roll <small>90k</small></a>
-												<a href='#'  className='soccer'>Soccer <small>7.7M</small></a>
-												<a href='#'  className='becon'>Becon Festival <small>12M</small></a>
-												<a href='#'  className='tabletennis'>Table Tennis<small>70k</small></a>
+													<div className='explore-event'>
+												<a href='/' className='holi' >Holi Festival <small>20M</small></a>
+												<a href='/'  className='herring'>Herring Festival <small>18M</small></a>
+												<a href='/' className='hogmanay'>Hogmanay <small>10M</small></a>
+												<a href='/'  className='donauinselfest'>Donauinselfest<small>9.1M</small></a>
+												<a href='/'  className='carnevale'>Carnevale <small>5M</small></a>
+												<a href='/'  className='primavera'>Primavera sound <small>4.1k</small></a>
+												<a href='/'  className='let-it-roll'>Let It Roll <small>90k</small></a>
+												<a href='/'  className='soccer'>Soccer <small>7.7M</small></a>
+												<a href='/'  className='becon'>Becon Festival <small>12M</small></a>
+												<a href='/'  className='tabletennis'>Table Tennis<small>70k</small></a>
+												</div>
+
+												{/* <div className='explore-note'>
+													<h4>Become a reseacher to view all trending keywords.</h4>
+													<p>Register yourself as researcher to get complete access to culture calendar.</p>
+													<a href='/' className='explore-register'>Register Now</a>
+												</div> */}
+
+
 												</div>
 										</div>
 									</div>
@@ -114,20 +125,7 @@ class Home extends React.Component {
 							</div>
 
 							<div id='culture-map'>
-							<div className='culture-map-section'>
-
-								<div className='container'>
-								<div className='watermark-title-section'>
-								<div className='watermark-title'>
-									<span>Culture Map</span>
-									<h3>Culture Map</h3>
-								</div>
-								<p>Click on dot to explore results in more detail</p>
-								</div>
-								<img src='/assets/images/map.png' alt='Map' />
-								</div>
-
-							</div>
+							<Culture />
 							</div>
 				<div id='how-it-works'>
 							<div className='how-it-work-section'>
@@ -138,7 +136,7 @@ class Home extends React.Component {
 	<span>How It Works</span>
 	<h3>How It Works</h3>
 </div>
-<p>We take commonly-overlooked data from cultural and subcultural psychographics: food, music, arts, sports, holidays, and festivals. 
+<p>We take commonly-overlooked data from cultural and subcultural psychographics: food, music, arts, sports, holidays, and festivals.
 	Then we use machine learning to identify and segment consumer audiences in real-time, allowing you to refine and direct your message to the most relevant customers.</p>
 </div>
 
