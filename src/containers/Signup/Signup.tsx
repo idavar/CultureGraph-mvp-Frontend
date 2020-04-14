@@ -6,6 +6,7 @@ import { History } from 'history';
 import '../../assets/styles/style.scss';
 
 import Input from '../../components/UI/Input/Input';
+import OurMission from '../../components/common/OurMission';
 import { ToastSuccess, ToastError } from '../../components/Alert/Toast';
 import Common from '../../constant/common';
 import { apiReq, validateRef } from '../../helpers';
@@ -236,14 +237,7 @@ class Signup extends React.Component<Props> {
 
 				return (
 					<div className='user-wrapper'>
-					<div className='user-banner'>
-						<a href='/'>
-							<img className='logo' src='/assets/images/logo.png' alt='Brand Logo' />
-						</a>
-						<img src='/assets/images/signup-banner.png' className='signup-banner' alt='Sign Up Banner' />
-						<h1>At IVOW AI, our mission is to make data culturally relevant. IVOW stands for Intelligent Voices of Wisdom.
-						</h1>
-					</div>
+					<OurMission />
 					<div className='user-form'>
 						<div className='user-form-inner'>
 						{/*  page close icon start here */}
