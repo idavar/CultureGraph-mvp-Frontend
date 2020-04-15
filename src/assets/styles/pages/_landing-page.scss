@@ -1,6 +1,9 @@
 .banner-section{
   background: $off-white;
   position: relative;
+  @media (max-width:767px){
+    background: $white;
+  }
   @media (min-width:576px) and (max-width:767px){
     padding-bottom:40px;
   }
@@ -23,7 +26,7 @@
     position: relative;
     z-index: 1;
     @media (max-width:991px){
-      padding: 160px 0 80px 0;
+      padding: 135px 0 80px 0;
     }
 
     h1{
@@ -44,6 +47,10 @@
         width:50px;
         height:5px;
         background:  $theme-blue;
+        @media (max-width:767px){
+          width:34px;
+          height:3px;
+        }
       }
     }
 
@@ -141,6 +148,7 @@
       position: relative;
       right: 0;
       top: -30px;
+      margin-top: -30px;
       max-width:100%;
       text-align: right;
     }
@@ -175,6 +183,22 @@
     }
   }
 
+
+.safty-note-wrap{
+  position: relative;
+
+.safty-note-content{
+  position: absolute;
+  top:60px;
+  left:35px;
+  background:$off-white;
+
+  p{
+    font-size:$font-14;
+    line-height: 1.6;
+  }
+}
+
   .safty-note{
     display: block;
     font-size: $font-16;
@@ -198,9 +222,11 @@
       background-size:24px;
     }
 
-    a{
+    .safty-know-more{
      color:  $theme-blue; 
      position: relative;
+     font-size:$font-16;
+     cursor: pointer;
      &:after{
       content: '';
       position: absolute;
@@ -213,11 +239,14 @@
       height:11px;
       background: url(../../images/caret-down-blue.png) no-repeat;
      }
-     &:hover{
-       text-decoration: none;
-     }
+   
     }
   }
+}
+
+
+
+  
 }
 .watermark-title-section {
   padding: 80px 0 30px 0;
@@ -313,7 +342,7 @@
         top: -30px;
       }
 
-      @media (min-width:575px) and (max-width:1099px){
+      @media (min-width:576px) and (max-width:1099px){
         top:-100px
       }
     }
@@ -347,9 +376,8 @@
       margin: 50px auto;
       max-width:400px;
     }
-
   
-    @media (min-width:992px) and (max-width:1199px){
+    @media (min-width:768px) and (max-width:1199px){
       min-height: 332px;
     }
 
@@ -457,12 +485,19 @@ img{
     position: relative;
     z-index: 1;
     margin: 20px 0;
+    @media (max-width:767px){
+      margin: 20px -15px;
+      text-align: center;
+    }
 
     .explore-event{
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+      @media (max-width:767px){
+        justify-content: center;
+      }
       a{ font-size:$font-16;
         color:$white;
         font-family:$source-bold;
@@ -478,14 +513,18 @@ img{
 
         @media (max-width:767px){
           font-size:$font-12;
-          margin: 10px;
-          width: calc(50% - 20px);
+          margin: 9px;
+          width: calc(50% - 18px);
           height: 41px;
           padding:6px;
         }
   
         @media (min-width:992px) and (max-width:1199px){
           margin: 6px;
+        }
+
+        small{
+          margin-left: 5px;
         }
   
         &.holi{
@@ -539,8 +578,8 @@ img{
     }
 
     .explore-note{
-      text-align: left;
       padding: 15px 20px;
+ 
 
       h4{
           font-family:  $font-regular;
@@ -551,6 +590,12 @@ img{
           margin-bottom:10px;
           max-width: 346px;
 
+          @media (max-width:767px){
+            max-width:inherit;
+            font-size:$font-16;
+            margin-bottom: 20px;
+          }
+
       }
       p{
         font-family:  $font-regular;
@@ -558,6 +603,9 @@ img{
           color: $navy-blue-light1;
           line-height: 1.73;
           max-width: 445px;
+          @media (max-width:767px){
+            font-size:$font-14;
+          }
           
       }
 
@@ -567,6 +615,24 @@ img{
     
   
   }
+.row{
+  .col-md-6{
+    &:first-child{
+      @media (min-width:768px) and (max-width:991px){
+        flex: 0 0 35%;
+      }
+    
+    }
+    &:last-child{
+      @media (min-width:768px) and (max-width:991px){
+        flex: 0 0 65%;
+        max-width:65%;
+      }
+    
+    }
+  }
+}
+
 }
 
 
@@ -640,23 +706,38 @@ img{
 .culture-map-section{
   background: $theme-color-light;
   padding-bottom: 50px;
+  @media (max-width:767px){
+ padding:0 20px 30px 20px;
+  }
 
 
 .buttons-section{
 
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
    margin: 0 0 45px 0;
-   @media (max-width:767px){
- 
+   @media (max-width:375px){
+    justify-content: flex-start!important;
    }
+   @media (max-width:1099px){
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+ 
   .buttons{
     background: $white;
     border-radius: 33px;
     max-width: 340px;
     flex: none;
+    box-shadow: 1px 3px 8px 0 rgba(232, 232, 232, 0.49);
+    @media (max-width:575px){
+      max-width: 275px;
+  
+    }
+    @media (max-width:1099px){
+      margin-bottom: 30px;
+    }
     a{
       font-size: $font-16;
       font-family: $source-regular;
@@ -667,6 +748,14 @@ img{
       display: inline-block;
       border-radius: 33px;
       margin: 10px;
+
+      @media (max-width:575px){
+        font-size: $font-14;
+        width: 121px;
+        height: 40px;
+        line-height: 40px;
+        margin: 5px;
+      }
 
       &:hover{
         text-decoration:none;
@@ -682,13 +771,25 @@ img{
 
   .event-indicator{
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    @media (max-width:767px){
+    @media (max-width:1099px){
+      flex-wrap: wrap;
+    }
 
+    @media (max-width:767px){
+      margin-left: -10px;
+      margin-right: -10px;
     }
     div{
+
+      @media (max-width:767px){
+        width: calc(50% - 20px);
+        margin: 10px;
+      }
+
+   
+
       span{
       font-size: $font-16;
       font-family: $source-regular;
@@ -705,6 +806,17 @@ img{
       align-items: center;
       position: relative;
       z-index: 12;
+      @media (max-width:575px){
+           font-size: $font-12;
+           height: 35px;
+           line-height: 35px;
+      }
+      @media (max-width:767px){
+        width:100%;
+        margin: 0;
+     
+      }
+
      
       em{
         width: 35px;
@@ -713,6 +825,10 @@ img{
         display: inline-block;
         margin: 0 10px;
         position: relative;
+        @media (max-width:575px){
+            width:24px;
+            height:24px;
+        }
 
         &:before{
         content: '';
@@ -725,13 +841,17 @@ img{
         left: 0;
         right: 0;
         margin: auto;
+        @media (max-width:575px){
+          width:10px;
+          height:10px;
+      }
         }
 
       }
       }
       
       &.value-more{
-
+          position: relative;
         span.more{
           cursor: pointer;
           &::after{
@@ -755,6 +875,14 @@ img{
         div{
           display: none;
           position: absolute;
+          width:100%;
+          left:0;
+          top:100%;
+          @media (max-width:767px){
+            top: calc(100% - 10px);
+            left:-16px;
+          }
+          
 
           span{
             margin: 8px;
@@ -959,6 +1087,10 @@ margin:50px 0;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    @media(max-width:575px){
+      margin-top: -20px;
+      padding-bottom: 20px;
+    }
 
     div{
       width: 194px;
@@ -1032,6 +1164,13 @@ margin:50px 0;
   text-align: center;
   border-radius:5px;
   margin-top: 40px;
+  @media (max-width:767px){
+    width:130px;
+    height:40px;
+    line-height: 40px;
+    font-size: $font-14;
+    margin-top: 20px;
+  }
   &:hover{
     text-decoration: none;
     color: $white;

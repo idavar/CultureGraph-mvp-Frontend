@@ -80,7 +80,7 @@ render() {
 					<section>
 						<div className='calander-app'>
 							<div className='calander-app-calendar'>
-								<FullCalendar {...calendarOptions} />
+								{/* <FullCalendar {...calendarOptions} /> */}
 							</div>
 						</div>
 					</section>

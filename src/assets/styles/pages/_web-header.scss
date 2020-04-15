@@ -7,9 +7,14 @@ padding: 10px 0;
 @media (max-width:991px){
   background: $white;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.05);
+  padding: 0;
 }
 
 .container{
+
+  @media (max-width:991px){
+    padding: 0;
+  }
   @media (min-width:992px) and (max-width:1199px){
   max-width:1050px;
   }
@@ -203,6 +208,23 @@ padding: 10px 0;
 
 }
 
+
+.navbar-toggler-icon{
+  background:url(../../images/menu.png) no-repeat!important;
+  transition: 0.4s all ease-in-out;
+  &.navbar-toggler-icon1{
+    background:url(../../images/menu-close.png) no-repeat!important;
+  }
+}
+.collapse{
+  transition: 1s all ease-in-out;
+  display: block;
+
+}
+
+.collapsing {
+  transition: 0.4s all ease-in-out;
+}
 
 
 

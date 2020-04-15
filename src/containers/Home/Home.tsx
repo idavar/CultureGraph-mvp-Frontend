@@ -23,7 +23,14 @@ class Home extends React.Component {
 													<button type='button'><img src='/assets/images/search-icon-white.png' alt='Search Icon' /></button>
 												</div>
 												</form>
-												<span className='safty-note'> Your search is safe with us. <a href='#'>Know more</a></span>
+												<div className='safty-note-wrap'>
+												<span className='safty-note'> Your search is safe with us. <small className='safty-know-more'>Know more</small></span>
+												<div className='safty-note-content'>
+													<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+														 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+														  printer took a galley of type and scrambled it to make a type specimen book.</p>
+												</div>
+												</div>
 											</div>
 									</div>
 
@@ -111,11 +118,11 @@ class Home extends React.Component {
 												<a href='/'  className='tabletennis'>Table Tennis<small>70k</small></a>
 												</div>
 										
-												{/* <div className='explore-note'>
+												 <div className='explore-note'>
 													<h4>Become a reseacher to view all trending keywords.</h4>
 													<p>Register yourself as researcher to get complete access to culture calendar.</p>
 													<a href='/' className='explore-register'>Register Now</a>
-												</div> */}
+												</div> 
 
 
 												</div>
