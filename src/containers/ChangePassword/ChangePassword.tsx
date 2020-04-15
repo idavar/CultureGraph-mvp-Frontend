@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { store } from '../../store/store';
+import * as actions from '../../store/actions/index';
 import Input from '../../components/UI/Input/Input';
 import { ToastSuccess } from '../../components/Alert/Toast';
 import Common from '../../constant/common';
@@ -10,7 +12,7 @@ import { FormState } from '../../interface/FormState';
 import { ValidationObject } from '../../interface/ValidationObject';
 
 const confirmPassword = 'confirm_password';
-
+const {dispatch} = store;
 class ChangePassword extends React.Component<{}, FormState> {
 		constructor(props: {}) {
 		super(props);
@@ -20,6 +22,7 @@ class ChangePassword extends React.Component<{}, FormState> {
 								elementType: 'input',
 								elementConfig: {
 										type: 'password',
+										label: 'Current Password',
 										placeholder: 'Enter Current Password'
 								},
 								value: '',
@@ -38,6 +41,7 @@ class ChangePassword extends React.Component<{}, FormState> {
 								elementType: 'input',
 								elementConfig: {
 										type: 'password',
+										label: 'New Password',
 										placeholder: 'Enter New Password'
 								},
 								value: '',
@@ -56,6 +60,7 @@ class ChangePassword extends React.Component<{}, FormState> {
 								elementType: 'input',
 								elementConfig: {
 										type: 'password',
+										label: 'Confirm New Password',
 										placeholder: 'Re-enter new password'
 								},
 								value: '',
@@ -139,6 +144,7 @@ class ChangePassword extends React.Component<{}, FormState> {
 				this.setState({loading: false});
 				if (response.status === Common.status.processed) {
 					ToastSuccess({msg: response.data.detail});
+					dispatch(actions.logout() as never);
 				} else {
 					validateRef.displayErrorMessage(response);
 				}
