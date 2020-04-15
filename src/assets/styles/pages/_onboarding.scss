@@ -252,3 +252,64 @@ position: relative;
 	display: none;
 }
 
+
+
+//change password start here..
+
+.change-password{
+.modal-dialog{
+	max-width:830px;
+}
+
+form{
+
+	border-top: 1px solid $light-gray;
+		margin-top: 20px;
+		
+		.form-group {
+			margin-bottom: 30px;
+		
+			.show-action{
+				transform: translateY(0%);
+			}
+		}
+
+.form-control{
+	border-top:0 ;
+	border-left:0 ;
+	border-right:0 ;
+	border-radius:0;
+	padding-left: 0;
+	padding-bottom: 5px;
+	font-size:$font-20;
+	&::placeholder{
+	opacity: 0.5;
+	font-size: $font-16;
+	color: $navy-blue;
+	}
+
+	
+}
+
+.form-control + label{
+
+	top:20px;
+	left:0;
+	text-transform: uppercase;
+	font-size: $font-13;
+	color: $navy-blue;
+	letter-spacing: 1.08px;
+}
+
+button{
+	font-family: $source-bold!important;
+}
+
+}
+
+
+
+
+}
+
+//change password ends here..

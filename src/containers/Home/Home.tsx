@@ -125,7 +125,7 @@ class Home extends React.Component {
 							</div>
 
 							<div id='culture-map'>
-							<Culture />
+					<Culture />
 							</div>
 				<div id='how-it-works'>
 							<div className='how-it-work-section'>
@@ -156,7 +156,7 @@ class Home extends React.Component {
 									</div>
 
 							</div>
-							<div className='work-graph-row'>
+							<div className='work-graph-row row-even'>
 
 
 							<div className='content-block text-right'>

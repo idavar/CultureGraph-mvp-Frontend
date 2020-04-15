@@ -11,7 +11,10 @@ const ConfigData = {
 			emailVerify: 'account/email-verify/',
 			adminUsers: 'admin/users/',
 			changeStatus: 'admin/users/change-status/',
-			changePassword: '/account/change-password/'
+			changePassword: '/account/change-password/',
+			forgotPassword: '/account/forgot-password/',
+			resetPassword: '/account/set-password/',
+			verifyCode: '/account/verify-code/'
 		}
 	};
 

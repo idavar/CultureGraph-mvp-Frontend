@@ -5,6 +5,7 @@ import { Redirect, Link } from 'react-router-dom';
 import '../../assets/styles/style.scss';
 
 import Input from '../../components/UI/Input/Input';
+import OurMission from '../../components/common/OurMission';
 import * as actions from '../../store/actions/index';
 import { validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
@@ -143,14 +144,7 @@ class Auth extends React.Component<Props, AuthState> {
 				return (
 					<div className='user-wrapper'>
 						{authRedirect}
-						<div className='user-banner'>
-							<a href='/'>
-								<img className='logo' src='/assets/images/logo.png' alt='Brand Logo' />
-							</a>
-							<img src='/assets/images/signup-banner.png' alt='Sign Up Banner' />
-							<h1>At IVOW AI, our mission is to make data culturally relevant. IVOW stands for Intelligent Voices of Wisdom.
-							</h1>
-						</div>
+						<OurMission />
 						<div className='user-form'>
 							<div className='user-form-inner'>
 							{/*  page close icon start here */}
@@ -164,7 +158,7 @@ class Auth extends React.Component<Props, AuthState> {
 								{form}
 								{/*  Forgot Password Start here --> */}
 								<div className='form-group'>
-									<Link to='#' className='forgot-password-link'>Forgot Password?</Link>
+									<Link to='/forgot-password' className='forgot-password-link'>Forgot Password?</Link>
 								</div>
 								{/* Forgot Password end here */}
 

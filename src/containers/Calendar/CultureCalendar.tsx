@@ -3,9 +3,6 @@ import FullCalendar from '@fullcalendar/react';
 import { EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
-import Header from '../../components/common/Header';
-import Footer from '../../components/common/Footer';
-
 import '../../assets/styles/main.scss';
 import { apiReq } from '../../helpers';
 import Common from '../../constant/common';
@@ -59,9 +56,9 @@ render() {
 	const calendarOptions = {
 		eventLimit: Common.three,
 		header: {
-			right: 'prev,next today',
-			center: 'title',
-			left: 'dayGridWeek,dayGridMonth'
+			left: 'none',
+			center: 'prev, title ,next',
+			right: 'dayGridWeek,dayGridMonth'
 		},
 		defaultView: 'dayGridWeek',
 		plugins: [ dayGridPlugin ],
@@ -76,7 +73,7 @@ render() {
 	};
 	return (
 		<div>
-			<Header />
+
 					<section>
 						<div className='calander-app'>
 							<div className='calander-app-calendar'>
@@ -84,7 +81,7 @@ render() {
 							</div>
 						</div>
 					</section>
-			<Footer />
+
 		</div>
 	);
 }

@@ -68,7 +68,7 @@ const Input = ( props: any ) => {
 				<div className='field-group'>
 					{/*<span className={`close-data ${hideElement}`} onClick={props.removeValidation}><img src='/assets/images/icon-close.png' alt='Close Icon' /></span>*/}
 					{inputElement}
-				<label>{props.elementConfig.placeholder}</label>
+				<label>{props.elementConfig.label || props.elementConfig.placeholder}</label>
 				{showPassword}
 				</div>
 				{errorMessage}

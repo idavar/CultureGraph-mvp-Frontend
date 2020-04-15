@@ -1,5 +1,6 @@
 import { ToastError } from '../components/Alert/Toast';
 import { InputRule } from '../interface/InputRule';
+import { ValidationObject } from '../interface/ValidationObject';
 import { ValidationMessage } from '../constant/error';
 import Common from '../constant/common';
 interface ErrorMessage {
@@ -12,10 +13,7 @@ interface ErrorMessage {
 	isConfirmPassword: string;
 	passwordNotMatch: string;
 }
-interface ValidationObject {
-	isValid: boolean;
-	validationMsg?: string;
-}
+
 /**
  * @description function used for check validation rule
  * @param value contain input field value
@@ -91,9 +89,3 @@ export const displayErrorMessage = (response: { data: { detail: string, error: o
 	}
 	ToastError({msg});
 };
-
-
-
-
-
-
