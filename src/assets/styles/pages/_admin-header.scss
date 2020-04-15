@@ -1,10 +1,25 @@
 .header{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   background: $white;
   padding: 0 40px;
   box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.04);
+@media (max-width:991px){
+  padding: 0 20px;
+}
+  .admin-logo{
+    @media (max-width:767px){
+      width: calc(100% + 40px);
+      text-align: left;
+      padding:15px 20px;
+      margin-left: -20px;
+    margin-right: -20px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+
+    }
+  }
 
   .main-menu{
     a{
@@ -16,6 +31,10 @@
       margin: 0 40px;
       display: inline-block;
       position: relative;
+      @media (max-width:767px){
+        margin: 0 16px;
+        font-size: $font-15;
+      }
 
       &.active{
         color:$theme-blue;
@@ -45,6 +64,12 @@
 
 
 .user-dropdown{
+
+  @media (max-width:767px){
+    position: absolute;
+    top:5px;
+    right:0;
+  }
 
   .dropdown{
 
@@ -88,6 +113,10 @@
     right: 0!important;
     left: auto!important;
     transform: translate(0, 60px)!important;
+
+    @media (max-width:767px){
+      right: 10px!important;
+    }
 
     
     &:before{

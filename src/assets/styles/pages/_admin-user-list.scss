@@ -1,5 +1,6 @@
 .list-header{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding:30px 0;
@@ -8,22 +9,36 @@
     font-size: $font-26;
     font-family:  $source-bold;
     color: $navy-blue;
+    @media (max-width:800px){
+    margin-bottom: 20px;
+    }
   }
 
   form{
     display: flex;
+    flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  @media (max-width:584px){
+    width:100%;
+  }
 
   .sort-user-title{
 
       font-size: $font-15;
       font-family:  $source-regular;
       color: rgba($color: $navy-blue, $alpha: 0.5);
+      @media (max-width:584px){
+        margin-bottom: 10px;
+      }
   }
     .form-group{
       margin: 0 0 0 15px;
       position: relative;
+      @media (max-width:584px){
+        width:100%;
+        margin-left: 0;
+      }
     }
 
   .form-control{
@@ -47,12 +62,20 @@
   }
   .sort-user{
     position: relative;
+    @media (max-width:584px){
+      width:100%;
+      margin-left: 0;
+      margin-bottom: 10px;
+    }
     select{
       width: 180px;
     padding: 0 15px;
     font-size: $font-15;
     color: $light-gray1!important;
     border-radius: 5px!important;
+    @media (max-width:584px){
+      width:100%;
+    }
     }
 
     img{
