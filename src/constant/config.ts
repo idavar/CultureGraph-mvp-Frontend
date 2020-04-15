@@ -12,7 +12,8 @@ const ConfigData = {
 			adminUsers: 'admin/users/',
 			changeStatus: 'admin/users/change-status/',
 			changePassword: '/account/change-password/',
-			forgotPassword: '/account/forgot-password/'
+			forgotPassword: '/account/forgot-password/',
+			resetPassword: '/account/set-password/'
 		}
 	};
 

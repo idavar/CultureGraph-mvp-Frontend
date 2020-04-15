@@ -4,4 +4,5 @@ export interface FormState {
 	errorMessage: string;
 	isValidForm: boolean;
 	loading: boolean;
+	show?: boolean;
 }

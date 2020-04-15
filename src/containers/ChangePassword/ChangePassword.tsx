@@ -6,24 +6,12 @@ import { ToastSuccess } from '../../components/Alert/Toast';
 import Common from '../../constant/common';
 import { apiReq, validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
-
-interface ChangePasswordState {
-	controls: any;
-	successMessage: string;
-	errorMessage: string;
-	isValidForm: boolean;
-    loading: boolean;
-    show: boolean;
-}
-
-interface ValidationObject {
-	isValid: boolean;
-	validationMsg?: string;
-}
+import { FormState } from '../../interface/FormState';
+import { ValidationObject } from '../../interface/ValidationObject';
 
 const confirmPassword = 'confirm_password';
 
-class ChangePassword extends React.Component<{}, ChangePasswordState> {
+class ChangePassword extends React.Component<{}, FormState> {
 		constructor(props: {}) {
 		super(props);
 			this.state = {

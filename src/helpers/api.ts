@@ -16,3 +16,5 @@ export const changeStatus = (id: number, data: object) => apiHandler.apiPatch(`$
 export const changePassword = (data: object) => apiHandler.apiSecurePost(`${ConfigData.apiUrl}${ConfigData.apiName.changePassword}`, data);
 
 export const forgotPassword = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.forgotPassword}`, data);
+
+export const resetPassword = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.resetPassword}`, data);

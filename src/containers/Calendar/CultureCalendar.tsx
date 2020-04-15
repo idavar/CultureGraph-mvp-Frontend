@@ -54,7 +54,7 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 
 render() {
 	const calendarOptions = {
-		eventLimit: Common.one,
+		eventLimit: Common.three,
 		header: {
 			left: 'none',
 			center: 'prev, title ,next',
