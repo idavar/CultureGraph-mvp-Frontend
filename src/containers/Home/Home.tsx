@@ -3,8 +3,21 @@ import React from 'react';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import Culture from '../Culture/Culture';
+interface HomeState {
+	isKnowMore?: boolean;
+}
+class Home extends React.Component<{}, HomeState> {
+	constructor(props: {}) {
+		super(props);
+		this.state = {
+			isKnowMore: false
+		};
+	}
 
-class Home extends React.Component {
+	toggleKnowMore = (): void => {
+		this.setState({isKnowMore: !this.state.isKnowMore});
+	}
+
 	render() {
 		return (
 				<div>
@@ -24,12 +37,14 @@ class Home extends React.Component {
 												</div>
 												</form>
 												<div className='safty-note-wrap'>
-												<span className='safty-note'> Your search is safe with us. <small className='safty-know-more'>Know more</small></span>
-												<div className='safty-note-content'>
+												<span className='safty-note'> Your search is safe with us. <small className='safty-know-more' onClick={this.toggleKnowMore}>Know more</small></span>
+												{
+													this.state.isKnowMore ? <div className='safty-note-content'>
 													<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 														 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
 														  printer took a galley of type and scrambled it to make a type specimen book.</p>
-												</div>
+												</div> : ''
+												}
 												</div>
 											</div>
 									</div>
