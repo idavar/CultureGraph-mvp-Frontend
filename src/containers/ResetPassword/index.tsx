@@ -14,9 +14,16 @@ import { FormState } from '../../interface/FormState';
 import { ValidationObject } from '../../interface/ValidationObject';
 
 const confirmPassword = 'confirm_password';
+interface ResetProps {
+	location: {
+		search: string
+	};
+}
 
-class ResetPassword extends React.Component {
-		state: FormState = {
+class ResetPassword extends React.Component<ResetProps, FormState> {
+	constructor(props: ResetProps) {
+		super(props);
+		this.state = {
 				controls: {
                     password: {
                         elementType: 'input',
@@ -58,8 +65,21 @@ class ResetPassword extends React.Component {
 				successMessage: '',
 				errorMessage: '',
 				isValidForm: false,
-				loading: false
-		};
+				loading: false,
+				token: ''
+			};
+		}
+
+		componentDidMount () {
+			this.getParams();
+		}
+
+		getParams = () => {
+			const params = new URLSearchParams(this.props.location.search);
+			if (params.get('token')) {
+				this.setState({token: params.get('token')});
+			}
+		}
 
 		resetChangedHandler = ( event: any, controlName: string ) => {
 			const rulesData = this.state.controls[controlName].validation;
@@ -105,6 +125,7 @@ class ResetPassword extends React.Component {
 				event.preventDefault();
 				this.setState({loading: true});
 				const resetData = {
+					email_hash_code: this.state.token,
 					password: this.state.controls.password.value,
 				};
 				apiReq.resetPassword(resetData).then(response => {

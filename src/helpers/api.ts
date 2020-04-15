@@ -17,4 +17,6 @@ export const changePassword = (data: object) => apiHandler.apiSecurePost(`${Conf
 
 export const forgotPassword = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.forgotPassword}`, data);
 
+export const verifyCode = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.verifyCode}`, data);
+
 export const resetPassword = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.resetPassword}`, data);

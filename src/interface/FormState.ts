@@ -5,4 +5,6 @@ export interface FormState {
 	isValidForm: boolean;
 	loading: boolean;
 	show?: boolean;
+	emailId?: string | null;
+	token?: string | null;
 }

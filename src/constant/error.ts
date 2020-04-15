@@ -33,5 +33,9 @@ export const ValidationMessage = {
 		minLength: 'Password should be of minimum 8 characters.',
 		isConfirmPassword: 'Enter a valid confirm password.',
 		passwordNotMatch: 'Password and confirm password does not match.'
+	},
+	verification_code: {
+		required: `Verification code is required.`,
+		minLength: 'Verification code should be of minimum 5 characters.'
 	}
 };

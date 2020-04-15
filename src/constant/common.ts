@@ -4,6 +4,7 @@ const Common = {
 		phqState: 'active',
 		nameLength: 150,
 		emailLength: 150,
+		minVerifyCodeLength: 5,
 		companyLength: 250,
 		minPassword: 8,
 		maxPassword: 16,
