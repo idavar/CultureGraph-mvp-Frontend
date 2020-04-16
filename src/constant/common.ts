@@ -24,7 +24,7 @@ const Common = {
 		alertTimeout: 3000,
 		na: 'NA',
 		toastConfig : {
-			autoClose: 20001313213213,
+			autoClose: 2000,
 			draggable: false,
 		},
 		group: {
