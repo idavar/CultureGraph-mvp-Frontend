@@ -8,7 +8,6 @@ import { UserListProps } from '../../../interface/UserListProps';
 import Common from '../../../constant/common';
 import { SearchQuery } from './../../../interface/SearchQuery';
 
-
 interface ApprovedUserState {
 	search: string;
 	is_active: string;
@@ -85,6 +84,8 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 		this.props.history.push(`${searchUrl}${searchQuery}`);
 	}
 
+	onActiveBlock = (doc: UserData) => {}
+
 	render() {
 				const active = this.props.queryData.page;
 				const items = [];
@@ -100,10 +101,10 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 						<div>
 							<Pagination>
 							{(totalPage > Common.one) ? <small className='panination-prev'><Pagination.Prev disabled={!this.props.previous}
-							onClick={() => { this.onPageClick(active - 1); }} /> </small> : ''}
+							onClick={() => { this.onPageClick(Number(active) - Number(Common.one)); }} /> </small> : ''}
 								{items}
 							{(totalPage > Common.one) ? <small className='panination-next'><Pagination.Next disabled={!this.props.next}
-							onClick={() => { this.onPageClick(active + 1); }} /> </small> : '' }
+							onClick={() => { this.onPageClick(Number(active) + Number(Common.one)); }} /> </small> : '' }
 							</Pagination>
 						</div>
 				);
@@ -159,9 +160,10 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 			<Form>
 			<div className='toggle-switch'>
 			<label className='toggleSwitch'>
-			<input
+			<input checked={doc.is_active}
 					type='checkbox'
 					className='toggle-switch-checkbox'
+					onChange={() => this.onActiveBlock(doc)}
 				/>
 					<span>
 						<span>Active</span>
