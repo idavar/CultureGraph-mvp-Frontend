@@ -229,9 +229,10 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 									<div className='form-group'>
 										<button disabled={this.state.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Submit</button>
 									</div>
+								<a href='/login' className='backto-signin'>Back to Sign in</a>
 								</form>
 						</div>
-								<span className='account-status'><a href='/login'>Back to Sign in</a></span>
+							
 					</div>}
 
 					</div>

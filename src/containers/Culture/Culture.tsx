@@ -1,14 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CultureCalendar from '../Calendar/CultureCalendar';
 
-class Culture extends React.Component {
+interface CultureProp {
+	isAuthenticated: boolean;
+}
+
+class Culture extends React.Component<CultureProp> {
+    constructor(props: CultureProp) {
+		super(props);
+		this.state = {
+		};
+    }
+
 	render() {
 		return (<div className='culture-map-section'>
         <div className='container'>
         <div className='watermark-title-section'>
         <div className='watermark-title'>
-            <span>Culture Map</span>
-            <h3>Culture Map</h3>
+            <span>Culture Calendar</span>
+            <h3>Culture Calendar</h3>
         </div>
         <p>Click on dot to explore results in more detail</p>
         </div>
@@ -16,8 +27,8 @@ class Culture extends React.Component {
 
                         <div className='buttons-section'>
                             <div className='buttons'>
-                                <a href='/' >Culture Map</a>
-                                <a href='/' className='active'>Culture Calendar</a>
+                                <Link to='#' >Culture Map</Link>
+                                <Link to='#' className='active'>Culture Calendar</Link>
                             </div>
 
                             <div className='event-indicator'>
@@ -33,17 +44,17 @@ class Culture extends React.Component {
                                     </div>
                             </div>
                         </div>
-
-                        {/* <div className='calendar-without-login'>
-                        <img src='/assets/images/team.png' alt='Team Icon' />
-                        <h4>Become a reseacher to access this calendar</h4>
-                        <p>Register yourself as researcher to get complete access to culture calendar.</p>
+                        {
+                            this.props.isAuthenticated ? <div className='home-calendar'>
+                            <CultureCalendar />
+                         </div> :
+                        <div className='calendar-without-login'>
+                            <img src='/assets/images/team.png' alt='Team Icon' />
+                            <h4>Become a reseacher to access this calendar</h4>
+                            <p>Register yourself as researcher to get complete access to culture calendar.</p>
                             <a href='/register' className='explore-register'>Register Now</a>
-                        </div> */}
-
-                        <div className='home-calendar'>
-                           <CultureCalendar />
                         </div>
+                        }
         </div>
 
     </div>);

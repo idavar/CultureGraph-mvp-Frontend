@@ -1,13 +1,20 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import Culture from '../Culture/Culture';
+import { setDataRef } from '../../helpers';
+import { User } from '../../interface/User';
+
+interface HomeProp {
+	isAuthenticated: boolean;
+}
+
 interface HomeState {
 	isKnowMore?: boolean;
 }
-class Home extends React.Component<{}, HomeState> {
-	constructor(props: {}) {
+class Home extends React.Component<HomeProp, HomeState> {
+	constructor(props: HomeProp) {
 		super(props);
 		this.state = {
 			isKnowMore: false
@@ -40,9 +47,9 @@ class Home extends React.Component<{}, HomeState> {
 												<span className='safty-note'> Your search is safe with us. <small className='safty-know-more' onClick={this.toggleKnowMore}>Know more</small></span>
 												{
 													this.state.isKnowMore ? <div className='safty-note-content'>
-													<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-														 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-														  printer took a galley of type and scrambled it to make a type specimen book.</p>
+													<p>When you search on CultureGraph, you generate information, like keywords or locations.
+														This information can help make our tool smarter and work better for you. None of this information
+														collected will identify you personally.</p>
 												</div> : ''
 												}
 												</div>
@@ -133,11 +140,11 @@ class Home extends React.Component<{}, HomeState> {
 												<a href='/'  className='tabletennis'>Table Tennis<small>70k</small></a>
 												</div>
 
-												 <div className='explore-note'>
+												 {!this.props.isAuthenticated ? <div className='explore-note'>
 													<h4>Become a reseacher to view all trending keywords.</h4>
 													<p>Register yourself as researcher to get complete access to culture calendar.</p>
 													<a href='/' className='explore-register'>Register Now</a>
-												</div>
+												</div> : ''}
 
 												</div>
 										</div>
@@ -146,7 +153,7 @@ class Home extends React.Component<{}, HomeState> {
 							</div>
 
 							<div id='culture-map'>
-					<Culture />
+					<Culture isAuthenticated={this.props.isAuthenticated} />
 							</div>
 				<div id='how-it-works'>
 							<div className='how-it-work-section'>
@@ -298,4 +305,9 @@ class Home extends React.Component<{}, HomeState> {
 	}
 }
 
-export default Home;
+function mapStateToProps(state: {auth: User}) {
+	return setDataRef.setAuthDataObject(state);
+}
+
+export default connect(mapStateToProps)(Home);
+

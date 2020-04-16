@@ -158,6 +158,16 @@
 			color: $light-blue;
 		}
 	}
+
+	.backto-signin{
+		font-size:18px;
+		font-family: $source-regular;
+		color: $light-blue;
+		text-decoration:underline;
+		display: block;
+		text-align: center;
+		margin-top:30px;
+	}
 }
 
 .form-group {
