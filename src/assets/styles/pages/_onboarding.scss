@@ -5,6 +5,75 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+
+	&.signup-wrapper{
+		.user-banner{
+			@media (max-width:767px){
+				display: none;
+			}
+		}
+	}
+
+&.forgot-password-wrapper{
+
+
+.user-form{
+	@media (max-width:767px){
+		align-items: center;
+	}
+}
+
+	.close-icon{
+		@media (max-width:767px){
+			display: none;
+		}
+	}
+	.user-banner{
+		@media (max-width:767px){
+			display: none;
+		}
+	}
+
+	.form-group{
+		button{
+			@media (max-width:767px){
+				margin-bottom:0!important;
+			}
+		}
+	}
+
+}
+
+&.reset-password-wrapper{
+
+
+	.user-form{
+		@media (max-width:767px){
+			align-items: center;
+		}
+	}
+	
+		.close-icon{
+			@media (max-width:767px){
+				display: none;
+			}
+		}
+		.user-banner{
+			@media (max-width:767px){
+				display: none;
+			}
+		}
+	
+		.form-group{
+			button{
+				@media (max-width:767px){
+					margin-bottom:0!important;
+				}
+			}
+		}
+	
+	}
+
 	@media (max-width:767px){
 		flex-wrap: wrap;
 	}
