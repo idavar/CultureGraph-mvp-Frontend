@@ -107,6 +107,12 @@ font-size: $font-18!important;
 	width: 400px;
 	margin-left: -200px;
 	font-family:  $font-regular;
+	@media (max-width:767px){
+		width:100%;
+		margin-left:0;
+		top:0;
+		left:0;
+	}
 
 	.Toastify__toast{
 		padding:15px;
