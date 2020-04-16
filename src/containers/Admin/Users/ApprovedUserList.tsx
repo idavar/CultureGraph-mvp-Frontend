@@ -7,6 +7,8 @@ import { UserData } from '../../../interface/UserData';
 import { UserListProps } from '../../../interface/UserListProps';
 import Common from '../../../constant/common';
 import { SearchQuery } from './../../../interface/SearchQuery';
+import ActiveBlock from './ActiveBlock';
+
 
 interface ApprovedUserState {
 	search: string;
@@ -14,6 +16,7 @@ interface ApprovedUserState {
 }
 
 class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState> {
+	modalActiveRef = React.createRef<ActiveBlock>();
 	public queryData: SearchQuery = Common.defaultQueryData;
 	public firstName = 'first_name';
 	public email = 'email';
@@ -84,7 +87,9 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 		this.props.history.push(`${searchUrl}${searchQuery}`);
 	}
 
-	onActiveBlock = (doc: UserData) => {}
+	onActiveBlock = (doc: UserData) => {
+		this.modalActiveRef.current?.openModal(doc);
+	}
 
 	render() {
 				const active = this.props.queryData.page;
@@ -109,6 +114,7 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 						</div>
 				);
 		return (<div>
+			<ActiveBlock ref={this.modalActiveRef} />
 			<div className='custom-container'>
 			<div className='list-header'>
 		<h1>Manage Users {this.props.count ? `(${this.props.count})` : ''}</h1>
@@ -171,8 +177,6 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 				</span>
 			<small></small>
 	</label>
-
-
 			</div>
 						</Form>
 			</td>
