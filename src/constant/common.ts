@@ -12,6 +12,7 @@ const Common = {
 		dateFormat: 'MMM DD, YYYY',
 		userColSpan:  6,
 		requestColSpan:  6,
+		minOtp: 5,
 		status: {
 			processed: 200,
 			success: 201,

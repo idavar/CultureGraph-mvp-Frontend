@@ -3,8 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { History } from 'history';
+import OtpInput from 'react-optinput';
+import 'react-optinput/bundle.css';
 import '../../assets/styles/style.scss';
-
 import Input from '../../components/UI/Input/Input';
 import OurMission from '../../components/common/OurMission';
 import { ToastSuccess } from '../../components/Alert/Toast';
@@ -20,8 +21,9 @@ interface ForgotProps {
 	history: History;
 }
 const forgotEmail = 'email';
-const hashCode = 'email_hash_code';
+
 class ForgotPassword extends React.Component<ForgotProps, FormState> {
+		private email_hash_code = '';
 		constructor(props: ForgotProps) {
 			super(props);
 			this.state = {
@@ -42,23 +44,7 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 								touched: false,
 								validationMsg: '',
 								messages: ValidationMessage.email
-						},
-						email_hash_code: {
-							elementType: 'input',
-							elementConfig: {
-									type: 'text',
-									placeholder: 'Verification Code'
-							},
-							value: '',
-							validation: {
-									required: true,
-									minLength: Common.minVerifyCodeLength
-							},
-							valid: false,
-							touched: false,
-							validationMsg: '',
-							messages: ValidationMessage.verification_code
-					}
+						}
 				},
 				successMessage: '',
 				errorMessage: '',
@@ -85,11 +71,7 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 				const messages = this.state.controls[controlName].messages;
 				const validationData: ValidationObject = validateRef.checkValidite( value, rulesData, messages );
 				this.resetFormControls(validationData, controlName, value);
-				if (controlName !== forgotEmail) {
-					this.checkVerifyForm();
-				} else {
-					this.checkForgotPasswordForm();
-				}
+				this.checkForgotPasswordForm();
 		}
 
 		resetFormControls = (validationData: ValidationObject, controlName: string, value: string) => {
@@ -133,12 +115,17 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 				});
 		}
 
+		onOtpChange = (otp: string) => {
+			this.setState({isValidForm: (otp.length === Common.minOtp)});
+			this.email_hash_code = otp;
+		}
+
 		submitVerifyCode = (event: {preventDefault: Function}) => {
 			event.preventDefault();
 			this.setState({loading: true});
 			const hashCodeData = {
 				email: this.state.controls.email.value || this.state.emailId,
-				email_hash_code: this.state.controls.email_hash_code.value,
+				email_hash_code: this.email_hash_code,
 			};
 			apiReq.verifyCode(hashCodeData).then(response => {
 				this.setState({loading: false});
@@ -163,12 +150,6 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 			}, Common.zero);
 		}
 
-		checkVerifyForm(): void {
-			setTimeout(() => {
-				this.setState({isValidForm: this.state.controls[hashCode].valid});
-			}, Common.zero);
-		}
-
 		render() {
 				const forgotConfig = this.state.controls[forgotEmail];
 				const forgotForm = <Input
@@ -182,39 +163,30 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 								validationMsg={forgotConfig.validationMsg}
 								changed={( event: any ) => this.changedHandler( event, forgotEmail )} />;
 
-				const verifyConfig = this.state.controls[hashCode];
-				const verifyForm = <Input
-								key={hashCode}
-								elementType={verifyConfig.elementType}
-								elementConfig={verifyConfig.elementConfig}
-								value={verifyConfig.value}
-								invalid={!verifyConfig.valid}
-								shouldValidate={verifyConfig.validation}
-								touched={verifyConfig.touched}
-								validationMsg={verifyConfig.validationMsg}
-								changed={( event: any ) => this.changedHandler( event, hashCode )} />;
 
 				return (
 					<div className='user-wrapper'>
 					<OurMission />
 					 {
 					 (this.state.successMessage || this.state.emailId) ? <div className='user-form'>
-						<div className='user-form-inner'>
+						<div className='user-form-inner forgot-password'>
 							<span className='close-icon'>
 								<a href='/'><img src='/assets/images/close.png' alt='Close Icon' /></a>
 							</span>
-							<h2>Email sent successfully!</h2>
-							<h3>Don't worry, we will get you back in to your account shortly. Follow
-								the instructions we sent to your email.
-							</h3>
-							<form onSubmit={this.submitVerifyCode}>
-								{verifyForm}
+							<img className='email-sent-icon' src='/assets/images/icon-email-sent.png' alt='Email icon' />
+							<h2>Enter OTP Code Sent to Your Email</h2>
+							<div>
+							<OtpInput
+								codeLength={Common.minOtp}
+								onInputChange={this.onOtpChange} />
+								<Link className='resend-mail' to='#' onClick={this.submitForm}>Resend Mail</Link>
+							</div>
+						
 								<div className='form-group'>
-									<button disabled={this.state.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Verify Code</button>
+									<button disabled={this.state.loading || !this.state.isValidForm} type='submit'
+									 className='btn btn-primary btn-block' onClick={this.submitVerifyCode}>Continue</button>
 								</div>
-							</form>
 						</div>
-						<span className='account-status'><Link to='#' onClick={this.submitForm}>Resend Mail</Link></span>
 					</div> : <div className='user-form'>
 						<div className='user-form-inner'>
 						{/*  page close icon start here */}
@@ -227,7 +199,7 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 								<form onSubmit={this.submitForm}>
 									{forgotForm}
 									<div className='form-group'>
-										<button disabled={this.state.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Submit</button>
+										<button disabled={this.state.loading || !this.state.isValidForm} type='submit' className='mg-top-40 btn btn-primary btn-block'>Submit</button>
 									</div>
 								<a href='/login' className='backto-signin'>Back to Sign in</a>
 								</form>
