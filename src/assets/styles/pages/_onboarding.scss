@@ -228,7 +228,8 @@
 		text-decoration:underline;
 		display: block;
 		text-align: center;
-		margin-top:20px;
+		max-width: 120px;
+    margin: 20px auto 0 auto;
 	}
 }
 
@@ -325,8 +326,9 @@ position: relative;
 
 
 .forgot-password-link {
-	text-align: right;
 	display: block;
+	max-width: 135px;
+	margin-left: auto;
 	color: $light-purple;
 	font-size: $font-15;
 	font-family: $source-regular;
