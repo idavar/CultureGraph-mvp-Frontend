@@ -172,16 +172,18 @@ class ResetPassword extends React.Component<ResetProps, FormState> {
 					<OurMission />
 					{
 						this.state.successMessage ? <div className='user-form'>
-						<div className='user-form-inner'>
+						<div className='user-form-inner password-change-success'>
 							<span className='close-icon'>
 								<a href='/'><img src='/assets/images/close.png' alt='Close Icon' /></a>
 							</span>
-							<h2>Passord changed successfully!</h2>
+							<img className='icon-success' src='/assets/images/icon-success.png' alt='Close Check' />
+							<h2>Password changed successfully!</h2>
 							<h3>Congratulations, your password has been updated. Please sign in with
 								your new password.
 							</h3>
+							<Link to='/login' className='backfrom-password btn btn-primary btn-block'>Back to Sign in</Link>
 						</div>
-						<span className='account-status'><Link to='/login'>Back to Sign in</Link></span>
+						
 					</div> : <div className='user-form'>
                             <div className='user-form-inner'>
                             {/*  page close icon start here */}
@@ -191,7 +193,7 @@ class ResetPassword extends React.Component<ResetProps, FormState> {
                             {/*  page close icon end here */}
                             <h2>Reset Password</h2>
                             <h3>Enter your details below</h3>
-                                    <form onSubmit={this.submitResetPassword}>
+                                    <form onSubmit={this.submitResetPassword} className='reset-password-form'>
                                             {form}
                                             <div className='form-group'>
                                                 <button disabled={this.state.loading || !this.state.isValidForm}

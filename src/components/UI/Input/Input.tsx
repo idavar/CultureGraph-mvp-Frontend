@@ -2,6 +2,13 @@ import React, { useRef, useState } from 'react';
 interface MutableRefObject<T> {
 				current: T;
 }
+
+const isDisplayError = (data: {invalid: boolean, shouldValidate: boolean, touched: boolean}) => data.invalid &&
+data.shouldValidate && data.touched;
+
+const getErrorMessage = (data: {validationMsg: string}) => <span className='field-error'>
+	{data.validationMsg ? data.validationMsg : ''}</span>;
+
 const Input = ( props: any ) => {
 		const typeText = 'test';
 		const typePassword = 'password';
@@ -17,8 +24,8 @@ const Input = ( props: any ) => {
 		let showPassword = null;
 		let formGroupClass = 'form-group';
 
-		if (props.invalid && props.shouldValidate && props.touched) {
-				errorMessage = <span className='field-error'>{props.validationMsg ? props.validationMsg : ''}</span>;
+		if (isDisplayError(props)) {
+				errorMessage = getErrorMessage(props);
 				formGroupClass = `${formGroupClass} field-outline-error`;
 		}
 

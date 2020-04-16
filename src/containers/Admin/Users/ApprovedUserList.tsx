@@ -7,6 +7,7 @@ import { UserData } from '../../../interface/UserData';
 import { UserListProps } from '../../../interface/UserListProps';
 import Common from '../../../constant/common';
 import { SearchQuery } from './../../../interface/SearchQuery';
+import ActiveBlock from './ActiveBlock';
 
 
 interface ApprovedUserState {
@@ -15,6 +16,7 @@ interface ApprovedUserState {
 }
 
 class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState> {
+	modalActiveRef = React.createRef<ActiveBlock>();
 	public queryData: SearchQuery = Common.defaultQueryData;
 	public firstName = 'first_name';
 	public email = 'email';
@@ -85,6 +87,10 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 		this.props.history.push(`${searchUrl}${searchQuery}`);
 	}
 
+	onActiveBlock = (doc: UserData) => {
+		this.modalActiveRef.current?.openModal(doc);
+	}
+
 	render() {
 				const active = this.props.queryData.page;
 				const items = [];
@@ -100,14 +106,15 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 						<div>
 							<Pagination>
 							{(totalPage > Common.one) ? <small className='panination-prev'><Pagination.Prev disabled={!this.props.previous}
-							onClick={() => { this.onPageClick(active - 1); }} /> </small> : ''}
+							onClick={() => { this.onPageClick(Number(active) - Number(Common.one)); }} /> </small> : ''}
 								{items}
 							{(totalPage > Common.one) ? <small className='panination-next'><Pagination.Next disabled={!this.props.next}
-							onClick={() => { this.onPageClick(active + 1); }} /> </small> : '' }
+							onClick={() => { this.onPageClick(Number(active) + Number(Common.one)); }} /> </small> : '' }
 							</Pagination>
 						</div>
 				);
 		return (<div>
+			<ActiveBlock ref={this.modalActiveRef} />
 			<div className='custom-container'>
 			<div className='list-header'>
 		<h1>Manage Users {this.props.count ? `(${this.props.count})` : ''}</h1>
@@ -159,9 +166,10 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 			<Form>
 			<div className='toggle-switch'>
 			<label className='toggleSwitch'>
-			<input
+			<input checked={doc.is_active}
 					type='checkbox'
 					className='toggle-switch-checkbox'
+					onChange={() => this.onActiveBlock(doc)}
 				/>
 					<span>
 						<span>Active</span>
@@ -169,8 +177,6 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 				</span>
 			<small></small>
 	</label>
-
-
 			</div>
 						</Form>
 			</td>
