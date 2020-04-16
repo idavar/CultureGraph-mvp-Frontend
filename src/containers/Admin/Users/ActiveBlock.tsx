@@ -27,7 +27,7 @@ class ActiveBlock extends React.Component<{}, ActiveBlockState> {
 
 		openModal = (data: UserData): void => {
             this.setState({show: true});
-        };
+        }
 
 		onActiveBlock = (status: number) => {};
 
