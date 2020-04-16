@@ -139,6 +139,11 @@
 				font-size:$font-28;
 				width: calc(100% + 200px);
 				margin-left: -100px;
+				@media (max-width:767px){
+					font-size: $font-26;
+					width:100%;
+					margin-left: 0;
+				}
 			}
 
 			.email-sent-icon{
@@ -155,6 +160,12 @@
 					border-radius:5px;
 					width:60px;
 					height:73px;
+					margin: 0 9px;
+
+					@media (max-width:767px){
+						width:40px;
+					height:53px;
+					}
 				}
 			}
 
@@ -174,6 +185,11 @@
 				font-size:$font-28;
 				width: calc(100% + 200px);
 				margin-left: -100px;
+				@media (max-width:767px){
+					font-size: $font-26;
+					width:100%;
+					margin-left: 0;
+				}
 			}
 
 			h3{
