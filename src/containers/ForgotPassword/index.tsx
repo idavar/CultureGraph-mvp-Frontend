@@ -169,21 +169,22 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 					<OurMission />
 					 {
 					 (this.state.successMessage || this.state.emailId) ? <div className='user-form'>
-						<div className='user-form-inner'>
+						<div className='user-form-inner forgot-password'>
 							<span className='close-icon'>
 								<a href='/'><img src='/assets/images/close.png' alt='Close Icon' /></a>
 							</span>
+							<img className='email-sent-icon' src='/assets/images/icon-email-sent.png' alt='Email icon' />
 							<h2>Enter OTP Code Sent to Your Email</h2>
-							<h3>&nbsp;</h3>
 							<div>
 							<OtpInput
 								codeLength={Common.minOtp}
 								onInputChange={this.onOtpChange} />
+								<Link className='resend-mail' to='#' onClick={this.submitForm}>Resend Mail</Link>
 							</div>
-								<span className='account-status'><Link to='#' onClick={this.submitForm}>Resend Mail</Link></span>
+						
 								<div className='form-group'>
 									<button disabled={this.state.loading || !this.state.isValidForm} type='submit'
-									 className='btn btn-primary btn-block' onClick={this.submitVerifyCode}>Verify Code</button>
+									 className='btn btn-primary btn-block' onClick={this.submitVerifyCode}>Continue</button>
 								</div>
 						</div>
 					</div> : <div className='user-form'>
@@ -198,11 +199,12 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 								<form onSubmit={this.submitForm}>
 									{forgotForm}
 									<div className='form-group'>
-										<button disabled={this.state.loading || !this.state.isValidForm} type='submit' className='btn btn-primary btn-block'>Submit</button>
+										<button disabled={this.state.loading || !this.state.isValidForm} type='submit' className='mg-top-40 btn btn-primary btn-block'>Submit</button>
 									</div>
+								<a href='/login' className='backto-signin'>Back to Sign in</a>
 								</form>
 						</div>
-								<span className='account-status'><a href='/login'>Back to Sign in</a></span>
+							
 					</div>}
 
 					</div>

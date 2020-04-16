@@ -47,9 +47,9 @@ class Home extends React.Component<HomeProp, HomeState> {
 												<span className='safty-note'> Your search is safe with us. <small className='safty-know-more' onClick={this.toggleKnowMore}>Know more</small></span>
 												{
 													this.state.isKnowMore ? <div className='safty-note-content'>
-													<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-														 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-														  printer took a galley of type and scrambled it to make a type specimen book.</p>
+													<p>When you search on CultureGraph, you generate information, like keywords or locations.
+														This information can help make our tool smarter and work better for you. None of this information
+														collected will identify you personally.</p>
 												</div> : ''
 												}
 												</div>
