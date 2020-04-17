@@ -61,7 +61,7 @@ export const predicthqApiCall = async (data = {}, options?: any) => {
 
 const getPredicthqObj = (data: object) => {
 		const server = process.env.REACT_APP_BASE_URL;
-		const obj = {
+		return {
 				baseURL: server,
 				url: ConfigData.phq.apiUrl,
 				data: data,
@@ -70,5 +70,4 @@ const getPredicthqObj = (data: object) => {
 						'Authorization': `Bearer ${ConfigData.phq.accessToken}`
 				}
 		};
-		return obj;
 };
