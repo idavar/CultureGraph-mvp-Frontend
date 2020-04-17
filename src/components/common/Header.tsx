@@ -67,11 +67,11 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					  <NavLink href='#'>Trending Keywords</NavLink>
 					</NavItem>
 					<NavItem>
-					  <NavLink href='#culture-map'>Culture Map</NavLink>
+					  <NavLink href='#'>Culture Map</NavLink>
 					</NavItem>
 
 					<NavItem>
-					  <NavLink href='#'>Culture Calendar</NavLink>
+					  <NavLink href='#culture-map'>Culture Calendar</NavLink>
 					</NavItem>
 
 					<UncontrolledDropdown nav inNavbar >

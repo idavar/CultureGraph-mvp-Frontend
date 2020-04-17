@@ -87,7 +87,7 @@ class ActiveBlock extends React.Component<{}, ActiveBlockState> {
 							<Modal.Body></Modal.Body>
 							<Modal.Footer>
 								<Button className='btn-outline' onClick={() => { this.onActiveBlock(); }} disabled={this.state.loading}>
-									{this.state.is_active ? 'Block User' : 'Activate User'}
+									Yes
 								</Button>
 								<Button className='btn-action' onClick={this.handleClose}>
 									Cancel
