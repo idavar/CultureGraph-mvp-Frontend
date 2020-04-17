@@ -29,8 +29,8 @@ class EmailVerify extends React.Component<Props, StateInterface> {
 				}
 	}
 
-	emailVerify (email_hash_code: string | null) {
-		apiReq.emailVerify({ email_hash_code }).then(response => {
+	emailVerify (emailHashCode: string | null) {
+		apiReq.emailVerify({ email_hash_code: emailHashCode }).then(response => {
 			if (response.status === Common.status.success || response.status === Common.status.processed) {
 				this.setState({message: response.data.detail});
 				ToastSuccess({msg: response.data.detail});

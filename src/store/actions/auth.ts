@@ -27,7 +27,7 @@ export const authSuccess = (data: User) => {
 export const authFail = (error: any) => {
 		return {
 				type: actionTypes.AUTH_FAIL,
-				error: error
+				error
 		};
 };
 
@@ -52,8 +52,8 @@ export const auth = (email: string, password: string) => {
 		return (dispatch: Dispatch) => {
 				dispatch(authStart());
 				const authData = {
-						email: email,
-						password: password
+						email,
+						password
 				};
 				apiReq.signIn(authData)
 						.then(response => {
@@ -72,7 +72,7 @@ export const auth = (email: string, password: string) => {
 export const setAuthRedirectPath = (path: string) => {
 		return {
 				type: actionTypes.SET_AUTH_REDIRECT_PATH,
-				path: path
+				path
 		};
 };
 

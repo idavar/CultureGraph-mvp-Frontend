@@ -247,18 +247,15 @@ tbody{
       border-radius: 5px;
 
   
-        .page-link{
-          border:2px solid $light-gray3;
-          border-radius:5px;
-        
-      }
       .page-link{
+       
         font-family:  $source-semibold;
         font-size: $font-14;
         font-weight:600;
         color: $navy-blue;
         opacity: 0.8;
         padding: 8px 12px;
+        border:2px solid $light-gray3;
         border-radius:5px;
 
         &:hover{
@@ -292,9 +289,10 @@ tbody{
         }
         .page-link{
           border: 0;
-          background-color: inherit;
           font-size:0;
-          background: url(../../images/pagination-prev.png) no-repeat;
+          background-image: url(../../images/pagination-prev.png);
+          background-repeat: no-repeat;
+          background-color: inherit;
           background-position: center center;
           height: 23px;
           display: inline-block;
@@ -309,9 +307,10 @@ tbody{
         }
         .page-link{
           border: 0;
-          background-color: inherit;
           font-size:0;
-          background: url(../../images/pagination-next.png) no-repeat;
+          background-image: url(../../images/pagination-next.png);
+          background-repeat: no-repeat;
+          background-color: inherit;
           background-position: center center;
           height: 23px;
           display: inline-block;

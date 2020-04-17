@@ -20,10 +20,10 @@ axios.interceptors.response.use(response => {
 		if (error.response.status === Common.status.authentication) {
 			ToastError({msg: error.response.data.detail});
 			dispatch(actions.logout() as never);
+			return;
 		} else {
 			return Promise.reject(error);
 		}
-		return;
 });
 
 export const apiPost = (url: string, data: object) => axios.post(url, data);
@@ -61,14 +61,13 @@ export const predicthqApiCall = async (data = {}, options?: any) => {
 
 const getPredicthqObj = (data: object) => {
 		const server = process.env.REACT_APP_BASE_URL;
-		const obj = {
+		return {
 				baseURL: server,
 				url: ConfigData.phq.apiUrl,
-				data: data,
+				data,
 				headers: {
 						'Accept': 'application/json',
 						'Authorization': `Bearer ${ConfigData.phq.accessToken}`
 				}
 		};
-		return obj;
 };
