@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { ToastSuccess, ToastError } from '../../../components/Alert/Toast';
 import { UserData } from '../../../interface/UserData';
+import { PageRefresh } from '../../../interface/PageRefresh';
 import Common from '../../../constant/common';
 import { apiReq, validateRef } from '../../../helpers';
 
@@ -23,17 +24,10 @@ interface RequestData {
 	text?: string;
 }
 
-interface OtherOptions {
-	submitSearch: Function | null;
-	onPageClick: Function | null;
-	totalCount: number;
-	page: number;
-}
-
 class ActionModal extends React.Component<{}, ActionState> {
 		private readonly rejected = `${Common.requestStatus.rejected}`;
 		private readonly approved = `${Common.requestStatus.approved}`;
-		private otherOptions: OtherOptions = {
+		private otherOptions: PageRefresh = {
 			submitSearch: null,
 			onPageClick: null,
 			page: Common.one,
@@ -66,7 +60,7 @@ class ActionModal extends React.Component<{}, ActionState> {
 
 		handleClose = (): void => this.setState({show: false});
 
-		openModal = (data: UserData, requestAction: string, otherOptions: OtherOptions): void => {
+		openModal = (data: UserData, requestAction: string, otherOptions: PageRefresh): void => {
 			this.otherOptions = otherOptions;
 			this.setState({text: ''});
 			this.setState({requestAction});

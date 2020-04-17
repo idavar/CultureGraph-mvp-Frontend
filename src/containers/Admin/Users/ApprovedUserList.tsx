@@ -88,7 +88,12 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 	}
 
 	onActiveBlock = (doc: UserData) => {
-		this.modalActiveRef.current?.openModal(doc);
+		const option = {
+			submitSearch: this.submitSearch,
+			page: this.queryData.page,
+			totalCount: this.props.count
+		};
+		this.modalActiveRef.current?.openModal(doc, option);
 	}
 
 	render() {
