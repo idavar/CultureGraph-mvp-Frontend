@@ -65,8 +65,8 @@ class ActionModal extends React.Component<{}, ActionState> {
 			this.setState({text: ''});
 			this.setState({requestAction});
 			this.setState({data});
-			const reject_reason = (data.reject_reason && data.reject_reason.description) ? data.reject_reason.description : '';
-			this.setState({reject_reason});
+			const rejectReason = (data.reject_reason && data.reject_reason.description) ? data.reject_reason.description : '';
+			this.setState({reject_reason: rejectReason});
 			if (Common.requestAction.accept === requestAction) {
 				this.setState({title: Common.requestTitle.accept});
 				this.setState({altMessage: Common.requestConfirmMsg.accept});

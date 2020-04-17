@@ -60,9 +60,9 @@ export const checkValidite = (value: string, rules: InputRule, messages: ErrorMe
 };
 
 export const matchConfirmPassword = (validationData: ValidationObject, rulesData: InputRule, formControls: any): void => {
-	const confirm_password = formControls['confirm_password'].value;
+	const confirmPassword = formControls['confirm_password'].value;
 	const password = formControls['password'].value;
-	if (confirm_password && password !== confirm_password) {
+	if (confirmPassword && password !== confirmPassword) {
 		validationData.isValid = false;
 		validationData.validationMsg = ValidationMessage.confirm_password.passwordNotMatch;
 	}

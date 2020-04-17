@@ -64,7 +64,7 @@ const getPredicthqObj = (data: object) => {
 		return {
 				baseURL: server,
 				url: ConfigData.phq.apiUrl,
-				data: data,
+				data,
 				headers: {
 						'Accept': 'application/json',
 						'Authorization': `Bearer ${ConfigData.phq.accessToken}`
