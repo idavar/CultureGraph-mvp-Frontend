@@ -20,10 +20,10 @@ axios.interceptors.response.use(response => {
 		if (error.response.status === Common.status.authentication) {
 			ToastError({msg: error.response.data.detail});
 			dispatch(actions.logout() as never);
+			return;
 		} else {
 			return Promise.reject(error);
 		}
-		return;
 });
 
 export const apiPost = (url: string, data: object) => axios.post(url, data);
