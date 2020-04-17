@@ -12,6 +12,7 @@ export interface UserData {
 			created_at?: string;
 		} | null;
 		status: number;
+		is_active: boolean;
 		created_at: string;
 		updated_at: string;
 		request_updated_at: string;

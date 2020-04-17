@@ -65,6 +65,14 @@ const Common = {
 			accept: 'Are you sure you want to accept this request?',
 			reject: 'Are you sure you want to reject this request?',
 			edit: 'Are you sure you want to change this request status?'
+		},
+		userStatusTitle: {
+			active: 'Activate User',
+			block: 'Block User',
+		},
+		userStatus: {
+			active: 'Are you sure you want to activate this user?',
+			block: 'Are you sure you want to block this user?',
 		}
 };
 
