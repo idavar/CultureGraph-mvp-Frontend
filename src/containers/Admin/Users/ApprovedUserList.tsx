@@ -171,7 +171,7 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 			<Form>
 			<div className='toggle-switch'>
 			<label className='toggleSwitch'>
-			<input checked={doc.is_active}
+			<input checked={!doc.is_active}
 					type='checkbox'
 					className='toggle-switch-checkbox'
 					onChange={() => this.onActiveBlock(doc)}

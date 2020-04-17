@@ -21,6 +21,12 @@ export const ValidationMessage = {
 		minLength: 'Old Password should be of minimum 8 characters.',
 		isPassword: 'Enter a valid old password.'
 	},
+	current_password: {
+		required: `Current Password is required.`,
+		maxLength: `Current Password should be of maximum 16 characters.`,
+		minLength: 'Current Password should be of minimum 8 characters.',
+		isPassword: 'Enter a valid current password.'
+	},
 	password: {
 		required: `Password is required.`,
 		maxLength: `Password should be of maximum 16 characters.`,
