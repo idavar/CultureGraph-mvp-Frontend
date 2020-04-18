@@ -1,16 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Category } from './../../interface/Category';
+import { apiReq } from '../../helpers';
 import CultureCalendar from '../Calendar/CultureCalendar';
+import Common from '../../constant/common';
 
 interface CultureProp {
 	isAuthenticated: boolean;
 }
+interface CultureState {
+    partOneCategories: Array<Category>;
+    partTwoCategories: Array<Category>;
+    isShowCategory: boolean;
+}
 
-class Culture extends React.Component<CultureProp> {
+class Culture extends React.Component<CultureProp, CultureState> {
     constructor(props: CultureProp) {
 		super(props);
 		this.state = {
+            partOneCategories: [],
+            partTwoCategories: [],
+            isShowCategory: false
 		};
+    }
+
+    componentDidMount() {
+        this.getCategoryList();
+    }
+
+    getCategoryList = () => {
+        apiReq.getCategory().then((res) => {
+            const resData = res.data;
+            this.setState({ partOneCategories: resData.data.slice(Common.zero, Common.three) });
+            this.setState({ partTwoCategories: resData.data.slice(Common.three, resData.data.length) });
+        }).catch(err => {});
+    }
+
+    categoryToggle = () => {
+        this.setState({isShowCategory: !this.state.isShowCategory});
     }
 
 	render() {
@@ -32,14 +59,19 @@ class Culture extends React.Component<CultureProp> {
                             </div>
 
                             <div className='event-indicator'>
-                                    <div><span><em className='ctg-holidya'></em> Holidays</span></div>
-                                    <div><span><em className='ctg-sport'></em> Sports</span></div>
-                                    <div><span><em className='ctg-festivals'></em> Festivals</span></div>
-                                    <div className='value-more'><span className='more'><em></em> 3 More</span>
-                                        <div>
-                                        <span><em className='ctg-holidya'></em> Holidays</span>
-                                        <span><em className='ctg-sport'></em> Sports</span>
-                                        <span><em className='ctg-festivals'></em> Festivals</span>
+                                {
+                                    this.state.partOneCategories.map((cat: Category) => (
+                                    <div key={cat.id}><span><em className={cat.class_name}></em> {cat.name}</span></div>
+                                    ))
+                                }
+                                    <div className='value-more'><span className='more' onClick={this.categoryToggle}><em></em>
+                                    {this.state.partTwoCategories.length} More</span>
+                                        <div className={this.state.isShowCategory ? '' : 'ui-hide'}>
+                                        {
+                                            this.state.partTwoCategories.map((cat: Category) => (
+                                                <span key={cat.id}><em className={cat.class_name}></em> {cat.name}</span>
+                                            ))
+                                        }
                                         </div>
                                     </div>
                             </div>

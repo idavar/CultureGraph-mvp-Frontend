@@ -14,6 +14,7 @@ interface HomeProp {
 interface HomeState {
 	isKnowMore?: boolean;
 }
+
 class Home extends React.Component<HomeProp, HomeState> {
 	constructor(props: HomeProp) {
 		super(props);
