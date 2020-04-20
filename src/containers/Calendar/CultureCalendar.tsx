@@ -81,7 +81,19 @@ render() {
 				}
 				return item;
 			})
-		}]
+		}],
+		eventRender: (arg: { event: any; el: HTMLElement; view: any}) => {
+			const extendedProps = arg.event.extendedProps;
+			const fcContent = arg.el.querySelector('.fc-content');
+			if (fcContent) {
+				fcContent.innerHTML = `
+				<span class='fc-title'>${arg.event.title}</span>
+				<span class='fc-description'>${extendedProps.description}</span>
+				<span class='fc-location'><span class='fc-location-icon'></span>
+				${extendedProps.country}</span>
+				`;
+			}
+		}
 	};
 	return (
 		<div>
