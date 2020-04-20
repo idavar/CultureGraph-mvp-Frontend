@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import Culture from '../Culture/Culture';
@@ -127,25 +128,28 @@ class Home extends React.Component<HomeProp, HomeState> {
 										</div>
 										<div className='col-md-6'>
 												<div className='explore-detail'>
-													<div className='explore-event'>
-												<a href='/' className='holi' >Holi Festival <small>20M</small></a>
-												<a href='/'  className='herring'>Herring Festival <small>18M</small></a>
-												<a href='/' className='hogmanay'>Hogmanay <small>10M</small></a>
-												<a href='/'  className='donauinselfest'>Donauinselfest<small>9.1M</small></a>
-												<a href='/'  className='carnevale'>Carnevale <small>5M</small></a>
-												<a href='/'  className='primavera'>Primavera sound <small>4.1k</small></a>
-												<a href='/'  className='let-it-roll'>Let It Roll <small>90k</small></a>
-												<a href='/'  className='soccer'>Soccer <small>7.7M</small></a>
-												<a href='/'  className='becon'>Becon Festival <small>12M</small></a>
-												<a href='/'  className='tabletennis'>Table Tennis<small>70k</small></a>
+												<div className='explore-event'>
+												<Link to='#' className='holi' >Holi Festival <small>20M</small></Link>
+												{
+												this.props.isAuthenticated ?
+												<React.Fragment>
+												<Link to='#' className='herring'>Herring Festival <small>18M</small></Link>
+												<Link to='#' className='hogmanay'>Hogmanay <small>10M</small></Link>
+												<Link to='#' className='donauinselfest'>Donauinselfest<small>9.1M</small></Link>
+												<Link to='#' className='carnevale'>Carnevale <small>5M</small></Link>
+												<Link to='#' className='primavera'>Primavera sound <small>4.1k</small></Link>
+												<Link to='#' className='let-it-roll'>Let It Roll <small>90k</small></Link>
+												<Link to='#' className='soccer'>Soccer <small>7.7M</small></Link>
+												<Link to='#' className='becon'>Becon Festival <small>12M</small></Link>
+												<Link to='#' className='tabletennis'>Table Tennis<small>70k</small></Link>
+												</React.Fragment> : ''
+												}
 												</div>
-
-												 {!this.props.isAuthenticated ? <div className='explore-note'>
+												{!this.props.isAuthenticated ? <div className='explore-note'>
 													<h4>Become a reseacher to view all trending keywords.</h4>
 													<p>Register yourself as researcher to get complete access to culture calendar.</p>
-													<a href='/' className='explore-register'>Register Now</a>
+													<a href='/signup' className='explore-register'>Register Now</a>
 												</div> : ''}
-
 												</div>
 										</div>
 									</div>

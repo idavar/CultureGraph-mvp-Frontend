@@ -190,7 +190,7 @@ class ResetPassword extends React.Component<ResetProps, FormState> {
 							</h3>
 							<Link to='/login' className='backfrom-password btn btn-primary btn-block'>Back to Sign in</Link>
 						</div>
-						
+
 					</div> : <div className='user-form'>
                             <div className='user-form-inner'>
                             {/*  page close icon start here */}

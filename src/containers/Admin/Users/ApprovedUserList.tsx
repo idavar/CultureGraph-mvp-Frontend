@@ -39,9 +39,9 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 	}
 
 	sortUser = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const is_active = e.target.value;
-		this.setState({is_active});
-		this.queryData.is_active = is_active;
+		const isActive = e.target.value;
+		this.setState({is_active: isActive});
+		this.queryData.is_active = isActive;
 		this.queryData.page = Common.one;
 		this.submitSearch();
 	}
@@ -88,7 +88,12 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 	}
 
 	onActiveBlock = (doc: UserData) => {
-		this.modalActiveRef.current?.openModal(doc);
+		const option = {
+			submitSearch: this.submitSearch,
+			page: this.queryData.page,
+			totalCount: this.props.count
+		};
+		this.modalActiveRef.current?.openModal(doc, option);
 	}
 
 	render() {
@@ -166,7 +171,7 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 			<Form>
 			<div className='toggle-switch'>
 			<label className='toggleSwitch'>
-			<input checked={doc.is_active}
+			<input checked={!doc.is_active}
 					type='checkbox'
 					className='toggle-switch-checkbox'
 					onChange={() => this.onActiveBlock(doc)}

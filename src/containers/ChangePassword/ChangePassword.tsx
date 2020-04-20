@@ -35,7 +35,7 @@ class ChangePassword extends React.Component<{}, FormState> {
 								valid: false,
 								touched: false,
 								validationMsg: '',
-								messages: ValidationMessage.old_password
+								messages: ValidationMessage.current_password
 						},
 						password: {
 								elementType: 'input',

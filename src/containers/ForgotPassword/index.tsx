@@ -188,7 +188,7 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 								onInputChange={this.onOtpChange} />
 								<Link className='resend-mail' to='#' onClick={this.submitForm}>Resend Mail</Link>
 							</div>
-						
+
 								<div className='form-group'>
 									<button disabled={this.state.loading || !this.state.isValidForm} type='submit'
 									 className='btn btn-primary btn-block' onClick={this.submitVerifyCode}>Continue</button>
@@ -211,7 +211,7 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 								<a href='/login' className='backto-signin'>Back to Sign in</a>
 								</form>
 						</div>
-							
+
 					</div>}
 
 					</div>
