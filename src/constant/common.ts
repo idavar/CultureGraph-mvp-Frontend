@@ -91,9 +91,9 @@ const Common = {
 			sports: '#009cdc',
 			festivals: '#004d63',
 			music: '#edc81b',
-			food: '#009cdc',
-			art: '#004d63',
-			orthers: '#edc81b',
+			food: '#57E2E5',
+			art: '#36112e',
+			orthers: '#c5a932',
 		}
 };
 
