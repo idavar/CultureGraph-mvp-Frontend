@@ -1,70 +1,108 @@
 .fc{
 
 .fc-toolbar{
+  &.fc-header-toolbar{
+    @media (max-width:991px){
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+
+    }
+    .fc-center{
+      text-align: center;
+      @media (max-width:991px){
+        width:100%;
+        order:2;
+      }
+      button{
+        background: none;
+        border:0!important;
+        color: #3f9bc8;
+        opacity: 0.6;
+  
+        &:focus{
+          background: none;
+          border: 0!important;
+          outline:none!important;
+          box-shadow:none!important;
+       
+        }
+      }
+      h2{
+        font-size:$font-16!important;
+        color: $navy-blue;
+        font-family:  $source-semibold;
+        display: inline-block;
+      }
+    }
+
+    .fc-right{
+      text-align: right;
+      width:24%;
+      @media (max-width:991px){
+        order:1;
+        width:100%;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .fc-button-group{
+        width:100%;
+        display: inline-block;
+        button{
+           background: none;
+           border-color:$theme-blue3;
+           color: $black;
+           text-transform: capitalize;
+           font-size:$font-14;
+           font-family:  $source-regular;
+           padding:14px 36px;
+           border-radius: 5px;
+           @media (max-width:991px){
+            padding:8px 30px;
+           }
+    
+    
+           &:first-child{
+             border-radius: 5px 0 0 5px;
+           }
+           &:last-child{
+            border-radius: 0 5px 5px 0;
+          }
+    
+           &.fc-button-active{
+             background: $theme-blue2;
+             color:$white;
+             font-family:  $source-bold;
+           }
+    
+           &:focus{
+             box-shadow:none;
+           }
+        }
+       
+      }
+    }
+
+    .fc-left{
+      @media (max-width:991px){
+        order:3;
+      }
+    }
+
+
+  }
+
+
+
+
 
 
   div{
     width:30%;
   }
-  h2{
-    font-size:$font-16!important;
-    color: $navy-blue;
-    font-family:  $source-semibold;
-    display: inline-block;
-  }
 
-  .fc-center{
-    text-align: center;
-    button{
-      background: none;
-      border:0!important;
-      color: #3f9bc8;
-      opacity: 0.6;
-
-      &:focus{
-        background: none;
-        border: 0!important;
-        outline:none!important;
-        box-shadow:none!important;
-     
-      }
-    }
-  }
-  .fc-right{
-    text-align: center;
-  }
-
-  .fc-button-group{
-    button{
-       background: none;
-       border-color:$theme-blue3;
-       color: $black;
-       text-transform: capitalize;
-       font-size:$font-14;
-       font-family:  $source-regular;
-       padding:14px 36px;
-       border-radius: 5px;
-
-
-       &:first-child{
-         border-radius: 5px 0 0 5px;
-       }
-       &:last-child{
-        border-radius: 0 5px 5px 0;
-      }
-
-       &.fc-button-active{
-         background: $theme-blue2;
-         color:$white;
-         font-family:  $source-bold;
-       }
-
-       &:focus{
-         box-shadow:none;
-       }
-    }
-   
-  }
+  
 }
 
 .fc-day-header{
@@ -75,6 +113,9 @@
   color: #000;
   font-size:$font-14!important;
   font-family:  $source-semibold;
+  @media (max-width:767px){
+    border: 0;
+  }
 }
 
 td 
@@ -84,6 +125,11 @@ td
     color: #000;
     font-size:$font-14;
     font-family:  $source-regular;
+    @media (max-width:767px){
+      position: relative;
+      top:4px;
+      float: none!important;
+    }
   }
 
   &.fc-today{
@@ -93,8 +139,153 @@ td
 }
 
 
-.fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number{
-  padding: 20px;
+
+table{
+  td{
+    @media (max-width:767px){
+      border: 0!important;
+      text-align: center;
+  
+      
+    }
+   
+  }
 }
 
+
+
+
+
+.fc-dayGrid-view{
+  .fc-row{
+    min-height:35px!important;
+  }
+  
+  }
+
+  .fc-event-container{
+    font-family: $source-regular;
+    .fc-day-grid-event{
+      color:$white!important;
+      padding: 0 10px!important;
+
+      .fc-title{
+       font-size:$font-12;
+       font-family: $source-bold; 
+      }
+
+      .fc-content{
+        .fc-description{
+          display: none;
+        }
+        .fc-location{
+          display: none;
+        }
+      }
+    }
+
+
+  }
+
 }
+
+
+.fc-unthemed {
+
+  .fc-popover{
+    width:300px;
+    border-radius:10px;
+    border:0!important;
+    box-shadow: 1px -10px 32px rgba(218, 218, 218, 0.8);
+
+    .fc-header{
+      font-family:  $source-bold!important;
+      font-size:$font-15!important;
+      color:$navy-blue2;
+      background: #f0f9ff!important;
+      border-bottom: 1px solid #e0eef7!important;
+      border-radius: 5px 5px 0 0;
+
+      .fc-title{
+        margin: 5px 15px;
+      }
+      .fc-close{
+      opacity: 1;
+      font-size: 18px;
+        &:before{
+          color:$navy-blue2;
+      
+        }
+      }
+    }
+
+    .fc-event-container{
+      padding: 0;
+      max-height: 500px;
+      overflow: auto;
+      font-family: $source-regular;
+
+      a{
+        margin: 0;
+        padding:10px 15px!important;
+        box-shadow: 0px 0px 34px rgba(255,255,255,0.4);
+      }
+
+      .fc-content{
+        white-space: normal;
+        overflow: visible;
+      .fc-title{
+        font-size:$font-14;
+        font-family:  $source-bold;
+        color:$white;
+        position: relative;
+        margin-bottom:5px;
+        display: block;
+        padding:5px 5px 5px 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: calc(100% - 20px);
+
+        &:before{
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 17px;
+        background: white;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        }
+      }
+
+        .fc-description{
+          display: block;
+          font-size:$font-13;
+        }
+        .fc-location{
+          display: block;
+          font-size: $font-14;
+          margin-top: 5px;
+          padding-left: 22px;
+          position: relative;
+          
+          &:before{
+            content:'';
+            position: absolute;
+            top:0;
+            left:0;
+            background: url(../../images/icon-map.png) no-repeat;
+            width:13px;
+            height:17px;
+          }
+        }
+      }
+    
+     
+    }
+  }
+
+}
+
+

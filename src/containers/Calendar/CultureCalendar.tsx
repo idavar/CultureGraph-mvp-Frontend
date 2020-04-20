@@ -60,15 +60,45 @@ render() {
 			center: 'prev, title ,next',
 			right: 'dayGridWeek,dayGridMonth'
 		},
-		defaultView: 'dayGridWeek',
+		defaultView: 'dayGridMonth',
 		plugins: [ dayGridPlugin ],
 		ref: this.calendarComponentRef,
 		weekends: this.state.calendarWeekends,
-		events: this.state.calendarEvents,
 		datesRender: (data: {view: {currentEnd: Date, currentStart: Date}}) => {
 			this.setState({ currentStart: data['view'].currentStart.toLocaleDateString() });
 			this.setState({ currentEnd: data['view'].currentEnd.toLocaleDateString() });
 			this.searchEvents();
+		},
+		eventSources: [{
+			events: this.state.calendarEvents.map(item => {
+				item.color = Common.categoryColor.orthers;
+				if (Common.categoryGroup.holidays.includes(item.category)) {
+					item.color = Common.categoryColor.holidays;
+				} else if (Common.categoryGroup.art.includes(item.category)) {
+					item.color = Common.categoryColor.art;
+				} else if (Common.categoryGroup.festivals.includes(item.category)) {
+					item.color = Common.categoryColor.festivals;
+				} else if (Common.categoryGroup.food.includes(item.category)) {
+					item.color = Common.categoryColor.food;
+				} else if (Common.categoryGroup.music.includes(item.category)) {
+					item.color = Common.categoryColor.music;
+				} else if (Common.categoryGroup.sports.includes(item.category)) {
+					item.color = Common.categoryColor.sports;
+				}
+				return item;
+			})
+		}],
+		eventRender: (arg: { event: any; el: HTMLElement; view: any}) => {
+			const extendedProps = arg.event.extendedProps;
+			const fcContent = arg.el.querySelector('.fc-content');
+			if (fcContent) {
+				fcContent.innerHTML = `
+				<span class='fc-title'>${arg.event.title}</span>
+				<span class='fc-description'>${extendedProps.description}</span>
+				<span class='fc-location'><span class='fc-location-icon'></span>
+				${extendedProps.country}</span>
+				`;
+			}
 		}
 	};
 	return (

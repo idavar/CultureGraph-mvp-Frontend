@@ -1,5 +1,4 @@
 const Common = {
-		three: 4,
 		phqOffset: 1000,
 		phqState: 'active',
 		nameLength: 150,
@@ -21,6 +20,8 @@ const Common = {
 		},
 		zero: 0,
 		one: 1,
+		three: 3,
+		four: 4,
 		alertTimeout: 3000,
 		na: 'NA',
 		toastConfig : {
@@ -73,6 +74,26 @@ const Common = {
 		userStatus: {
 			active: 'Are you sure you want to activate this user?',
 			block: 'Are you sure you want to block this user?',
+		},
+		categoryGroup: {
+			holidays: ['public-holidays', 'school-holidays'],
+			sports: ['sports'],
+			festivals: ['festivals'],
+			music: ['music'],
+			food: ['food'],
+			art: ['performing-arts'],
+			orthers: ['observances', 'politics', 'conferences', 'expos', 'concerts',
+						'community', 'daylight-savings', 'airport-delays', 'severe-weather',
+					'disasters', 'terror'],
+		},
+		categoryColor: {
+			holidays: '#72cfa0',
+			sports: '#009cdc',
+			festivals: '#004d63',
+			music: '#edc81b',
+			food: '#57E2E5',
+			art: '#36112e',
+			orthers: '#c5a932',
 		}
 };
 

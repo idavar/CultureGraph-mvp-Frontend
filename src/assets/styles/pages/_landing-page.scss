@@ -302,6 +302,7 @@
   position: relative;
   @media (max-width:767px){
     margin-bottom: 25px;
+    margin-top: 32px;
   }
   span{
     display: block;
@@ -524,6 +525,7 @@ img{
         padding: 10px;
         background: #000;
         border-left: 7px solid #ccc;
+        text-align: left;
 
         @media (max-width:767px){
           font-size:$font-12;
@@ -721,7 +723,18 @@ img{
   background: $theme-color-light;
   padding-bottom: 50px;
   @media (max-width:767px){
- padding:0 20px 30px 20px;
+ padding:0 20px 0 20px;
+  }
+
+  .home-calendar{
+
+    @media (max-width:575px){
+      margin-left:-35px;
+      margin-right: -35px;
+    }
+    @media (max-width:991px){
+      padding-bottom: 30px;
+    }
   }
 
 
@@ -731,8 +744,13 @@ img{
   justify-content: space-between;
   align-items: center;
    margin: 0 0 45px 0;
+   position: relative;
+   z-index:12;
    @media (max-width:375px){
     justify-content: flex-start!important;
+   }
+   @media (max-width:1099px){
+     margin-bottom: 10px;
    }
    @media (max-width:1099px){
     flex-wrap: wrap;
@@ -887,7 +905,7 @@ img{
         }
 
         div{
-          display: none;
+          // display: none;
           position: absolute;
           width:100%;
           left:0;
@@ -903,11 +921,11 @@ img{
           }
         }
 
-        &:hover{
+        /*&:hover{
           & div{
             display: block;
           }
-        }
+        }*/
         
       }
     }
@@ -1164,27 +1182,59 @@ margin:50px 0;
 
 
 
-.ctg-holidya{
-  background: rgba($color:  $aqua-forest, $alpha: 0.5);
-  border: 1px solid $aqua-forest;
+.ctg-holidays{
+  background: rgba($color: $holidays, $alpha: 0.5);
+  border: 1px solid $holidays;
   &:before{
-    background: $aqua-forest;
+    background: $holidays;
   }
 }
 
-.ctg-sport{
-  background: rgba($color:  $matisse, $alpha: 0.5);
-  border: 1px solid $matisse;
+.ctg-sports{
+  background: rgba($color:  $sports, $alpha: 0.5);
+  border: 1px solid $sports;
   &:before{
-    background: $matisse;
+    background: $sports;
   }
 }
 
 .ctg-festivals{
-  background: rgba($color:  $tiber, $alpha: 0.5);
-  border: 1px solid  $tiber;
+  background: rgba($color:  $festivals, $alpha: 0.5);
+  border: 1px solid $festivals;
   &:before{
-    background:  $tiber;
+    background: $festivals;
+  }
+}
+
+.ctg-music{
+  background: rgba($color: $music, $alpha: 0.5);
+  border: 1px solid $music;
+  &:before{
+    background: $music;
+  }
+}
+
+.ctg-food{
+  background: rgba($color: $turquoise-blue, $alpha: 0.5);
+  border: 1px solid  $turquoise-blue;
+  &:before{
+    background: $turquoise-blue;
+  }
+}
+
+.ctg-art{
+  background: rgba($color: $wine-berry, $alpha: 0.5);
+  border: 1px solid  $wine-berry;
+  &:before{
+    background: $wine-berry;
+  }
+}
+
+.ctg-others{
+  background: rgba($color: $old-gold, $alpha: 0.5);
+  border: 1px solid $old-gold;
+  &:before{
+    background: $old-gold;
   }
 }
 
@@ -1214,4 +1264,8 @@ margin:50px 0;
     text-decoration: none;
     color: $white;
   }
+}
+
+.ui-hide {
+  display: none;
 }
