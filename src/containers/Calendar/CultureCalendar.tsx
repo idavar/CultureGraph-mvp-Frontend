@@ -60,7 +60,7 @@ render() {
 			center: 'prev, title ,next',
 			right: 'dayGridWeek,dayGridMonth'
 		},
-		defaultView: 'dayGridWeek',
+		defaultView: 'dayGridMonth',
 		plugins: [ dayGridPlugin ],
 		ref: this.calendarComponentRef,
 		weekends: this.state.calendarWeekends,
