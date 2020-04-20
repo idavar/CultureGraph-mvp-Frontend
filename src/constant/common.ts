@@ -74,6 +74,26 @@ const Common = {
 		userStatus: {
 			active: 'Are you sure you want to activate this user?',
 			block: 'Are you sure you want to block this user?',
+		},
+		categoryGroup: {
+			holidays: ['public-holidays', 'school-holidays'],
+			sports: ['sports'],
+			festivals: ['festivals'],
+			music: ['music'],
+			food: ['food'],
+			art: ['performing-arts'],
+			orthers: ['observances', 'politics', 'conferences', 'expos', 'concerts',
+						'community', 'daylight-savings', 'airport-delays', 'severe-weather',
+					'disasters', 'terror'],
+		},
+		categoryColor: {
+			holidays: '#72cfa0',
+			sports: '#009cdc',
+			festivals: '#004d63',
+			music: '#edc81b',
+			food: '#009cdc',
+			art: '#004d63',
+			orthers: '#edc81b',
 		}
 };
 
