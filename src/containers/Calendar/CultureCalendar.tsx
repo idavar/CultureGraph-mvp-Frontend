@@ -44,7 +44,6 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 		options['query'] = `?active.gt=${this.state.currentStart}&active.lte=${this.state.currentEnd}&state=${Common.phqState}`;
 	}
 	apiReq.predicthqSearchEvent({}, options).then((res: any) => {
-		console.log('res >>>', res['results']);
 		this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
 		if (res.next) {
 			options.next = res.next;
@@ -72,12 +71,19 @@ render() {
 		},
 		eventSources: [{
 			events: this.state.calendarEvents.map(item => {
-				if (item.category === 'airport-delays') {
-					item.color = 'green';
-				} else if (item.category === 'conferences') {
-					item.color = 'red';
-				} else {
-					item.color = 'yellow';
+				item.color = Common.categoryColor.orthers;
+				if (Common.categoryGroup.holidays.includes(item.category)) {
+					item.color = Common.categoryColor.holidays;
+				} else if (Common.categoryGroup.art.includes(item.category)) {
+					item.color = Common.categoryColor.art;
+				} else if (Common.categoryGroup.festivals.includes(item.category)) {
+					item.color = Common.categoryColor.festivals;
+				} else if (Common.categoryGroup.food.includes(item.category)) {
+					item.color = Common.categoryColor.food;
+				} else if (Common.categoryGroup.music.includes(item.category)) {
+					item.color = Common.categoryColor.music;
+				} else if (Common.categoryGroup.sports.includes(item.category)) {
+					item.color = Common.categoryColor.sports;
 				}
 				return item;
 			})
