@@ -20,3 +20,5 @@ export const forgotPassword = (data: object) => apiHandler.apiPost(`${ConfigData
 export const verifyCode = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.verifyCode}`, data);
 
 export const resetPassword = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.resetPassword}`, data);
+
+export const getCategory = () => apiHandler.apiGet(`${ConfigData.apiUrl}${ConfigData.apiName.category}`, {});

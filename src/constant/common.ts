@@ -1,5 +1,4 @@
 const Common = {
-		three: 4,
 		phqOffset: 1000,
 		phqState: 'active',
 		nameLength: 150,
@@ -21,6 +20,8 @@ const Common = {
 		},
 		zero: 0,
 		one: 1,
+		three: 3,
+		four: 4,
 		alertTimeout: 3000,
 		na: 'NA',
 		toastConfig : {

@@ -887,7 +887,7 @@ img{
         }
 
         div{
-          display: none;
+          // display: none;
           position: absolute;
           width:100%;
           left:0;
@@ -903,11 +903,11 @@ img{
           }
         }
 
-        &:hover{
+        /*&:hover{
           & div{
             display: block;
           }
-        }
+        }*/
         
       }
     }
@@ -1214,4 +1214,8 @@ margin:50px 0;
     text-decoration: none;
     color: $white;
   }
+}
+
+.ui-hide {
+  display: none;
 }
