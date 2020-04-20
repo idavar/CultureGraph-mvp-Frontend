@@ -164,10 +164,27 @@ table{
   }
 
   .fc-event-container{
+    font-family: $source-regular;
     .fc-day-grid-event{
-      color: $white!important;
+      color:$white!important;
       padding: 0 10px!important;
+
+      .fc-title{
+       font-size:$font-12;
+       font-family: $source-bold; 
+      }
+
+      .fc-content{
+        .fc-description{
+          display: none;
+        }
+        .fc-location{
+          display: none;
+        }
+      }
     }
+
+
   }
 
 }
@@ -176,17 +193,93 @@ table{
 .fc-unthemed {
 
   .fc-popover{
-    border-radius:10px;
     width:300px;
+    border-radius:10px;
     border:0!important;
-    box-shadow: 1px 3px 8px 0 rgba(232, 232, 232, 0.49);
+    box-shadow: 1px -10px 32px rgba(218, 218, 218, 0.8);
 
     .fc-header{
-      display: none;
+      font-family:  $source-bold!important;
+      font-size:$font-15!important;
+      color:$navy-blue2;
+      background: #f0f9ff!important;
+      border-bottom: 1px solid #e0eef7!important;
+      border-radius: 5px 5px 0 0;
+
+      .fc-title{
+        margin: 5px 15px;
+      }
+      .fc-close{
+      opacity: 1;
+      font-size: 18px;
+        &:before{
+          color:$navy-blue2;
+      
+        }
+      }
     }
 
     .fc-event-container{
-      padding: 20px;
+      padding: 0;
+      max-height: 500px;
+      overflow: auto;
+      font-family: $source-regular;
+
+      a{
+        margin: 0;
+        padding:10px 15px!important;
+      }
+
+      .fc-content{
+        white-space: normal;
+        overflow: visible;
+      .fc-title{
+        font-size:$font-14;
+        font-family:  $source-bold;
+        color:$white;
+        position: relative;
+        margin-bottom:5px;
+        display: block;
+        padding:5px 5px 5px 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: calc(100% - 20px);
+
+        &:before{
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 17px;
+        background: white;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        }
+      }
+
+        .fc-description{
+          display: block;
+          font-size:$font-10;
+        }
+        .fc-location{
+          display: block;
+          font-size: $font-11;
+          margin-top: 5px;
+          padding-left: 22px;
+          position: relative;
+          
+          &:before{
+            content:'';
+            position: absolute;
+            top:0;
+            left:0;
+            background: url(../../images/icon-map.png) no-repeat;
+            width:13px;
+            height:17px;
+          }
+        }
+      }
     
      
     }

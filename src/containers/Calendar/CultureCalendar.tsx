@@ -44,6 +44,7 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 		options['query'] = `?active.gt=${this.state.currentStart}&active.lte=${this.state.currentEnd}&state=${Common.phqState}`;
 	}
 	apiReq.predicthqSearchEvent({}, options).then((res: any) => {
+		console.log('res >>>', res['results']);
 		this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
 		if (res.next) {
 			options.next = res.next;
@@ -64,11 +65,34 @@ render() {
 		plugins: [ dayGridPlugin ],
 		ref: this.calendarComponentRef,
 		weekends: this.state.calendarWeekends,
-		events: this.state.calendarEvents,
 		datesRender: (data: {view: {currentEnd: Date, currentStart: Date}}) => {
 			this.setState({ currentStart: data['view'].currentStart.toLocaleDateString() });
 			this.setState({ currentEnd: data['view'].currentEnd.toLocaleDateString() });
 			this.searchEvents();
+		},
+		eventSources: [{
+			events: this.state.calendarEvents.map(item => {
+				if (item.category === 'airport-delays') {
+					item.color = 'green';
+				} else if (item.category === 'conferences') {
+					item.color = 'red';
+				} else {
+					item.color = 'yellow';
+				}
+				return item;
+			})
+		}],
+		eventRender: (arg: { event: any; el: HTMLElement; view: any}) => {
+			const extendedProps = arg.event.extendedProps;
+			const fcContent = arg.el.querySelector('.fc-content');
+			if (fcContent) {
+				fcContent.innerHTML = `
+				<span class='fc-title'>${arg.event.title}</span>
+				<span class='fc-description'>${extendedProps.description}</span>
+				<span class='fc-location'><span class='fc-location-icon'></span>
+				${extendedProps.country}</span>
+				`;
+			}
 		}
 	};
 	return (
