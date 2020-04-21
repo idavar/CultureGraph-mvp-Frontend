@@ -106,11 +106,15 @@ render() {
 		}],
 		eventRender: (arg: { event: any; el: HTMLElement; view: any}) => {
 			const extendedProps = arg.event.extendedProps;
+			let description = extendedProps.description;
+			if (extendedProps.description.length > Common.phqDesLength) {
+				description = `${extendedProps.description.substring(0, Common.phqDesLength)}...`;
+			}
 			const fcContent = arg.el.querySelector('.fc-content');
 			if (fcContent) {
 				fcContent.innerHTML = `
 				<span class='fc-title'>${arg.event.title}</span>
-				<span class='fc-description'>${extendedProps.description}</span>
+				<span class='fc-description'>${description}</span>
 				<span class='fc-location'><span class='fc-location-icon'></span>
 				${extendedProps.country}</span>
 				`;

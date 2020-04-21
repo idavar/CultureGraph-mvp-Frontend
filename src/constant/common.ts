@@ -12,6 +12,7 @@ const Common = {
 		userColSpan:  6,
 		requestColSpan:  6,
 		minOtp: 5,
+		phqDesLength: 70,
 		status: {
 			processed: 200,
 			success: 201,
