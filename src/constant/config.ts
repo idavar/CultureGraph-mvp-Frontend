@@ -1,7 +1,7 @@
 const ConfigData = {
 		phq: {
-				accessToken: '1L20H4u91D4Cgj9INgfWqvhbfi8hSf07bOfoLONO',
-				apiUrl : 'https://api.predicthq.com/v1/events'
+				accessToken: `${process.env.REACT_APP_PHQ_TOKEN}`,
+				apiUrl : `${process.env.REACT_APP_PHQ_APP_URL}`
 		},
 		apiUrl: `${process.env.REACT_APP_API_RUL}${process.env.REACT_APP_API_VERSION}`,
 		apiName: {

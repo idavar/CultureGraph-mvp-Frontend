@@ -15,33 +15,47 @@ currentEnd?: string;
 }
 
 class CultureCalendar extends React.Component<{}, EventAppState> {
+	public currentStart = '';
+	public currentEnd = '';
+	calendarComponentRef = React.createRef<FullCalendar>();
 
-calendarComponentRef = React.createRef<FullCalendar>();
-
-constructor(props: {}) {
-	super(props);
-	this.state = {
-		calendarWeekends: true,
-		calendarEvents: [],
-		currentStart: '',
-		currentEnd: ''
-	};
-}
+	constructor(props: {}) {
+		super(props);
+		this.state = {
+			calendarWeekends: true,
+			calendarEvents: [],
+			currentStart: '',
+			currentEnd: ''
+		};
+	}
 
 componentWillMount() {}
 
 componentDidMount() {
 	if (this.calendarComponentRef.current) {
-		this.setState({ currentStart: this.calendarComponentRef.current['calendar'].view.currentStart.toLocaleDateString() });
-		this.setState({ currentEnd: this.calendarComponentRef.current['calendar'].view.currentEnd.toLocaleDateString() });
+		this.currentStart = this.calendarComponentRef.current['calendar'].view.currentStart.toLocaleDateString();
+		this.currentEnd = this.calendarComponentRef.current['calendar'].view.currentEnd.toLocaleDateString();
 		this.searchEvents();
 	}
 }
 
+strReplace = (str: string) => {
+	return str.replace(/\//g, '-');
+}
+
 searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) => {
+	let currentStart = '';
+	let currentEnd = '';
+	currentStart = this.state.currentStart ? this.state.currentStart : this.currentStart;
+	currentStart = this.strReplace(currentStart);
+	currentEnd = this.state.currentEnd ? this.state.currentEnd : this.currentEnd;
+	currentEnd = this.strReplace(currentEnd);
 	if (!options.next) {
 		this.setState({ calendarEvents: [] });
-		options['query'] = `?active.gt=${this.state.currentStart}&active.lte=${this.state.currentEnd}&state=${Common.phqState}`;
+		options['query'] = `?active.gt=${currentStart}&active.lte=${currentEnd}&state=${Common.phqState}`;
+	}
+	if (!currentStart || !currentEnd) {
+		return;
 	}
 	apiReq.predicthqSearchEvent({}, options).then((res: any) => {
 		this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
@@ -60,14 +74,16 @@ render() {
 			center: 'prev, title ,next',
 			right: 'dayGridWeek,dayGridMonth'
 		},
-		defaultView: 'dayGridWeek',
+		defaultView: 'dayGridMonth',
 		plugins: [ dayGridPlugin ],
 		ref: this.calendarComponentRef,
 		weekends: this.state.calendarWeekends,
 		datesRender: (data: {view: {currentEnd: Date, currentStart: Date}}) => {
-			this.setState({ currentStart: data['view'].currentStart.toLocaleDateString() });
-			this.setState({ currentEnd: data['view'].currentEnd.toLocaleDateString() });
-			this.searchEvents();
+			if (data['view'].currentStart && data['view'].currentEnd) {
+				this.setState({ currentStart: data['view'].currentStart.toLocaleDateString() });
+				this.setState({ currentEnd: data['view'].currentEnd.toLocaleDateString() });
+				this.searchEvents();
+			}
 		},
 		eventSources: [{
 			events: this.state.calendarEvents.map(item => {
