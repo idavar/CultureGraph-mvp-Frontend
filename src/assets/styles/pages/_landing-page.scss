@@ -744,8 +744,7 @@ img{
   justify-content: space-between;
   align-items: center;
    margin: 0 0 45px 0;
-   position: relative;
-   z-index:12;
+
    @media (max-width:375px){
     justify-content: flex-start!important;
    }
@@ -768,7 +767,7 @@ img{
   
     }
     @media (max-width:1099px){
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
     a{
       font-size: $font-16;
@@ -803,8 +802,9 @@ img{
 
   .event-indicator{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+    width:100%;
     @media (max-width:1099px){
       flex-wrap: wrap;
     }
@@ -812,6 +812,7 @@ img{
     @media (max-width:767px){
       margin-left: -10px;
       margin-right: -10px;
+      width: calc(100% + 20px);
     }
     div{
 
