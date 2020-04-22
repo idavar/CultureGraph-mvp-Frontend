@@ -934,8 +934,8 @@ img{
         }
 
         div{
-          // display: none;
           position: absolute;
+          z-index: 123;
           width:100%;
           left:0;
           top:100%;
@@ -1244,26 +1244,26 @@ margin:50px 0;
 }
 
 .ctg-food{
-  background: rgba($color: $turquoise-blue, $alpha: 0.5);
-  border: 1px solid  $turquoise-blue;
+  background: rgba($color: $food, $alpha: 0.5);
+  border: 1px solid  $food;
   &:before{
-    background: $turquoise-blue;
+    background: $food;
   }
 }
 
 .ctg-art{
-  background: rgba($color: $wine-berry, $alpha: 0.5);
-  border: 1px solid  $wine-berry;
+  background: rgba($color: $art, $alpha: 0.5);
+  border: 1px solid  $art;
   &:before{
-    background: $wine-berry;
+    background: $art;
   }
 }
 
 .ctg-others{
-  background: rgba($color: $old-gold, $alpha: 0.5);
-  border: 1px solid $old-gold;
+  background: rgba($color: $others, $alpha: 0.5);
+  border: 1px solid $others;
   &:before{
-    background: $old-gold;
+    background: $others;
   }
 }
 
