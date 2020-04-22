@@ -78,9 +78,6 @@ class Culture extends React.Component<CultureProp, CultureState> {
                         </div>
                         {
                             this.props.isAuthenticated ? <div className='home-calendar'>
-                                {/* <div className='calendar-loader'>
-                                <img src='/assets/images/loader.gif' alt='Loader Icon' />
-                                </div> */}
                             <CultureCalendar />
                          </div> :
                         <div className='calendar-without-login'>

@@ -12,6 +12,7 @@ calendarWeekends: boolean;
 calendarEvents: EventInput[];
 currentStart?: string;
 currentEnd?: string;
+loading: boolean;
 }
 
 class CultureCalendar extends React.Component<{}, EventAppState> {
@@ -25,7 +26,8 @@ class CultureCalendar extends React.Component<{}, EventAppState> {
 			calendarWeekends: true,
 			calendarEvents: [],
 			currentStart: '',
-			currentEnd: ''
+			currentEnd: '',
+			loading: false
 		};
 	}
 
@@ -69,11 +71,14 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 	if (!currentStart || !currentEnd) {
 		return;
 	}
+	this.setState({loading: true});
 	apiReq.predicthqSearchEvent({}, options).then((res: any) => {
 		this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
 		if (res.next) {
 			options.next = res.next;
 			this.searchEvents(options);
+		} else {
+			this.setState({loading: false});
 		}
 	}).catch(err => {});
 }
@@ -153,14 +158,16 @@ render() {
 	};
 	return (
 		<div>
-					<section>
-						<div className='calander-app'>
-							<div className='calander-app-calendar'>
-								{<FullCalendar {...calendarOptions} />}
-							</div>
-						</div>
-					</section>
-
+			{this.state.loading ? <div className='calendar-loader'>
+				<img src='/assets/images/loader.gif' alt='Loader Icon' />
+			</div> : ''}
+			<section>
+				<div className='calander-app'>
+					<div className='calander-app-calendar'>
+						{<FullCalendar {...calendarOptions} />}
+					</div>
+				</div>
+			</section>
 		</div>
 	);
 }
