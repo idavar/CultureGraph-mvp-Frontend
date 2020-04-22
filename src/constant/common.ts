@@ -87,6 +87,9 @@ const Common = {
 						'community', 'daylight-savings', 'airport-delays', 'severe-weather',
 					'disasters', 'terror'],
 		},
+		allCategory: `school-holidays,public-holidays,observances,politics,conferences,expos,concerts,
+		festivals,performing-arts,sports,community,daylight-savings,airport-delays,severe-weather,
+		disasters,terror`,
 		categoryColor: {
 			holidays: '#72cfa0',
 			sports: '#009cdc',
