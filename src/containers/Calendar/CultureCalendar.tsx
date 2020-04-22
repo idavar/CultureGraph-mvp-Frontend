@@ -130,7 +130,7 @@ render() {
 		},
 		eventSources: [{
 			events: this.state.calendarEvents.map(item => {
-				item.color = Common.categoryColor.orthers;
+				item.color = Common.categoryColor.others;
 				if (Common.categoryGroup.holidays.includes(item.category)) {
 					item.color = Common.categoryColor.holidays;
 				} else if (Common.categoryGroup.art.includes(item.category)) {
