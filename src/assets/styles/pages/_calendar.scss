@@ -115,6 +115,7 @@
   color: #000;
   font-size:$font-14!important;
   font-family:  $source-semibold;
+  font-weight: normal;
 
   span{
     @media (max-width:575px){
@@ -143,8 +144,8 @@ td
   }
 
   &.fc-today{
-    background: #f0f9ff!important;
-    border-color: inherit!important;
+    background: $off-white3!important;
+    border-color: #ddd!important;
   }
 }
 
