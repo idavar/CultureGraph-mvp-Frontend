@@ -2,10 +2,10 @@ import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import { EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-
 import '../../assets/styles/main.scss';
 import { apiReq } from '../../helpers';
 import Common from '../../constant/common';
+const $ = require( 'jquery' );
 
 interface EventAppState {
 calendarWeekends: boolean;
@@ -32,11 +32,23 @@ class CultureCalendar extends React.Component<{}, EventAppState> {
 componentWillMount() {}
 
 componentDidMount() {
-	if (this.calendarComponentRef.current) {
-		this.currentStart = this.calendarComponentRef.current['calendar'].view.currentStart.toLocaleDateString();
-		this.currentEnd = this.calendarComponentRef.current['calendar'].view.currentEnd.toLocaleDateString();
-		this.searchEvents();
-	}
+		if (this.calendarComponentRef.current) {
+			this.currentStart = this.calendarComponentRef.current['calendar'].view.currentStart.toLocaleDateString();
+			this.currentEnd = this.calendarComponentRef.current['calendar'].view.currentEnd.toLocaleDateString();
+			this.searchEvents();
+		}
+		this.addShowMoreAndLessEvent();
+}
+
+addShowMoreAndLessEvent = () => {
+		$('body').on('click', '.show-more', function(e: any) {
+			$(e.target).closest('.fc-description').find('.fc-des-less').addClass('ui-hide');
+			$(e.target).closest('.fc-description').find('.fc-des-more').removeClass('ui-hide');
+		});
+		$('body').on('click', '.hide-more', function(e: any) {
+			$(e.target).closest('.fc-description').find('.fc-des-less').removeClass('ui-hide');
+			$(e.target).closest('.fc-description').find('.fc-des-more').addClass('ui-hide');
+		});
 }
 
 strReplace = (str: string) => {
@@ -64,6 +76,10 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 			this.searchEvents(options);
 		}
 	}).catch(err => {});
+}
+
+toggleDescription = (event: HTMLElement) => {
+	console.log(event);
 }
 
 render() {
@@ -106,15 +122,29 @@ render() {
 		}],
 		eventRender: (arg: { event: any; el: HTMLElement; view: any}) => {
 			const extendedProps = arg.event.extendedProps;
-			let description = extendedProps.description;
+			let lessDescription = extendedProps.description;
+			let moreDescription = extendedProps.description;
+			let uiHide = 'ui-hide';
 			if (extendedProps.description.length > Common.phqDesLength) {
-				description = `${extendedProps.description.substring(0, Common.phqDesLength)}...`;
+				lessDescription = `${extendedProps.description.substring(Common.zero, Common.phqDesLength)}
+				...`;
+				moreDescription = `${extendedProps.description}`;
+				uiHide = '';
 			}
 			const fcContent = arg.el.querySelector('.fc-content');
 			if (fcContent) {
 				fcContent.innerHTML = `
 				<span class='fc-title'>${arg.event.title}</span>
-				<span class='fc-description'>${description}</span>
+				<span class='fc-description'>
+					<span class='fc-des-more ui-hide'>
+						${moreDescription}
+						<a class='hide-more'>Hide</a>
+					</span>
+					<span class='fc-des-less'>
+						${lessDescription}
+						<a class='show-more ${uiHide}'>Show More</a>
+					</span>
+				</span>
 				<span class='fc-location'><span class='fc-location-icon'></span>
 				${extendedProps.country}</span>
 				`;
@@ -123,7 +153,6 @@ render() {
 	};
 	return (
 		<div>
-
 					<section>
 						<div className='calander-app'>
 							<div className='calander-app-calendar'>
