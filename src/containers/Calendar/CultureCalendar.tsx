@@ -64,7 +64,7 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 	currentEnd = this.strReplace(currentEnd);
 	if (!options.next) {
 		this.setState({ calendarEvents: [] });
-		options['query'] = `?active.gt=${currentStart}&active.lte=${currentEnd}&state=${Common.phqState}`;
+		options['query'] = `?category=${Common.allCategory}&active.gt=${currentStart}&active.lte=${currentEnd}&state=${Common.phqState}`;
 	}
 	if (!currentStart || !currentEnd) {
 		return;
