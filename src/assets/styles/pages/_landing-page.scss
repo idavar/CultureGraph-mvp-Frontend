@@ -727,6 +727,7 @@ img{
   }
 
   .home-calendar{
+    position: relative;
 
     @media (max-width:575px){
       margin-left:-35px;
@@ -734,6 +735,24 @@ img{
     }
     @media (max-width:991px){
       padding-bottom: 30px;
+    }
+
+    .calendar-loader{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: calc(100% - 136px);
+      background: rgba($color: #000000, $alpha: 0.2);
+      position: absolute;
+      left: 0;
+      top: 136px;
+      z-index: 12;
+    
+      img{
+        width:100px;
+      }
+     
     }
   }
 
@@ -1270,3 +1289,6 @@ margin:50px 0;
 .ui-hide {
   display: none;
 }
+
+
+

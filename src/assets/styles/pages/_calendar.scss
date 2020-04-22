@@ -305,6 +305,14 @@ table{
             height:17px;
           }
         }
+
+        .show-more, .hide-more{
+        font-family:$source-semibold;
+        color: $black;
+        display: block;
+        padding:5px!important;
+       
+        }
       }
     
      
