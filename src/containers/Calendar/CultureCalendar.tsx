@@ -66,7 +66,8 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 	currentEnd = this.strReplace(currentEnd);
 	if (!options.next) {
 		this.setState({ calendarEvents: [] });
-		options['query'] = `?category=${Common.allCategory}&active.gt=${currentStart}&active.lte=${currentEnd}&state=${Common.phqState}`;
+		options['query'] = `?category=${Common.allCategory}&active.gt=${currentStart}
+		&active.lte=${currentEnd}&state=${Common.phqState}&sort=rank`;
 	}
 	if (!currentStart || !currentEnd) {
 		return;
@@ -80,11 +81,9 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 		} else {
 			this.setState({loading: false});
 		}
-	}).catch(err => {});
-}
-
-toggleDescription = (event: HTMLElement) => {
-	console.log(event);
+	}).catch(err => {
+		this.setState({loading: false});
+	});
 }
 
 render() {
