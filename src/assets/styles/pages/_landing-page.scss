@@ -743,11 +743,20 @@ img{
       justify-content: center;
       width: 100%;
       height: calc(100% - 136px);
-      background: rgba($color: #000000, $alpha: 0.2);
+      background: rgba($color: #000000, $alpha: 0.1);
       position: absolute;
       left: 0;
       top: 136px;
       z-index: 12;
+
+      @media (max-width:767px){
+        top:182px;
+        height: calc(100% - 212px);
+      }
+      @media (min-width:768px) and (max-width:991px){
+        top: 183px;
+        height: calc(100% - 212px);
+      }
     
       img{
         width:100px;
