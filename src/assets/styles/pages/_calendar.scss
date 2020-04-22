@@ -1,4 +1,6 @@
 .fc{
+  position: relative;
+    z-index: 12;
 
 .fc-toolbar{
   &.fc-header-toolbar{
@@ -113,6 +115,15 @@
   color: #000;
   font-size:$font-14!important;
   font-family:  $source-semibold;
+  font-weight: normal;
+
+  span{
+    @media (max-width:575px){
+      display: inline-block;
+      width: 40px;
+      margin: auto;
+    }
+  }
   @media (max-width:767px){
     border: 0;
   }
@@ -133,8 +144,8 @@ td
   }
 
   &.fc-today{
-    background: #f0f9ff!important;
-    border-color: inherit!important;
+    background: $off-white3!important;
+    border-color: #ddd!important;
   }
 }
 
@@ -147,6 +158,26 @@ table{
       text-align: center;
   
       
+    }
+
+    &.fc-more-cell{
+      .fc-more{
+        font-family: $source-semibold;
+        font-size:$font-13;
+        color: $navy-blue;
+        padding-top: 10px;
+        padding-left:5px;
+        display: inherit;
+        line-height: normal;
+        @media (max-width:575px){
+          font-size:$font-12;
+          width: 40px;
+          margin: auto;
+        }
+        &:hover{
+          text-decoration:none;
+        }
+      }
     }
    
   }
@@ -168,6 +199,8 @@ table{
     .fc-day-grid-event{
       color:$white!important;
       padding: 0 10px!important;
+      border-radius: 0;
+    margin: 2px 0;
 
       .fc-title{
        font-size:$font-12;
@@ -220,15 +253,15 @@ table{
     }
 
     .fc-event-container{
-      padding: 0;
+      padding: 10px;
       max-height: 500px;
       overflow: auto;
       font-family: $source-regular;
 
       a{
-        margin: 0;
+        margin: 0 0 10px 0;
         padding:10px 15px!important;
-        box-shadow: 0px 0px 34px rgba(255,255,255,0.4);
+        border-radius:8px;
       }
 
       .fc-content{
@@ -279,6 +312,19 @@ table{
             width:13px;
             height:17px;
           }
+        }
+
+        .show-more, .hide-more{
+        font-family:$source-bold;
+        color: $white;
+        text-decoration:underline;
+        display: block;
+        padding:5px 0!important;
+        
+        &.ui-hide{
+          display: none;
+        }
+       
         }
       }
     

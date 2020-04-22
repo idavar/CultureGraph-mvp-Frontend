@@ -12,6 +12,7 @@ const Common = {
 		userColSpan:  6,
 		requestColSpan:  6,
 		minOtp: 5,
+		phqDesLength: 70,
 		status: {
 			processed: 200,
 			success: 201,
@@ -82,18 +83,23 @@ const Common = {
 			music: ['music'],
 			food: ['food'],
 			art: ['performing-arts'],
-			orthers: ['observances', 'politics', 'conferences', 'expos', 'concerts',
+			others: ['observances', 'politics', 'conferences', 'expos', 'concerts',
 						'community', 'daylight-savings', 'airport-delays', 'severe-weather',
 					'disasters', 'terror'],
 		},
+		allCategory: `school-holidays,public-holidays,observances,politics,conferences,expos,concerts,
+		festivals,performing-arts,sports,community,daylight-savings,airport-delays,severe-weather,
+		disasters,terror`,
+		phqMile: 100,
+		phqKm: 12000,
 		categoryColor: {
 			holidays: '#72cfa0',
 			sports: '#009cdc',
 			festivals: '#004d63',
 			music: '#edc81b',
-			food: '#57E2E5',
-			art: '#36112e',
-			orthers: '#c5a932',
+			food: '#00C1AD',
+			art: '#7168B6',
+			others: '#642353',
 		}
 };
 
