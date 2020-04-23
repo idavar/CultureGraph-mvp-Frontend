@@ -48,7 +48,7 @@ class Culture extends React.Component<CultureProp, CultureState> {
             <span>Culture Calendar</span>
             <h3>Culture Calendar</h3>
         </div>
-        <p>Click on dot to explore results in more detail</p>
+        <p>Click on tab to explore results in more detail</p>
         </div>
         {/* <img src='/assets/images/map.png' alt='Map' /> */}
 
