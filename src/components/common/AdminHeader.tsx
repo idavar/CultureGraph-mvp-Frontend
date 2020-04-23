@@ -20,6 +20,9 @@ class AdminHeader extends React.Component<HeaderProps> {
 		};
 	}
 
+	/**
+	 * @description function used for open change password popup for admin user
+	 */
 	changePassword = () => {
 		if (this.changePassRef.current) {
 			this.changePassRef.current.changePassword();
