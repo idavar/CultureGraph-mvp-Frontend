@@ -660,6 +660,9 @@ img{
 .our-mission-section{
   padding-top:35px;
   background: $theme-color-light;
+  @media (max-width:767px){
+    padding-top:8px;
+  }
   .watermark-title-section{
     text-align: left;
 
