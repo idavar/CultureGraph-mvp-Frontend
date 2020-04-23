@@ -38,10 +38,16 @@ const authFail = (state: User, action: User) => {
 const authLogout = (state: User, action: User) => {
 		return updateObject(state, initialState);
 };
+
 const setAuthRedirectPath = (state: User, action: User) => {
 			return updateObject(state, { authRedirectPath: action.path });
 };
 
+/**
+ * @description function used for update old state data with new action state
+ * @param state contain defalut state value
+ * @param action contain new updated action value
+ */
 const reducer = ( state = initialState, action: User ) => {
 		switch ( action.type ) {
 				case actionTypes.AUTH_START: return authStart(state, action);

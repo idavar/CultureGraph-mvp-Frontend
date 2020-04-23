@@ -3,12 +3,24 @@ interface MutableRefObject<T> {
 				current: T;
 }
 
+/**
+ * @description function used for check is validation error display or not
+ * @param data the data object contain value validation require or input filed touch
+ */
 const isDisplayError = (data: {invalid: boolean, shouldValidate: boolean, touched: boolean}) => data.invalid &&
 data.shouldValidate && data.touched;
 
+/**
+ * @description function used for display error message ui
+ * @param data the data object conation validation message
+ */
 const getErrorMessage = (data: {validationMsg: string}) => <span className='field-error'>
 	{data.validationMsg ? data.validationMsg : ''}</span>;
 
+/**
+ * @description function used for reader input type field view
+ * @param props value contain input filed control property
+ */
 const Input = ( props: any ) => {
 		const typeText = 'test';
 		const typePassword = 'password';

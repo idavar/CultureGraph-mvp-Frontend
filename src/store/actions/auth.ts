@@ -30,7 +30,9 @@ export const authFail = (error: any) => {
 				error
 		};
 };
-
+/**
+ * @description function used for user logout
+ */
 export const logout = () => {
 		localStorage.removeItem('user');
 		return {
@@ -38,6 +40,10 @@ export const logout = () => {
 		};
 };
 
+/**
+ * @description function used for handle the api error respone
+ * @param err contain error object
+ */
 const handleError = (err: Error) => {
 	if (err) {
 		let msg = err['detail'];
@@ -47,7 +53,11 @@ const handleError = (err: Error) => {
 		ToastError({msg});
 	}
 };
-
+/**
+ * @description function used for user login
+ * @param email contain email field value
+ * @param password contain password value
+ */
 export const auth = (email: string, password: string) => {
 		return (dispatch: Dispatch) => {
 				dispatch(authStart());
@@ -69,6 +79,10 @@ export const auth = (email: string, password: string) => {
 		};
 };
 
+/**
+ * @description function used for set auth redirect path
+ * @param path contain auth redirect url path
+ */
 export const setAuthRedirectPath = (path: string) => {
 		return {
 				type: actionTypes.SET_AUTH_REDIRECT_PATH,
@@ -77,7 +91,9 @@ export const setAuthRedirectPath = (path: string) => {
 };
 
 
-
+/**
+ * @description function used for check user already login or not
+ */
 export const authCheckState = () => {
 		return (dispatch: Function) => {
 				const user = session.getUserData();

@@ -33,6 +33,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 		};
 	}
 
+	/**
+	 * @description function used for open change password popup for user
+	 */
 	onChangePassword = () => {
 		if (this.updatePassRef.current) {
 			this.updatePassRef.current.changePassword();

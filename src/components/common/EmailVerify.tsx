@@ -29,6 +29,10 @@ class EmailVerify extends React.Component<Props, StateInterface> {
 				}
 	}
 
+	/**
+	 * @description function used for submit email hash code for verify user email address
+	 * @param emailHashCode value contain email hash code
+	 */
 	emailVerify (emailHashCode: string | null) {
 		apiReq.emailVerify({ email_hash_code: emailHashCode }).then(response => {
 			if (response.status === Common.status.success || response.status === Common.status.processed) {
