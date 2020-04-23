@@ -112,6 +112,11 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 render() {
 	const calendarOptions = {
 		eventLimit: Common.three,
+		views: {
+			dayGridWeek: {
+				eventLimit: false
+			}
+		},
 		header: {
 			left: 'none',
 			center: 'prev, title ,next',
