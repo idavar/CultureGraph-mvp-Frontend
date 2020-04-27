@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { History } from 'history';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import Culture from '../Culture/Culture';
@@ -9,6 +10,7 @@ import { User } from '../../interface/User';
 
 interface HomeProp {
 	isAuthenticated: boolean;
+	history: History;
 }
 
 interface HomeState {
@@ -27,6 +29,10 @@ class Home extends React.Component<HomeProp, HomeState> {
 		this.setState({isKnowMore: !this.state.isKnowMore});
 	}
 
+	searchKeyword = (): void => {
+		this.props.history.push('/search');
+	}
+
 	render() {
 		return (
 				<div>
@@ -42,7 +48,7 @@ class Home extends React.Component<HomeProp, HomeState> {
 													<form>
 												<div className='banner-search'>
 												<input type='text' placeholder='Search here for festivals, food, music and more...'></input>
-													<button type='button'><img src='/assets/images/search-icon-white.png' alt='Search Icon' /></button>
+													<button type='button' onClick={this.searchKeyword}><img src='/assets/images/search-icon-white.png' alt='Search Icon' /></button>
 												</div>
 												</form>
 												<div className='safty-note-wrap'>

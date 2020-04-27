@@ -12,11 +12,10 @@ import ManageUsers from './containers/Admin/Users/ManageUsers';
 import Home from './containers/Home/Home';
 import ForgotPassword from './containers/ForgotPassword';
 import ResetPassword from './containers/ResetPassword';
+import KeywordSearch from './containers/KeywordSearch';
 import * as actions from './store/actions/index';
 import { User } from './interface/User';
 import Common from './constant/common';
-
-import HTML from './containers/html';
 
 interface Props {
 	onTryAutoSignup: Function;
@@ -30,14 +29,17 @@ class App extends Component<Props> {
 	}
 
 	render () {
+		const keywordSearch = <Route path='/search' exact component={KeywordSearch}></Route>;
+		const noPage = <Route path='/no-page' exact component={PageNotFound}></Route>;
 		let publicRoute = null;
 		let privateRoute = null;
 		let adminRoute = null;
 		if ( !this.props.isAuthenticated ) {
 			publicRoute = (
 				<Switch>
+					{keywordSearch}
+					{noPage}
 					<Route path='/admin/manage-users' exact component={ManageUsers}></Route>
-					<Route path='/html' exact component={HTML}></Route>
 					<Route path='/no-page' exact component={PageNotFound}></Route>
 					<Route path='/login' exact component={Auth}></Route>
 					<Route path='/signup' exact component={Signup}></Route>
@@ -58,7 +60,8 @@ class App extends Component<Props> {
 			} else {
 				privateRoute = (
 					<Switch>
-						<Route path='/html' exact component={HTML}></Route>
+						{keywordSearch}
+						{noPage}
 						<Route path='/no-page' exact component={PageNotFound}></Route>
 						<Route path='/' exact component={Home}></Route>
 						<Redirect from='*' to='/' />
