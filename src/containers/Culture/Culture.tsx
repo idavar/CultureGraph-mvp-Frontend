@@ -15,6 +15,7 @@ interface CultureState {
 }
 
 class Culture extends React.Component<CultureProp, CultureState> {
+    dropdownRef = React.createRef<HTMLDivElement>();
     constructor(props: CultureProp) {
 		super(props);
 		this.state = {
@@ -26,7 +27,17 @@ class Culture extends React.Component<CultureProp, CultureState> {
 
     componentDidMount() {
         this.getCategoryList();
+        // document.addEventListener('click', this.handleClickOutside);
     }
+
+	/**
+	 * @description Function used for close category dropdown on outside click
+	 */
+	handleClickOutside = (event: Event) => {
+        if (event.target !== this.dropdownRef.current) {
+            this.setState({isShowCategory: false});
+        }
+	}
 
     getCategoryList = () => {
         apiReq.getCategory().then((res) => {
@@ -64,7 +75,8 @@ class Culture extends React.Component<CultureProp, CultureState> {
                                     <div key={cat.id}><span><em className={cat.class_name}></em> {cat.name}</span></div>
                                     ))
                                 }
-                                    <div className='value-more'><span className='more' onClick={this.categoryToggle}><em></em>
+                                    <div className='value-more'>
+                                        <span ref={this.dropdownRef} className='more' onClick={this.categoryToggle}><em></em>
                                     {this.state.partTwoCategories.length} More</span>
                                         <div className={this.state.isShowCategory ? '' : 'ui-hide'}>
                                         {
