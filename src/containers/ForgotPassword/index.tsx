@@ -3,17 +3,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { History } from 'history';
-import OtpInput from 'react-optinput';
-import 'react-optinput/bundle.css';
+import '../../assets/styles/otp.scss';
 import '../../assets/styles/style.scss';
 import Input from '../../components/UI/Input/Input';
-import OurMission from '../../components/common/OurMission';
 import { ToastSuccess } from '../../components/Alert/Toast';
 import Common from '../../constant/common';
 import { apiReq, validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
 import { FormState } from '../../interface/FormState';
 import { ValidationObject } from '../../interface/ValidationObject';
+const $ = require( 'jquery' );
+
 interface ForgotProps {
 	location: {
 		search: string
@@ -56,6 +56,20 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 
 		componentDidMount () {
 			this.getQueryParams();
+			this.onOtpKeyUp();
+		}
+
+		onOtpKeyUp = () => {
+			$('body').on('keyup', '.code', (e: any) => {
+				if (e.currentTarget.value.length) {
+					$(e.currentTarget).next('.code').focus();
+				}
+				let otp = '';
+				$('.code').each((key: number, eleObj: HTMLInputElement) => {
+					otp = `${otp}${eleObj.value}`;
+				});
+				this.onOtpChange(otp);
+			});
 		}
 
 		getQueryParams = () => {
@@ -183,9 +197,13 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 							<img className='email-sent-icon' src='/assets/images/icon-email-sent.png' alt='Email icon' />
 							<h2>Enter OTP Code Sent to Your Email</h2>
 							<div>
-							<OtpInput
-								codeLength={Common.minOtp}
-								onInputChange={this.onOtpChange} />
+							<div className='code-wrapper'>
+								 <input type='text' maxLength={Common.one} className='code' />
+								 <input type='text' maxLength={Common.one} className='code' />
+								 <input type='text' maxLength={Common.one} className='code' />
+								 <input type='text' maxLength={Common.one} className='code' />
+								 <input type='text' maxLength={Common.one} className='code' />
+							</div>
 								<Link className='resend-mail' to='#' onClick={this.submitForm}>Resend Mail</Link>
 							</div>
 
