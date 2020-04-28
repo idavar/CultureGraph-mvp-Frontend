@@ -16,7 +16,7 @@ class KeywordSearch extends React.Component {
                         <span className='result-found'>9 Result Found For <em>"Holi"</em></span>
                         </div>
                         <div className='result-box'>
-                            <h4>Our all bring you the most suitable keywords for your search. Click on any keyword to see more details.</h4>
+                            <h4>Our AI brings you the most suitable keywords for your search. Click on any keyword to see more details.</h4>
                             <div className='tags'>
                                 <a href='/' className='color_1'> <span>Holi Festival </span> <em></em></a>
                                 <a href='/' className='color_2'>Holi Colour <em></em></a>
