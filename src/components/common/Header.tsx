@@ -77,14 +77,14 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 				<Collapse isOpen={this.state.isOpen} navbar>
 				  <Nav className='mr-auto' navbar>
 					<NavItem>
-					  <NavLink href='#' onClick={this.toggle}>Trending Keywords</NavLink>
+					  <NavLink href='/#' onClick={this.toggle}>Trending Keywords</NavLink>
 					</NavItem>
 					<NavItem>
-					  <NavLink href='#' onClick={this.toggle}>Culture Map</NavLink>
+					  <NavLink href='/#' onClick={this.toggle}>Culture Map</NavLink>
 					</NavItem>
 
 					<NavItem>
-					  <NavLink href='#culture-map' onClick={this.toggle}>Culture Calendar</NavLink>
+					  <NavLink href='/#culture-map' onClick={this.toggle}>Culture Calendar</NavLink>
 					</NavItem>
 
 					<UncontrolledDropdown nav inNavbar >
@@ -92,17 +92,17 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 						About IVOW
 					  </DropdownToggle>
 					  <DropdownMenu right>
-						<a href='#culture-graph' onClick={this.toggle}>
+						<a href='/#culture-graph' onClick={this.toggle}>
 						CultureGraph by IVOW
 						</a>
 
-						<a href='#how-it-works' onClick={this.toggle}>
+						<a href='/#how-it-works' onClick={this.toggle}>
 						How It Works
 						</a>
-						<a href='#our-mission' onClick={this.toggle}>
+						<a href='/#our-mission' onClick={this.toggle}>
 						Our Mission
 						</a>
-						<a href='#clients' onClick={this.toggle}>
+						<a href='/#clients' onClick={this.toggle}>
 						Clients
 						</a>
 					  </DropdownMenu>
