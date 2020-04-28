@@ -6,7 +6,6 @@ import { History } from 'history';
 import '../../assets/styles/style.scss';
 
 import Input from '../../components/UI/Input/Input';
-import OurMission from '../../components/common/OurMission';
 import { ToastSuccess, ToastError } from '../../components/Alert/Toast';
 import Common from '../../constant/common';
 import { apiReq, validateRef } from '../../helpers';

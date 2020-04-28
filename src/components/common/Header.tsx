@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import ChangePassword from '../../containers/ChangePassword/ChangePassword';
+import UpdateProfile from '../../containers/UpdateProfile';
 import { User } from '../../interface/User';
 import { HeaderProps } from '../../interface/HeaderProps';
 import { apiReq, setDataRef } from '../../helpers';
@@ -26,6 +27,7 @@ interface HeaderState {
 }
 class Header extends React.Component<HeaderProps, HeaderState> {
 	updatePassRef = React.createRef<ChangePassword>();
+	updateProfileRef = React.createRef<UpdateProfile>();
 	constructor(props: HeaderProps) {
 		super(props);
 		this.state = {
@@ -46,6 +48,15 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 	onChangePassword = () => {
 		if (this.updatePassRef.current) {
 			this.updatePassRef.current.changePassword();
+		}
+	}
+
+	/**
+	 * @description function used for open update profile popup for user
+	 */
+	onUpdateProfile = () => {
+		if (this.updateProfileRef.current) {
+			this.updateProfileRef.current.updateProfile();
 		}
 	}
 
@@ -116,6 +127,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					  {this.props.full_name}
 					  </DropdownToggle>
 					  <DropdownMenu right>
+						<Link to='#' onClick={this.onUpdateProfile}>
+							Change Profile
+						</Link>
 						<Link to='#' onClick={this.onChangePassword}>
 							Change Password
 						</Link>
@@ -135,6 +149,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 			  </Navbar>
 				</div>
 				<ChangePassword ref={this.updatePassRef} />
+				<UpdateProfile ref={this.updateProfileRef} isAuthenticated={this.props.isAuthenticated} />
 			</div>
 		  );
 	}

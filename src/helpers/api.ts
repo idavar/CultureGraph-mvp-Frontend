@@ -17,6 +17,8 @@ export const changePassword = (data: object) => apiHandler.apiSecurePost(`${Conf
 
 export const getProfile = (id?: number) => apiHandler.apiGet(`${ConfigData.apiUrl}${ConfigData.apiName.profile}`, {});
 
+export const updateProfile = (data: object) => apiHandler.apiSecurePost(`${ConfigData.apiUrl}${ConfigData.apiName.profile}`, data);
+
 export const forgotPassword = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.forgotPassword}`, data);
 
 export const verifyCode = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.verifyCode}`, data);
