@@ -1,3 +1,4 @@
+
 .fc{
   position: relative;
     z-index: 12;
@@ -335,3 +336,63 @@ table{
 }
 
 
+
+
+.fc-dayGridWeek-view{
+
+  .fc-event-container{
+  }
+
+  .fc-day-grid-event{
+    min-height:120px;
+    margin: 0.5px 0!important;
+    .fc-content {
+      white-space: normal!important;
+      padding:10px 3px;
+
+      .fc-title{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inherit;
+      }
+
+      .fc-description{
+        display: block!important;
+        margin-top: 8px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .fc-location{
+        display: block!important;
+        font-size: 14px;
+        margin-top: 5px;
+        padding-left: 22px;
+        position: relative;
+
+        &:before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url(../../images/icon-map.png) no-repeat;
+        width: 13px;
+        height: 17px;
+        }
+      }
+      .show-more, .hide-more{
+        font-family:$source-bold;
+        color: $white;
+        text-decoration:underline;
+        display: block;
+        padding:5px 0!important;
+        
+        &.ui-hide{
+          display: none;
+        }
+       
+        }
+    }
+  }
+}
