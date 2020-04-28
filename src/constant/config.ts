@@ -16,7 +16,8 @@ const ConfigData = {
 			resetPassword: '/account/set-password/',
 			verifyCode: '/account/verify-code/',
 			category: '/util/category',
-			profile: '/account/profile/'
+			profile: '/account/profile/',
+			resendVerification: '/auth/verify/'
 		}
 	};
 
