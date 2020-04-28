@@ -780,6 +780,8 @@ img{
   justify-content: space-between;
   align-items: center;
    margin: 0 0 45px 0;
+   position: relative;
+    z-index: 1233;
 
    @media (max-width:375px){
     justify-content: flex-start!important;
@@ -918,11 +920,23 @@ img{
 
       }
       }
-      
-      &.value-more{
+
+      .dropdown{
+        width:100%;
+        margin: 0;
+        div{
+          width:100%;
+          margin: 0;
+        }
+
+        a{
+          font-size: $font-16;
+          font-family: $source-regular;
+          color:$navy-blue;
+          width: 100%;
+          text-align: left;
+          padding-left: 20px;
           position: relative;
-        span.more{
-          cursor: pointer;
           &::after{
             content: '';
             position: absolute;
@@ -934,37 +948,29 @@ img{
             background: url(../../images/caret-light.png) no-repeat;
           }
 
-          em{
-            opacity: 0;
-            width:15px;
-            height:15px;
-          }
         }
 
-        div{
-          position: absolute;
-          z-index: 123;
-          width:100%;
-          left:0;
-          top:100%;
-          @media (max-width:767px){
-            top: calc(100% - 10px);
-            left:-16px;
+        .dropdown-menu{
+          background: none;
+          border: 0;
+          top:90%!important;
+          left:0!important;
+          transform: none!important;
+          min-width:100%;
+
+          &:focus{
+            box-shadow:none;
+            outline: none;
           }
-          
 
           span{
-            margin: 8px;
+            margin: 5px 0;
           }
         }
 
-        /*&:hover{
-          & div{
-            display: block;
-          }
-        }*/
-        
       }
+      
+    
     }
   }
 }
