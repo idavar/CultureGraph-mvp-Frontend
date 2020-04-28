@@ -26,3 +26,5 @@ export const verifyCode = (data: object) => apiHandler.apiPost(`${ConfigData.api
 export const resetPassword = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.resetPassword}`, data);
 
 export const getCategory = () => apiHandler.apiGet(`${ConfigData.apiUrl}${ConfigData.apiName.category}`, {});
+
+export const resendVerifyEmail = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.resendVerification}`, data);

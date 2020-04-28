@@ -6,6 +6,7 @@ import * as session from './session';
 import { apiReq, validateRef } from '../../helpers';
 import { User } from '../../interface/User';
 import { Error } from '../../interface/Error';
+import Common from '../../constant/common';
 
 export const authStart = () => {
 		return {
@@ -71,10 +72,12 @@ export const auth = (email: string, password: string) => {
 								dispatch(authSuccess(response.data.data));
 						})
 						.catch(err => {
-							if (err.response && err.response.data) {
+							if (err.response && err.response.data && err.response.status
+								 !== Common.status.badRequest) {
 								handleError(err.response.data);
 								dispatch(authFail(err.response.data));
 							}
+							dispatch(authFail(err.response.data));
 						});
 		};
 };
