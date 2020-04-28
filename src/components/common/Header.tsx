@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 import ChangePassword from '../../containers/ChangePassword/ChangePassword';
 import { User } from '../../interface/User';
 import { HeaderProps } from '../../interface/HeaderProps';
-import { setDataRef } from '../../helpers';
+import { apiReq, setDataRef } from '../../helpers';
 import * as actions from '../../store/actions/index';
 import Common from '../../constant/common';
 interface HeaderState {
@@ -31,6 +31,13 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 		this.state = {
 			isOpen: false
 		};
+	}
+
+	/**
+	 * @description get user  data for check user profile is valid or not
+	 */
+	getProfile = () => {
+		apiReq.getProfile().then();
 	}
 
 	/**
@@ -58,6 +65,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 	}
 
 	render() {
+		if (this.props.isAuthenticated) {
+			this.getProfile();
+		}
 		return (
 			<div className='web-header'>
 				<div className='container'>

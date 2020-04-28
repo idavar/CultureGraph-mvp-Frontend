@@ -15,7 +15,8 @@ const ConfigData = {
 			forgotPassword: '/account/forgot-password/',
 			resetPassword: '/account/set-password/',
 			verifyCode: '/account/verify-code/',
-			category: '/util/category'
+			category: '/util/category',
+			profile: '/account/profile/'
 		}
 	};
 
