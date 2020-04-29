@@ -11,7 +11,7 @@ class KeywordSearch extends React.Component {
                 <div className='search-event-body'>
                         <div className='searchbox'>
                             <input type='text'></input>
-                        <button type='button'><img src='/assets/images/search-icon-white.png' alt='Search Icon' /></button>   
+                        <button type='button'><img src='/assets/images/search-icon-white.png' alt='Search Icon' /></button>
 
                         <span className='result-found'>9 Result Found For <em>"Holi"</em></span>
                         </div>
@@ -32,7 +32,7 @@ class KeywordSearch extends React.Component {
                         </div>
                 </div>
             </div>
-           
+
         </div>);
 	}
 }

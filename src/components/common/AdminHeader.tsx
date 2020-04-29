@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import ChangePassword from '../../containers/ChangePassword/ChangePassword';
+import UpdateProfile from '../../containers/UpdateProfile';
 import { User } from '../../interface/User';
 import { HeaderProps } from '../../interface/HeaderProps';
 import { setDataRef } from '../../helpers';
@@ -13,6 +14,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 class AdminHeader extends React.Component<HeaderProps> {
 	changePassRef = React.createRef<ChangePassword>();
+	updateProfileRef = React.createRef<UpdateProfile>();
 	constructor(props: HeaderProps) {
 		super(props);
 		this.state = {
@@ -26,6 +28,15 @@ class AdminHeader extends React.Component<HeaderProps> {
 	changePassword = () => {
 		if (this.changePassRef.current) {
 			this.changePassRef.current.changePassword();
+		}
+	}
+
+	/**
+	 * @description function used for open update user profile popup for admin
+	 */
+	onUpdateUser = () => {
+		if (this.updateProfileRef.current) {
+			this.updateProfileRef.current.updateProfile();
 		}
 	}
 
@@ -50,7 +61,8 @@ class AdminHeader extends React.Component<HeaderProps> {
 										{this.props.full_name} <span><img className='logo' src='/assets/images/caret-down.png' alt='Caret icon' /></span>
 									</Dropdown.Toggle>
 									<Dropdown.Menu>
-											<Dropdown.Item href='#' onClick={this.changePassword}>Change Password</Dropdown.Item>
+							<Dropdown.Item href='#' onClick={this.onUpdateUser}>Update Profile</Dropdown.Item>
+							<Dropdown.Item href='#' onClick={this.changePassword}>Change Password</Dropdown.Item>
 							<Dropdown.Item onClick={this.props.onLogout}>Sign Out</Dropdown.Item>
 									</Dropdown.Menu>
 									</Dropdown>
@@ -60,6 +72,7 @@ class AdminHeader extends React.Component<HeaderProps> {
 
 			</div>
 			<ChangePassword ref={this.changePassRef} />
+			<UpdateProfile ref={this.updateProfileRef} isAuthenticated={this.props.isAuthenticated} />
 		</div>
 		);
 	}

@@ -1,3 +1,12 @@
+.modal{
+  @media (max-width:991px){
+    top:70px;
+    padding-bottom: 80px;
+    padding-left:0!important;
+  }
+}
+
+
 .modal-content{
   padding:30px;
   min-width: 600px;

@@ -15,7 +15,9 @@ export const changeStatus = (id: number, data: object) => apiHandler.apiPatch(`$
 
 export const changePassword = (data: object) => apiHandler.apiSecurePost(`${ConfigData.apiUrl}${ConfigData.apiName.changePassword}`, data);
 
-export const getProfile = (id?: number) => apiHandler.apiGet(`${ConfigData.apiUrl}${ConfigData.apiName.profile}`, {});
+export const getProfile = () => apiHandler.apiGet(`${ConfigData.apiUrl}${ConfigData.apiName.profile}`, {});
+
+export const updateProfile = (data: object) => apiHandler.apiSecurePost(`${ConfigData.apiUrl}${ConfigData.apiName.profile}`, data);
 
 export const forgotPassword = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.forgotPassword}`, data);
 
