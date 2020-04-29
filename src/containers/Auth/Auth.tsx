@@ -176,19 +176,26 @@ class Auth extends React.Component<Props, AuthState> {
 				return (
 					<div className='user-wrapper'>
 						{authRedirect}
-						<OurMission />
+						<div className='user-banner'>
+        <a href='/'>
+            <img className='logo' src='/assets/images/logo.png' alt='Brand Logo' />
+        </a>
+        <img src='/assets/images/signup-banner.png' alt='Sign Up Banner' />
+        <h1>At IVOW AI, our mission is to make data culturally relevant. IVOW stands for Intelligent Voices of Wisdom.
+        </h1>
+    </div>
 						{
 						resendVerify ? <div className='user-form'>
 							<div className='user-form-inner password-change-success'>
 								<span className='close-icon'>
 									<a href='/'><img src='/assets/images/close.png' alt='Close Icon' /></a>
 								</span>
-								<img className='icon-success' src='/assets/images/icon-success.png' alt='Close Check' />
+								<img className='icon-success' src='/assets/images/icon-email-sent.png' alt='Icon Email' />
 								<h2>Check Email</h2>
-								<h3>{resendVerify} <Link to='#' onClick={this.resendVerifyEmail}>
+							 <h3>{resendVerify} <Link to='#' onClick={this.resendVerifyEmail}>
 								Resend Verify Email</Link></h3>
 								<Link to='#' className='backfrom-password btn btn-primary
-								btn-block' onClick={() => { window.location.reload(); }}>Back to Sign in</Link>
+								btn-block maxwidth-370' onClick={() => { window.location.reload(); }}>Back to Sign in</Link>
 							</div>
 						</div> :
 						<div className='user-form'>

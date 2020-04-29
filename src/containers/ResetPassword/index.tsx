@@ -188,7 +188,7 @@ class ResetPassword extends React.Component<ResetProps, FormState> {
 							<h3>Congratulations, your password has been updated. Please sign in with
 								your new password.
 							</h3>
-							<Link to='/login' className='backfrom-password btn btn-primary btn-block'>Back to Sign in</Link>
+							<Link to='/login' className='backfrom-password btn btn-primary btn-block maxwidth-370'>Back to Sign in</Link>
 						</div>
 
 					</div> : <div className='user-form'>
