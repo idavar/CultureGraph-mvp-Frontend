@@ -177,6 +177,20 @@ class Auth extends React.Component<Props, AuthState> {
 					<div className='user-wrapper'>
 						{authRedirect}
 						<OurMission />
+						{
+						resendVerify ? <div className='user-form'>
+							<div className='user-form-inner password-change-success'>
+								<span className='close-icon'>
+									<a href='/'><img src='/assets/images/close.png' alt='Close Icon' /></a>
+								</span>
+								<img className='icon-success' src='/assets/images/icon-success.png' alt='Close Check' />
+								<h2>Check Email</h2>
+								<h3>{resendVerify} <Link to='#' onClick={this.resendVerifyEmail}>
+								Resend Verify Email</Link></h3>
+								<Link to='#' className='backfrom-password btn btn-primary
+								btn-block' onClick={() => { window.location.reload(); }}>Back to Sign in</Link>
+							</div>
+						</div> :
 						<div className='user-form'>
 							<div className='user-form-inner'>
 							{/*  page close icon start here */}
@@ -186,8 +200,6 @@ class Auth extends React.Component<Props, AuthState> {
 							{/*  page close icon end here */}
 							<h2>Sign In</h2>
 							<h3>Welcome back! Please login to your account.</h3>
-							{resendVerify ? <span>{resendVerify} <Link to='#' onClick={this.resendVerifyEmail}>
-								Resend Verify Email</Link></span> : ''}
 							<form onSubmit={this.submitHandler}>
 								{form}
 								{/*  Forgot Password Start here --> */}
@@ -203,6 +215,7 @@ class Auth extends React.Component<Props, AuthState> {
 							</div>
 							<span className='account-status'>Don’t have an account yet? <a href='/signup'>Sign up</a></span>
 						</div>
+					};
 					</div>
 				);
 		}
