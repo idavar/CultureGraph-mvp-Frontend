@@ -1,16 +1,21 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { store } from '../../store/store';
+import * as actions from '../../store/actions/index';
 import Input from '../../components/UI/Input/Input';
+import { Redirect } from 'react-router-dom';
 import { ToastSuccess } from '../../components/Alert/Toast';
 import Common from '../../constant/common';
 import { apiReq, validateRef } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
 import { FormState } from '../../interface/FormState';
 import { ValidationObject } from '../../interface/ValidationObject';
+import * as session from '../../store/actions/session';
 interface UpdateUserProps {
     isAuthenticated: boolean;
 }
+const {dispatch} = store;
 class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
 		constructor(props: UpdateUserProps) {
 		super(props);
@@ -147,6 +152,12 @@ class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
 				this.popupClose();
 				this.setState({loading: false});
 				if (response.status === Common.status.processed) {
+					const resResult = response.data;
+					const user = session.getUserData();
+					user.full_name = resResult.data.full_name;
+					session.saveUserData(user);
+					dispatch(actions.authSuccess(user) as never);
+					this.setState({successMessage: response.data.detail});
 					ToastSuccess({msg: response.data.detail});
 				} else {
 					validateRef.displayErrorMessage(response);
@@ -157,7 +168,16 @@ class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
 					validateRef.displayErrorMessage(err.response);
 				} catch (err) {}
 			});
-        }
+		}
+
+		/**
+		 * @description function used for redirect on home page
+		 */
+		rootRedirect = () => {
+			if (this.state.successMessage) {
+			  return <Redirect to='/' />;
+			}
+		  }
 
 		render() {
 				const eleFormArray = [];
@@ -184,6 +204,7 @@ class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
 				) );
 				return (
 				<div>
+				{this.rootRedirect()}
 				<Modal show={this.state.show} onHide={this.popupClose} className='change-password'>
                 <Modal.Header closeButton>
 				<Modal.Title>Update Profile</Modal.Title>

@@ -6,7 +6,6 @@ import * as session from './session';
 import { apiReq, validateRef } from '../../helpers';
 import { User } from '../../interface/User';
 import { Error } from '../../interface/Error';
-import Common from '../../constant/common';
 
 export const authStart = () => {
 		return {
@@ -68,7 +67,7 @@ export const auth = (email: string, password: string) => {
 				};
 				apiReq.signIn(authData)
 						.then(response => {
-								localStorage.setItem('user', JSON.stringify(response.data.data));
+								session.saveUserData(response.data.data);
 								dispatch(authSuccess(response.data.data));
 						})
 						.catch(err => {
