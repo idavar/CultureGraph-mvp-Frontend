@@ -72,10 +72,11 @@ export const auth = (email: string, password: string) => {
 								dispatch(authSuccess(response.data.data));
 						})
 						.catch(err => {
-							if (err.response && err.response.data && err.response.status
-								 !== Common.status.badRequest) {
-								handleError(err.response.data);
-								dispatch(authFail(err.response.data));
+							if (err.response && err.response.data) {
+								const dataObj = err.response.data;
+								if ((dataObj.error && !dataObj.error.email_verified)) {
+									handleError(err.response.data);
+								}
 							}
 							dispatch(authFail(err.response.data));
 						});

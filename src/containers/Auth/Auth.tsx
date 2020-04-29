@@ -12,7 +12,6 @@ import { validateRef, apiReq } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
 import Common from '../../constant/common';
 import { User } from '../../interface/User';
-import { Error } from '../../interface/Error';
 
 interface AuthState {
 		controls: any;
@@ -23,7 +22,12 @@ interface Props {
 		isAuthenticated: boolean;
 		authRedirectPath?: string;
 		isAdmin: boolean;
-		error?: Error | null;
+		error?: {
+			detail: string;
+			error: {
+				email_verified?: string;
+			}
+		} | null;
 		loading?: boolean;
 		onAuth: (email: string, password: string) => void;
 }
@@ -165,8 +169,8 @@ class Auth extends React.Component<Props, AuthState> {
 
 				let resendVerify = null;
 				if (this.props.error) {
-					const err = this.props.error;
-					resendVerify = validateRef.getObjectFirstKeyValue(err['error']);
+					const errObj = this.props.error;
+					resendVerify = (errObj.error && errObj.error?.email_verified) ? errObj.error?.email_verified : '';
 				}
 
 				return (
