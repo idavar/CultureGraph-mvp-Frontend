@@ -52,8 +52,7 @@ class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
                             elementType: 'input',
                             elementConfig: {
                                     type: 'email',
-                                    placeholder: 'Email Id',
-                                    readOnly: true
+                                    placeholder: 'Email Id'
                             },
                             value: '',
                             validation: {
