@@ -5,13 +5,13 @@ import { Redirect, Link } from 'react-router-dom';
 import '../../assets/styles/style.scss';
 
 import Input from '../../components/UI/Input/Input';
+import { ToastSuccess } from '../../components/Alert/Toast';
 import OurMission from '../../components/common/OurMission';
 import * as actions from '../../store/actions/index';
-import { validateRef } from '../../helpers';
+import { validateRef, apiReq } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
 import Common from '../../constant/common';
 import { User } from '../../interface/User';
-import { Error } from '../../interface/Error';
 
 interface AuthState {
 		controls: any;
@@ -22,7 +22,12 @@ interface Props {
 		isAuthenticated: boolean;
 		authRedirectPath?: string;
 		isAdmin: boolean;
-		error?: Error | null;
+		error?: {
+			detail: string;
+			error: {
+				email_verified?: string;
+			}
+		} | null;
 		loading?: boolean;
 		onAuth: (email: string, password: string) => void;
 }
@@ -112,6 +117,26 @@ class Auth extends React.Component<Props, AuthState> {
 			}
 		}
 
+		/**
+		 * @description function used for resend verify email
+		 */
+		resendVerifyEmail = () => {
+			const dataObj = {
+				email: this.state.controls.email.value,
+			};
+			apiReq.resendVerifyEmail(dataObj).then(resp => {
+				if (resp.status === Common.status.processed) {
+					ToastSuccess({msg: resp.data.detail});
+				} else {
+					validateRef.displayErrorMessage(resp);
+				}
+			}).catch(err => {
+				try {
+					validateRef.displayErrorMessage(err.response);
+				} catch (err) {}
+			});
+		}
+
 		render() {
 				const formElementsArray = [];
 				for (const key in this.state.controls) {
@@ -141,10 +166,38 @@ class Auth extends React.Component<Props, AuthState> {
 				if (this.props.isAuthenticated && this.props.authRedirectPath) {
 					authRedirect = <Redirect to={this.props.authRedirectPath}/>;
 				}
+
+				let resendVerify = null;
+				if (this.props.error) {
+					const errObj = this.props.error;
+					resendVerify = (errObj.error && errObj.error?.email_verified) ? errObj.error?.email_verified : '';
+				}
+
 				return (
 					<div className='user-wrapper'>
 						{authRedirect}
-						<OurMission />
+						<div className='user-banner'>
+        <a href='/'>
+            <img className='logo' src='/assets/images/logo.png' alt='Brand Logo' />
+        </a>
+        <img src='/assets/images/signup-banner.png' alt='Sign Up Banner' />
+        <h1>At IVOW AI, our mission is to make data culturally relevant. IVOW stands for Intelligent Voices of Wisdom.
+        </h1>
+    </div>
+						{
+						resendVerify ? <div className='user-form'>
+							<div className='user-form-inner password-change-success'>
+								<span className='close-icon'>
+									<a href='/'><img src='/assets/images/close.png' alt='Close Icon' /></a>
+								</span>
+								<img className='icon-success' src='/assets/images/icon-email-sent.png' alt='Icon Email' />
+								<h2>Check Email</h2>
+							 <h3 className='resend-email'>{resendVerify} <Link to='#' onClick={this.resendVerifyEmail}>
+								Resend Verify Email</Link></h3> 
+								<Link to='#' className='backfrom-password btn btn-primary
+								btn-block maxwidth-370' onClick={() => { window.location.reload(); }}>Back to Sign in</Link>
+							</div>
+						</div> :
 						<div className='user-form'>
 							<div className='user-form-inner'>
 							{/*  page close icon start here */}
@@ -169,6 +222,7 @@ class Auth extends React.Component<Props, AuthState> {
 							</div>
 							<span className='account-status'>Don’t have an account yet? <a href='/signup'>Sign up</a></span>
 						</div>
+					};
 					</div>
 				);
 		}

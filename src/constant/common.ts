@@ -18,7 +18,8 @@ const Common = {
 			success: 201,
 			methodNotAllowed: 405,
 			authentication: 401,
-			noPermission: 403
+			noPermission: 403,
+			badRequest: 400
 		},
 		zero: 0,
 		one: 1,

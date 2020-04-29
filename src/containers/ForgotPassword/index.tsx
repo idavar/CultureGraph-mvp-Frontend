@@ -209,7 +209,7 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 
 								<div className='form-group'>
 									<button disabled={this.state.loading || !this.state.isValidForm} type='submit'
-									 className='btn btn-primary btn-block' onClick={this.submitVerifyCode}>Continue</button>
+									 className='btn btn-primary btn-block maxwidth-370' onClick={this.submitVerifyCode}>Continue</button>
 								</div>
 						</div>
 					</div> : <div className='user-form'>
