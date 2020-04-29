@@ -154,7 +154,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					  </DropdownToggle>
 					  <DropdownMenu right>
 						<Link to='#' onClick={this.onUpdateProfile}>
-							Change Profile
+							Update Profile
 						</Link>
 						<Link to='#' onClick={this.onChangePassword}>
 							Change Password
