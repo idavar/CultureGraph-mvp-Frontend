@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 import ChangePassword from '../../containers/ChangePassword/ChangePassword';
 import { User } from '../../interface/User';
 import { HeaderProps } from '../../interface/HeaderProps';
-import { setDataRef } from '../../helpers';
+import { apiReq, setDataRef } from '../../helpers';
 import * as actions from '../../store/actions/index';
 import Common from '../../constant/common';
 interface HeaderState {
@@ -31,6 +31,13 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 		this.state = {
 			isOpen: false
 		};
+	}
+
+	/**
+	 * @description get user  data for check user profile is valid or not
+	 */
+	getProfile = () => {
+		apiReq.getProfile().then();
 	}
 
 	/**
@@ -58,6 +65,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 	}
 
 	render() {
+		if (this.props.isAuthenticated) {
+			this.getProfile();
+		}
 		return (
 			<div className='web-header'>
 				<div className='container'>
@@ -67,14 +77,14 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 				<Collapse isOpen={this.state.isOpen} navbar>
 				  <Nav className='mr-auto' navbar>
 					<NavItem>
-					  <NavLink href='#' onClick={this.toggle}>Trending Keywords</NavLink>
+					  <NavLink href='/#' onClick={this.toggle}>Trending Keywords</NavLink>
 					</NavItem>
 					<NavItem>
-					  <NavLink href='#' onClick={this.toggle}>Culture Map</NavLink>
+					  <NavLink href='/#' onClick={this.toggle}>Culture Map</NavLink>
 					</NavItem>
 
 					<NavItem>
-					  <NavLink href='#culture-map' onClick={this.toggle}>Culture Calendar</NavLink>
+					  <NavLink href='/#culture-map' onClick={this.toggle}>Culture Calendar</NavLink>
 					</NavItem>
 
 					<UncontrolledDropdown nav inNavbar >
@@ -82,17 +92,17 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 						About IVOW
 					  </DropdownToggle>
 					  <DropdownMenu right>
-						<a href='#culture-graph' onClick={this.toggle}>
+						<a href='/#culture-graph' onClick={this.toggle}>
 						CultureGraph by IVOW
 						</a>
 
-						<a href='#how-it-works' onClick={this.toggle}>
+						<a href='/#how-it-works' onClick={this.toggle}>
 						How It Works
 						</a>
-						<a href='#our-mission' onClick={this.toggle}>
+						<a href='/#our-mission' onClick={this.toggle}>
 						Our Mission
 						</a>
-						<a href='#clients' onClick={this.toggle}>
+						<a href='/#clients' onClick={this.toggle}>
 						Clients
 						</a>
 					  </DropdownMenu>

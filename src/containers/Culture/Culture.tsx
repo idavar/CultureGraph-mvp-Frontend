@@ -1,5 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+	Nav,
+	UncontrolledDropdown,
+	DropdownToggle,
+	DropdownMenu,
+	} from 'reactstrap';
 import { Category } from './../../interface/Category';
 import { apiReq } from '../../helpers';
 import CultureCalendar from '../Calendar/CultureCalendar';
@@ -27,17 +33,7 @@ class Culture extends React.Component<CultureProp, CultureState> {
 
     componentDidMount() {
         this.getCategoryList();
-        // document.addEventListener('click', this.handleClickOutside);
     }
-
-	/**
-	 * @description Function used for close category dropdown on outside click
-	 */
-	handleClickOutside = (event: Event) => {
-        if (event.target !== this.dropdownRef.current) {
-            this.setState({isShowCategory: false});
-        }
-	}
 
     getCategoryList = () => {
         apiReq.getCategory().then((res) => {
@@ -68,23 +64,29 @@ class Culture extends React.Component<CultureProp, CultureState> {
                                 <Link to='#' >Culture Map</Link>
                                 <Link to='#' className='active'>Culture Calendar</Link>
                             </div>
-
                             <div className='event-indicator'>
-                                {
-                                    this.state.partOneCategories.map((cat: Category) => (
-                                    <div key={cat.id}><span><em className={cat.class_name}></em> {cat.name}</span></div>
-                                    ))
-                                }
-                                    <div className='value-more'>
-                                        <span ref={this.dropdownRef} className='more' onClick={this.categoryToggle}><em></em>
-                                    {this.state.partTwoCategories.length} More</span>
-                                        <div className={this.state.isShowCategory ? '' : 'ui-hide'}>
-                                        {
-                                            this.state.partTwoCategories.map((cat: Category) => (
-                                                <span key={cat.id}><em className={cat.class_name}></em> {cat.name}</span>
-                                            ))
-                                        }
-                                        </div>
+                                    {
+                                        this.state.partOneCategories.map((cat: Category) => (
+                                        <div key={cat.id}><span><em className={cat.class_name}></em> {cat.name}</span></div>
+                                        ))
+                                    }
+                                    <div>
+                                     
+                                            <UncontrolledDropdown>
+                                                <div> <span><DropdownToggle nav className=' m-dropdown caret'>
+                                                {this.state.partTwoCategories.length} More
+                                                </DropdownToggle>
+                                                <DropdownMenu right>
+                                                    {
+                                                         this.state.partTwoCategories.map((cat: Category) => (
+                                                            <span key={cat.id}><em className={cat.class_name}></em> {cat.name}</span>
+                                                        ))
+                                                    }
+                                                </DropdownMenu>
+                                                </span>
+                                                </div>
+                                            </UncontrolledDropdown>
+                                       
                                     </div>
                             </div>
                         </div>
