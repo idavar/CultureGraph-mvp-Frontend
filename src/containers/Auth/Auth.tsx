@@ -192,10 +192,10 @@ class Auth extends React.Component<Props, AuthState> {
 								</span>
 								<img className='icon-success' src='/assets/images/icon-email-sent.png' alt='Icon Email' />
 								<h2>Check Email</h2>
-							 <h3>{resendVerify} <Link to='#' onClick={this.resendVerifyEmail}>
-								Resend Verify Email</Link></h3>
+							 <h3 className='resend-email'>{resendVerify} <Link to='#' onClick={this.resendVerifyEmail}>
+								Resend Verify Email</Link></h3> 
 								<Link to='#' className='backfrom-password btn btn-primary
-								btn-block maxwidth-370' onClick={() => { window.location.reload(); }}>Back to Sign in</Link>
+								btn-block' onClick={() => { window.location.reload(); }}>Back to Sign in</Link>
 							</div>
 						</div> :
 						<div className='user-form'>
