@@ -46,7 +46,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 	 * @description function used for open change password popup for user
 	 */
 	onChangePassword = () => {
-		this.toggle();
+		this.toggleIfStateOpen();
 		if (this.updatePassRef.current) {
 			this.updatePassRef.current.changePassword();
 		}
@@ -56,9 +56,18 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 	 * @description function used for open update profile popup for user
 	 */
 	onUpdateProfile = () => {
-		this.toggle();
+		this.toggleIfStateOpen();
 		if (this.updateProfileRef.current) {
 			this.updateProfileRef.current.updateProfile();
+		}
+	}
+
+	/**
+	 * @description toggle if state is open
+	 */
+	toggleIfStateOpen = () => {
+		if (this.state.isOpen) {
+			this.toggle();
 		}
 	}
 
@@ -145,7 +154,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					  </DropdownToggle>
 					  <DropdownMenu right>
 						<Link to='#' onClick={this.onUpdateProfile}>
-							Change Profile
+							Update Profile
 						</Link>
 						<Link to='#' onClick={this.onChangePassword}>
 							Change Password

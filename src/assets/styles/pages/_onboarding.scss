@@ -343,13 +343,14 @@
 
 	}
 	label {
-		position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-		left: 15px;
 		font-size: $font-15;
 		color: $navy-blue-light;
     font-family: $source-regular;
+		position: absolute;
+		z-index: 1;
+		top: 50%;
+		left: 15px;
+    transform: translateY(-50%);
     transition: 0.2s all ease-in-out;
   }
   
@@ -522,4 +523,8 @@ button{
 .maxwidth-370{
 	max-width:370px;
 	margin: auto;
+}
+
+.form-control[readonly]{
+	background: $white;
 }
