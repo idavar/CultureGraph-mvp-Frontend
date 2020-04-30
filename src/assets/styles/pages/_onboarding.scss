@@ -519,12 +519,18 @@ button{
 		margin-bottom: 40px;
 	}
 }
+//update profile start here..
+
+.update-profile{
+	.form-control[type=email]{
+color: rgba($color: $navy-blue, $alpha: 0.4)!important;
+	background: $white;
+	pointer-events: none;
+}
+
+}
 
 .maxwidth-370{
 	max-width:370px;
 	margin: auto;
-}
-
-.form-control[readonly]{
-	background: $white;
 }
