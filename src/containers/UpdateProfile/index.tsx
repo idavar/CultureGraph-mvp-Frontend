@@ -190,7 +190,7 @@ class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
 					<span className='modal-subtitle'></span>
 					</Modal.Header>
 					<form onSubmit={this.submitUpdateProfile}>
-						<Modal.Body>
+						<Modal.Body className='update-profile'>
 								{form}
 						</Modal.Body>
 						<Modal.Footer>
