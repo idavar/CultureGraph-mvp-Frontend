@@ -28,3 +28,6 @@ export const resetPassword = (data: object) => apiHandler.apiPost(`${ConfigData.
 export const getCategory = () => apiHandler.apiGet(`${ConfigData.apiUrl}${ConfigData.apiName.category}`, {});
 
 export const resendVerifyEmail = (data: object) => apiHandler.apiPost(`${ConfigData.apiUrl}${ConfigData.apiName.resendVerification}`, data);
+
+export const getTrendingKeyword = () => apiHandler.apiGet(`${ConfigData.apiUrl}${ConfigData.apiName.trendingKeyword}`, {});
+

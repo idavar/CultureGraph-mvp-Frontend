@@ -102,7 +102,10 @@ const Common = {
 			food: '#00C1AD',
 			art: '#7168B6',
 			others: '#642353',
-		}
+		},
+		keywordClassOne: ['holi'],
+		keywordClassTwo: ['herring', 'hogmanay', 'donauinselfest', 'carnevale',
+		'primavera', 'let-it-roll', 'soccer', 'becon', 'tabletennis']
 };
 
 export default Common;
