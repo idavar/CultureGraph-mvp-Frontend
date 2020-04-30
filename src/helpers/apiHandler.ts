@@ -22,7 +22,9 @@ axios.interceptors.response.use(response => {
 			error.response.status === Common.status.noPermission) {
 			ToastError({msg: error.response.data.detail});
 			dispatch(actions.logout() as never);
-			pageReload();
+			setTimeout(() => {
+				pageReload();
+			}, Common.pageTimeout);
 			return;
 		} else {
 			return Promise.reject(error);
