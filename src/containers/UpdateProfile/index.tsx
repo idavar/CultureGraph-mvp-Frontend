@@ -81,8 +81,8 @@ class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
          */
         getUserData = () => {
             apiReq.getProfile().then(result => {
-                const dataObj = result.data.data;
-                if (dataObj) {
+				if (result && result.data) {
+                	const dataObj = result.data.data;
                     const validationObj = {isValid: true, validationMsg: ''};
                     this.resetFormControls(validationObj, 'first_name', dataObj.first_name);
                     this.resetFormControls(validationObj, 'company', dataObj.company);
