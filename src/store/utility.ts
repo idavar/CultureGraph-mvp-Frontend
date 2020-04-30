@@ -9,3 +9,11 @@ export const updateObject = (oldObject: any, updatedProperties: any) => {
 				...updatedProperties
 		};
 };
+
+/**
+ * @description function used for refresh the page
+ */
+ export const pageReload = () => {
+	window.location.reload();
+ };
+

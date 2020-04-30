@@ -138,6 +138,7 @@ class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
 		updateProfile = (): void => {
             this.getUserData();
 			this.setState({show: true});
+			this.setState({isValidForm: false});
 		}
 
         submitUpdateProfile = (event: React.FormEvent<HTMLFormElement>) => {
