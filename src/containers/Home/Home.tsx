@@ -117,7 +117,7 @@ class Home extends React.Component<HomeProp, HomeState> {
 							</div>
 							</div>
 
-							<div className='explore-section'>
+							<div className='explore-section' id='trending-keywords'>
 								<TrendingKeywords isAuthenticated={this.props.isAuthenticated} />
 							</div>
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Keyword } from './../../interface/Keyword';
 import { apiReq } from '../../helpers';
 import Common from '../../constant/common';
+// const millify = require('millify');
 
 interface KeywordProp {
 	isAuthenticated: boolean;
@@ -32,6 +33,10 @@ class TrendingKeywords extends React.Component<KeywordProp, KeywordState> {
 		}).catch(err => {});
     }
 
+    millifyNumber = (frequency: number) => {
+        return frequency;
+    }
+
 	render() {
 		return (<div className='container'>
         <div className='watermark-title-section'>
@@ -53,7 +58,7 @@ class TrendingKeywords extends React.Component<KeywordProp, KeywordState> {
                         <div className='explore-event'>
                         {
                             this.state.partOneKeyword.map((key: Keyword, i) => (
-                            <Link to='#' key={key.search_frequency} className={Common.keywordClassTwo[i]} >
+                            <Link to='#' key={key.search_frequency} className={Common.keywordClassOne[i]} >
                                 {key.name}<small>
                                 {key.search_frequency}</small></Link>
                             ))
@@ -65,7 +70,7 @@ class TrendingKeywords extends React.Component<KeywordProp, KeywordState> {
                             this.state.partTwoKeyword.map((key: Keyword, j) => (
                             <Link to='#' key={key.search_frequency} className={Common.keywordClassTwo[j]} >
                                 {key.name}<small>
-                                {key.search_frequency}</small></Link>
+                                {this.millifyNumber(key.search_frequency)}</small></Link>
                             ))
                         }
                         </React.Fragment> : ''
