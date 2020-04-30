@@ -25,6 +25,7 @@ const Common = {
 		three: 3,
 		four: 4,
 		alertTimeout: 3000,
+		pageTimeout: 2500,
 		na: 'NA',
 		toastConfig : {
 			autoClose: 2000,
