@@ -506,10 +506,17 @@ button{
 		margin-bottom: 40px;
 	}
 }
+//update profile start here..
 
-
-
-
-.form-control[readonly]{
+.update-profile{
+	.form-control[type=email]{
+color: rgba($color: $navy-blue, $alpha: 0.4)!important;
 	background: $white;
+	pointer-events: none;
 }
+
+}
+
+
+
+
