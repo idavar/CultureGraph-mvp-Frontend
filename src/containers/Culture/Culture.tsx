@@ -71,7 +71,7 @@ class Culture extends React.Component<CultureProp, CultureState> {
                                         ))
                                     }
                                     <div>
-                                     
+
                                             <UncontrolledDropdown>
                                                 <div> <span><DropdownToggle nav className=' m-dropdown caret'>
                                                 {this.state.partTwoCategories.length} More
@@ -86,7 +86,7 @@ class Culture extends React.Component<CultureProp, CultureState> {
                                                 </span>
                                                 </div>
                                             </UncontrolledDropdown>
-                                       
+
                                     </div>
                             </div>
                         </div>

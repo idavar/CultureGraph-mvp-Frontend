@@ -4,6 +4,7 @@ import { ToastError } from '../components/Alert/Toast';
 import * as actions from '../store/actions/index';
 import ConfigData from '../constant/config';
 import * as session from '../store/actions/session';
+import { pageReload } from '../store/utility';
 import Common from '../constant/common';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -21,6 +22,7 @@ axios.interceptors.response.use(response => {
 			error.response.status === Common.status.noPermission) {
 			ToastError({msg: error.response.data.detail});
 			dispatch(actions.logout() as never);
+			pageReload();
 			return;
 		} else {
 			return Promise.reject(error);

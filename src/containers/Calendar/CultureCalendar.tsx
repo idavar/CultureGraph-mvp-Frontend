@@ -199,13 +199,6 @@ render() {
 				${extendedProps.country}</span>
 				`;
 			}
-		},
-		eventClick: function(arg: { el: HTMLElement; event: any; view: any}) {
-			const extendedProps = arg.event.extendedProps;
-			// arg.event.title
-			if (arg.el.closest('.fc-dayGridWeek-view')) {
-				console.log(arg.event.title);
-			}
 		}
 	};
 	return (

@@ -52,8 +52,7 @@ class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
                             elementType: 'input',
                             elementConfig: {
                                     type: 'email',
-                                    placeholder: 'Email Id',
-                                    readOnly: true
+                                    placeholder: 'Email Id'
                             },
                             value: '',
                             validation: {
@@ -133,6 +132,7 @@ class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
 		updateProfile = (): void => {
             this.getUserData();
 			this.setState({show: true});
+			this.setState({isValidForm: false});
 		}
 
         submitUpdateProfile = (event: React.FormEvent<HTMLFormElement>) => {
