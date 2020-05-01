@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Keyword } from './../../interface/Keyword';
 import { apiReq } from '../../helpers';
 import Common from '../../constant/common';
-// const millify = require('millify');
 
 interface KeywordProp {
 	isAuthenticated: boolean;
