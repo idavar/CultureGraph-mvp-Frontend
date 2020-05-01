@@ -72,7 +72,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			this.submitSearch();
 		}
 
-		onEnter = (e: any) => {
+		onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
 			this.queryData.page = Common.one;
 			if (e.key === 'Enter') {
 				this.submitSearch();
@@ -147,7 +147,7 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 			<h1>Manage Request {this.props.count ? `(${this.props.count})` : ''}</h1>
 				<Form onSubmit={(e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); }}>
 				<span className='sort-user-title'>Sort Request</span>
-				<div className='form-group  sort-user'>
+				<div className='form-group sort-user'>
 					<select className='form-control' name='status' value={this.state.status} onChange={this.sortUser}>
 						<option value={this.status}>All Request</option>
 						<option value={Common.requestStatus.pending} >Pending Request</option>

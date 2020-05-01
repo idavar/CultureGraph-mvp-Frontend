@@ -1,13 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Keyword } from './../../interface/Keyword';
+import { apiReq } from '../../helpers';
+import Common from '../../constant/common';
+import millify from 'millify';
+
 interface KeywordProp {
 	isAuthenticated: boolean;
 }
-class TrendingKeywords extends React.Component<KeywordProp> {
+interface KeywordState {
+    partOneKeyword: Array<Keyword>;
+    partTwoKeyword: Array<Keyword>;
+}
+class TrendingKeywords extends React.Component<KeywordProp, KeywordState> {
 	constructor(props: KeywordProp) {
 		super(props);
 		this.state = {
-		};
+            partOneKeyword: [],
+            partTwoKeyword: []
+        };
+    }
+
+    componentDidMount () {
+        this.getTrendingKeywords();
+    }
+
+    getTrendingKeywords = () => {
+        apiReq.getTrendingKeyword().then(rst => {
+            const rstData = rst.data;
+            this.setState({ partOneKeyword: rstData.data.slice(Common.zero, Common.one) });
+            this.setState({ partTwoKeyword: rstData.data.slice(Common.one, rstData.data.length) });
+		}).catch(err => {});
+    }
+
+    millifyNumber = (frequency: number) => {
+        return millify(frequency);
     }
 
 	render() {
@@ -29,19 +56,24 @@ class TrendingKeywords extends React.Component<KeywordProp> {
                 <div className='col-md-6'>
                         <div className='explore-detail'>
                         <div className='explore-event'>
-                        <Link to='#' className='holi' >Holi Festival <small>20M</small></Link>
+                        {
+                            this.state.partOneKeyword.map((key: Keyword, i) => (
+                            <Link to={`/search?search=${key.name}`} key={key.search_frequency} className={Common.keywordClassOne[i]} >
+                                {key.name}<small>
+                                {key.search_frequency}</small></Link>
+                            ))
+                        }
                         {
                         this.props.isAuthenticated ?
                         <React.Fragment>
-                        <Link to='#' className='herring'>Herring Festival <small>18M</small></Link>
-                        <Link to='#' className='hogmanay'>Hogmanay <small>10M</small></Link>
-                        <Link to='#' className='donauinselfest'>Donauinselfest<small>9.1M</small></Link>
-                        <Link to='#' className='carnevale'>Carnevale <small>5M</small></Link>
-                        <Link to='#' className='primavera'>Primavera sound <small>4.1k</small></Link>
-                        <Link to='#' className='let-it-roll'>Let It Roll <small>90k</small></Link>
-                        <Link to='#' className='soccer'>Soccer <small>7.7M</small></Link>
-                        <Link to='#' className='becon'>Becon Festival <small>12M</small></Link>
-                        <Link to='#' className='tabletennis'>Table Tennis<small>70k</small></Link>
+                        {
+                            this.state.partTwoKeyword.map((key: Keyword, j) => (
+                            <Link to={`/search?search=${key.name}`} key={key.search_frequency}
+                            className={Common.keywordClassTwo[j]} >
+                                {key.name}<small>
+                                {this.millifyNumber(key.search_frequency)}</small></Link>
+                            ))
+                        }
                         </React.Fragment> : ''
                         }
                         </div>

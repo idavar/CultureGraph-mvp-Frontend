@@ -15,13 +15,15 @@ interface HomeProp {
 
 interface HomeState {
 	isKnowMore?: boolean;
+	search: string;
 }
 
 class Home extends React.Component<HomeProp, HomeState> {
 	constructor(props: HomeProp) {
 		super(props);
 		this.state = {
-			isKnowMore: false
+			isKnowMore: false,
+			search: '',
 		};
 	}
 
@@ -29,8 +31,15 @@ class Home extends React.Component<HomeProp, HomeState> {
 		this.setState({isKnowMore: !this.state.isKnowMore});
 	}
 
+	textEnter = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const search = e.target.value;
+		this.setState({search});
+	}
+
 	searchKeyword = (): void => {
-		this.props.history.push('/search');
+		if (this.state.search) {
+			this.props.history.push(`/search?search=${this.state.search}`);
+		}
 	}
 
 	render() {
@@ -45,12 +54,11 @@ class Home extends React.Component<HomeProp, HomeState> {
 											<div className='banner-content'>
 												<h1>CultureGraph</h1>
 												<p>A smart tool that provides real-time cultural insights to help you create more effective and efficient experiences for consumer audiences.</p>
-													<form>
 												<div className='banner-search'>
-												<input type='text' placeholder='Search here for festivals, food, music and more...'></input>
+												<input type='text' placeholder='Search here for festivals, food, music and more...'
+												onChange={this.textEnter}></input>
 													<button type='button' onClick={this.searchKeyword}><img src='/assets/images/search-icon-white.png' alt='Search Icon' /></button>
 												</div>
-												</form>
 												<div className='safty-note-wrap'>
 												<span className='safty-note'> Your search is safe with us. <small className='safty-know-more' onClick={this.toggleKnowMore}>Know more</small></span>
 												{
@@ -117,7 +125,7 @@ class Home extends React.Component<HomeProp, HomeState> {
 							</div>
 							</div>
 
-							<div className='explore-section'>
+							<div className='explore-section' id='trending-keywords'>
 								<TrendingKeywords isAuthenticated={this.props.isAuthenticated} />
 							</div>
 

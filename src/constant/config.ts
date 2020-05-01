@@ -17,7 +17,9 @@ const ConfigData = {
 			verifyCode: '/account/verify-code/',
 			category: '/util/category',
 			profile: '/account/profile/',
-			resendVerification: '/auth/verify/'
+			resendVerification: '/auth/verify/',
+			trendingKeyword: 'culture/top-keyword/',
+			searchKeyword: 'culture/keyword',
 		}
 	};
 

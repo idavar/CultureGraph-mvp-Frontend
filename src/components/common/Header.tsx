@@ -114,10 +114,10 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 				<Collapse isOpen={this.state.isOpen} navbar>
 				  <Nav className='mr-auto' navbar>
 					<NavItem>
-					  <NavLink href='/#' onClick={this.toggle}>Trending Keywords</NavLink>
+					  <NavLink href='/#trending-keywords' onClick={this.toggle}>Trending Keywords</NavLink>
 					</NavItem>
 					<NavItem>
-					  <NavLink href='/#' onClick={this.toggle}>Culture Map</NavLink>
+					  <NavLink href='/#culture-map' onClick={this.toggle}>Culture Map</NavLink>
 					</NavItem>
 
 					<NavItem>

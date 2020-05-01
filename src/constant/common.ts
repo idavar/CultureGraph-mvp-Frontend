@@ -25,6 +25,7 @@ const Common = {
 		one: 1,
 		three: 3,
 		four: 4,
+		ten: 10,
 		alertTimeout: 3000,
 		pageTimeout: 2500,
 		na: 'NA',
@@ -103,7 +104,12 @@ const Common = {
 			food: '#00C1AD',
 			art: '#7168B6',
 			others: '#642353',
-		}
+		},
+		keywordClassOne: ['holi'],
+		keywordClassTwo: ['herring', 'hogmanay', 'donauinselfest', 'carnevale',
+		'primavera', 'let-it-roll', 'soccer', 'becon', 'tabletennis'],
+		keywordColor: ['color_1', 'color_2', 'color_3', 'color_4', 'color_5',
+		'color_6', 'color_7', 'color_8', 'color_9', 'color_10']
 };
 
 export default Common;
