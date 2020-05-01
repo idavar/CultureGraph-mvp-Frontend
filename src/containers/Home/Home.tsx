@@ -54,13 +54,11 @@ class Home extends React.Component<HomeProp, HomeState> {
 											<div className='banner-content'>
 												<h1>CultureGraph</h1>
 												<p>A smart tool that provides real-time cultural insights to help you create more effective and efficient experiences for consumer audiences.</p>
-													<form>
 												<div className='banner-search'>
 												<input type='text' placeholder='Search here for festivals, food, music and more...'
 												onChange={this.textEnter}></input>
 													<button type='button' onClick={this.searchKeyword}><img src='/assets/images/search-icon-white.png' alt='Search Icon' /></button>
 												</div>
-												</form>
 												<div className='safty-note-wrap'>
 												<span className='safty-note'> Your search is safe with us. <small className='safty-know-more' onClick={this.toggleKnowMore}>Know more</small></span>
 												{

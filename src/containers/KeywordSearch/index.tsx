@@ -103,11 +103,17 @@ class KeywordSearch extends React.Component<KeywordProps, KeywordState> {
                         <div className='searchbox'>
                             <input type='text' name='search'
                             onChange={this.enterTextValue} onKeyDown={this.onEnterPress} value={this.state.search}></input>
-                        <button type='button'><img src='/assets/images/search-icon-white.png'
-                        alt='Search Icon' onClick={this.submitKeywordSearch} /></button>
-
-    <span className='result-found'>{this.state.keywords.length} Result Found For <em>"{this.state.search}"</em></span>
+                            <button type='button'><img src='/assets/images/search-icon-white.png'
+                                alt='Search Icon' onClick={this.submitKeywordSearch} /></button>
+                            { !this.state.loading ?
+                            <span className='result-found'>{this.state.keywords.length} Result Found For
+                            <em>"{this.state.search}"</em></span>
+                            : '' }
                         </div>
+                        {
+                        this.state.loading ? <div className='search-keyword'>
+                            <img src='/assets/images/loader.gif' alt='Loader Icon' />
+                        </div> :
                         <div className='result-box'>
                             <h4>Our AI brings you the most suitable keywords for your search. Click on any keyword to see more details.</h4>
                             <div className='tags'>
@@ -120,6 +126,7 @@ class KeywordSearch extends React.Component<KeywordProps, KeywordState> {
                                 }
                             </div>
                         </div>
+                        }
                 </div>
             </div>
         <Footer />
