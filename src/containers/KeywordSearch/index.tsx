@@ -119,7 +119,7 @@ class KeywordSearch extends React.Component<KeywordProps, KeywordState> {
                             <div className='tags'>
                                 {
                                     this.state.keywords.map((doc: KeywordResult, index: number) => (
-                                    <a href={doc.url} className={Common.keywordColor[Math.floor(Math.random() * 10)
+                                    <a href={doc.url} className={Common.keywordColor[Math.floor(Math.random() * Common.ten)
                                     ]} key={index} target='_blank'>
                                         <span>{doc.word}</span><em></em></a>
                                     ))

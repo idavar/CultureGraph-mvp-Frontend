@@ -25,6 +25,7 @@ const Common = {
 		one: 1,
 		three: 3,
 		four: 4,
+		ten: 10,
 		alertTimeout: 3000,
 		pageTimeout: 2500,
 		na: 'NA',
