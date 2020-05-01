@@ -9,6 +9,9 @@ import { setDataRef } from '../../helpers';
 import { User } from '../../interface/User';
 
 interface HomeProp {
+	location: {
+		search: string
+	};
 	isAuthenticated: boolean;
 	history: History;
 }
@@ -16,6 +19,7 @@ interface HomeProp {
 interface HomeState {
 	isKnowMore?: boolean;
 	search: string;
+	cultureType: string | null;
 }
 
 class Home extends React.Component<HomeProp, HomeState> {
@@ -24,7 +28,22 @@ class Home extends React.Component<HomeProp, HomeState> {
 		this.state = {
 			isKnowMore: false,
 			search: '',
+			cultureType: ''
 		};
+	}
+
+	componentDidMount () {
+		this.getqParms();
+	}
+
+	/**
+	 * @description function used for get query parms
+	 */
+	getqParms = () => {
+		const params = new URLSearchParams(this.props.location.search);
+		if (params.get('type')) {
+			this.setState({cultureType: params.get('type')});
+		}
 	}
 
 	toggleKnowMore = (): void => {
@@ -124,13 +143,12 @@ class Home extends React.Component<HomeProp, HomeState> {
 								</div>
 							</div>
 							</div>
-
 							<div className='explore-section' id='trending-keywords'>
 								<TrendingKeywords isAuthenticated={this.props.isAuthenticated} />
 							</div>
-
 							<div id='culture-map'>
-					<Culture isAuthenticated={this.props.isAuthenticated} />
+					<Culture isAuthenticated={this.props.isAuthenticated}
+					cultureType={this.state.cultureType} />
 							</div>
 				<div id='how-it-works'>
 							<div className='how-it-work-section'>
