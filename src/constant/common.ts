@@ -106,7 +106,9 @@ const Common = {
 		},
 		keywordClassOne: ['holi'],
 		keywordClassTwo: ['herring', 'hogmanay', 'donauinselfest', 'carnevale',
-		'primavera', 'let-it-roll', 'soccer', 'becon', 'tabletennis']
+		'primavera', 'let-it-roll', 'soccer', 'becon', 'tabletennis'],
+		keywordColor: ['color_1', 'color_2', 'color_3', 'color_4', 'color_5',
+		'color_6', 'color_7', 'color_8', 'color_9', 'color_10']
 };
 
 export default Common;

@@ -18,7 +18,8 @@ const ConfigData = {
 			category: '/util/category',
 			profile: '/account/profile/',
 			resendVerification: '/auth/verify/',
-			trendingKeyword: '/culture/top-keyword/'
+			trendingKeyword: 'culture/top-keyword/',
+			searchKeyword: 'culture/keyword',
 		}
 	};
 

@@ -31,3 +31,5 @@ export const resendVerifyEmail = (data: object) => apiHandler.apiPost(`${ConfigD
 
 export const getTrendingKeyword = () => apiHandler.apiGet(`${ConfigData.apiUrl}${ConfigData.apiName.trendingKeyword}`, {});
 
+export const searchKeyword = (data: {query: string}) => apiHandler.apiGet(`${ConfigData.apiUrl}${ConfigData.apiName.searchKeyword}${data.query}`, {});
+
