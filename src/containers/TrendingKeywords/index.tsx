@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Keyword } from './../../interface/Keyword';
 import { apiReq } from '../../helpers';
 import Common from '../../constant/common';
+import millify from 'millify';
 
 interface KeywordProp {
 	isAuthenticated: boolean;
@@ -33,7 +34,7 @@ class TrendingKeywords extends React.Component<KeywordProp, KeywordState> {
     }
 
     millifyNumber = (frequency: number) => {
-        return frequency;
+        return millify(frequency);
     }
 
 	render() {
