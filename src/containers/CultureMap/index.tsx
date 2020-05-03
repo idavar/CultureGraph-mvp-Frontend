@@ -75,11 +75,11 @@ class CultureMap extends React.Component<MapEventProps, MapEventAppState> {
 	searchMapEvents = (options: {query: string, next: string} = {query: '', next: ''}) => {
 		this.setState({loading: true});
 		options['query'] = this.getQurString(options.next);
-		apiReq.predicthqSearchEvent({}, options).then((res: any) => {
+		apiReq.predicthqSearchEvent({}, options).then(res => {
 			console.log(res['results']);
 			this.setState({ phqEvents: this.state.phqEvents.concat(res['results']) });
-			if (res.next) {
-				options.next = res.next;
+			if (res['next']) {
+				options.next = res['next'];
 				this.searchMapEvents(options);
 			} else {
 				this.setState({loading: false});

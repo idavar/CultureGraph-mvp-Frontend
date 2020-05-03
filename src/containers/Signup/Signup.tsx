@@ -13,7 +13,7 @@ import { ValidationMessage } from '../../constant/error';
 import { User } from '../../interface/User';
 
 interface State {
-	controls: any;
+	controls;
 	successMessage: string;
 	errorMessage: string;
 	isValidForm: boolean;
@@ -190,9 +190,12 @@ class Signup extends React.Component<Props> {
 					}
 				}).catch(err => {
 					this.setState({loading: false});
-					let msg = err.response.data.detail;
-					if (!msg)  {
-						msg = validateRef.getObjectFirstKeyValue(err.response.data.error);
+					let msg = '';
+					if (err.response) {
+						msg = err.response.data.detail;
+						if (!msg)  {
+							msg = validateRef.getObjectFirstKeyValue(err.response.data.error);
+						}
 					}
 					ToastError({msg});
 				});

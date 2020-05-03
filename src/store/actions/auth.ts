@@ -24,7 +24,7 @@ export const authSuccess = (data: User) => {
 		};
 };
 
-export const authFail = (error: any) => {
+export const authFail = (error) => {
 		return {
 				type: actionTypes.AUTH_FAIL,
 				error

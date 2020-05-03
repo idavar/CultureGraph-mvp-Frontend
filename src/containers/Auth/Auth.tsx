@@ -13,7 +13,7 @@ import Common from '../../constant/common';
 import { User } from '../../interface/User';
 
 interface AuthState {
-		controls: any;
+		controls;
 		isValidForm: boolean;
 }
 
