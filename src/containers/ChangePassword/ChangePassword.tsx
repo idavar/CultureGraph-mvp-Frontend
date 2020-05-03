@@ -84,7 +84,7 @@ class ChangePassword extends React.Component<{}, FormState> {
 			};
 		}
 
-		formChangedHandler = ( event: any, controlName: string ) => {
+		formChangedHandler = ( event: React.ChangeEvent<HTMLInputElement>, controlName: string ) => {
 			const rulesData = this.state.controls[controlName].validation;
 			const value = event.target.value;
 			const messages = this.state.controls[controlName].messages;
@@ -177,7 +177,7 @@ class ChangePassword extends React.Component<{}, FormState> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.formChangedHandler( event, formElement.id )} />
+								changed={( event: React.ChangeEvent<HTMLInputElement> ) => this.formChangedHandler( event, formElement.id )} />
 				) );
 				return (
 				<div>

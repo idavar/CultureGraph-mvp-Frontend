@@ -126,7 +126,7 @@ class Signup extends React.Component<Props> {
 				loading: false
 		};
 
-		inputChangedHandler = ( event: any, controlName: string ) => {
+		inputChangedHandler = ( event: React.ChangeEvent<HTMLInputElement>, controlName: string ) => {
 				const rulesData = this.state.controls[controlName].validation;
 				const value = event.target.value;
 				const messages = this.state.controls[controlName].messages;
@@ -230,7 +230,7 @@ class Signup extends React.Component<Props> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
+								changed={( event: React.ChangeEvent<HTMLInputElement> ) => this.inputChangedHandler( event, formElement.id )}
 								removeValidation= {() => this.removeSignupValidation(formElement.id)} />
 				) );
 

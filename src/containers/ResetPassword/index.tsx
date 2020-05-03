@@ -81,7 +81,7 @@ class ResetPassword extends React.Component<ResetProps, FormState> {
 			}
 		}
 
-		resetChangedHandler = ( event: any, controlName: string ) => {
+		resetChangedHandler = ( event: React.ChangeEvent<HTMLInputElement>, controlName: string ) => {
 			const rulesData = this.state.controls[controlName].validation;
 			const value = event.target.value;
 			const messages = this.state.controls[controlName].messages;
@@ -164,7 +164,7 @@ class ResetPassword extends React.Component<ResetProps, FormState> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.resetChangedHandler( event, formElement.id )} />
+								changed={( event: React.ChangeEvent<HTMLInputElement> ) => this.resetChangedHandler( event, formElement.id )} />
 				) );
 
 				return (
