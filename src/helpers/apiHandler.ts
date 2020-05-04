@@ -18,8 +18,8 @@ const {dispatch} = store; // direct access to redux store.
 axios.interceptors.response.use(response => {
 		return response;
 }, error => {
-		if (error.response.status === Common.status.authentication ||
-			error.response.status === Common.status.noPermission) {
+		if (error.response && (error.response.status === Common.status.authentication ||
+			error.response.status === Common.status.noPermission)) {
 			ToastError({msg: error.response.data.detail});
 			dispatch(actions.logout() as never);
 			setTimeout(() => {
