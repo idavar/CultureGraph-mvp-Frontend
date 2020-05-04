@@ -102,7 +102,7 @@ class CultureMap extends React.Component<MapEventProps, MapEventAppState> {
             lng={30.337844}
             text='My Marker'
           />
-        </GoogleMapReact>
+		</GoogleMapReact>
       </div>
 );
 	}

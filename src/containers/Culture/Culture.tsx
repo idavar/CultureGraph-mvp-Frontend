@@ -7,7 +7,8 @@ import {
 import { Category } from './../../interface/Category';
 import { apiReq } from '../../helpers';
 import CultureCalendar from '../Calendar/CultureCalendar';
-import CultureMap from '../CultureMap';
+// import CultureMap from '../CultureMap';
+import GMap from '../CultureMap/GMap';
 import Common from '../../constant/common';
 
 interface CultureProp {
@@ -95,7 +96,9 @@ class Culture extends React.Component<CultureProp, CultureState> {
                         </div>
                         {(this.props.cultureType === Common.cultureType.map)
                         ?
-                            <div><CultureMap /></div>
+                            <div className='culture-map'>
+                                <GMap />
+                            </div>
                         : <div>
                             {
                             this.props.isAuthenticated ? <div className='home-calendar'>
