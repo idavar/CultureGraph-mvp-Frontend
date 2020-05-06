@@ -3,7 +3,6 @@ import React from 'react';
 import { PhqEvent } from '../../interface/PhqEvent';
 import { apiReq } from '../../helpers';
 import Common from '../../constant/common';
-import ConfigData from '../../constant/config';
 
 declare let google;
 declare let MarkerClusterer;
@@ -36,41 +35,28 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 
     initMap() {
 		this.map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 4,
-			center: {lat: -122.302,	lng: 47.53},
-			// center: {lat: -33.718234, lng: 147.154312},
-			mapTypeId: google.maps.MapTypeId.ROADMAP
+			zoom: Common.four,
+			center: {lat: -33.718234, lng: 147.154312},
+			mapTypeId: google.maps.MapTypeId.terrain,
+			scaleControl: true,
 		  });
 	 }
 
-	 updateMarkerData (data) {
+	 updateMarkerData (data, isNext: string) {
+		 if (data.length && !isNext) {
+			this.map.setOptions({
+				center: {lat: data[0].location[0], lng: data[1].location[1]}
+			});
+		}
+
 		for (let i = 0; i < data.length; i++) {
-			let markerColor = Common.categoryColor.others;
 			const category = data[i].category;
-			if (Common.categoryGroup.holidays.includes(category)) {
-				markerColor = Common.categoryColor.holidays;
-			} else if (Common.categoryGroup.art.includes(category)) {
-				markerColor = Common.categoryColor.art;
-			} else if (Common.categoryGroup.festivals.includes(category)) {
-				markerColor = Common.categoryColor.festivals;
-			} else if (Common.categoryGroup.food.includes(category)) {
-				markerColor = Common.categoryColor.food;
-			} else if (Common.categoryGroup.music.includes(category)) {
-				markerColor = Common.categoryColor.music;
-			} else if (Common.categoryGroup.sports.includes(category)) {
-				markerColor = Common.categoryColor.sports;
-			}
+			const markerImage = this.getMarkerImage(category);
 
 			const marker = new google.maps.Marker({
 			  position: {lat: data[i].location[0], lng: data[i].location[1]},
 			  map: this.map,
-			  icon: {
-				  path: google.maps.SymbolPath.CIRCLE,
-				  scale: 20,
-				  fillColor: markerColor,
-				  fillOpacity: 0.5,
-				  strokeWeight: 0
-			  },
+			  icon: markerImage,
 			});
 			const infoWindow = new google.maps.InfoWindow();
 			const dataInfo = `<div class='ui-window-info'>
@@ -83,21 +69,24 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 			});
 			this.markers.push(marker);
 		}
+	 }
 
-		// Options to pass along to the marker clusterer
-	  const clusterOptions = {
-		  zoom: 2,
-		  imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
-		  gridSize: 30,
-	  };
-
-	  // Add a marker clusterer to manage the markers.
-	  const markerCluster = new MarkerClusterer(this.map, this.markers, clusterOptions);
-		// Change styles after cluster is created
-	  const styles = markerCluster.getStyles();
-	  for (let i = 0; i < styles.length; i++) {
-		  // styles[i].className = `custom-clustericon-${i}`;
-	  }
+	 getMarkerImage (category: string) {
+		let markerImage = Common.mapIcon.others;
+		if (Common.categoryGroup.holidays.includes(category)) {
+			markerImage = Common.mapIcon.holidays;
+		} else if (Common.categoryGroup.art.includes(category)) {
+			markerImage = Common.mapIcon.art;
+		} else if (Common.categoryGroup.festivals.includes(category)) {
+			markerImage = Common.mapIcon.festivals;
+		} else if (Common.categoryGroup.food.includes(category)) {
+			markerImage = Common.mapIcon.food;
+		} else if (Common.categoryGroup.music.includes(category)) {
+			markerImage = Common.mapIcon.music;
+		} else if (Common.categoryGroup.sports.includes(category)) {
+			markerImage = Common.mapIcon.sports;
+		}
+		return markerImage;
 	 }
 
 	/**
@@ -142,12 +131,11 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 			{location: [-33.718234, 150.363181], title: 'aaa',
 		description: 'abc abc abc', category: 'festivals'}];*/
 			const phqEvents = res['results'];
-			// console.log('phqEvents', phqEvents);
 			this.setState({ phqEvents: this.state.phqEvents.concat(res['results']) });
-			this.updateMarkerData(phqEvents);
+			this.updateMarkerData(phqEvents, options.next);
 			if (res['next']) {
 				options.next = res['next'];
-				this.searchMapEvents(options);
+			 	this.searchMapEvents(options);
 			} else {
 				this.setState({loading: false});
 			}
