@@ -61,26 +61,30 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 		];
 		const map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 3,
-			center: {lat: -28.024, lng: 140.887}
+			center: {lat: -28.024, lng: 140.887},
+			mapTypeId: google.maps.MapTypeId.ROADMAP
 		  });
 
-		  // Add some markers to the map.
-		  // Note: The code uses the JavaScript Array.prototype.map() method to
-		  // create an array of markers based on a given "locations" array.
-		  // The map() method here has nothing to do with the Google Maps API.
-		  const markers = locations.map(function(location, i) {
-			return new google.maps.Marker({
-			  position: location,
-			  map: map,
-			  icon: {
-				  path: google.maps.SymbolPath.CIRCLE,
-				  scale: 20,
-				  fillColor: '#00A2D3',
-				  fillOpacity: 0.9,
-				  strokeWeight: 0
-			  },
-			});
-		  });
+		  const markers = [];
+		  for (let i = 0; i < locations.length; i++) {
+			const marker = new google.maps.Marker({
+				position: {lat: locations[i].lat, lng: locations[i].lng},
+				map: map,
+				icon: {
+					path: google.maps.SymbolPath.CIRCLE,
+					scale: 20,
+					fillColor: '#00A2D3',
+					fillOpacity: 0.9,
+					strokeWeight: 0
+				},
+			  });
+			  const infoWindow = new google.maps.InfoWindow();
+			  google.maps.event.addListener(marker, 'click', function (e) {
+				  infoWindow.setContent('Hello');
+				  infoWindow.open(map, marker);
+			  });
+			  markers.push(marker);
+		  }
 
 		  // Options to pass along to the marker clusterer
 		const clusterOptions = {
