@@ -95,7 +95,7 @@ const Common = {
 		festivals,performing-arts,sports,community,daylight-savings,airport-delays,severe-weather,
 		disasters,terror`,
 		phqMile: 100,
-		phqKm: 12000,
+		phqKm: 11400,
 		categoryColor: {
 			holidays: '#72cfa0',
 			sports: '#009cdc',
