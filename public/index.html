@@ -25,6 +25,87 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>IVOW</title>
+    <style>
+      
+/* Google Map Marker Start*/
+#map-container {
+        padding: 6px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ccc #ccc #999 #ccc;
+        -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+        width: 800px;
+      }
+
+      #map {
+        width: 1200px;
+        height: 400px;
+      }
+
+      #actions {
+        list-style: none;
+        padding: 0;
+      }
+
+      #inline-actions {
+        padding-top: 10px;
+      }
+
+      .item {
+        margin-left: 20px;
+      }
+
+
+      .custom-clustericon {
+        background: var(--cluster-color);
+        color: #FFF;
+        border-radius: 100%;
+        font-weight: bold;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .custom-clustericon::before, .custom-clustericon::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        background: var(--cluster-color);
+        opacity: 0.2;
+        border-radius: 100%;
+      }
+
+      .custom-clustericon::before {
+        padding: 7px;
+      }
+
+      .custom-clustericon::after {
+        padding: 14px;
+      }
+
+      .custom-clustericon-1 {
+        --cluster-color: #00A2D3;
+      }
+
+      .custom-clustericon-2 {
+        --cluster-color: #FF9B00;
+      }
+
+      .custom-clustericon-3 {
+        --cluster-color: #FF6969;
+      }
+
+/* Google Map Marker End*/
+
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -42,6 +123,6 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnZTW2im35N-H1J5Vrzkt7ZBJR2V887cQ">
     </script>
-    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+    <script async defer src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
   </body>
 </html>
