@@ -4,6 +4,7 @@ const ConfigData = {
 				apiUrl : `${process.env.REACT_APP_PHQ_APP_URL}`
 		},
 		apiUrl: `${process.env.REACT_APP_API_RUL}${process.env.REACT_APP_API_VERSION}`,
+		mapKey: `AIzaSyCnZTW2im35N-H1J5Vrzkt7ZBJR2V887cQ`,
 		apiName: {
 			login: 'auth/login/',
 			signup: 'auth/signup/',

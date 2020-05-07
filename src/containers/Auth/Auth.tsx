@@ -6,7 +6,6 @@ import '../../assets/styles/style.scss';
 
 import Input from '../../components/UI/Input/Input';
 import { ToastSuccess } from '../../components/Alert/Toast';
-import OurMission from '../../components/common/OurMission';
 import * as actions from '../../store/actions/index';
 import { validateRef, apiReq } from '../../helpers';
 import { ValidationMessage } from '../../constant/error';
@@ -14,7 +13,7 @@ import Common from '../../constant/common';
 import { User } from '../../interface/User';
 
 interface AuthState {
-		controls: any;
+		controls;
 		isValidForm: boolean;
 }
 
@@ -74,7 +73,7 @@ class Auth extends React.Component<Props, AuthState> {
 				};
 		}
 
-		inputChangedHandler = ( event: any, controlName: string ) => {
+		inputChangedHandler = ( event: React.ChangeEvent<HTMLInputElement>, controlName: string ) => {
 				const validationData: {isValid: boolean, validationMsg?: string}	= validateRef.checkValidite( event.target.value, this.state.controls[controlName].validation,
 					this.state.controls[controlName].messages );
 				const updatedControls = {
@@ -103,7 +102,7 @@ class Auth extends React.Component<Props, AuthState> {
 			} } );
 		}
 
-		submitHandler = (event: any) => {
+		submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
 				event.preventDefault();
 				this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
 		}
@@ -158,7 +157,7 @@ class Auth extends React.Component<Props, AuthState> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
+								changed={( event: React.ChangeEvent<HTMLInputElement> ) => this.inputChangedHandler( event, formElement.id )}
 								removeValidation= {() => this.removeLoginValidation(formElement.id)} />
 				) );
 

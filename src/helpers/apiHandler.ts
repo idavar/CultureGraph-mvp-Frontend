@@ -18,8 +18,8 @@ const {dispatch} = store; // direct access to redux store.
 axios.interceptors.response.use(response => {
 		return response;
 }, error => {
-		if (error.response.status === Common.status.authentication ||
-			error.response.status === Common.status.noPermission) {
+		if (error.response && (error.response.status === Common.status.authentication ||
+			error.response.status === Common.status.noPermission)) {
 			ToastError({msg: error.response.data.detail});
 			dispatch(actions.logout() as never);
 			setTimeout(() => {
@@ -39,7 +39,7 @@ export const apiSecurePost = (url: string, data: object) => axios.post(url, data
 
 export const apiGet = (url: string, data: object) => axios.get(url, { headers: { Authorization: `Bearer ${session.getToken()}` }, ...data});
 
-export const predicthqApiCall = async (data = {}, options?: any) => {
+export const predicthqApiCall = async (data = {}, options?) => {
 		return new Promise((resolve, reject) => {
 				const axiosObj = getPredicthqObj(data);
 				const params = options['params'];
@@ -54,11 +54,11 @@ export const predicthqApiCall = async (data = {}, options?: any) => {
 					}
 				}
 				return axios(axiosObj)
-						.then((res: any) => {
+						.then((res) => {
 								const resData = res['data'];
 								resolve(resData);
 						})
-						.catch((err: any) => {
+						.catch((err) => {
 								reject(err);
 						});
 		});

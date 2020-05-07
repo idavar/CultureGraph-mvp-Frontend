@@ -96,10 +96,10 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 		return;
 	}
 	this.setState({loading: true});
-	apiReq.predicthqSearchEvent({}, options).then((res: any) => {
+	apiReq.predicthqSearchEvent({}, options).then(res => {
 		this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
-		if (res.next) {
-			options.next = res.next;
+		if (res['next']) {
+			options.next = res['next'];
 			this.searchEvents(options);
 		} else {
 			this.setState({loading: false});
@@ -170,7 +170,7 @@ render() {
 				return item;
 			})
 		}],
-		eventRender: (arg: { event: any; el: HTMLElement; view: any}) => {
+		eventRender: (arg: { event; el: HTMLElement; view }) => {
 			const extendedProps = arg.event.extendedProps;
 			let lessDescription = extendedProps.description;
 			let moreDescription = extendedProps.description;

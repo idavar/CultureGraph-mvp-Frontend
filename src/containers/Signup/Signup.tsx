@@ -13,7 +13,7 @@ import { ValidationMessage } from '../../constant/error';
 import { User } from '../../interface/User';
 
 interface State {
-	controls: any;
+	controls;
 	successMessage: string;
 	errorMessage: string;
 	isValidForm: boolean;
@@ -126,7 +126,7 @@ class Signup extends React.Component<Props> {
 				loading: false
 		};
 
-		inputChangedHandler = ( event: any, controlName: string ) => {
+		inputChangedHandler = ( event: React.ChangeEvent<HTMLInputElement>, controlName: string ) => {
 				const rulesData = this.state.controls[controlName].validation;
 				const value = event.target.value;
 				const messages = this.state.controls[controlName].messages;
@@ -190,9 +190,12 @@ class Signup extends React.Component<Props> {
 					}
 				}).catch(err => {
 					this.setState({loading: false});
-					let msg = err.response.data.detail;
-					if (!msg)  {
-						msg = validateRef.getObjectFirstKeyValue(err.response.data.error);
+					let msg = '';
+					if (err.response) {
+						msg = err.response.data.detail;
+						if (!msg)  {
+							msg = validateRef.getObjectFirstKeyValue(err.response.data.error);
+						}
 					}
 					ToastError({msg});
 				});
@@ -230,7 +233,7 @@ class Signup extends React.Component<Props> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.inputChangedHandler( event, formElement.id )}
+								changed={( event: React.ChangeEvent<HTMLInputElement> ) => this.inputChangedHandler( event, formElement.id )}
 								removeValidation= {() => this.removeSignupValidation(formElement.id)} />
 				) );
 

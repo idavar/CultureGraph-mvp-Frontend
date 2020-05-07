@@ -21,7 +21,7 @@ const getErrorMessage = (data: {validationMsg: string}) => <span className='fiel
  * @description function used for reader input type field view
  * @param props value contain input filed control property
  */
-const Input = ( props: any ) => {
+const Input = ( props ) => {
 		const typeText = 'test';
 		const typePassword = 'password';
 		const inputEleRef: MutableRefObject<{type: string}> = useRef({type: typePassword});

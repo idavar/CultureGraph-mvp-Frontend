@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
 	UncontrolledDropdown,
 	DropdownToggle,
@@ -8,10 +7,12 @@ import {
 import { Category } from './../../interface/Category';
 import { apiReq } from '../../helpers';
 import CultureCalendar from '../Calendar/CultureCalendar';
+import CultureMap from '../CultureMap';
 import Common from '../../constant/common';
 
 interface CultureProp {
-	isAuthenticated: boolean;
+    isAuthenticated: boolean;
+    cultureType: string | null;
 }
 interface CultureState {
     partOneCategories: Array<Category>;
@@ -51,8 +52,8 @@ class Culture extends React.Component<CultureProp, CultureState> {
         <div className='container'>
         <div className='watermark-title-section'>
         <div className='watermark-title'>
-            <span>Culture Calendar</span>
-            <h3>Culture Calendar</h3>
+    <span>{(this.props.cultureType === Common.cultureType.map) ? 'Culture Map' : 'Culture Calendar'}</span>
+            <h3>{(this.props.cultureType === Common.cultureType.map) ? 'Culture Map' : 'Culture Calendar' }</h3>
         </div>
         <p>Click on tab to explore results in more detail</p>
         </div>
@@ -60,8 +61,11 @@ class Culture extends React.Component<CultureProp, CultureState> {
 
                         <div className='buttons-section'>
                             <div className='buttons'>
-                                <Link to='#' >Culture Map</Link>
-                                <Link to='#' className='active'>Culture Calendar</Link>
+                                <a href='?type=map#culture-map'
+                                className={(this.props.cultureType === Common.cultureType.map) ? 'active' : ''}>Culture Map</a>
+                                <a href='?type=calendar#culture-map'
+                                className={(this.props.cultureType === Common.cultureType.calendar) ? 'active' : ''}>
+                                    Culture Calendar</a>
                             </div>
                             <div className='event-indicator'>
                                     {
@@ -89,15 +93,23 @@ class Culture extends React.Component<CultureProp, CultureState> {
                                     </div>
                             </div>
                         </div>
-                        {
+                        {(this.props.cultureType === Common.cultureType.map)
+                        ?
+                            <div className='culture-map'>
+                                <CultureMap />
+                            </div>
+                        : <div>
+                            {
                             this.props.isAuthenticated ? <div className='home-calendar'>
                             <CultureCalendar />
-                         </div> :
-                        <div className='calendar-without-login'>
-                            <img src='/assets/images/team.png' alt='Team Icon' />
-                            <h4>Become a reseacher to access this calendar</h4>
-                            <p>Register yourself as researcher to get complete access to culture calendar.</p>
-                            <a href='/register' className='explore-register'>Register Now</a>
+                            </div> :
+                            <div className='calendar-without-login'>
+                                <img src='/assets/images/team.png' alt='Team Icon' />
+                                <h4>Become a reseacher to access this calendar</h4>
+                                <p>Register yourself as researcher to get complete access to culture calendar.</p>
+                                <a href='/register' className='explore-register'>Register Now</a>
+                            </div>
+                            }
                         </div>
                         }
         </div>

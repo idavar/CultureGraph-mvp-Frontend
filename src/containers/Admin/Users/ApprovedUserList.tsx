@@ -58,7 +58,7 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 		this.submitSearch();
 	}
 
-	onEnter = (e: any) => {
+	onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter') {
 			this.submitSearch();
 		}

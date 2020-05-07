@@ -97,7 +97,7 @@ class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
             });
         }
 
-		changedFormHandler = ( event: any, controlName: string ) => {
+		changedFormHandler = ( event: React.ChangeEvent<HTMLInputElement>, controlName: string ) => {
 			const rulesData = this.state.controls[controlName].validation;
 			const value = event.target.value;
 			const messages = this.state.controls[controlName].messages;
@@ -201,7 +201,7 @@ class UpdateProfile extends React.Component<UpdateUserProps, FormState> {
 								shouldValidate={formElement.config.validation}
 								touched={formElement.config.touched}
 								validationMsg={formElement.config.validationMsg}
-								changed={( event: any ) => this.changedFormHandler( event, formElement.id )} />
+								changed={( event: React.ChangeEvent<HTMLInputElement> ) => this.changedFormHandler( event, formElement.id )} />
 				) );
 				return (
 				<div>
