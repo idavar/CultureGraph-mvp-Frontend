@@ -13,6 +13,10 @@ const Common = {
 		requestColSpan:  6,
 		minOtp: 5,
 		phqDesLength: 70,
+		defaultLocation: {
+			lng: -73.935242, // set default new york location
+			lat: 40.730610
+		},
 		status: {
 			processed: 200,
 			success: 201,
@@ -23,6 +27,8 @@ const Common = {
 		},
 		zero: 0,
 		one: 1,
+		two: 2,
+		gridSize: 30,
 		three: 3,
 		four: 4,
 		ten: 10,
@@ -105,6 +111,16 @@ const Common = {
 			art: '#7168B6',
 			others: '#642353',
 		},
+		mapIcon: {
+			holidays: '/assets/map-icons/holidays.png',
+			sports: '/assets/map-icons/sports.png',
+			festivals: '/assets/map-icons/festivals.png',
+			music: '/assets/map-icons/music.png',
+			food: '/assets/map-icons/food.png',
+			art: '/assets/map-icons/art.png',
+			others: '/assets/map-icons/others.png',
+		},
+		clusterIcon: '/assets/map-icons/cluster/m',
 		keywordClassOne: ['holi'],
 		keywordClassTwo: ['herring', 'hogmanay', 'donauinselfest', 'carnevale',
 		'primavera', 'let-it-roll', 'soccer', 'becon', 'tabletennis'],

@@ -1,43 +1,106 @@
 import React from 'react';
-import GoogleMapReact, { Coords } from 'google-map-react' ;
+
 import { PhqEvent } from '../../interface/PhqEvent';
 import { apiReq } from '../../helpers';
 import Common from '../../constant/common';
-import ConfigData from '../../constant/config';
 
-const AnyReactComponent = ({ text }: any) => <div>{text}</div>;
+declare let google;
+declare let MarkerClusterer;
 
 interface MapEventAppState {
 	phqEvents: Array<Partial<PhqEvent>>;
 	loading: boolean;
+	markers: Array<object>;
 }
 
-interface MapEventProps {
-	center: Coords;
-	zoom: number;
-}
-
-class CultureMap extends React.Component<MapEventProps, MapEventAppState> {
-	static defaultProps = {
-		center: {
-		  lat: 59.95,
-		  lng: 30.33
-		},
-		zoom: 11
-	};
+class CultureMap extends React.Component<{}, MapEventAppState> {
+	public map;
 	public latitude = Common.zero;
 	public longitude = Common.zero;
-	constructor(props: MapEventProps) {
+	public markers = [];
+	constructor(props: {}) {
 		super(props);
 		this.state = {
 			phqEvents: [],
-			loading: false
+			loading: false,
+			markers: [],
 		};
 	}
 
 	componentDidMount() {
+		this.setState({ markers: [] });
 		this.getCurrentPosition();
 	}
+
+	/**
+	 * @description function used for initialise google map
+	 */
+    initMap() {
+		this.map = new google.maps.Map(document.getElementById('map'), {
+			zoom: Common.two,
+			center: {lat: Common.defaultLocation.lat, lng: Common.defaultLocation.lng},
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		  });
+	 }
+
+	 /**
+	 * @description function used for add cluster and marker on map
+	 */
+	 updateMarkerData (data, isNext: string) {
+		if (data.length && !isNext) {
+			this.map.setOptions({
+				center: {lat: data[Common.zero].location[Common.one], lng: data[Common.one].location[Common.zero]}
+			});
+		}
+		for (let i = 0; i < data.length; i++) {
+			const category = data[i].category;
+			const markerImage = this.getMarkerImage(category);
+			if (data[i].location && data[i].location[Common.zero] && data[i].location[Common.one]) {
+				const marker = new google.maps.Marker({
+					position: new google.maps.LatLng(data[i].location[Common.one], data[i].location[Common.zero]),
+					map: this.map,
+					icon: markerImage,
+				  });
+				  const infoWindow = new google.maps.InfoWindow();
+				  const dataInfo = `<div class='ui-window-info'>
+				  <div class='ui-window-title'>${data[i].title}</div>
+				  <div class='ui-window-desc'>${data[i].description}</div>
+				  </div>`;
+				  google.maps.event.addListener(marker, 'click', function (e) {
+					  infoWindow.setContent(dataInfo);
+					  infoWindow.open(this.map, marker);
+				  });
+				  this.markers.push(marker);
+			}
+		}
+		const clusterOptions = {
+			zoom: Common.four,
+			imagePath: Common.clusterIcon,
+			gridSize: Common.gridSize
+		};
+		const markerCluster = new MarkerClusterer(this.map, this.markers, clusterOptions);
+	 }
+
+	 /**
+	  * @description function used for get marker image
+	  */
+	 getMarkerImage (category: string) {
+		let markerImage = Common.mapIcon.others;
+		if (Common.categoryGroup.holidays.includes(category)) {
+			markerImage = Common.mapIcon.holidays;
+		} else if (Common.categoryGroup.art.includes(category)) {
+			markerImage = Common.mapIcon.art;
+		} else if (Common.categoryGroup.festivals.includes(category)) {
+			markerImage = Common.mapIcon.festivals;
+		} else if (Common.categoryGroup.food.includes(category)) {
+			markerImage = Common.mapIcon.food;
+		} else if (Common.categoryGroup.music.includes(category)) {
+			markerImage = Common.mapIcon.music;
+		} else if (Common.categoryGroup.sports.includes(category)) {
+			markerImage = Common.mapIcon.sports;
+		}
+		return markerImage;
+	 }
 
 	/**
 	 * @description function used for get current position event
@@ -47,8 +110,10 @@ class CultureMap extends React.Component<MapEventProps, MapEventAppState> {
 			if (position) {
 				this.latitude = position.coords.latitude;
 				this.longitude = position.coords.longitude;
+				this.initMap();
 				this.searchMapEvents();
 			} else {
+				this.initMap();
 				this.searchMapEvents();
 			}
 		});
@@ -76,11 +141,15 @@ class CultureMap extends React.Component<MapEventProps, MapEventAppState> {
 		this.setState({loading: true});
 		options['query'] = this.getQurString(options.next);
 		apiReq.predicthqSearchEvent({}, options).then(res => {
-			console.log(res['results']);
-			this.setState({ phqEvents: this.state.phqEvents.concat(res['results']) });
+			const phqEvents = res['results'];
+			/*const phqEvents = [{location: [147.154312, -31.563910], title: 'public holidays',
+		description: 'xyz abc abc', category: 'public-holidays'},
+			{location: [150.363181, -33.718234], title: 'aaa',
+		description: 'abc abc abc', category: 'festivals'}];*/
+			this.updateMarkerData(phqEvents, options.next);
 			if (res['next']) {
 				options.next = res['next'];
-				this.searchMapEvents(options);
+			 	this.searchMapEvents(options);
 			} else {
 				this.setState({loading: false});
 			}
@@ -91,19 +160,7 @@ class CultureMap extends React.Component<MapEventProps, MapEventAppState> {
 
 	render() {
 		return (
-		<div style={{ height: '100vh', width: '100%' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: ConfigData.mapKey} }
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          <AnyReactComponent
-            lat={59.955413}
-            lng={30.337844}
-            text='My Marker'
-          />
-        </GoogleMapReact>
-      </div>
+			<div className="culster-map" id="map"></div>
 );
 	}
 }

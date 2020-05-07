@@ -95,7 +95,9 @@ class Culture extends React.Component<CultureProp, CultureState> {
                         </div>
                         {(this.props.cultureType === Common.cultureType.map)
                         ?
-                            <div><CultureMap /></div>
+                            <div className='culture-map'>
+                                <CultureMap />
+                            </div>
                         : <div>
                             {
                             this.props.isAuthenticated ? <div className='home-calendar'>
