@@ -32,6 +32,9 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 		this.getCurrentPosition();
 	}
 
+	/**
+	 * @description function used for initialise google map
+	 */
     initMap() {
 		this.map = new google.maps.Map(document.getElementById('map'), {
 			zoom: Common.two,
@@ -39,6 +42,9 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 		  });
 	 }
 
+	 /**
+	 * @description function used for add cluster and marker on map
+	 */
 	 updateMarkerData (data, isNext: string) {
 		if (data.length && !isNext) {
 			this.map.setOptions({
@@ -74,6 +80,9 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 		const markerCluster = new MarkerClusterer(this.map, this.markers, clusterOptions);
 	 }
 
+	 /**
+	  * @description function used for get marker image
+	  */
 	 getMarkerImage (category: string) {
 		let markerImage = Common.mapIcon.others;
 		if (Common.categoryGroup.holidays.includes(category)) {
@@ -100,8 +109,6 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 			if (position) {
 				this.latitude = position.coords.latitude;
 				this.longitude = position.coords.longitude;
-				// this.latitude = Common.defaultLocation.lat;
-				// this.longitude = Common.defaultLocation.lng;
 				this.initMap();
 				this.searchMapEvents();
 			} else {
