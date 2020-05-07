@@ -30,7 +30,6 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 	componentDidMount() {
 		this.setState({ markers: [] });
 		this.getCurrentPosition();
-		this.initMap();
 	}
 
     initMap() {
@@ -103,8 +102,10 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 				this.longitude = position.coords.longitude;
 				// this.latitude = Common.defaultLocation.lat;
 				// this.longitude = Common.defaultLocation.lng;
+				this.initMap();
 				this.searchMapEvents();
 			} else {
+				this.initMap();
 				this.searchMapEvents();
 			}
 		});
