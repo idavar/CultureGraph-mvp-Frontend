@@ -35,40 +35,44 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 
     initMap() {
 		this.map = new google.maps.Map(document.getElementById('map'), {
-			zoom: Common.four,
-			center: {lat: -33.718234, lng: 147.154312},
-			mapTypeId: google.maps.MapTypeId.terrain,
-			scaleControl: true,
+			zoom: Common.two,
+			center: {lat: Common.defaultLocation.lat, lng: Common.defaultLocation.lng}
 		  });
 	 }
 
 	 updateMarkerData (data, isNext: string) {
-		 if (data.length && !isNext) {
+		if (data.length && !isNext) {
 			this.map.setOptions({
-				center: {lat: data[0].location[0], lng: data[1].location[1]}
+				center: {lat: data[Common.zero].location[Common.one], lng: data[Common.one].location[Common.zero]}
 			});
 		}
-
 		for (let i = 0; i < data.length; i++) {
 			const category = data[i].category;
 			const markerImage = this.getMarkerImage(category);
-
-			const marker = new google.maps.Marker({
-			  position: {lat: data[i].location[0], lng: data[i].location[1]},
-			  map: this.map,
-			  icon: markerImage,
-			});
-			const infoWindow = new google.maps.InfoWindow();
-			const dataInfo = `<div class='ui-window-info'>
-			<div class='ui-window-title'>${data[i].title}</div>
-			<div class='ui-window-desc'>${data[i].description}</div>
-			</div>`;
-			google.maps.event.addListener(marker, 'click', function (e) {
-				infoWindow.setContent(dataInfo);
-				infoWindow.open(this.map, marker);
-			});
-			this.markers.push(marker);
+			if (data[i].location && data[i].location[Common.zero] && data[i].location[Common.one]) {
+				const marker = new google.maps.Marker({
+					position: new google.maps.LatLng(data[i].location[Common.one], data[i].location[Common.zero]),
+					map: this.map,
+					icon: markerImage,
+				  });
+				  const infoWindow = new google.maps.InfoWindow();
+				  const dataInfo = `<div class='ui-window-info'>
+				  <div class='ui-window-title'>${data[i].title}</div>
+				  <div class='ui-window-desc'>${data[i].description}</div>
+				  </div>`;
+				  google.maps.event.addListener(marker, 'click', function (e) {
+					  infoWindow.setContent(dataInfo);
+					  infoWindow.open(this.map, marker);
+				  });
+				  this.markers.push(marker);
+			}
 		}
+		const clusterOptions = {
+			zoom: Common.four,
+			imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+			gridSize: Common.gridSize,
+		};
+		const markerCluster = new MarkerClusterer(this.map, this.markers, clusterOptions);
 	 }
 
 	 getMarkerImage (category: string) {
@@ -97,6 +101,8 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 			if (position) {
 				this.latitude = position.coords.latitude;
 				this.longitude = position.coords.longitude;
+				// this.latitude = Common.defaultLocation.lat;
+				// this.longitude = Common.defaultLocation.lng;
 				this.searchMapEvents();
 			} else {
 				this.searchMapEvents();
@@ -126,12 +132,11 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 		this.setState({loading: true});
 		options['query'] = this.getQurString(options.next);
 		apiReq.predicthqSearchEvent({}, options).then(res => {
-			/*const phqEvents = [{location: [-31.563910, 147.154312], title: 'public holidays',
-		description: 'xyz abc abc', category: 'public-holidays'},
-			{location: [-33.718234, 150.363181], title: 'aaa',
-		description: 'abc abc abc', category: 'festivals'}];*/
 			const phqEvents = res['results'];
-			this.setState({ phqEvents: this.state.phqEvents.concat(res['results']) });
+			/*const phqEvents = [{location: [147.154312, -31.563910], title: 'public holidays',
+		description: 'xyz abc abc', category: 'public-holidays'},
+			{location: [150.363181, -33.718234], title: 'aaa',
+		description: 'abc abc abc', category: 'festivals'}];*/
 			this.updateMarkerData(phqEvents, options.next);
 			if (res['next']) {
 				options.next = res['next'];

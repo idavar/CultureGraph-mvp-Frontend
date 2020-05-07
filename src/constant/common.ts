@@ -13,6 +13,10 @@ const Common = {
 		requestColSpan:  6,
 		minOtp: 5,
 		phqDesLength: 70,
+		defaultLocation: {
+			lng: -73.935242, // set default new york location
+			lat: 40.730610
+		},
 		status: {
 			processed: 200,
 			success: 201,
@@ -23,6 +27,8 @@ const Common = {
 		},
 		zero: 0,
 		one: 1,
+		two: 2,
+		gridSize: 30,
 		three: 3,
 		four: 4,
 		ten: 10,
@@ -95,7 +101,7 @@ const Common = {
 		festivals,performing-arts,sports,community,daylight-savings,airport-delays,severe-weather,
 		disasters,terror`,
 		phqMile: 100,
-		phqKm: 11400,
+		phqKm: 12000,
 		categoryColor: {
 			holidays: '#72cfa0',
 			sports: '#009cdc',
