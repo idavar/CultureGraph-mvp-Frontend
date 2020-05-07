@@ -5,6 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import '../../assets/styles/main.scss';
 import { apiReq } from '../../helpers';
 import Common from '../../constant/common';
+import EventDetail from './EventDetail';
 const $ = require( 'jquery' );
 
 interface EventAppState {
@@ -16,6 +17,7 @@ loading: boolean;
 }
 
 class CultureCalendar extends React.Component<{}, EventAppState> {
+	eventRef = React.createRef<EventDetail>();
 	public currentStart = '';
 	public currentEnd = '';
 	public latitude = Common.zero;
@@ -110,6 +112,10 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 	});
 }
 
+onEventDetail = () => {
+	// this.eventRef.current?.openModal();
+}
+
 render() {
 	const calendarOptions = {
 		eventLimit: Common.three,
@@ -198,6 +204,7 @@ render() {
 				<img src='/assets/images/loader.gif' alt='Loader Icon' />
 			</div> : ''}
 			<section>
+				<EventDetail />
 				<div className='calander-app'>
 					<div className='calander-app-calendar'>
 						{<FullCalendar {...calendarOptions} />}
