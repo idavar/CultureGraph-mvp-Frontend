@@ -110,24 +110,6 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 	});
 }
 
-eventDetail = () => {
-	return <div className='fc-popover fc-more-popover'>
-		<div className='fc-header fc-widget-header'>
-			<span className='fc-title'>April 6, 2020</span>
-			<span className='fc-close fc-icon fc-icon-x'></span>
-		</div>
-		<div className='fc-body fc-widget-content'>
-			<div className='fc-event-container'>
-				<div className='fc-content'>
-					<span className='fc-title'></span>
-					<span className='fc-description"\'></span>
-					<span className='fc-location'><span className='fc-location-icon'></span>US</span>
-				</div>
-			</div>
-		</div>
-	</div>;
-}
-
 render() {
 	const calendarOptions = {
 		eventLimit: Common.three,
@@ -201,20 +183,12 @@ render() {
 				`;
 			}
 		},
-		eventClick: (arg: { el: HTMLElement; event: any; view: any}) => {
+		eventClick: (arg: { el; event; view}) => {
 			console.log(arg);
 			const extendedProps = arg.event.extendedProps;
 			// arg.event.title
 			if (arg.el.closest('.fc-dayGridWeek-view')) {
-				console.log(arg.event.title);
-				$(arg.el).popover({
-					title: 'addfdf',
-					placement: 'top',
-					trigger : 'hover',
-					content: 't dsdfdsfsdfdsfsdf',
-					container: 'body'
-				}).popover('show');
-
+				//
 			}
 		}
 	};
