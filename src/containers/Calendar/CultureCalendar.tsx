@@ -100,7 +100,8 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 		this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
 		if (res['next']) {
 			options.next = res['next'];
-			this.searchEvents(options);
+			// this.searchEvents(options);
+			this.setState({loading: false});
 		} else {
 			this.setState({loading: false});
 		}
@@ -198,6 +199,22 @@ render() {
 				<span class='fc-location'><span class='fc-location-icon'></span>
 				${extendedProps.country}</span>
 				`;
+			}
+		},
+		eventClick: (arg: { el: HTMLElement; event: any; view: any}) => {
+			console.log(arg);
+			const extendedProps = arg.event.extendedProps;
+			// arg.event.title
+			if (arg.el.closest('.fc-dayGridWeek-view')) {
+				console.log(arg.event.title);
+				$(arg.el).popover({
+					title: 'addfdf',
+					placement: 'top',
+					trigger : 'hover',
+					content: 't dsdfdsfsdfdsfsdf',
+					container: 'body'
+				}).popover('show');
+
 			}
 		}
 	};
