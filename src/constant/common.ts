@@ -120,6 +120,7 @@ const Common = {
 			art: '/assets/map-icons/art.png',
 			others: '/assets/map-icons/others.png',
 		},
+		clusterIcon: '/assets/map-icons/cluster/m',
 		keywordClassOne: ['holi'],
 		keywordClassTwo: ['herring', 'hogmanay', 'donauinselfest', 'carnevale',
 		'primavera', 'let-it-roll', 'soccer', 'becon', 'tabletennis'],
