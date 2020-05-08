@@ -58,7 +58,7 @@ class TrendingKeywords extends React.Component<KeywordProp, KeywordState> {
                         <div className='explore-event'>
                         {
                             this.state.partOneKeyword.map((key: Keyword, i) => (
-                            <Link to={`/search?search=${key.name}`} key={key.search_frequency} className={Common.keywordClassOne[i]} >
+                            <Link to={`/search?search=${key.name}`} key={`one${i}`} className={Common.keywordClassOne[i]} >
                                 {key.name}<small>
                                 {key.search_frequency}</small></Link>
                             ))
@@ -68,7 +68,7 @@ class TrendingKeywords extends React.Component<KeywordProp, KeywordState> {
                         <React.Fragment>
                         {
                             this.state.partTwoKeyword.map((key: Keyword, j) => (
-                            <Link to={`/search?search=${key.name}`} key={key.search_frequency}
+                            <Link to={`/search?search=${key.name}`} key={`two${j}`}
                             className={Common.keywordClassTwo[j]} >
                                 {key.name}<small>
                                 {this.millifyNumber(key.search_frequency)}</small></Link>
