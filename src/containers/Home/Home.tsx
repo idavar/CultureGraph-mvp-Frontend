@@ -61,6 +61,12 @@ class Home extends React.Component<HomeProp, HomeState> {
 		}
 	}
 
+	onSearchEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            this.searchKeyword();
+        }
+    }
+
 	render() {
 		return (
 				<div>
@@ -75,7 +81,7 @@ class Home extends React.Component<HomeProp, HomeState> {
 												<p>A smart tool that provides real-time cultural insights to help you create more effective and efficient experiences for consumer audiences.</p>
 												<div className='banner-search'>
 												<input type='text' placeholder='Search here for festivals, food, music and more...'
-												onChange={this.textEnter}></input>
+												onChange={this.textEnter}  onKeyDown={this.onSearchEnterPress}></input>
 													<button type='button' onClick={this.searchKeyword}><img src='/assets/images/search-icon-white.png' alt='Search Icon' /></button>
 												</div>
 												<div className='safty-note-wrap'>
