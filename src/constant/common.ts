@@ -29,6 +29,7 @@ const Common = {
 		one: 1,
 		two: 2,
 		gridSize: 30,
+		clusterIconSize: 60,
 		three: 3,
 		four: 4,
 		ten: 10,
@@ -36,7 +37,7 @@ const Common = {
 		pageTimeout: 2500,
 		na: 'NA',
 		toastConfig : {
-			autoClose: 2000,
+			autoClose: 7000,
 			draggable: false,
 		},
 		group: {
