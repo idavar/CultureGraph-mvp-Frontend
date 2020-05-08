@@ -65,6 +65,8 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 				  const dataInfo = `<div class='ui-window-info'>
 				  <div class='ui-window-title'>${data[i].title}</div>
 				  <div class='ui-window-desc'>${data[i].description}</div>
+				  <div class='fc-location'><span class='fc-location-icon'></span>
+				${data[i].country}</div>
 				  </div>`;
 				  google.maps.event.addListener(marker, 'click', function (e) {
 					  infoWindow.setContent(dataInfo);
