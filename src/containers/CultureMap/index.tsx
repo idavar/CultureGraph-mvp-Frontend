@@ -65,6 +65,8 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 				  const dataInfo = `<div class='ui-window-info'>
 				  <div class='ui-window-title'>${data[i].title}</div>
 				  <div class='ui-window-desc'>${data[i].description}</div>
+				  <div class='fc-location'><span class='fc-location-icon'></span>
+				${data[i].country}</div>
 				  </div>`;
 				  google.maps.event.addListener(marker, 'click', function (e) {
 					  infoWindow.setContent(dataInfo);
@@ -79,6 +81,11 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 			gridSize: Common.gridSize
 		};
 		const markerCluster = new MarkerClusterer(this.map, this.markers, clusterOptions);
+		const styles = markerCluster.getStyles();
+		for (let j = 0; j < styles.length; j++) {
+			styles[j].width = Common.clusterIconSize;
+			styles[j].height = Common.clusterIconSize;
+		}
 	 }
 
 	 /**
