@@ -81,6 +81,11 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 			gridSize: Common.gridSize
 		};
 		const markerCluster = new MarkerClusterer(this.map, this.markers, clusterOptions);
+		const styles = markerCluster.getStyles();
+		for (let j = 0; j < styles.length; j++) {
+			styles[j].width = Common.clusterIconSize;
+			styles[j].height = Common.clusterIconSize;
+		}
 	 }
 
 	 /**
