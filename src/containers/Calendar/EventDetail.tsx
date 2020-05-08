@@ -21,7 +21,6 @@ class EventDetail extends React.Component<{}, EventDetailState> {
 				return (
                 <div>
                     <Modal show={this.state.show} onHide={this.eventClose}>
-                        <Modal.Title>abc xyz</Modal.Title>
                         <div className='fc-popover fc-more-popover'>
                             <div className='fc-header fc-widget-header'>
                                 <span className='fc-title'>April 6, 2020</span>

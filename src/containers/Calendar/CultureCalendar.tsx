@@ -113,7 +113,7 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 }
 
 onEventDetail = () => {
-	// this.eventRef.current?.openModal();
+	this.eventRef.current?.openEventDetail({});
 }
 
 render() {
@@ -194,7 +194,7 @@ render() {
 			const extendedProps = arg.event.extendedProps;
 			// arg.event.title
 			if (arg.el.closest('.fc-dayGridWeek-view')) {
-				//
+				this.onEventDetail();
 			}
 		}
 	};
