@@ -134,7 +134,6 @@ class ApprovedUserList extends React.Component<UserListProps, ApprovedUserState>
 					<img  src='/assets/images/caret-down-light.png' alt='Caret Icon' />
 				</div>
 				<Form.Group controlId='searchUser'>
-				<Form.Label>Search Here</Form.Label>
 				<Form.Control type='text' className='search-user' placeholder='Search Here'
 				 value={this.state.search} onChange={this.enterText} onKeyDown={this.onEnter} name='search'/>
 				<span className='search-icon' onClick={this.submitSearch}><img className='logo' src='/assets/images/search-icon.png' alt='Search Icon' /></span>
