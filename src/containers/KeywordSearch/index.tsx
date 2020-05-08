@@ -116,7 +116,7 @@ class KeywordSearch extends React.Component<KeywordProps, KeywordState> {
                         </div> :
                         <div className='result-box'>
                             <h4>Our AI brings you the most suitable keywords for your search. Click on any keyword to see more details.</h4>
-                            <div className='tags'>
+                            <div className='tags keyword-transform'>
                                 {
                                     this.state.keywords.map((doc: KeywordResult, index: number) => (
                                     <a href={doc.url} className={Common.keywordColor[Math.floor(Math.random() * Common.ten)
