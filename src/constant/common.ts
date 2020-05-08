@@ -29,7 +29,7 @@ const Common = {
 		one: 1,
 		two: 2,
 		gridSize: 30,
-		clusterIconSize: 60,
+		clusterIconSize: 54,
 		three: 3,
 		four: 4,
 		ten: 10,
