@@ -59,7 +59,7 @@ export const checkValidite = (value: string, rules: InputRule, messages: ErrorMe
 		return validationData;
 };
 
-export const matchConfirmPassword = (validationData: ValidationObject, rulesData: InputRule, formControls: any): void => {
+export const matchConfirmPassword = (validationData: ValidationObject, rulesData: InputRule, formControls): void => {
 	const confirmPassword = formControls['confirm_password'].value;
 	const password = formControls['password'].value;
 	if (confirmPassword && password !== confirmPassword) {
@@ -74,7 +74,7 @@ const setErrorMessage = (validationData: ValidationObject, msg: string, isValid:
 	}
 };
 
-export const getObjectFirstKeyValue = (error: any) => {
+export const getObjectFirstKeyValue = (error) => {
 	let val = '';
 	if (error && Object.keys(error).length) {
 		val = error[Object.keys(error)[Common.zero]][Common.zero];

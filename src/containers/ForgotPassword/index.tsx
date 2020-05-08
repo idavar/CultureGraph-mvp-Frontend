@@ -60,7 +60,7 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 		}
 
 		onOtpKeyUp = () => {
-			$('body').on('keyup', '.code', (e: any) => {
+			$('body').on('keyup', '.code', (e: React.KeyboardEvent<HTMLInputElement>) => {
 				if (e.currentTarget.value.length) {
 					$(e.currentTarget).next('.code').focus();
 				}
@@ -79,7 +79,7 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 			}
 		}
 
-		changedHandler = ( event: any, controlName: string ) => {
+		changedHandler = ( event: React.ChangeEvent<HTMLInputElement>, controlName: string ) => {
 				const rulesData = this.state.controls[controlName].validation;
 				const value = event.target.value;
 				const messages = this.state.controls[controlName].messages;
@@ -175,7 +175,7 @@ class ForgotPassword extends React.Component<ForgotProps, FormState> {
 								shouldValidate={forgotConfig.validation}
 								touched={forgotConfig.touched}
 								validationMsg={forgotConfig.validationMsg}
-								changed={( event: any ) => this.changedHandler( event, forgotEmail )} />;
+								changed={( event: React.ChangeEvent<HTMLInputElement> ) => this.changedHandler( event, forgotEmail )} />;
 
 
 				return (

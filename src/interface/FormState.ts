@@ -1,5 +1,5 @@
 export interface FormState {
-	controls: any;
+	controls;
 	successMessage: string;
 	errorMessage: string;
 	isValidForm: boolean;

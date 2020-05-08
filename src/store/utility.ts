@@ -3,7 +3,7 @@
  * @param oldObject contain old data object value
  * @param updatedProperties contain new updated data
  */
-export const updateObject = (oldObject: any, updatedProperties: any) => {
+export const updateObject = (oldObject, updatedProperties) => {
 		return {
 				...oldObject,
 				...updatedProperties

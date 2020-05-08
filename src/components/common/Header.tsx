@@ -117,11 +117,11 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 					  <NavLink href='/#trending-keywords' onClick={this.toggle}>Trending Keywords</NavLink>
 					</NavItem>
 					<NavItem>
-					  <NavLink href='/#culture-map' onClick={this.toggle}>Culture Map</NavLink>
+					  <NavLink href='/?type=map#culture-map' onClick={this.toggle}>Culture Map</NavLink>
 					</NavItem>
 
 					<NavItem>
-					  <NavLink href='/#culture-map' onClick={this.toggle}>Culture Calendar</NavLink>
+					  <NavLink href='/?type=calendar#culture-map' onClick={this.toggle}>Culture Calendar</NavLink>
 					</NavItem>
 
 					<UncontrolledDropdown nav inNavbar >
