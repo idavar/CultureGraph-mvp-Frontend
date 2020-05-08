@@ -103,8 +103,8 @@ class KeywordSearch extends React.Component<KeywordProps, KeywordState> {
                         <div className='searchbox'>
                             <input type='text' name='search'
                             onChange={this.enterTextValue} onKeyDown={this.onEnterPress} value={this.state.search}></input>
-                            <button type='button'><img src='/assets/images/search-icon-white.png'
-                                alt='Search Icon' onClick={this.submitKeywordSearch} /></button>
+                            <button type='button' onClick={this.submitKeywordSearch}><img src='/assets/images/search-icon-white.png'
+                                alt='Search Icon' /></button>
                             { !this.state.loading ?
                             <span className='result-found'>{this.state.keywords.length} Result Found For
                             <em>"{this.state.search}"</em></span>

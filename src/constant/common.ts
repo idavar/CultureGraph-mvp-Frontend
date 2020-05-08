@@ -37,7 +37,7 @@ const Common = {
 		pageTimeout: 2500,
 		na: 'NA',
 		toastConfig : {
-			autoClose: 2000,
+			autoClose: 7000,
 			draggable: false,
 		},
 		group: {
