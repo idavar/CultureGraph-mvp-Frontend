@@ -45,10 +45,12 @@ componentDidMount() {
 }
 
 getCurrentPosition = () => {
+	this.latitude = Common.defaultLocation.lat;
+	this.longitude = Common.defaultLocation.lng;
 	navigator.geolocation.getCurrentPosition((position) => {
 		if (position) {
-			this.latitude = position.coords.latitude;
-			this.longitude = position.coords.longitude;
+			// this.latitude = position.coords.latitude;
+			// this.longitude = position.coords.longitude;
 			this.searchEvents();
 		} else {
 			this.searchEvents();

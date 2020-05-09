@@ -115,10 +115,12 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 	 * @description function used for get current position event
 	 */
 	getCurrentPosition = () => {
+		this.latitude = Common.defaultLocation.lat;
+		this.longitude = Common.defaultLocation.lng;
 		navigator.geolocation.getCurrentPosition((position) => {
 			if (position) {
-				this.latitude = position.coords.latitude;
-				this.longitude = position.coords.longitude;
+				// this.latitude = position.coords.latitude;
+				// this.longitude = position.coords.longitude;
 				this.initMap();
 				this.searchMapEvents();
 			} else {
