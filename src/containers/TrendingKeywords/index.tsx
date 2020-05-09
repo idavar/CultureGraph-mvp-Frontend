@@ -55,7 +55,7 @@ class TrendingKeywords extends React.Component<KeywordProp, KeywordState> {
                 </div>
                 <div className='col-md-6'>
                         <div className='explore-detail'>
-                        <div className='explore-event'>
+                        <div className='explore-event keyword-transform'>
                         {
                             this.state.partOneKeyword.map((key: Keyword, i) => (
                             <Link to={`/search?search=${key.name}`} key={`one${i}`} className={Common.keywordClassOne[i]} >

@@ -37,9 +37,9 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 	 */
     initMap() {
 		this.map = new google.maps.Map(document.getElementById('map'), {
-			zoom: Common.two,
-			center: {lat: Common.defaultLocation.lat, lng: Common.defaultLocation.lng},
-			mapTypeId: google.maps.MapTypeId.ROADMAP
+			zoom: Common.three,
+			minZoom: Common.two,
+			center: {lat: Common.defaultLocation.lat, lng: Common.defaultLocation.lng}
 		  });
 	 }
 
@@ -78,9 +78,8 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 			}
 		}
 		const clusterOptions = {
-			zoom: Common.four,
-			imagePath: Common.clusterIcon,
-			gridSize: Common.gridSize
+			minZoom: Common.one,
+			imagePath: Common.clusterIcon
 		};
 		const markerCluster = new MarkerClusterer(this.map, this.markers, clusterOptions);
 		const styles = markerCluster.getStyles();

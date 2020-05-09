@@ -156,7 +156,6 @@ class UserRequestList extends React.Component<UserListProps, RequestState> {
 					<img  src='/assets/images/caret-down-light.png' alt='Caret Icon' />
 				</div>
 				<Form.Group controlId='searchUser'>
-				<Form.Label>Search Here</Form.Label>
 				<Form.Control type='text' className='search-user' placeholder='Search Here' name='search'
 				 onChange={this.enterText} onKeyDown={this.onEnter} value={this.state.search} />
 				<span className='search-icon' onClick={this.submitSearch}><img className='logo' src='/assets/images/search-icon.png' alt='Search Icon' /></span>

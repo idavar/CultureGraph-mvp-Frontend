@@ -101,7 +101,7 @@ class KeywordSearch extends React.Component<KeywordProps, KeywordState> {
             <div className='container'>
                 <div className='search-event-body'>
                         <div className='searchbox'>
-                            <input type='text' name='search'
+                            <input type='text' placeholder='Search here for festivals, food, music and more...' name='search'
                             onChange={this.enterTextValue} onKeyDown={this.onEnterPress} value={this.state.search}></input>
                             <button type='button' onClick={this.submitKeywordSearch}><img src='/assets/images/search-icon-white.png'
                                 alt='Search Icon' /></button>
@@ -116,7 +116,7 @@ class KeywordSearch extends React.Component<KeywordProps, KeywordState> {
                         </div> :
                         <div className='result-box'>
                             <h4>Our AI brings you the most suitable keywords for your search. Click on any keyword to see more details.</h4>
-                            <div className='tags'>
+                            <div className='tags keyword-transform'>
                                 {
                                     this.state.keywords.map((doc: KeywordResult, index: number) => (
                                     <a href={doc.url} className={Common.keywordColor[Math.floor(Math.random() * Common.ten)
