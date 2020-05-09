@@ -36,17 +36,23 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 	 * @description function used for initialise google map
 	 */
     initMap() {
-		this.map = new google.maps.Map(document.getElementById('map'), {
-			zoom: Common.three,
-			minZoom: Common.two,
-			center: {lat: Common.defaultLocation.lat, lng: Common.defaultLocation.lng}
-		  });
+		try {
+			this.map = new google.maps.Map(document.getElementById('map'), {
+				zoom: Common.four,
+				minZoom: Common.two,
+				center: {lat: Common.defaultLocation.lat, lng: Common.defaultLocation.lng}
+			});
+		} catch (error) {}
 	 }
 
 	 /**
 	 * @description function used for add cluster and marker on map
 	 */
 	 updateMarkerData (data, isNext: string) {
+		if (!this.map) {
+			return;
+		}
+
 		if (data.length && !isNext) {
 			this.map.setOptions({
 				center: {lat: data[Common.zero].location[Common.one], lng: data[Common.one].location[Common.zero]}
@@ -78,8 +84,8 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 			}
 		}
 		const clusterOptions = {
-			minZoom: Common.one,
-			imagePath: Common.clusterIcon
+			imagePath: Common.clusterIcon,
+			gridSize: Common.thirty
 		};
 		const markerCluster = new MarkerClusterer(this.map, this.markers, clusterOptions);
 		const styles = markerCluster.getStyles();
@@ -114,10 +120,12 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 	 * @description function used for get current position event
 	 */
 	getCurrentPosition = () => {
+		this.latitude = Common.defaultLocation.lat;
+		this.longitude = Common.defaultLocation.lng;
 		navigator.geolocation.getCurrentPosition((position) => {
 			if (position) {
-				this.latitude = position.coords.latitude;
-				this.longitude = position.coords.longitude;
+				// this.latitude = position.coords.latitude;
+				// this.longitude = position.coords.longitude;
 				this.initMap();
 				this.searchMapEvents();
 			} else {
@@ -128,13 +136,25 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 	}
 
 	/**
+	 * @description function used for replace date string
+	 */
+	stringReplace = (str: string) => {
+		return str.replace(/\//g, '-');
+	}
+
+	/**
 	 * @description function used for get phq search query string
 	 */
 	getQurString = (next: string) => {
 		let query = '';
 		if (!next) {
+			const currentDate = new Date();
+			const currentStart = this.stringReplace(currentDate.toLocaleDateString());
+			const nextDate = new Date().setDate(currentDate.getDate() + Common.thirty);
+			const currentEnd = this.stringReplace(new Date(nextDate).toLocaleDateString());
 			this.setState({ phqEvents: [] });
-			query = `?category=${Common.allCategory}&state=${Common.phqState}&sort=rank`;
+			query = `?category=${Common.allCategory}&active.gt=${currentStart}
+			&active.lte=${currentEnd}&state=${Common.phqState}&sort=rank`;
 			if (this.latitude !== Common.zero && this.longitude !== Common.zero) {
 				query = `${query}&within=${Common.phqKm}km@${this.latitude},${this.longitude}`;
 			}
@@ -155,9 +175,16 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 			{location: [150.363181, -33.718234], title: 'aaa',
 		description: 'abc abc abc', category: 'festivals'}];*/
 			this.updateMarkerData(phqEvents, options.next);
+			this.setState({phqEvents: this.state.phqEvents.concat(phqEvents)});
 			if (res['next']) {
 				options.next = res['next'];
-			 	this.searchMapEvents(options);
+				if (this.state.phqEvents.length < Common.phqLimit) {
+					this.searchMapEvents(options);
+				} else {
+					setTimeout(() => {
+						this.searchMapEvents(options);
+					}, Common.phpDataLoadIntervel);
+				}
 			} else {
 				this.setState({loading: false});
 			}
