@@ -13,9 +13,12 @@ const Common = {
 		requestColSpan:  6,
 		minOtp: 5,
 		phqDesLength: 70,
+		thirty: 30,
+		sixty: 60,
+		ninty: 90,
 		defaultLocation: {
-			lng: -73.935242, // set default new york location
-			lat: 40.730610
+			lng: -120.740135, // set default washington state location
+			lat: 47.751076
 		},
 		status: {
 			processed: 200,
@@ -32,6 +35,8 @@ const Common = {
 		clusterIconSize: 54,
 		three: 3,
 		four: 4,
+		five: 5,
+		nine: 9,
 		ten: 10,
 		alertTimeout: 3000,
 		pageTimeout: 2500,
@@ -102,15 +107,18 @@ const Common = {
 		festivals,performing-arts,sports,community,daylight-savings,airport-delays,severe-weather,
 		disasters,terror`,
 		phqMile: 100,
-		phqKm: 12000,
+		phqKm: 160,
+		phqLimit: 100,
+		phpDataLoadIntervel: 10000,
 		categoryColor: {
-			holidays: '#72cfa0',
-			sports: '#009cdc',
-			festivals: '#004d63',
-			music: '#edc81b',
-			food: '#00C1AD',
-			art: '#7168B6',
-			others: '#642353',
+			holidays: '#2dd351',
+			sports: '#5cb2eb',
+			festivals: '#f58f2c',
+			music: '#ffe200',
+			food: '#74d5bd',
+			art: '#f3aaf8',
+			dance: '#c604d6',
+			others: '#847de3',
 		},
 		mapIcon: {
 			holidays: '/assets/map-icons/holidays.png',
