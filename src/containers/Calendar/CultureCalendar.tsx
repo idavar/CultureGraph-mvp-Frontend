@@ -47,10 +47,12 @@ componentDidMount() {
 }
 
 getCurrentPosition = () => {
+	this.latitude = Common.defaultLocation.lat;
+	this.longitude = Common.defaultLocation.lng;
 	navigator.geolocation.getCurrentPosition((position) => {
 		if (position) {
-			this.latitude = position.coords.latitude;
-			this.longitude = position.coords.longitude;
+			// this.latitude = position.coords.latitude;
+			// this.longitude = position.coords.longitude;
 			this.searchEvents();
 		} else {
 			this.searchEvents();
@@ -159,7 +161,7 @@ render() {
 				return item;
 			})
 		}],
-		eventRender: (arg: { event; el: HTMLElement; view }) => {
+		eventRender: (arg: { event; el; view }) => {
 			const extendedProps = arg.event.extendedProps;
 			let lessDescription = extendedProps.description;
 			let moreDescription = extendedProps.description;
@@ -169,6 +171,9 @@ render() {
 				...`;
 				moreDescription = `${extendedProps.description}`;
 				uiHide = '';
+			}
+			if (arg.view.viewSpec && arg.view.viewSpec.type === 'dayGridWeek') {
+				uiHide = 'ui-hide';
 			}
 			const fcContent = arg.el.querySelector('.fc-content');
 			if (fcContent) {
