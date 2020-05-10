@@ -58,6 +58,7 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 				center: {lat: data[Common.zero].location[Common.one], lng: data[Common.one].location[Common.zero]}
 			});
 		}
+		const infoWindow = new google.maps.InfoWindow();
 		for (let i = 0; i < data.length; i++) {
 			const category = data[i].category;
 			const markerImage = this.getMarkerImage(category);
@@ -67,7 +68,6 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 					map: this.map,
 					icon: markerImage,
 				  });
-				  const infoWindow = new google.maps.InfoWindow();
 				  const dataInfo = `<div class='ui-window-info'>
 				  <div class='ui-window-title'>${data[i].title}</div>
 				  <div class='ui-window-desc'>${data[i].description}</div>
@@ -76,13 +76,18 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 				  </span>
 				${data[i].country}</div>
 				  </div>`;
-				  google.maps.event.addListener(marker, 'click', function (e) {
+				  google.maps.event.addListener(marker, 'click', (e) => {
 					  infoWindow.setContent(dataInfo);
 					  infoWindow.open(this.map, marker);
 				  });
 				  this.markers.push(marker);
 			}
 		}
+
+		google.maps.event.addListener(this.map, 'click', () => {
+			infoWindow.close();
+		});
+
 		const clusterOptions = {
 			imagePath: Common.clusterIcon,
 			gridSize: Common.thirty
