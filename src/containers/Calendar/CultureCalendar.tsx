@@ -172,7 +172,7 @@ render() {
 				return item;
 			})
 		}],
-		eventRender: (arg: { event; el: HTMLElement; view }) => {
+		eventRender: (arg: { event; el; view }) => {
 			const extendedProps = arg.event.extendedProps;
 			let lessDescription = extendedProps.description;
 			let moreDescription = extendedProps.description;
@@ -182,6 +182,9 @@ render() {
 				...`;
 				moreDescription = `${extendedProps.description}`;
 				uiHide = '';
+			}
+			if (arg.view.viewSpec && arg.view.viewSpec.type === 'dayGridWeek') {
+				uiHide = 'ui-hide';
 			}
 			const fcContent = arg.el.querySelector('.fc-content');
 			if (fcContent) {
