@@ -114,9 +114,11 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 	});
 }
 
-onEventDetail = () => {
-	this.eventRef.current?.openEventDetail({});
+onEventDetail = (dataObj) => {
+	this.eventRef.current?.openEventDetail(dataObj);
 }
+
+isDayGridWeek = (gridType: string) => (gridType === 'dayGridWeek');
 
 render() {
 	const calendarOptions = {
@@ -172,7 +174,7 @@ render() {
 				moreDescription = `${extendedProps.description}`;
 				uiHide = '';
 			}
-			if (arg.view.viewSpec && arg.view.viewSpec.type === 'dayGridWeek') {
+			if (this.isDayGridWeek(arg.view.viewSpec.type)) {
 				uiHide = 'ui-hide';
 			}
 			const fcContent = arg.el.querySelector('.fc-content');
@@ -195,21 +197,20 @@ render() {
 			}
 		},
 		eventClick: (arg: { el; event; view}) => {
-			console.log(arg);
 			const extendedProps = arg.event.extendedProps;
-			// arg.event.title
-			if (arg.el.closest('.fc-dayGridWeek-view')) {
-				this.onEventDetail();
+			if (this.isDayGridWeek(arg.view.viewSpec.type)) {
+				this.onEventDetail({title: arg.event.title, description: extendedProps.description
+				, country: extendedProps.country});
 			}
 		}
 	};
 	return (
 		<div>
+			<EventDetail ref={this.eventRef} />
 			{this.state.loading ? <div className='calendar-loader'>
 				<img src='/assets/images/loader.gif' alt='Loader Icon' />
 			</div> : ''}
 			<section>
-				<EventDetail />
 				<div className='calander-app'>
 					<div className='calander-app-calendar'>
 						{<FullCalendar {...calendarOptions} />}
