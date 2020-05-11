@@ -1318,3 +1318,22 @@ margin:50px 0;
   text-transform: capitalize;
 }
 
+.ui-evt-close {
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  right: 20px;
+}
+
+.event-detail-modal {
+  margin-top: 100px;  
+}
+
+.ui-break-all {
+  word-break: break-all;
+}
+
+.ui-evt-content {
+  max-height: 300px;
+  overflow: auto;
+}
