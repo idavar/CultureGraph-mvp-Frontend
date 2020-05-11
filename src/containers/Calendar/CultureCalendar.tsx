@@ -104,7 +104,7 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 		this.setState({ calendarEvents: this.state.calendarEvents.concat(res['results']) });
 		if (res['next']) {
 			options.next = res['next'];
-			// this.searchEvents(options);
+			this.searchEvents(options);
 			this.setState({loading: false});
 		} else {
 			this.setState({loading: false});
