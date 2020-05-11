@@ -7,6 +7,7 @@ import Culture from '../Culture/Culture';
 import TrendingKeywords from '../TrendingKeywords';
 import { setDataRef } from '../../helpers';
 import { User } from '../../interface/User';
+import Common from '../../constant/common';
 
 interface HomeProp {
 	location: {
@@ -28,7 +29,7 @@ class Home extends React.Component<HomeProp, HomeState> {
 		this.state = {
 			isKnowMore: false,
 			search: '',
-			cultureType: ''
+			cultureType: Common.cultureType.map
 		};
 	}
 
