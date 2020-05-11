@@ -72,7 +72,7 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 				  <div class='ui-window-title'>${data[i].title}</div>
 				  <div class='ui-window-desc'>${data[i].description}</div>
 				  <div class='fc-location'><span class='fc-location-icon'>
-				  <img src="/assets/images/icon-map.png" alt="icon-map"/>
+				  <img src="/assets/images/location-pin.png" alt="icon-map"/>
 				  </span>
 				${data[i].country}</div>
 				  </div>`;
