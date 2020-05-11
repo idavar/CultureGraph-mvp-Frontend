@@ -105,7 +105,6 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 		if (res['next']) {
 			options.next = res['next'];
 			this.searchEvents(options);
-			this.setState({loading: false});
 		} else {
 			this.setState({loading: false});
 		}
