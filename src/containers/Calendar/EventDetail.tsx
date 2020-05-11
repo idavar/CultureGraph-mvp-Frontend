@@ -34,12 +34,15 @@ class EventDetail extends React.Component<{}, EventDetailState> {
                 <span className='ui-evt-close' onClick={this.eventClose}>X</span>
                 <Modal.Title>{this.state.title}</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
-                        <span className='modal-subtitle'>{this.state.description}</span>
-                        <br />
-                        <span className='modal-subtitle'>
-                            <img src="/assets/images/icon-map.png" alt="icon-map"/> {this.state.country}
-                        </span>
+                    <Modal.Body className='ui-evt-content'>
+                       {
+                           this.state.description ? <div><span className='modal-subtitle ui-break-all'>
+                               {this.state.description}</span>
+                           <br /></div> : ''
+                       }
+                    <span className='modal-subtitle'>
+                        <img src="/assets/images/icon-map.png" alt="icon-map"/> {this.state.country}
+                    </span>
                     </Modal.Body>
                     </Modal>
                 </div>
