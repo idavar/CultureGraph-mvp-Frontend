@@ -5,6 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import '../../assets/styles/main.scss';
 import { apiReq } from '../../helpers';
 import Common from '../../constant/common';
+import EventDetail from './EventDetail';
 const $ = require( 'jquery' );
 
 interface EventAppState {
@@ -16,6 +17,7 @@ loading: boolean;
 }
 
 class CultureCalendar extends React.Component<{}, EventAppState> {
+	eventRef = React.createRef<EventDetail>();
 	public currentStart = '';
 	public currentEnd = '';
 	public latitude = Common.zero;
@@ -103,6 +105,7 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 		if (res['next']) {
 			options.next = res['next'];
 			this.searchEvents(options);
+			this.setState({loading: false});
 		} else {
 			this.setState({loading: false});
 		}
@@ -111,23 +114,11 @@ searchEvents = (options: {query: string, next: string} = {query: '', next: ''}) 
 	});
 }
 
-eventDetail = () => {
-	return <div className='fc-popover fc-more-popover'>
-		<div className='fc-header fc-widget-header'>
-			<span className='fc-title'>April 6, 2020</span>
-			<span className='fc-close fc-icon fc-icon-x'></span>
-		</div>
-		<div className='fc-body fc-widget-content'>
-			<div className='fc-event-container'>
-				<div className='fc-content'>
-					<span className='fc-title'></span>
-					<span className='fc-description"\'></span>
-					<span className='fc-location'><span className='fc-location-icon'></span>US</span>
-				</div>
-			</div>
-		</div>
-	</div>;
+onEventDetail = (dataObj) => {
+	this.eventRef.current?.openEventDetail(dataObj);
 }
+
+isDayGridWeek = (gridType: string) => (gridType === 'dayGridWeek');
 
 render() {
 	const calendarOptions = {
@@ -183,7 +174,7 @@ render() {
 				moreDescription = `${extendedProps.description}`;
 				uiHide = '';
 			}
-			if (arg.view.viewSpec && arg.view.viewSpec.type === 'dayGridWeek') {
+			if (this.isDayGridWeek(arg.view.viewSpec.type)) {
 				uiHide = 'ui-hide';
 			}
 			const fcContent = arg.el.querySelector('.fc-content');
@@ -204,10 +195,18 @@ render() {
 				${extendedProps.country}</span>
 				`;
 			}
+		},
+		eventClick: (arg: { el; event; view}) => {
+			const extendedProps = arg.event.extendedProps;
+			if (this.isDayGridWeek(arg.view.viewSpec.type)) {
+				this.onEventDetail({title: arg.event.title, description: extendedProps.description
+				, country: extendedProps.country});
+			}
 		}
 	};
 	return (
 		<div>
+			<EventDetail ref={this.eventRef} />
 			{this.state.loading ? <div className='calendar-loader'>
 				<img src='/assets/images/loader.gif' alt='Loader Icon' />
 			</div> : ''}
