@@ -29,7 +29,7 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 
 	componentDidMount() {
 		this.setState({ markers: [] });
-		this.getCurrentPosition();
+		this.setPosition();
 	}
 
 	/**
@@ -72,7 +72,7 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 				  <div class='ui-window-title'>${data[i].title}</div>
 				  <div class='ui-window-desc'>${data[i].description}</div>
 				  <div class='fc-location'><span class='fc-location-icon'>
-				  <img src="/assets/images/icon-map.png" alt="icon-map"/>
+				  <img src="/assets/images/location-pin.png" alt="icon-map"/>
 				  </span>
 				${data[i].country}</div>
 				  </div>`;
@@ -124,20 +124,11 @@ class CultureMap extends React.Component<{}, MapEventAppState> {
 	/**
 	 * @description function used for get current position event
 	 */
-	getCurrentPosition = () => {
+	setPosition = () => {
 		this.latitude = Common.defaultLocation.lat;
 		this.longitude = Common.defaultLocation.lng;
-		navigator.geolocation.getCurrentPosition((position) => {
-			if (position) {
-				// this.latitude = position.coords.latitude;
-				// this.longitude = position.coords.longitude;
-				this.initMap();
-				this.searchMapEvents();
-			} else {
-				this.initMap();
-				this.searchMapEvents();
-			}
-		});
+		this.initMap();
+		this.searchMapEvents();
 	}
 
 	/**
