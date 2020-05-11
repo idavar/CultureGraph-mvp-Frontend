@@ -41,7 +41,7 @@ class EventDetail extends React.Component<{}, EventDetailState> {
                            <br /></div> : ''
                        }
                     <span className='modal-subtitle'>
-                       <span className='ui-map-icon'><img src="/assets/images/icon-map.png" alt="icon-map"/></span> {this.state.country}
+                       <span className='ui-map-icon'><img src="/assets/images/location-pin.png" alt="icon-map"/></span> {this.state.country}
                     </span>
                     </Modal.Body>
                     </Modal>
