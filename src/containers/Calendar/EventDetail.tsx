@@ -36,12 +36,12 @@ class EventDetail extends React.Component<{}, EventDetailState> {
                     </Modal.Header>
                     <Modal.Body className='ui-evt-content'>
                        {
-                           this.state.description ? <div><span className='modal-subtitle ui-break-all'>
+                           this.state.description ? <div className='mb20'><span className='modal-subtitle ui-break-all'>
                                {this.state.description}</span>
                            <br /></div> : ''
                        }
                     <span className='modal-subtitle'>
-                        <img src="/assets/images/icon-map.png" alt="icon-map"/> {this.state.country}
+                       <span className='ui-map-icon'><img src="/assets/images/icon-map.png" alt="icon-map"/></span> {this.state.country}
                     </span>
                     </Modal.Body>
                     </Modal>
