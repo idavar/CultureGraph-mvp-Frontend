@@ -250,3 +250,17 @@ padding: 10px 0;
 // .dropdown:hover .dropdown-menu {
 //   display: block;
 // }
+
+
+@media screen and (min-width: 991px){
+  .collapse {
+    display: block;
+    height: auto !important;
+    visibility: visible;
+  }
+  .collapsing{
+    position: relative;
+    height: unset !important;
+    overflow: hidden;
+  }
+}
