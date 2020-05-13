@@ -1,0 +1,27 @@
+/**
+ * Colors
+ */
+/**************************** TYPOGRAPHY *********************************/
+@import 'variables';
+@import 'pages/fonts';
+@import 'pages/reusable';
+@import 'pages/onboarding';
+@import 'pages/admin-header';
+@import 'pages/admin-user-list';
+@import 'pages/modal.scss';
+@import 'pages/web-header';
+@import 'pages/web-footer';
+@import 'pages/landing-page';
+@import 'pages/calendar';
+@import 'pages/search-events';
+
+
+body{
+	background: $off-white2;
+	-webkit-text-size-adjust: 100%;
+  font-variant-ligatures: none;
+  -webkit-font-variant-ligatures: none;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}

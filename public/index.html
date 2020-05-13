@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -24,7 +24,119 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>IVOW</title>
+    <style>
+      
+      /* Google Map Marker Start*/
+      #map-container {
+        padding: 6px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ccc #ccc #999 #ccc;
+        -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+        width: 800px;
+      }
+
+      #map {
+        width: 100%;
+        height: 500px;
+      }
+      #map .ui-window-info {
+        text-align: left !important;
+      }
+      #map .ui-window-info .ui-window-title {
+        border-left: 2px solid black !important;
+        padding: 2px 0 2px 7px !important;
+        margin-bottom: 10px !important;
+        font-size: 14px !important;
+        color: black !important;
+        font-weight: bold;
+        font-family: 'source_sans_probold' !important;
+      }
+      #map .ui-window-desc {
+        margin-bottom: 8px !important;
+        font-size: 12px !important;
+        color: black !important;
+        opacity: 0.6 !important;
+        font-family: 'source_sans_proregular' !important;
+      }
+      #map .gm-style-iw.gm-style-iw-c {
+        max-width: 300px !important;
+        padding: 14px !important;
+        border-radius: 10px !important;
+      }
+      #map .gm-style-iw-d {
+        overflow-y: auto !important;
+      }
+      #map .gm-style-iw-t::after {
+        width: 20px !important;
+        height: 20px !important;
+        box-shadow: none !important;
+      }
+      #map .gm-ui-hover-effect {
+        top: 0 !important;
+        right: 0 !important;
+      }
+      #map .fc-location-icon {
+        padding-right: 7px !important
+      }
+      /* #map .holiday .gm-style-iw.gm-style-iw-c {
+        background: #2dd351 !important;
+      }
+      #map .holiday .gm-style-iw-t::after {
+        background: #f58f2c !important;
+      }
+      #map .sports .gm-style-iw.gm-style-iw-c {
+        background: #5cb2eb !important;
+      }
+      #map .sports .gm-style-iw-t::after {
+        background: #5cb2eb !important;
+      }
+      #map .festival .gm-style-iw.gm-style-iw-c {
+        background: #f58f2c !important;
+      }
+      #map .festival .gm-style-iw-t::after {
+        background: #f58f2c !important;
+      }
+      #map .music .gm-style-iw.gm-style-iw-c {
+        background: #ffe200 !important;
+      }
+      #map .music .gm-style-iw-t::after {
+        background: #ffe200 !important;
+      }
+      #map .food .gm-style-iw.gm-style-iw-c {
+        background: #74d5bd !important;
+      }
+      #map .food .gm-style-iw-t::after {
+        background: #74d5bd !important;
+      }
+      #map .art .gm-style-iw.gm-style-iw-c {
+        background: #f3aaf8 !important;
+      }
+      #map .art .gm-style-iw-t::after {
+        background: #f3aaf8 !important;
+      }
+      #map .dance .gm-style-iw.gm-style-iw-c {
+        background: #c604d6 !important;
+      }
+      #map .dance .gm-style-iw-t::after {
+        background: #c604d6 !important;
+      }
+      #map .others .gm-style-iw.gm-style-iw-c {
+        background: #847de3 !important;
+      }
+      #map .others .gm-style-iw-t::after {
+        background: #847de3 !important;
+      } */
+/* Google Map Marker End*/
+
+    </style>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnZTW2im35N-H1J5Vrzkt7ZBJR2V887cQ">
+      </script>
+      <script async defer src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>  
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

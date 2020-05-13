@@ -1,0 +1,152 @@
+
+.custom-container{
+	padding: 0 60px;
+	@media (max-width:991px){
+		padding: 0 20px;
+	}
+}
+
+//buttons
+.btn{
+	height: 56px;
+	line-height: 56px;
+	padding: 0 20px;
+	font-size:$font-16;
+	font-family:  $source-regular;
+	text-transform: uppercase;
+	border-radius:5px;
+	border:0;
+
+	&:focus{
+		outline: none;
+		box-shadow:none;
+		
+	}
+
+	&.btn-primary{
+		background: $light-blue;
+	}
+}
+
+
+
+
+
+//custom radio box
+.custom-radio{
+	label{
+		margin-right: 30px;
+		font-size: $font-16;
+		font-family:  $source-regular;
+		color: rgba($color: $navy-blue, $alpha:0.7);
+		position: relative;
+		padding-left: 30px;
+		cursor: pointer;
+
+		input{
+			position: absolute;
+			opacity: 0;
+
+			&:checked + span{
+				&:before{
+					content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: $light-blue;
+    border-radius: 50px;
+    top: 0;
+		bottom: 0;
+		left: 0;
+    right: 0;
+    margin: auto;
+				}
+			}
+		}
+
+		span{
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			border: 1.5px solid rgba($color: $navy-blue, $alpha:0.4);
+			border-radius: 50px;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
+		}
+	}
+}
+
+
+.no-record-found{
+	text-align: center;
+font-size: $font-18!important;
+}
+
+.mg-top-40{
+	margin-top: 40px!important;
+}
+
+.mg-bottom-40{
+	margin-bottom: 40px!important;
+}
+
+
+
+
+//toast start here..
+
+.Toastify__toast-body{
+	font-family:  $font-regular;
+}
+
+
+
+.Toastify__toast-container{
+	width: 400px;
+	margin-left: -200px;
+	font-family:  $font-regular;
+	@media (max-width:767px){
+		width:100%;
+		margin-left:0;
+		top:0;
+		left:0;
+	}
+
+	.Toastify__toast{
+		padding:15px;
+		border-radius: 5px;
+
+		&.Toastify__toast--success{
+			background: $green1;
+		}
+
+		&.Toastify__toast--error{
+			background: $red1;
+		}
+	}
+
+	.Toastify__close-button{
+		font-size:0;
+		background: url(../../images/close.png) no-repeat;
+		background-color: $white;
+		background-size: 17px;
+		width:17px;
+		height: 17px;
+		-webkit-box-shadow: 0px 0px 0px 3px $white;
+		-moz-box-shadow: 0px 0px 0px 3px $white;
+		box-shadow: 0px 0px 0px 3px $white;
+		border-radius: 25px;
+		margin-left: 20px;
+		opacity: 1;
+
+		&:focus{
+			outline: none;
+		
+		}
+
+	}
+}
+
+
