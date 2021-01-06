@@ -24,7 +24,7 @@
     "@types/redux-form": "^8.2.3",
     "@types/redux-persist": "^4.3.1",
     "@types/redux-thunk": "^2.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "dotenv": "^8.2.0",
     "eslint-plugin-prettier": "^3.1.2",
